@@ -24,5 +24,6 @@ module.exports = {
     'react/jsx-props-no-spreading': 'warn',
     'react/prop-types': 'warn',
     'react/jsx-one-expression-per-line': 'off',
+    'import/prefer-default-export': 'warn',
   },
 };
