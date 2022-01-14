@@ -20,10 +20,12 @@ export default function PokemonCard() {
   const { state } = useContext(searchField);
 
   useEffect(() => {
-    axios
-      .get(`https://pokeapi.co/api/v2/pokemon/${state.name}/`)
-      .then((response) => setPokemon(response.data))
-      .catch((error) => error);
+    if (state.name !== '') {
+      axios
+        .get(`https://pokeapi.co/api/v2/pokemon/${state.name}/`)
+        .then((response) => setPokemon(response.data))
+        .catch((error) => error);
+    }
   }, [state]);
 
   const loading = () => <Spinner animation="grow" size="sm" variant="dark" />;
@@ -40,12 +42,13 @@ export default function PokemonCard() {
         className={s.image}
         variant="top"
         src={
-          pokemon.sprites.front_default
+          `https://projectpokemon.org/images/normal-sprite/${pokemon.name}.gif`
+          || pokemon.sprites.front_default
           || 'https://www.tibs.org.tw/images/default.jpg'
         }
       />
       <Card.Body>
-        <Card.Title className={s.title}>{pokemon.name || loading()}</Card.Title>
+        <Card.Title className={s.title}>{`#${pokemon.id} ${pokemon.name}` || loading()}</Card.Title>
         <Card.Text className={s.types}>
           {pokemon.types ? renderTypes(pokemon.types) : loading}
         </Card.Text>
