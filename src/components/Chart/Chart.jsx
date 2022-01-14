@@ -1,7 +1,12 @@
 /* eslint-disable no-multi-spaces */
 import React, { useEffect, useState } from 'react';
 import { Button, Row } from 'react-bootstrap';
-import { EFFECTS_COLORS, EFFECTS_EMOJIS, LETTERS_CHART, TYPES, WEAKNESS_CHART } from '../../common/constants';
+import {
+  EFFECTS_COLORS,
+  EFFECTS_EMOJIS,
+  LETTERS_CHART,
+  TYPES, WEAKNESS_CHART,
+} from '../../common/constants';
 import s from './Chart.module.scss';
 
 export default function Chart() {

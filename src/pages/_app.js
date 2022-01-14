@@ -2,11 +2,14 @@ import React from 'react';
 import { Container } from 'react-bootstrap';
 import '../styles/globals.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { ContextProvider } from '../context';
 
 function MyApp({ Component, pageProps }) {
   return (
     <Container>
-      <Component {...pageProps} />
+      <ContextProvider>
+        <Component {...pageProps} />
+      </ContextProvider>
     </Container>
   );
 }

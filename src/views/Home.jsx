@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import Image from 'next/image';
-import { Chart, PokemonCard } from '../components';
 import { Col, Row } from 'react-bootstrap';
+import { Chart, PokemonCard, SearchBar } from '../components';
 
 export default function Home({ title, description }) {
   return (
@@ -22,7 +22,8 @@ export default function Home({ title, description }) {
           <Col xs={7}>
             <Chart />
           </Col>
-          <Col xs={5} className="d-flex justify-content-center align-items-start">
+          <Col xs={5} className="d-flex flex-column justify-content-start align-items-center">
+            <SearchBar />
             <PokemonCard />
           </Col>
         </Row>

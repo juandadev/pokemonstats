@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
   Badge,
   Card,
@@ -7,6 +7,7 @@ import {
   Spinner,
 } from 'react-bootstrap';
 import axios from 'axios';
+import { pokemon as searchField } from '../../context';
 import s from './PokemonCar.module.scss';
 
 export default function PokemonCard() {
@@ -16,19 +17,21 @@ export default function PokemonCard() {
     types: [],
     stats: [],
   });
+  const { state } = useContext(searchField);
 
   useEffect(() => {
     axios
-      .get('https://pokeapi.co/api/v2/pokemon/vaporeon/')
-      .then((response) => setPokemon(response.data));
-  }, []);
+      .get(`https://pokeapi.co/api/v2/pokemon/${state.name}/`)
+      .then((response) => setPokemon(response.data))
+      .catch((error) => error);
+  }, [state]);
 
-  const loading = () => <Spinner animation="grow" variant="dark" />;
+  const loading = () => <Spinner animation="grow" size="sm" variant="dark" />;
 
   const renderTypes = (types) => types.map((item) => {
     const { name } = item.type;
 
-    return <Badge bg={name}>{name}</Badge>;
+    return <Badge key={`badge-${name}`} bg={name}>{name}</Badge>;
   });
 
   return (
@@ -37,8 +40,8 @@ export default function PokemonCard() {
         className={s.image}
         variant="top"
         src={
-          pokemon.sprites.front_default ||
-          'https://www.tibs.org.tw/images/default.jpg'
+          pokemon.sprites.front_default
+          || 'https://www.tibs.org.tw/images/default.jpg'
         }
       />
       <Card.Body>
