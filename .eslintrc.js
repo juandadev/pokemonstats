@@ -25,5 +25,6 @@ module.exports = {
     'react/prop-types': 'warn',
     'react/jsx-one-expression-per-line': 'off',
     'import/prefer-default-export': 'warn',
+    'react/no-array-index-key': 'warn',
   },
 };

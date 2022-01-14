@@ -9,3 +9,8 @@
 body {
   font-family: Poppins, sans-serif;
 }
+
+.activeCell {
+  filter: brightness(80%);
+  -webkit-filter: brightness(70%);
+}

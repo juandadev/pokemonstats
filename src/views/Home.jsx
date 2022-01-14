@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import Image from 'next/image';
+import { Chart } from '../components';
 
 export default function Home({ title, description }) {
   return (
@@ -16,6 +17,7 @@ export default function Home({ title, description }) {
       </header>
       <main>
         <p>An useful tool for your pokémon adventures!</p>
+        <Chart />
       </main>
       <footer>
         Made with 💚 by{' '}
