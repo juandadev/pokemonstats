@@ -1,0 +1,13 @@
+.image {
+  height: 180px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.title {
+  text-transform: capitalize;
+}
+
+.types > * {
+  margin-right: 0.5rem;
+}
