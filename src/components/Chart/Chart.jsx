@@ -5,7 +5,8 @@ import {
   EFFECTS_COLORS,
   EFFECTS_EMOJIS,
   LETTERS_CHART,
-  TYPES, WEAKNESS_CHART,
+  TYPES,
+  WEAKNESS_CHART,
 } from '../../common/constants';
 import s from './Chart.module.scss';
 
@@ -18,10 +19,8 @@ export default function Chart() {
 
   const handleMouseOver = (event) => {
     const { col, row } = event.target.dataset;
-    const activeRows = cells
-      .filter((cell) => cell.dataset.row === row);
-    const activeCols = cells
-      .filter((cell) => cell.dataset.col === col);
+    const activeRows = cells.filter((cell) => cell.dataset.row === row);
+    const activeCols = cells.filter((cell) => cell.dataset.col === col);
 
     cells.forEach((item) => item.classList.remove('activeCell'));
     activeRows.forEach((item) => item.classList.add('activeCell'));
@@ -34,8 +33,8 @@ export default function Chart() {
         <Row key={`row-${indexRow}`} className={s.row}>
           {row.map((col, indexCol) => (
             <Button
-              size="sm"
               key={`btn-${indexRow}${indexCol}`}
+              size="sm"
               className={`${(indexCol === 0 || col === -1) && s.typesRows} ${
                 indexRow === 0 && col !== -1 && s.typesCols
               } ${s.button} chartCell`}

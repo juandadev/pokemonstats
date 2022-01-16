@@ -4,6 +4,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { Col, Row } from 'react-bootstrap';
 import { Chart, PokemonCard, SearchBar } from '../components';
+import s from './Home.module.scss';
 
 export default function Home({ title, description }) {
   return (
@@ -12,12 +13,14 @@ export default function Home({ title, description }) {
         <title>{title}</title>
         <meta name="description" content={description} />
       </Head>
-      <header>
+      <header className={s.header}>
         <Image src="/images/pokeball-sprite.png" width={61} height={62} />
         <h1>Welcome to Pokémon stats</h1>
       </header>
       <main>
-        <p>An useful tool for your pokémon adventures!</p>
+        <Row>
+          <p className="text-center">An useful tool for your pokémon adventures!</p>
+        </Row>
         <Row>
           <Col xs={7}>
             <Chart />

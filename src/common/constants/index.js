@@ -1,5 +1,12 @@
 export const EFFECTS_EMOJIS = ['😶', '🙂', '😁', '😐'];
 
+export const EFFECTS_NAMES = [
+  'no effect',
+  'normal',
+  'super effective',
+  'not very effective',
+];
+
 export const EFFECTS_COLORS = ['dark', 'light', 'success', 'warning'];
 
 export const TYPES = [
