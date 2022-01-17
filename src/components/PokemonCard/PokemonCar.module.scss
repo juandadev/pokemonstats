@@ -1,13 +1,19 @@
 .image {
   height: 180px;
-  object-fit: cover;
+  object-fit: scale-down;
   object-position: center;
 }
 
 .title {
+  display: flex;
+  justify-content: center;
   text-transform: capitalize;
 }
 
 .types > * {
   margin-right: 0.5rem;
+}
+
+.stat_title {
+  text-transform: uppercase;
 }

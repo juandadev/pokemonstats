@@ -5,4 +5,11 @@ module.exports = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
+  images: {
+    domains: [
+      'raw.githubusercontent.com',
+      'projectpokemon.org',
+      'i.ebayimg.com',
+    ],
+  },
 };

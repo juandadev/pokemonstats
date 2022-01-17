@@ -10,10 +10,22 @@ export default function SearchBar() {
     const { value } = event.target;
 
     setField(value);
-    dispatch({
-      type: 'CHANGE_INPUT',
-      name: value.toLowerCase(),
-    });
+  };
+
+  const handleKeyDown = (event) => {
+    const { target, key } = event;
+    const { value } = target;
+
+    if (key === 'Enter') {
+      dispatch({
+        type: 'CHANGE_INPUT',
+        name: value
+          .toLowerCase()
+          .trim()
+          .replaceAll(' ', '-'),
+      });
+      setField('');
+    }
   };
 
   return (
@@ -25,6 +37,7 @@ export default function SearchBar() {
         aria-describedby="basic-addon1"
         value={field}
         onChange={handleChange}
+        onKeyDown={handleKeyDown}
       />
     </InputGroup>
   );

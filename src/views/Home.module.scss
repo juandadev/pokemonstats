@@ -1,0 +1,9 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chart_container {
+  overflow-x: scroll;
+}
