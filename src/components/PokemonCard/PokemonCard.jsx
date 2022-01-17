@@ -48,9 +48,13 @@ export default function PokemonCard(props) {
         <Card.Title className={s.title}>
           {pokemon.name ? `#${pokemon.id} ${pokemon.name}` : loading()}
         </Card.Title>
-        <Card.Text className={s.types}>{renderTypes(pokemon.types)}</Card.Text>
+        <Card.Text className={s.types}>
+          {renderTypes(pokemon.types)}
+        </Card.Text>
       </Card.Body>
-      <ListGroup className="list-group-flush">{renderStats(pokemon)}</ListGroup>
+      <ListGroup className="list-group-flush">
+        {renderStats(pokemon)}
+      </ListGroup>
     </Card>
   );
 }
