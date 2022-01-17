@@ -1,6 +1,7 @@
+/* eslint-disable max-len */
 /* eslint-disable no-multi-spaces */
 import React, { useEffect, useState } from 'react';
-import { Button, Row } from 'react-bootstrap';
+import { Button, FormText, Row } from 'react-bootstrap';
 import {
   EFFECTS_COLORS,
   EFFECTS_EMOJIS,
@@ -29,6 +30,9 @@ export default function Chart() {
 
   return (
     <>
+      <FormText id="searchPokemon" className="mb-3">
+        You can <code>press any button</code> to highlight the current column and row where it&apos;s located and don&apos;t get lost.
+      </FormText>
       {WEAKNESS_CHART.map((row, indexRow) => (
         <Row key={`row-${indexRow}`} className={s.row}>
           {row.map((col, indexCol) => (

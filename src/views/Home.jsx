@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import Image from 'next/image';
-import { Col, Row } from 'react-bootstrap';
+import { Badge, Col, Row } from 'react-bootstrap';
 import { Chart, PokemonCard, SearchBar } from '../components';
 import s from './Home.module.scss';
 
@@ -27,11 +27,25 @@ export default function Home({ title, description }) {
             <PokemonCard />
           </Col>
           <Col xs={12} xl={7} className={s.chart_container}>
+            <Row className="d-flex justify-content-center mb-2">
+              <div className="w-auto">
+                <Badge bg="success">😁 2x Super effective</Badge>
+              </div>
+              <div className="w-auto">
+                <Badge bg="light" className="text-dark">🙂 1x Normal</Badge>
+              </div>
+              <div className="w-auto">
+                <Badge bg="warning">😐 1/2x Not very effective</Badge>
+              </div>
+              <div className="w-auto">
+                <Badge bg="dark">😶 0x No effect</Badge>
+              </div>
+            </Row>
             <Chart />
           </Col>
         </Row>
       </main>
-      <footer>
+      <footer className={s.footer}>
         Made with 💚 by{' '}
         <a href="https://juanda.dev" target="_blank" rel="noreferrer">
           Juan Daniel Martínez

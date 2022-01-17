@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { FormControl, InputGroup } from 'react-bootstrap';
+import { FormControl, FormText, InputGroup } from 'react-bootstrap';
 import { pokemon } from '../../context';
 
 export default function SearchBar() {
@@ -29,16 +29,21 @@ export default function SearchBar() {
   };
 
   return (
-    <InputGroup className="mb-3">
-      <InputGroup.Text id="basic-addon1">Search</InputGroup.Text>
-      <FormControl
-        placeholder="Type name or code"
-        aria-label="pokemon"
-        aria-describedby="basic-addon1"
-        value={field}
-        onChange={handleChange}
-        onKeyDown={handleKeyDown}
-      />
-    </InputGroup>
+    <>
+      <InputGroup>
+        <InputGroup.Text id="searchPokemon">Search</InputGroup.Text>
+        <FormControl
+          placeholder="Type name or code"
+          aria-label="pokemon"
+          aria-describedby="searchPokemon"
+          value={field}
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
+        />
+      </InputGroup>
+      <FormText id="searchPokemon" className="mb-3">
+        Type the pokemon name or code, then hit <code>Enter</code>
+      </FormText>
+    </>
   );
 }
