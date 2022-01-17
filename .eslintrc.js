@@ -20,11 +20,12 @@ module.exports = {
     'react',
   ],
   rules: {
-    'react/jsx-filename-extension': 'warn',
+    'react/jsx-filename-extension': 'off',
     'react/jsx-props-no-spreading': 'warn',
     'react/prop-types': 'warn',
     'react/jsx-one-expression-per-line': 'off',
     'import/prefer-default-export': 'warn',
     'react/no-array-index-key': 'warn',
+    'no-param-reassign': 'warn',
   },
 };

@@ -19,8 +19,12 @@ export default function SearchBar() {
     if (key === 'Enter') {
       dispatch({
         type: 'CHANGE_INPUT',
-        name: value.toLowerCase(),
+        name: value
+          .toLowerCase()
+          .trim()
+          .replaceAll(' ', '-'),
       });
+      setField('');
     }
   };
 
