@@ -15,19 +15,19 @@ export default function Home({ title, description }) {
       </Head>
       <header className={s.header}>
         <Image src="/images/pokeball-sprite.png" width={61} height={62} />
-        <h1>Welcome to Pokémon stats</h1>
+        <h1 className="text-center">Welcome to Pokémon stats</h1>
       </header>
       <main>
         <Row>
           <p className="text-center">An useful tool for your pokémon adventures!</p>
         </Row>
         <Row>
-          <Col xs={7}>
-            <Chart />
-          </Col>
-          <Col xs={5} className="d-flex flex-column justify-content-start align-items-center">
+          <Col xs={12} xl={5} className="d-flex flex-column justify-content-start align-items-center mb-3">
             <SearchBar />
             <PokemonCard />
+          </Col>
+          <Col xs={12} xl={7} className={s.chart_container}>
+            <Chart />
           </Col>
         </Row>
       </main>
