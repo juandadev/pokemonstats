@@ -1,10 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Image from 'next/image';
-import {
-  Card,
-  ListGroup,
-  ListGroupItem,
-} from 'react-bootstrap';
+import { Card, ListGroup } from 'react-bootstrap';
 import { pokemon as searchField } from '../../context';
 import s from './PokemonCar.module.scss';
 
@@ -14,6 +10,7 @@ export default function PokemonCard(props) {
     renderTypes,
     fetchPokemonData,
     handleImage,
+    renderStats,
   } = props;
   const [pokemon, setPokemon] = useState({
     sprites: {},
@@ -26,7 +23,11 @@ export default function PokemonCard(props) {
 
   useEffect(() => {
     if (state.name !== '') {
-      fetchPokemonData(state.name, setPokemon, setImagePath);
+      fetchPokemonData(
+        state.name,
+        setPokemon,
+        setImagePath,
+      );
     }
   }, [state]);
 
@@ -44,20 +45,12 @@ export default function PokemonCard(props) {
         onError={() => handleImage(pokemon, setImagePath)}
       />
       <Card.Body>
-        <Card.Title className={s.title}>{pokemon.name ? `#${pokemon.id} ${pokemon.name}` : loading()}</Card.Title>
-        <Card.Text className={s.types}>
-          {renderTypes(pokemon.types)}
-        </Card.Text>
+        <Card.Title className={s.title}>
+          {pokemon.name ? `#${pokemon.id} ${pokemon.name}` : loading()}
+        </Card.Title>
+        <Card.Text className={s.types}>{renderTypes(pokemon.types)}</Card.Text>
       </Card.Body>
-      <ListGroup className="list-group-flush">
-        <ListGroupItem>Cras justo odio</ListGroupItem>
-        <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
-        <ListGroupItem>Vestibulum at eros</ListGroupItem>
-      </ListGroup>
-      <Card.Body>
-        <Card.Link href="#">Card Link</Card.Link>
-        <Card.Link href="#">Another Link</Card.Link>
-      </Card.Body>
+      <ListGroup className="list-group-flush">{renderStats(pokemon)}</ListGroup>
     </Card>
   );
 }
