@@ -71,7 +71,6 @@ export default function PokemonCard(props) {
               {renderChain(evolutions, pokemon)}
             </div>
           </ListGroupItem>
-          {renderStats(pokemon)}
         </ListGroup>
       )}
     </Card>
