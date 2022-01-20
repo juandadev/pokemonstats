@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Image from 'next/image';
-import { Card, ListGroup } from 'react-bootstrap';
+import { Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { pokemon as searchField } from '../../context';
 import s from './PokemonCar.module.scss';
 
@@ -11,13 +11,19 @@ export default function PokemonCard(props) {
     fetchPokemonData,
     handleImage,
     renderStats,
+    fetchEvolutions,
+    fetchSpecies,
+    renderChain
   } = props;
   const [pokemon, setPokemon] = useState({
+    id: 0,
     sprites: {},
     name: '',
     types: [],
     stats: [],
   });
+  const [species, setSpecies] = useState({});
+  const [evolutions, setEvolutions] = useState({});
   const [imagePath, setImagePath] = useState(`https://projectpokemon.org/images/normal-sprite/${pokemon.name}.gif`);
   const { state } = useContext(searchField);
 
@@ -27,12 +33,17 @@ export default function PokemonCard(props) {
         state.name,
         setPokemon,
         setImagePath,
-      );
+      ).then((pokemonData) => {
+        fetchSpecies(pokemonData, setSpecies)
+          .then((speciesData) => {
+            fetchEvolutions(speciesData, setEvolutions);
+          });
+      });
     }
   }, [state]);
 
   return (
-    <Card style={{ width: '18rem' }}>
+    <Card className="position-relative">
       <Image
         id="pokemon-sprite"
         className={`card-img-top ${s.image}`}
@@ -52,9 +63,17 @@ export default function PokemonCard(props) {
           {renderTypes(pokemon.types)}
         </Card.Text>
       </Card.Body>
-      <ListGroup className="list-group-flush">
-        {renderStats(pokemon)}
-      </ListGroup>
+      {pokemon.name && (
+        <ListGroup className="list-group-flush">
+          <ListGroupItem className="d-flex flex-column">
+            <strong className="mb-3">Evolution chain:</strong>
+            <div className={s.image_container}>
+              {renderChain(evolutions, pokemon)}
+            </div>
+          </ListGroupItem>
+          {renderStats(pokemon)}
+        </ListGroup>
+      )}
     </Card>
   );
 }

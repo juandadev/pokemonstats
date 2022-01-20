@@ -4,6 +4,23 @@
   object-position: center;
 }
 
+.image_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.spinner {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.evolutions {
+  object-fit: contain;
+  object-position: center;
+}
+
 .title {
   display: flex;
   justify-content: center;
