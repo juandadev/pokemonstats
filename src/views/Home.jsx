@@ -32,7 +32,7 @@ export default function Home({ title, description }) {
                 <Badge bg="success">😁 2x Super effective</Badge>
               </div>
               <div className="w-auto">
-                <Badge bg="light" className="text-dark">🙂 1x Normal</Badge>
+                <Badge bg="light" className="text-dark">🙂 1x Effective</Badge>
               </div>
               <div className="w-auto">
                 <Badge bg="warning">😐 1/2x Not very effective</Badge>
