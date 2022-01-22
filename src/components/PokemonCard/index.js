@@ -27,7 +27,6 @@ export default function PokemonCardVM() {
       .then((response) => {
         setPokemon(response.data);
         setPath(`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${response.data.id.toString().padStart(3, '0')}.png`);
-        // setPath(`https://projectpokemon.org/images/normal-sprite/${response.data.name}.gif`);
 
         return response.data;
       })
@@ -97,6 +96,26 @@ export default function PokemonCardVM() {
     return false;
   };
 
+  const swithc3d = (id, name, setPath, toggle, setToggle) => {
+    if (toggle[0]) {
+      setPath(`https://projectpokemon.org/images/normal-sprite/${name}.gif`);
+    } else {
+      setPath(`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${id.toString().padStart(3, '0')}.png`);
+    }
+
+    setToggle((state) => [!state[0], true]);
+  };
+
+  const swithc2d = (id, name, setPath, toggle, setToggle) => {
+    if (toggle[1]) {
+      setPath(name);
+    } else {
+      setPath(`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${id.toString().padStart(3, '0')}.png`);
+    }
+
+    setToggle((state) => [true, !state[1]]);
+  };
+
   const mapProps = {
     loading,
     renderTypes,
@@ -106,6 +125,8 @@ export default function PokemonCardVM() {
     fetchEvolutions,
     fetchSpecies,
     evolutionChain,
+    swithc3d,
+    swithc2d,
   };
 
   return <PokemonCard {...mapProps} />;

@@ -1,11 +1,11 @@
 import React, {
-  createRef,
   useContext,
   useEffect,
   useState,
 } from 'react';
 import Image from 'next/image';
 import {
+  Button,
   Card,
   ListGroup,
   ListGroupItem,
@@ -23,6 +23,8 @@ export default function PokemonCard(props) {
     fetchEvolutions,
     fetchSpecies,
     evolutionChain,
+    swithc3d,
+    swithc2d,
   } = props;
   const [pokemon, setPokemon] = useState({
     id: 0,
@@ -33,6 +35,7 @@ export default function PokemonCard(props) {
   });
   const [evolutions, setEvolutions] = useState({});
   const [imagePath, setImagePath] = useState(`https://projectpokemon.org/images/normal-sprite/${pokemon.name}.gif`);
+  const [toggle, setToggle] = useState([true, true]);
   const { state } = useContext(searchField);
 
   useEffect(() => {
@@ -86,10 +89,36 @@ export default function PokemonCard(props) {
                       fetchPokemonData={fetchPokemonData}
                       setPath={setImagePath}
                       setPokemon={setPokemon}
+                      setToggle={setToggle}
                     />
                   ))
               }
             </div>
+          </ListGroupItem>
+          <ListGroupItem className="d-flex justify-content-center">
+            <Button
+              className="me-3"
+              onClick={() => swithc3d(
+                pokemon.id,
+                pokemon.name,
+                setImagePath,
+                toggle,
+                setToggle,
+              )}
+            >
+              {toggle[0] ? '3D sprite' : 'Normal image'}
+            </Button>
+            <Button
+              onClick={() => swithc2d(
+                pokemon.id,
+                pokemon.sprites.front_default,
+                setImagePath,
+                toggle,
+                setToggle,
+              )}
+            >
+              {toggle[1] ? '2D sprite' : 'Normal image'}
+            </Button>
           </ListGroupItem>
         </ListGroup>
       )}

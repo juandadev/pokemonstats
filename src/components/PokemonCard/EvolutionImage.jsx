@@ -9,6 +9,7 @@ export default function EvolutionImage({
   setPath,
   setPokemon,
   fetchPokemonData,
+  setToggle,
 }) {
   const handleClick = () => {
     fetchPokemonData(
@@ -16,6 +17,7 @@ export default function EvolutionImage({
       setPokemon,
       setPath,
     );
+    setToggle([true, true]);
   };
 
   return (
