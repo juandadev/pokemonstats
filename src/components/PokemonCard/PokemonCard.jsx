@@ -1,6 +1,16 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, {
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import Image from 'next/image';
-import { Card, ListGroup } from 'react-bootstrap';
+import {
+  Button,
+  Card,
+  ListGroup,
+  ListGroupItem,
+} from 'react-bootstrap';
+import EvolutionImage from './EvolutionImage';
 import { pokemon as searchField } from '../../context';
 import s from './PokemonCar.module.scss';
 
@@ -10,15 +20,22 @@ export default function PokemonCard(props) {
     renderTypes,
     fetchPokemonData,
     handleImage,
-    renderStats,
+    fetchEvolutions,
+    fetchSpecies,
+    evolutionChain,
+    swithc3d,
+    swithc2d,
   } = props;
   const [pokemon, setPokemon] = useState({
+    id: 0,
     sprites: {},
     name: '',
     types: [],
     stats: [],
   });
+  const [evolutions, setEvolutions] = useState({});
   const [imagePath, setImagePath] = useState(`https://projectpokemon.org/images/normal-sprite/${pokemon.name}.gif`);
+  const [toggle, setToggle] = useState([true, true]);
   const { state } = useContext(searchField);
 
   useEffect(() => {
@@ -27,12 +44,17 @@ export default function PokemonCard(props) {
         state.name,
         setPokemon,
         setImagePath,
-      );
+      ).then((pokemonData) => {
+        fetchSpecies(pokemonData)
+          .then((speciesData) => {
+            fetchEvolutions(speciesData, setEvolutions);
+          });
+      });
     }
   }, [state]);
 
   return (
-    <Card style={{ width: '18rem' }}>
+    <Card className="position-relative">
       <Image
         id="pokemon-sprite"
         className={`card-img-top ${s.image}`}
@@ -52,9 +74,54 @@ export default function PokemonCard(props) {
           {renderTypes(pokemon.types)}
         </Card.Text>
       </Card.Body>
-      <ListGroup className="list-group-flush">
-        {renderStats(pokemon)}
-      </ListGroup>
+      {pokemon.name && (
+        <ListGroup className="list-group-flush">
+          <ListGroupItem className="d-flex flex-column">
+            <strong className="mb-3">Evolution chain:</strong>
+            <div className={s.image_container}>
+              {
+                evolutionChain(evolutions)
+                  .map((item, index) => (
+                    <EvolutionImage
+                      key={`evolution-${index}`}
+                      name={pokemon.name}
+                      evolution={item}
+                      fetchPokemonData={fetchPokemonData}
+                      setPath={setImagePath}
+                      setPokemon={setPokemon}
+                      setToggle={setToggle}
+                    />
+                  ))
+              }
+            </div>
+          </ListGroupItem>
+          <ListGroupItem className="d-flex justify-content-center">
+            <Button
+              className="me-3"
+              onClick={() => swithc3d(
+                pokemon.id,
+                pokemon.name,
+                setImagePath,
+                toggle,
+                setToggle,
+              )}
+            >
+              {toggle[0] ? '3D sprite' : 'Normal image'}
+            </Button>
+            <Button
+              onClick={() => swithc2d(
+                pokemon.id,
+                pokemon.sprites.front_default,
+                setImagePath,
+                toggle,
+                setToggle,
+              )}
+            >
+              {toggle[1] ? '2D sprite' : 'Normal image'}
+            </Button>
+          </ListGroupItem>
+        </ListGroup>
+      )}
     </Card>
   );
 }

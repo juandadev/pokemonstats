@@ -10,6 +10,7 @@ module.exports = {
       'raw.githubusercontent.com',
       'projectpokemon.org',
       'i.ebayimg.com',
+      'assets.pokemon.com',
     ],
   },
 };
