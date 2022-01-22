@@ -80,7 +80,7 @@ export default function PokemonCard(props) {
             <strong className="mb-3">Evolution chain:</strong>
             <div className={s.image_container}>
               {
-                evolutionChain(evolutions)
+                evolutionChain(evolutions) ? evolutionChain(evolutions)
                   .map((item, index) => (
                     <EvolutionImage
                       key={`evolution-${index}`}
@@ -91,7 +91,7 @@ export default function PokemonCard(props) {
                       setPokemon={setPokemon}
                       setToggle={setToggle}
                     />
-                  ))
+                  )) : 'None'
               }
             </div>
           </ListGroupItem>
