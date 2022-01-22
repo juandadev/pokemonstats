@@ -28,5 +28,7 @@ module.exports = {
     'react/no-array-index-key': 'warn',
     'no-param-reassign': 'warn',
     camelcase: 'warn',
+    'jsx-a11y/no-static-element-interactions': 'warn',
+    'jsx-a11y/click-events-have-key-events': 'warn',
   },
 };
