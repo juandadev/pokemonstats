@@ -1,6 +1,16 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, {
+  createRef,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import Image from 'next/image';
-import { Card, ListGroup, ListGroupItem } from 'react-bootstrap';
+import {
+  Card,
+  ListGroup,
+  ListGroupItem,
+} from 'react-bootstrap';
+import EvolutionImage from './EvolutionImage';
 import { pokemon as searchField } from '../../context';
 import s from './PokemonCar.module.scss';
 
@@ -10,10 +20,9 @@ export default function PokemonCard(props) {
     renderTypes,
     fetchPokemonData,
     handleImage,
-    renderStats,
     fetchEvolutions,
     fetchSpecies,
-    renderChain
+    evolutionChain,
   } = props;
   const [pokemon, setPokemon] = useState({
     id: 0,
@@ -22,7 +31,6 @@ export default function PokemonCard(props) {
     types: [],
     stats: [],
   });
-  const [species, setSpecies] = useState({});
   const [evolutions, setEvolutions] = useState({});
   const [imagePath, setImagePath] = useState(`https://projectpokemon.org/images/normal-sprite/${pokemon.name}.gif`);
   const { state } = useContext(searchField);
@@ -34,7 +42,7 @@ export default function PokemonCard(props) {
         setPokemon,
         setImagePath,
       ).then((pokemonData) => {
-        fetchSpecies(pokemonData, setSpecies)
+        fetchSpecies(pokemonData)
           .then((speciesData) => {
             fetchEvolutions(speciesData, setEvolutions);
           });
@@ -68,7 +76,19 @@ export default function PokemonCard(props) {
           <ListGroupItem className="d-flex flex-column">
             <strong className="mb-3">Evolution chain:</strong>
             <div className={s.image_container}>
-              {renderChain(evolutions, pokemon)}
+              {
+                evolutionChain(evolutions)
+                  .map((item, index) => (
+                    <EvolutionImage
+                      key={`evolution-${index}`}
+                      name={pokemon.name}
+                      evolution={item}
+                      fetchPokemonData={fetchPokemonData}
+                      setPath={setImagePath}
+                      setPokemon={setPokemon}
+                    />
+                  ))
+              }
             </div>
           </ListGroupItem>
         </ListGroup>
