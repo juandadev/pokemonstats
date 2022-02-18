@@ -4,15 +4,11 @@ import React, {
   useState,
 } from 'react';
 import Image from 'next/image';
-import {
-  Button,
-  Card,
-  ListGroup,
-  ListGroupItem,
-} from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import EvolutionImage from './EvolutionImage';
 import { pokemon as searchField } from '../../context';
-import s from './PokemonCar.module.scss';
+import s from './PokemonCard.module.scss';
+import bg from './BackgroundPatterns.module.scss';
 
 export default function PokemonCard(props) {
   const {
@@ -54,48 +50,33 @@ export default function PokemonCard(props) {
   }, [state]);
 
   return (
-    <Card className="position-relative">
-      <Image
-        id="pokemon-sprite"
-        className={`card-img-top ${s.image}`}
-        src={imagePath}
-        alt="pokemon sprite"
-        width={286}
-        height={180}
-        placeholder="blur"
-        blurDataURL="https://www.sinrumbofijo.com/wp-content/uploads/2016/05/default-placeholder.png"
-        onError={() => handleImage(pokemon, setImagePath)}
-      />
-      <Card.Body>
-        <Card.Title className={s.title}>
-          {pokemon.name ? `#${pokemon.id} ${pokemon.name}` : loading()}
-        </Card.Title>
-        <Card.Text className={s.types}>
-          {renderTypes(pokemon.types)}
-        </Card.Text>
-      </Card.Body>
-      {pokemon.name && (
-        <ListGroup className="list-group-flush">
-          <ListGroupItem className="d-flex flex-column">
-            <strong className="mb-3">Evolution chain:</strong>
-            <div className={s.image_container}>
-              {
-                evolutionChain(evolutions) ? evolutionChain(evolutions)
-                  .map((item, index) => (
-                    <EvolutionImage
-                      key={`evolution-${index}`}
-                      name={pokemon.name}
-                      evolution={item}
-                      fetchPokemonData={fetchPokemonData}
-                      setPath={setImagePath}
-                      setPokemon={setPokemon}
-                      setToggle={setToggle}
-                    />
-                  )) : 'None'
-              }
-            </div>
-          </ListGroupItem>
-          <ListGroupItem className="d-flex justify-content-center">
+    <div className={s.card}>
+      <div className={s.cover}>
+        <Image
+          id="pokemon-sprite"
+          className={s.image}
+          src={imagePath}
+          alt="pokemon sprite"
+          width={286}
+          height={315}
+          placeholder="blur"
+          blurDataURL="https://www.sinrumbofijo.com/wp-content/uploads/2016/05/default-placeholder.png"
+          onError={() => handleImage(pokemon, setImagePath)}
+        />
+        <div className={`${s.back_img} ${bg[pokemon?.types[0]?.type?.name]}`} />
+      </div>
+      <div className={s.body}>
+        <div className={s.info}>
+          <div className={s.title}>
+            {pokemon.name ? `#${pokemon.id} ${pokemon.name}` : loading()}
+          </div>
+          <div className={s.types}>
+            {renderTypes(pokemon.types)}
+          </div>
+        </div>
+        {pokemon.name && (
+        <>
+          <div className={`d-flex justify-content-center ${s.sprite_options}`}>
             <Button
               className="me-3"
               onClick={() => swithc3d(
@@ -119,9 +100,31 @@ export default function PokemonCard(props) {
             >
               {toggle[1] ? '2D sprite' : 'Normal image'}
             </Button>
-          </ListGroupItem>
-        </ListGroup>
-      )}
-    </Card>
+          </div>
+          <div className={s.evolutions_container}>
+            <div className="d-flex flex-column">
+              <strong className="mb-3">Evolution chain:</strong>
+              <div className={s.image_container}>
+                {
+                evolutionChain(evolutions) ? evolutionChain(evolutions)
+                  .map((item, index) => (
+                    <EvolutionImage
+                      key={`evolution-${index}`}
+                      name={pokemon.name}
+                      evolution={item}
+                      fetchPokemonData={fetchPokemonData}
+                      setPath={setImagePath}
+                      setPokemon={setPokemon}
+                      setToggle={setToggle}
+                    />
+                  )) : 'None'
+              }
+              </div>
+            </div>
+          </div>
+        </>
+        )}
+      </div>
+    </div>
   );
 }

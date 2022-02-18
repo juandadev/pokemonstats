@@ -2,11 +2,9 @@ import React from 'react';
 import axios from 'axios';
 import {
   Badge,
-  ListGroupItem,
   Spinner,
 } from 'react-bootstrap';
 import PokemonCard from './PokemonCard';
-import s from './PokemonCar.module.scss';
 
 export default function PokemonCardVM() {
   const loading = () => <Spinner animation="grow" size="sm" variant="dark" />;
@@ -59,13 +57,6 @@ export default function PokemonCardVM() {
       setState('https://i.ebayimg.com/images/g/q8AAAOSwhvpeEZBn/s-l300.png');
     }
   };
-
-  const renderStats = ({ stats, name }) => stats
-    .map((item, index) => (
-      <ListGroupItem key={`${name}-stat-${index}`}>
-        <strong className={s.stat_title}>{item.stat.name}:</strong> {item.base_stat}
-      </ListGroupItem>
-    ));
 
   const evolutionChain = (evolutionData) => {
     const { chain } = evolutionData;
@@ -121,7 +112,6 @@ export default function PokemonCardVM() {
     renderTypes,
     fetchPokemonData,
     handleImage,
-    renderStats,
     fetchEvolutions,
     fetchSpecies,
     evolutionChain,
