@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { Spinner } from 'react-bootstrap';
-import s from './PokemonCar.module.scss';
+import s from './PokemonCard.module.scss';
 
 export default function EvolutionImage({
   name,
