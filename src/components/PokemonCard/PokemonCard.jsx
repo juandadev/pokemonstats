@@ -74,37 +74,38 @@ export default function PokemonCard(props) {
             {renderTypes(pokemon.types)}
           </div>
         </div>
-        <div className={`d-flex justify-content-center ${s.sprite_options}`}>
-          <Button
-            className="me-3"
-            onClick={() => swithc3d(
-              pokemon.id,
-              pokemon.name,
-              setImagePath,
-              toggle,
-              setToggle,
-            )}
-          >
-            {toggle[0] ? '3D sprite' : 'Normal image'}
-          </Button>
-          <Button
-            onClick={() => swithc2d(
-              pokemon.id,
-              pokemon.sprites.front_default,
-              setImagePath,
-              toggle,
-              setToggle,
-            )}
-          >
-            {toggle[1] ? '2D sprite' : 'Normal image'}
-          </Button>
-        </div>
         {pokemon.name && (
-        <div className={s.evolutions_container}>
-          <div className="d-flex flex-column">
-            <strong className="mb-3">Evolution chain:</strong>
-            <div className={s.image_container}>
-              {
+        <>
+          <div className={`d-flex justify-content-center ${s.sprite_options}`}>
+            <Button
+              className="me-3"
+              onClick={() => swithc3d(
+                pokemon.id,
+                pokemon.name,
+                setImagePath,
+                toggle,
+                setToggle,
+              )}
+            >
+              {toggle[0] ? '3D sprite' : 'Normal image'}
+            </Button>
+            <Button
+              onClick={() => swithc2d(
+                pokemon.id,
+                pokemon.sprites.front_default,
+                setImagePath,
+                toggle,
+                setToggle,
+              )}
+            >
+              {toggle[1] ? '2D sprite' : 'Normal image'}
+            </Button>
+          </div>
+          <div className={s.evolutions_container}>
+            <div className="d-flex flex-column">
+              <strong className="mb-3">Evolution chain:</strong>
+              <div className={s.image_container}>
+                {
                 evolutionChain(evolutions) ? evolutionChain(evolutions)
                   .map((item, index) => (
                     <EvolutionImage
@@ -118,9 +119,10 @@ export default function PokemonCard(props) {
                     />
                   )) : 'None'
               }
+              </div>
             </div>
           </div>
-        </div>
+        </>
         )}
       </div>
     </div>
