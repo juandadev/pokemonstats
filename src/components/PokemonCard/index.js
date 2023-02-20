@@ -82,7 +82,7 @@ export default function PokemonCardVM() {
     return evolutions.length ? evolutions : false;
   };
 
-  const swithc3d = (id, name, setPath, toggle, setToggle) => {
+  const switch3d = (id, name, setPath, toggle, setToggle) => {
     if (toggle[0]) {
       setPath(`https://projectpokemon.org/images/normal-sprite/${name}.gif`);
     } else {
@@ -96,7 +96,7 @@ export default function PokemonCardVM() {
     setToggle((state) => [!state[0], true]);
   };
 
-  const swithc2d = (id, name, setPath, toggle, setToggle) => {
+  const switch2d = (id, name, setPath, toggle, setToggle) => {
     if (toggle[1]) {
       setPath(name);
     } else {
@@ -118,8 +118,8 @@ export default function PokemonCardVM() {
     fetchEvolutions,
     fetchSpecies,
     evolutionChain,
-    swithc3d,
-    swithc2d,
+    switch3d,
+    switch2d,
   };
 
   return <PokemonCard {...mapProps} />;

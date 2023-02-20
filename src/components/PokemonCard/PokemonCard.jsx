@@ -15,9 +15,9 @@ export default function PokemonCard(props) {
     handleImage,
     fetchEvolutions,
     fetchSpecies,
-    evolutionChain,
-    swithc3d,
-    swithc2d,
+    evolutionChain = () => {},
+    switch3d,
+    switch2d,
   } = props;
   const [pokemon, setPokemon] = useState({
     id: 0,
@@ -78,7 +78,7 @@ export default function PokemonCard(props) {
               <Button
                 className="me-3"
                 onClick={() =>
-                  swithc3d(
+                  switch3d(
                     pokemon.id,
                     pokemon.name,
                     setImagePath,
@@ -91,7 +91,7 @@ export default function PokemonCard(props) {
               </Button>
               <Button
                 onClick={() =>
-                  swithc2d(
+                  switch2d(
                     pokemon.id,
                     pokemon.sprites.front_default,
                     setImagePath,
@@ -106,21 +106,24 @@ export default function PokemonCard(props) {
             <div className={s.evolutions_container}>
               <div className="d-flex flex-column">
                 <strong className="mb-3">Evolution chain:</strong>
+                <p className={s.hint}>
+                  Some evolution details may vary depending on the{' '}
+                  <code>generation</code> and <code>game</code>
+                </p>
                 <div className={s.image_container}>
-                  {evolutionChain(evolutions.chain)
-                    ? evolutionChain(evolutions.chain).map((item) => (
-                        <EvolutionImage
-                          key={`evolution-${item.name}`}
-                          name={pokemon.name}
-                          evolution={item.name}
-                          details={item.evolutionDetails}
-                          fetchPokemonData={fetchPokemonData}
-                          setPath={setImagePath}
-                          setPokemon={setPokemon}
-                          setToggle={setToggle}
-                        />
-                      ))
-                    : 'None'}
+                  {evolutionChain(evolutions.chain) &&
+                    evolutionChain(evolutions.chain).map((item) => (
+                      <EvolutionImage
+                        key={`evolution-${item.name}`}
+                        name={pokemon.name}
+                        evolution={item.name}
+                        details={item.evolutionDetails}
+                        fetchPokemonData={fetchPokemonData}
+                        setPath={setImagePath}
+                        setPokemon={setPokemon}
+                        setToggle={setToggle}
+                      />
+                    ))}
                 </div>
               </div>
             </div>

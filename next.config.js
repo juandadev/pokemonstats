@@ -11,6 +11,8 @@ module.exports = {
       'projectpokemon.org',
       'i.ebayimg.com',
       'assets.pokemon.com',
+      'www.pokencyclopedia.info',
+      'serebii.net',
     ],
   },
 };
