@@ -32,6 +32,21 @@ export const TYPES = [
   ['fairy', '#F1A8F0'],
 ];
 
+export const EVOLUTION_DETAILS = {
+  item: {
+    'kings-rock': "King's rock",
+    'water-stone': 'Water stone',
+    'thunder-stone': 'Thunder stone',
+    'fire-stone': 'Fire stone',
+  },
+  stats: {
+    '1': 'ATK > DEF',
+    '-1': 'ATK < DEF',
+    '0': 'ATK = DEF',
+  },
+  min_happiness: 'Friendship',
+};
+
 export const LETTERS_CHART = [
   'A',
   'B',
