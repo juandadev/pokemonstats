@@ -4,10 +4,20 @@ import { pokemon } from '../../context';
 
 // TODO: Need to add exceptions for some pokemons with different name in the API, mostly those with variants.
 /*
-1. Nidoran Male and Female
-2. Lycanrock and its different forms
-3. Alolan, galar and other region forms
-4. Some legendary pokemons like zacian and zamazenta
+Nidoran Male and Female
+Lycanrock and its different forms
+Pumpkaboo
+Perrserker
+Doublade
+Burmy
+Basculin
+Darmanitan
+Minior
+Meowstic
+Sinistea
+Eiscue
+Alolan, galar and other region forms
+Some legendary pokemons like zacian and zamazenta
 */
 // TODO: need to find a way to improve search experience for pokemons with more than two words
 // TODO: search suggestions and error handling

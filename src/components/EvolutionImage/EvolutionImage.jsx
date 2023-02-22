@@ -7,7 +7,6 @@ import axios from 'axios';
 
 // TODO: Get alolan, galar and other region forms in the evolution chain
 // TODO: Keep researching Pokemons by alternate form (See ChatGPT for more reference)
-// Investigate more exceptions for pokemons
 // TODO: Consider adding png for held items
 // https://www.serebii.net/itemdex/sprites/sv/crackedpot.png
 // https://www.pokencyclopedia.info/sprites/items/items_3ds/i_3ds_unknown.png
