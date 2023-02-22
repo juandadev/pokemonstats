@@ -33,7 +33,6 @@ export default function PokemonCard(props) {
 
   useEffect(() => {
     if (state.name !== '') {
-      console.log('caca');
       setLoading(true);
       fetchPokemonData(state.name, setPokemon, setImagePath).then(
         (pokemonData) => {

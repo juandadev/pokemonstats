@@ -11,6 +11,8 @@ export const EFFECTS_NAMES = [
 
 export const EFFECTS_COLORS = ['dark', 'light', 'success', 'warning'];
 
+export const POKEMON_EXCEPTIONS = ['nidoran', 'lycanroc'];
+
 export const TYPES = [
   ['normal', '#88887B'],
   ['fire', '#FF4422'],

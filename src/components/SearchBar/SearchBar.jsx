@@ -6,6 +6,7 @@ import {
   ListGroup,
   ListGroupItem,
 } from 'react-bootstrap';
+import { POKEMON_EXCEPTIONS } from '../../common/constants';
 import { pokemon } from '../../context';
 import s from './SearchBar.module.scss';
 
@@ -27,6 +28,7 @@ Some legendary pokemons like zacian and zamazenta
 */
 // TODO: need to find a way to improve search experience for pokemons with more than two words
 // TODO: search suggestions and error handling
+// TODO: change focus to dropdown when appears
 
 export default function SearchBar() {
   const [field, setField] = useState('');
@@ -40,24 +42,41 @@ export default function SearchBar() {
     setField(value);
   };
 
+  const handleSuggestions = (suggestions = []) => {
+    setDropdownList(suggestions);
+    setShowDropdown(true);
+  };
+
   const filterException = (value) => {
     const sanitizedValue = value
       .toLowerCase()
       .trim()
       .replaceAll(/[\s.]+/g, '-');
-
+    const isNameAnException = POKEMON_EXCEPTIONS.some((item) =>
+      sanitizedValue.includes(item)
+    );
+    // Need to avoid the final letter of the pokemon name to trigger the dropdown properly
     switch (sanitizedValue) {
       case 'nidora':
-        setDropdownList([
+        handleSuggestions([
           { name: 'Nidoran ♂', id: 32 },
           { name: 'Nidoran ♀', id: 29 },
         ]);
-        setShowDropdown(true);
-        break;
+        return sanitizedValue;
+
+      case 'lycanro':
+        handleSuggestions([
+          { name: 'Lycanroc Midday', id: 745 },
+          { name: 'Lycanroc Midnight', id: 10126 },
+          { name: 'Lycanroc Dusk Form', id: 10152 },
+        ]);
+        return sanitizedValue;
 
       default:
-        setDropdownList([]);
-        setShowDropdown(false);
+        if (!isNameAnException) {
+          setDropdownList([]);
+          setShowDropdown(false);
+        }
         return sanitizedValue;
     }
   };
@@ -66,8 +85,11 @@ export default function SearchBar() {
     const { target, key } = event;
     const { value } = target;
     const filteredValue = filterException(value);
+    const isNameAnException = POKEMON_EXCEPTIONS.some((item) =>
+      filteredValue.includes(item)
+    );
 
-    if (key === 'Enter') {
+    if (key === 'Enter' && !isNameAnException) {
       dispatch({
         type: 'CHANGE_INPUT',
         name: filteredValue,
