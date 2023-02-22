@@ -1,30 +1,32 @@
 import React from 'react';
 import axios from 'axios';
-import {
-  Badge,
-  Spinner,
-} from 'react-bootstrap';
+import { Badge, Spinner } from 'react-bootstrap';
 import PokemonCard from './PokemonCard';
 
 export default function PokemonCardVM() {
   const loading = () => <Spinner animation="grow" size="sm" variant="dark" />;
 
-  const renderTypes = (types) => types.map((item) => {
-    const { name } = item.type;
+  const renderTypes = (types) =>
+    types.map((item) => {
+      const { name } = item.type;
 
-    return (
-      <Badge key={`badge-${name}`} bg={name}>
-        {name}
-      </Badge>
-    );
-  });
+      return (
+        <Badge key={`badge-${name}`} bg={name}>
+          {name}
+        </Badge>
+      );
+    });
 
   const fetchPokemonData = async (name, setPokemon, setPath) => {
     const data = await axios
       .get(`https://pokeapi.co/api/v2/pokemon/${name}/`)
       .then((response) => {
         setPokemon(response.data);
-        setPath(`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${response.data.id.toString().padStart(3, '0')}.png`);
+        setPath(
+          `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${response.data.id
+            .toString()
+            .padStart(3, '0')}.png`
+        );
 
         return response.data;
       })
@@ -58,50 +60,51 @@ export default function PokemonCardVM() {
     }
   };
 
-  const evolutionChain = (evolutionData) => {
-    const { chain } = evolutionData;
+  const evolutionChain = (pokemonChain) => {
     const evolutions = [];
 
-    if (chain?.evolves_to.length !== 0) {
-      const first = chain?.species.name;
-      const secondChain = chain?.evolves_to;
+    if (pokemonChain) {
+      const { species, evolves_to, evolution_details } = pokemonChain;
 
-      evolutions.push(first);
+      evolutions.push({
+        name: species.name,
+        evolutionDetails: evolution_details?.[0],
+      });
 
-      if (secondChain && secondChain?.length !== 0) {
-        const second = secondChain?.map((item) => item.species.name);
-        const thirdChain = secondChain[0]?.evolves_to;
-
-        second?.forEach((item) => evolutions.push(item));
-
-        if (thirdChain && thirdChain?.length !== 0) {
-          const third = thirdChain?.map((item) => item.species.name);
-
-          third?.forEach((item) => evolutions.push(item));
-        }
+      if (evolves_to.length) {
+        evolves_to.forEach((evolve) => {
+          const subEvolutions = evolutionChain(evolve);
+          evolutions.push(...subEvolutions);
+        });
       }
-
-      return evolutions;
     }
 
-    return false;
+    return evolutions.length ? evolutions : false;
   };
 
-  const swithc3d = (id, name, setPath, toggle, setToggle) => {
+  const switch3d = (id, name, setPath, toggle, setToggle) => {
     if (toggle[0]) {
       setPath(`https://projectpokemon.org/images/normal-sprite/${name}.gif`);
     } else {
-      setPath(`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${id.toString().padStart(3, '0')}.png`);
+      setPath(
+        `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${id
+          .toString()
+          .padStart(3, '0')}.png`
+      );
     }
 
     setToggle((state) => [!state[0], true]);
   };
 
-  const swithc2d = (id, name, setPath, toggle, setToggle) => {
+  const switch2d = (id, name, setPath, toggle, setToggle) => {
     if (toggle[1]) {
       setPath(name);
     } else {
-      setPath(`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${id.toString().padStart(3, '0')}.png`);
+      setPath(
+        `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${id
+          .toString()
+          .padStart(3, '0')}.png`
+      );
     }
 
     setToggle((state) => [true, !state[1]]);
@@ -115,8 +118,8 @@ export default function PokemonCardVM() {
     fetchEvolutions,
     fetchSpecies,
     evolutionChain,
-    swithc3d,
-    swithc2d,
+    switch3d,
+    switch2d,
   };
 
   return <PokemonCard {...mapProps} />;
