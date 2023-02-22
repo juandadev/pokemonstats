@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Spinner } from 'react-bootstrap';
 import s from './EvolutionImage.module.scss';
 import { EVOLUTION_DETAILS } from '../../common/constants';
 import axios from 'axios';
+import { pokemon } from '../../context';
 
 // TODO: Get alolan, galar and other region forms in the evolution chain
 // TODO: Keep researching Pokemons by alternate form (See ChatGPT for more reference)
@@ -15,15 +16,13 @@ export default function EvolutionImage({
   name,
   evolution,
   details,
-  setPath,
-  setPokemon,
-  fetchPokemonData,
   setToggle,
 }) {
   const [imagePath, setImagePath] = useState(
     `https://projectpokemon.org/images/normal-sprite/${evolution}.gif`
   );
   const [loading, setLoading] = useState(true);
+  const { dispatch } = useContext(pokemon);
 
   useEffect(() => {
     axios
@@ -38,7 +37,10 @@ export default function EvolutionImage({
   }, [evolution]);
 
   const handleClick = () => {
-    fetchPokemonData(evolution, setPokemon, setPath);
+    dispatch({
+      type: 'CHANGE_INPUT',
+      name: evolution,
+    });
     setToggle([true, true]);
   };
 
