@@ -1,11 +1,9 @@
 import React from 'react';
 import axios from 'axios';
-import { Badge, Spinner } from 'react-bootstrap';
+import { Badge } from 'react-bootstrap';
 import PokemonCard from './PokemonCard';
 
 export default function PokemonCardVM() {
-  const loading = () => <Spinner animation="grow" size="sm" variant="dark" />;
-
   const renderTypes = (types) =>
     types.map((item) => {
       const { name } = item.type;
@@ -49,15 +47,6 @@ export default function PokemonCardVM() {
       .get(evolution_chain?.url)
       .then((response) => setEvolutions(response.data))
       .catch((error) => error);
-  };
-
-  const handleImage = ({ sprites }, setState) => {
-    const is2dSprite = !!sprites.front_default;
-    if (is2dSprite) {
-      setState(sprites.front_default);
-    } else {
-      setState('https://i.ebayimg.com/images/g/q8AAAOSwhvpeEZBn/s-l300.png');
-    }
   };
 
   const evolutionChain = (pokemonChain) => {
@@ -111,10 +100,8 @@ export default function PokemonCardVM() {
   };
 
   const mapProps = {
-    loading,
     renderTypes,
     fetchPokemonData,
-    handleImage,
     fetchEvolutions,
     fetchSpecies,
     evolutionChain,

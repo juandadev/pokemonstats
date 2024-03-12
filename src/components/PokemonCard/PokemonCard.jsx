@@ -1,18 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Image from 'next/image';
-import { Button } from 'react-bootstrap';
+import { Button, Spinner } from 'react-bootstrap';
 import EvolutionImage from '../EvolutionImage';
 import { pokemon as searchField } from '../../context';
 import s from './PokemonCard.module.scss';
 import bg from './BackgroundPatterns.module.scss';
-import useRenderCount from '../../tools/useRenderCount';
 
 export default function PokemonCard(props) {
   const {
-    loading,
     renderTypes,
     fetchPokemonData,
-    handleImage,
     fetchEvolutions,
     fetchSpecies,
     evolutionChain = () => {},
@@ -27,16 +24,16 @@ export default function PokemonCard(props) {
     stats: [],
   });
   const [evolutions, setEvolutions] = useState({});
+  const [loading, setLoading] = useState(true);
   const [imagePath, setImagePath] = useState(
     `https://projectpokemon.org/images/normal-sprite/${pokemon.name}.gif`
   );
   const [toggle, setToggle] = useState([true, true]);
   const { state } = useContext(searchField);
 
-  useRenderCount();
-
   useEffect(() => {
     if (state.name !== '') {
+      setLoading(true);
       fetchPokemonData(state.name, setPokemon, setImagePath).then(
         (pokemonData) => {
           fetchSpecies(pokemonData).then((speciesData) => {
@@ -47,9 +44,30 @@ export default function PokemonCard(props) {
     }
   }, [state]);
 
+  const handleError = () => {
+    const { sprites } = pokemon;
+    const is2dSprite = !!sprites.front_default;
+
+    if (is2dSprite) {
+      setImagePath(sprites.front_default);
+    } else {
+      setImagePath(
+        'https://i.ebayimg.com/images/g/q8AAAOSwhvpeEZBn/s-l300.png'
+      );
+    }
+    setLoading(false);
+  };
+
+  const handleLoading = () => {
+    setLoading(false);
+  };
+
   return (
     <div className={s.card}>
       <div className={s.cover}>
+        {loading && (
+          <Spinner animation="border" variant="dark" className={s.spinner} />
+        )}
         <Image
           id="pokemon-sprite"
           className={s.image}
@@ -57,19 +75,18 @@ export default function PokemonCard(props) {
           alt="pokemon sprite"
           width={286}
           height={315}
-          placeholder="blur"
-          blurDataURL="https://www.sinrumbofijo.com/wp-content/uploads/2016/05/default-placeholder.png"
-          onError={() => handleImage(pokemon, setImagePath)}
+          onLoadingComplete={handleLoading}
+          onError={handleError}
         />
         <div className={`${s.back_img} ${bg[pokemon?.types[0]?.type?.name]}`} />
       </div>
       <div className={s.body}>
-        <div className={s.info}>
-          <div className={s.title}>
-            {pokemon.name ? `#${pokemon.id} ${pokemon.name}` : loading()}
+        {pokemon.name && (
+          <div className={s.info}>
+            <div className={s.title}>{`#${pokemon.id} ${pokemon.name}`}</div>
+            <div className={s.types}>{renderTypes(pokemon.types)}</div>
           </div>
-          <div className={s.types}>{renderTypes(pokemon.types)}</div>
-        </div>
+        )}
         {pokemon.name && (
           <>
             <div
@@ -118,9 +135,6 @@ export default function PokemonCard(props) {
                         name={pokemon.name}
                         evolution={item.name}
                         details={item.evolutionDetails}
-                        fetchPokemonData={fetchPokemonData}
-                        setPath={setImagePath}
-                        setPokemon={setPokemon}
                         setToggle={setToggle}
                       />
                     ))}
