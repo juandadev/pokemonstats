@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import { Button, Spinner } from 'react-bootstrap';
 import EvolutionImage from '../EvolutionImage';
 import { pokemon as searchField } from '../../context';

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import { Spinner } from 'react-bootstrap';
 import s from './EvolutionImage.module.scss';
 import { EVOLUTION_DETAILS } from '../../common/constants';

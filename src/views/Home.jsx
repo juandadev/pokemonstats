@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import { Badge, Col, Row } from 'react-bootstrap';
 import { Chart, PokemonCard, SearchBar } from '../components';
 import s from './Home.module.scss';
