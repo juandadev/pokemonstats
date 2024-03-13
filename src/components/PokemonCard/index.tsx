@@ -4,8 +4,10 @@ import { Badge } from 'react-bootstrap';
 import PokemonCard from './PokemonCard';
 
 export default function PokemonCardVM() {
-  const renderTypes = (types) =>
-    types.map((item) => {
+  const renderTypes = async (types) => {
+    'use server';
+
+    return types.map((item) => {
       const { name } = item.type;
 
       return (
@@ -14,8 +16,11 @@ export default function PokemonCardVM() {
         </Badge>
       );
     });
+  };
 
   const fetchPokemonData = async (name, setPokemon, setPath) => {
+    'use server';
+
     const data = await axios
       .get(`https://pokeapi.co/api/v2/pokemon/${name}/`)
       .then((response) => {
@@ -34,6 +39,8 @@ export default function PokemonCardVM() {
   };
 
   const fetchSpecies = async ({ id }) => {
+    'use server';
+
     const data = await axios
       .get(`https://pokeapi.co/api/v2/pokemon-species/${id}/`)
       .then((response) => response.data)
@@ -42,14 +49,18 @@ export default function PokemonCardVM() {
     return data;
   };
 
-  const fetchEvolutions = ({ evolution_chain }, setEvolutions) => {
+  const fetchEvolutions = async ({ evolution_chain }, setEvolutions) => {
+    'use server';
+
     axios
       .get(evolution_chain?.url)
       .then((response) => setEvolutions(response.data))
       .catch((error) => error);
   };
 
-  const evolutionChain = (pokemonChain) => {
+  const evolutionChain = async (pokemonChain) => {
+    'use server';
+
     const evolutions = [];
 
     if (pokemonChain) {
@@ -71,7 +82,9 @@ export default function PokemonCardVM() {
     return evolutions.length ? evolutions : false;
   };
 
-  const switch3d = (id, name, setPath, toggle, setToggle) => {
+  const switch3d = async (id, name, setPath, toggle, setToggle) => {
+    'use server';
+
     if (toggle[0]) {
       setPath(`https://projectpokemon.org/images/normal-sprite/${name}.gif`);
     } else {
@@ -85,7 +98,9 @@ export default function PokemonCardVM() {
     setToggle((state) => [!state[0], true]);
   };
 
-  const switch2d = (id, name, setPath, toggle, setToggle) => {
+  const switch2d = async (id, name, setPath, toggle, setToggle) => {
+    'use server';
+
     if (toggle[1]) {
       setPath(name);
     } else {

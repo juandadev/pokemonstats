@@ -1,10 +1,14 @@
+'use client';
+
 import React, { useContext, useEffect, useState } from 'react';
-import Image from "next/legacy/image";
+import Image from 'next/legacy/image';
 import { Button, Spinner } from 'react-bootstrap';
 import EvolutionImage from '../EvolutionImage';
 import { pokemon as searchField } from '../../context';
 import s from './PokemonCard.module.scss';
 import bg from './BackgroundPatterns.module.scss';
+
+// TODO: Fix broken pokemon fetching
 
 export default function PokemonCard(props) {
   const {

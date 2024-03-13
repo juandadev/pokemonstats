@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-shadow */
+'use client';
+
 import React, { createContext, useReducer } from 'react';
 
 const initialState = { name: '' };
