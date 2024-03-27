@@ -1,23 +1,38 @@
 'use client';
 
-import React, { createContext, useReducer } from 'react';
+import React, { createContext, ReactNode, useReducer } from 'react';
 
-const initialState = { name: '' };
-const pokemon = createContext(initialState);
+type StateType = {
+  name: string;
+};
+
+type ActionType = {
+  type: string;
+  name?: string;
+};
+
+const initialState: StateType = { name: '' };
+const pokemon = createContext<{
+  state: StateType;
+  dispatch: React.Dispatch<ActionType>;
+}>({ state: initialState, dispatch: () => {} });
 const { Provider } = pokemon;
 
-function ContextProvider({ children }) {
-  const [state, dispatch] = useReducer((state, action) => {
-    switch (action.type) {
-      case 'CHANGE_INPUT':
-        return {
-          name: action.name,
-        };
+function reducer(state: StateType, action: ActionType): StateType {
+  switch (action.type) {
+    case 'CHANGE_INPUT':
+      return {
+        ...state,
+        name: action.name || '',
+      };
 
-      default:
-        return state;
-    }
-  }, initialState);
+    default:
+      return state;
+  }
+}
+
+function ContextProvider({ children }: { children: ReactNode }) {
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   return <Provider value={{ state, dispatch }}>{children}</Provider>;
 }

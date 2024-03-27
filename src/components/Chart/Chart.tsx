@@ -12,14 +12,17 @@ import {
 import s from './Chart.module.scss';
 
 export default function Chart() {
-  const [cells, setCells] = useState([]);
+  const [cells, setCells] = useState<HTMLButtonElement[]>([]);
 
   useEffect(() => {
-    setCells([...document.querySelectorAll('.chartCell')]);
+    const selectedCells: NodeListOf<HTMLButtonElement> =
+      document.querySelectorAll('.chartCell');
+
+    setCells([...selectedCells]);
   }, []);
 
-  const handleMouseOver = (event) => {
-    const { col, row } = event.target.dataset;
+  const handleMouseOver = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const { col, row } = event.currentTarget.dataset;
     const activeRows = cells.filter((cell) => cell.dataset.row === row);
     const activeCols = cells.filter((cell) => cell.dataset.col === col);
 
@@ -45,13 +48,15 @@ export default function Chart() {
               } ${s.button} chartCell`}
               style={{
                 background:
-                  (indexCol === 0 || indexRow === 0) &&
-                  col !== -1 &&
-                  TYPES[col][1],
+                  ((indexCol === 0 || indexRow === 0) &&
+                    col !== -1 &&
+                    TYPES[col][1]) ||
+                  '',
                 border:
-                  (indexCol === 0 || indexRow === 0) &&
-                  col !== -1 &&
-                  TYPES[col][1],
+                  ((indexCol === 0 || indexRow === 0) &&
+                    col !== -1 &&
+                    TYPES[col][1]) ||
+                  '',
               }}
               variant={col !== -1 ? EFFECTS_COLORS[col] : 'none'}
               data-col={LETTERS_CHART[indexCol]}

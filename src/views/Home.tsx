@@ -1,14 +1,20 @@
 import React from 'react';
 import Image from 'next/legacy/image';
 import { Badge, Col, Row } from 'react-bootstrap';
-import { Chart, PokemonCard, SearchBar } from '../components';
+import { Chart, SearchBar } from '../components';
+import PokemonCard from '../components/PokemonCard/PokemonCard';
 import s from './Home.module.scss';
 
 export default function Home() {
   return (
     <>
       <header className={s.header}>
-        <Image src="/images/pokeball-sprite.png" width={61} height={62} />
+        <Image
+          src="/images/pokeball-sprite.png"
+          width={61}
+          height={62}
+          alt="Pokeball 8-bit style"
+        />
         <h1 className="text-center">Welcome to Pokémon stats</h1>
       </header>
       <main>

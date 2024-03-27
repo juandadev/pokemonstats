@@ -5,6 +5,7 @@ module.exports = {
   },
   extends: [
     'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
     'next',
@@ -19,7 +20,7 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
-    camelcase: ['warn'],
+    camelcase: ['off'],
     'jsx-a11y/no-static-element-interactions': ['warn'],
     'jsx-a11y/click-events-have-key-events': ['warn'],
   },
