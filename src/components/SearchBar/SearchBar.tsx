@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useContext, useState } from 'react';
 import {
   FormControl,
@@ -30,10 +32,15 @@ Some legendary pokemons like zacian and zamazenta
 // TODO: search suggestions and error handling
 // TODO: change focus to dropdown when appears
 
+type SuggestionType = {
+  name: string;
+  id: number;
+};
+
 export default function SearchBar() {
-  const [field, setField] = useState('');
-  const [showDropdown, setShowDropdown] = useState(false);
-  const [dropdownList, setDropdownList] = useState([]);
+  const [field, setField] = useState<string>('');
+  const [showDropdown, setShowDropdown] = useState<boolean>(false);
+  const [dropdownList, setDropdownList] = useState<SuggestionType[]>([]);
   const { dispatch } = useContext(pokemon);
 
   const handleChange = (event) => {
@@ -42,7 +49,7 @@ export default function SearchBar() {
     setField(value);
   };
 
-  const handleSuggestions = (suggestions = []) => {
+  const handleSuggestions = (suggestions: SuggestionType[] = []) => {
     setDropdownList(suggestions);
     setShowDropdown(true);
   };
