@@ -3,131 +3,131 @@
 import React, { useContext, useState } from 'react';
 import {
   FormControl,
-  FormText,
   InputGroup,
   ListGroup,
   ListGroupItem,
 } from 'react-bootstrap';
-import { POKEMON_EXCEPTIONS } from '../../common/constants';
+import { POKEMON_EXCEPTIONS, POKEMON_LIST } from '../../common/constants';
 import { pokemon } from '../../context';
 import s from './SearchBar.module.scss';
-
-// TODO: Need to add exceptions for some pokemons with different name in the API, mostly those with variants.
-/*
-Lycanrock and its different forms
-Pumpkaboo
-Perrserker
-Doublade
-Burmy
-Basculin
-Darmanitan
-Minior
-Meowstic
-Sinistea
-Eiscue
-Alolan, galar and other region forms
-Some legendary pokemons like zacian and zamazenta
-*/
-// TODO: need to find a way to improve search experience for pokemons with more than two words
-// TODO: search suggestions and error handling
-// TODO: change focus to dropdown when appears
+import { matchStringInArray } from '../../tools/utils';
 
 type SuggestionType = {
   name: string;
-  id: number;
+  id: number | string;
 };
 
 export default function SearchBar() {
   const [field, setField] = useState<string>('');
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
   const [dropdownList, setDropdownList] = useState<SuggestionType[]>([]);
+  const [activeItem, setActiveItem] = useState<SuggestionType>({
+    name: '',
+    id: '',
+  });
   const { dispatch } = useContext(pokemon);
 
-  const handleChange = (event) => {
+  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     const { value } = event.target;
 
     setField(value);
   };
 
-  const handleSuggestions = (suggestions: SuggestionType[] = []) => {
-    setDropdownList(suggestions);
-    setShowDropdown(true);
-  };
-
-  const filterException = (value) => {
-    const sanitizedValue = value
-      .toLowerCase()
-      .trim()
-      .replaceAll(/[\s.]+/g, '-');
-    const isNameAnException = POKEMON_EXCEPTIONS.some((item) =>
-      sanitizedValue.includes(item)
-    );
-    // Need to avoid the final letter of the pokemon name to trigger the dropdown properly
-    switch (sanitizedValue) {
-      case 'nidora':
-        handleSuggestions([
-          { name: 'Nidoran ♂', id: 32 },
-          { name: 'Nidoran ♀', id: 29 },
-        ]);
-        return sanitizedValue;
-
-      case 'lycanro':
-        handleSuggestions([
-          { name: 'Lycanroc Midday', id: 745 },
-          { name: 'Lycanroc Midnight', id: 10126 },
-          { name: 'Lycanroc Dusk Form', id: 10152 },
-        ]);
-        return sanitizedValue;
-
-      default:
-        if (!isNameAnException) {
-          setDropdownList([]);
-          setShowDropdown(false);
-        }
-        return sanitizedValue;
-    }
-  };
-
-  const handleKeyDown = (event) => {
-    const { target, key } = event;
-    const { value } = target;
-    const filteredValue = filterException(value);
-    const isNameAnException = POKEMON_EXCEPTIONS.some((item) =>
-      filteredValue.includes(item)
-    );
-
-    if (key === 'Enter' && !isNameAnException) {
-      dispatch({
-        type: 'CHANGE_INPUT',
-        name: filteredValue,
-      });
-      setField('');
-    }
-  };
-
-  const handleDropdownItemClick = (event) => {
-    const { id } = event.target.dataset;
+  const handleDropdownItemClick: React.MouseEventHandler<HTMLButtonElement> = (
+    event
+  ) => {
+    const { id } = (event.target as HTMLButtonElement).dataset;
 
     dispatch({
       type: 'CHANGE_INPUT',
-      name: id,
+      name: id ?? 0,
     });
     setField('');
     setShowDropdown(false);
     setDropdownList([]);
+    setActiveItem({ name: '', id: '' });
   };
 
-  const renderDropdownItems = () =>
-    dropdownList.map(({ name, id }) => (
-      <ListGroupItem
-        key={`search-${id}`}
-        data-id={id}
-        action
-        onClick={handleDropdownItemClick}
-      >
-        {name}
-      </ListGroupItem>
-    ));
+  const handleKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    const { key, target } = event;
+    const { value } = target as HTMLInputElement;
+    const sanitizedValue = value.toLowerCase().trim();
+    const searchResults = matchStringInArray(POKEMON_LIST, sanitizedValue, 4);
+    const activeItemIndex = searchResults.findIndex(
+      (item) => item === activeItem?.name
+    );
+    const pokemonExceptionIndex = (item: string) =>
+      POKEMON_EXCEPTIONS.findIndex(({ name }) => name === item);
+
+    switch (key) {
+      case 'Escape':
+        setActiveItem({ name: '', id: '' });
+        setDropdownList([]);
+        setShowDropdown(false);
+        return;
+
+      case 'Enter':
+        dispatch({
+          type: 'CHANGE_INPUT',
+          name: activeItem?.id ?? field.trim(),
+        });
+
+        setField('');
+        setActiveItem({ name: '', id: '' });
+        setDropdownList([]);
+        setShowDropdown(false);
+        return;
+
+      case 'ArrowUp':
+        if (activeItemIndex > 0)
+          setActiveItem({
+            name: searchResults[activeItemIndex - 1],
+            id:
+              POKEMON_EXCEPTIONS[
+                pokemonExceptionIndex(searchResults[activeItemIndex - 1])
+              ]?.id ?? searchResults[activeItemIndex - 1],
+          });
+        return;
+
+      case 'ArrowDown':
+        if (activeItemIndex <= searchResults.length)
+          setActiveItem({
+            name: searchResults[activeItemIndex + 1] ?? activeItem.name,
+            id:
+              POKEMON_EXCEPTIONS[
+                pokemonExceptionIndex(searchResults[activeItemIndex + 1])
+              ]?.id ??
+              searchResults[activeItemIndex + 1] ??
+              activeItem.id,
+          });
+        return;
+    }
+
+    if (sanitizedValue !== '') {
+      const resultsObjectList: SuggestionType[] = searchResults.map(
+        (result) => {
+          const getPokemonException = POKEMON_EXCEPTIONS.find(
+            ({ name }) => name === result
+          );
+
+          return {
+            name: result,
+            id: getPokemonException ? getPokemonException.id : result,
+          };
+        }
+      );
+
+      setDropdownList(resultsObjectList);
+      setShowDropdown(true);
+      setActiveItem(resultsObjectList[0]);
+
+      return;
+    }
+
+    setActiveItem({ name: '', id: '' });
+    setDropdownList([]);
+    setShowDropdown(false);
+  };
 
   return (
     <>
@@ -135,21 +135,31 @@ export default function SearchBar() {
         <InputGroup>
           <InputGroup.Text id="searchPokemon">Search</InputGroup.Text>
           <FormControl
-            placeholder="Type name or code"
-            aria-label="pokemon"
-            aria-describedby="searchPokemon"
+            autoComplete="off"
+            placeholder="Type pokémon name"
+            aria-label="pokémon"
+            aria-describedby="searchPokémon"
             value={field}
             onChange={handleChange}
-            onKeyDown={handleKeyDown}
+            onKeyUp={handleKeyUp}
           />
         </InputGroup>
         {showDropdown && (
-          <ListGroup className={s.dropdown}>{renderDropdownItems()}</ListGroup>
+          <ListGroup className={s.dropdown}>
+            {dropdownList.map(({ name, id }) => (
+              <ListGroupItem
+                key={`search-${name}-${id}`}
+                data-id={id}
+                action
+                onClick={handleDropdownItemClick}
+                active={activeItem.name === name}
+              >
+                {name}
+              </ListGroupItem>
+            ))}
+          </ListGroup>
         )}
       </div>
-      <FormText id="searchPokemon" className="mb-3">
-        Type the pokemon name or code, then hit <code>Enter</code>
-      </FormText>
     </>
   );
 }

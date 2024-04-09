@@ -3,12 +3,12 @@
 import React, { createContext, ReactNode, useReducer } from 'react';
 
 type StateType = {
-  name: string;
+  name: string | number;
 };
 
 type ActionType = {
   type: string;
-  name?: string;
+  name: string | number;
 };
 
 const initialState: StateType = { name: '' };
@@ -23,7 +23,10 @@ function reducer(state: StateType, action: ActionType): StateType {
     case 'CHANGE_INPUT':
       return {
         ...state,
-        name: action.name || '',
+        name:
+          typeof action.name === 'string'
+            ? action.name.toLowerCase().replaceAll(/[\s.]+/g, '-')
+            : action.name,
       };
 
     default:

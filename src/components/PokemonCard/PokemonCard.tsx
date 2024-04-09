@@ -46,7 +46,7 @@ export default function PokemonCard() {
 
   const fetchPokemonData = useCallback(
     async (
-      name: string,
+      name: string | number,
       setPokemon: React.Dispatch<React.SetStateAction<PokemonType>>,
       setPath: React.Dispatch<React.SetStateAction<string>>
     ) => {

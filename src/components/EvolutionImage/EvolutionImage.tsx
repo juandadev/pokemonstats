@@ -10,6 +10,8 @@ import { EvolutionDetail, Species } from '../../types/Pokemon.type';
 // TODO: Get alolan, galar and other region forms in the evolution chain
 // TODO: Keep researching Pokemons by alternate form (See ChatGPT for more reference)
 // TODO: Consider adding png for held items
+// TODO: Refactor evolution details text and use of "trigger" field
+// TODO: Fix then change from a pokemon with evolution chain, to other without evolution chain (it has to do with species url)
 // https://www.serebii.net/itemdex/sprites/sv/crackedpot.png
 // https://www.pokencyclopedia.info/sprites/items/items_3ds/i_3ds_unknown.png
 
