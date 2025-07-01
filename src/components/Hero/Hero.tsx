@@ -35,7 +35,11 @@ export default function Hero() {
                 </Link>
               </Button>
               <Button size="lg" variant="outline" asChild>
-                <Link href={'#'} target="_blank" rel="noopener noreferrer">
+                <Link
+                  href={'https://coff.ee/juandamartn'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <HeartIcon className="mr-2 h-5 w-5" />
                   Support Project
                 </Link>
