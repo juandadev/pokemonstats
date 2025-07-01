@@ -1,81 +1,9 @@
 @import 'tailwindcss';
-@import "tw-animate-css";
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
 @tailwind utilities;
-
-.bg-normal {
-  background-color: #88887b;
-}
-
-.bg-fire {
-  background-color: #ff4422;
-}
-
-.bg-water {
-  background-color: #3399fe;
-}
-
-.bg-electric {
-  background-color: #ffcc33;
-}
-
-.bg-grass {
-  background-color: #76cc55;
-}
-
-.bg-ice {
-  background-color: #65ccff;
-}
-
-.bg-fighting {
-  background-color: #ba5544;
-}
-
-.bg-poison {
-  background-color: #ab579a;
-}
-
-.bg-ground {
-  background-color: #debb54;
-}
-
-.bg-flying {
-  background-color: #8799ff;
-}
-
-.bg-psychic {
-  background-color: #ff5599;
-}
-
-.bg-bug {
-  background-color: #a9bb22;
-}
-
-.bg-rock {
-  background-color: #bbaa66;
-}
-
-.bg-ghost {
-  background-color: #6666ba;
-}
-
-.bg-dragon {
-  background-color: #7666ee;
-}
-
-.bg-dark {
-  background-color: #775444;
-}
-
-.bg-steel {
-  background-color: #b7b7c5;
-}
-
-.bg-fairy {
-  background-color: #f1a8f0;
-}
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -148,6 +76,25 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  --color-normal: #88887b;
+  --color-fire: #ff4422;
+  --color-water: #3399fe;
+  --color-electric: #ffcc33;
+  --color-grass: #76cc55;
+  --color-ice: #65ccff;
+  --color-fighting: #ba5544;
+  --color-poison: #ab579a;
+  --color-ground: #debb54;
+  --color-flying: #8799ff;
+  --color-psychic: #ff5599;
+  --color-bug: #a9bb22;
+  --color-rock: #bbaa66;
+  --color-ghost: #6666ba;
+  --color-dragon: #7666ee;
+  --color-dark: #775444;
+  --color-steel: #b7b7c5;
+  --color-fairy: #f1a8f0;
 }
 
 .dark {
@@ -182,6 +129,25 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+
+  --color-normal: #6c6c5f;
+  --color-fire: #ff5733;
+  --color-water: #4da6ff;
+  --color-electric: #ffdd57;
+  --color-grass: #6fbf4d;
+  --color-ice: #56cfff;
+  --color-fighting: #a44233;
+  --color-poison: #9e3d89;
+  --color-ground: #d4a938;
+  --color-flying: #6f87ff;
+  --color-psychic: #ff77bb;
+  --color-bug: #99aa22;
+  --color-rock: #a99955;
+  --color-ghost: #5555a4;
+  --color-dragon: #5c55cc;
+  --color-dark: #5c4335;
+  --color-steel: #a0a0b2;
+  --color-fairy: #e68ae6;
 }
 
 @layer base {
