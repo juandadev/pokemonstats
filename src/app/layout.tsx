@@ -4,6 +4,7 @@ import { ContextProvider } from '../context';
 import { Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './globals.css';
+import ThemeProvider from '@/components/ThemeProvider/ThemeProvider';
 
 export const metadata: Metadata = {
   title: 'Pokémon stats',
@@ -17,11 +18,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <ContextProvider>
-        <body>
-          <Container>{children}</Container>
-        </body>
-      </ContextProvider>
+      <body>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <ContextProvider>
+            <Container>{children}</Container>
+          </ContextProvider>
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
