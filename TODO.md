@@ -1,0 +1,9 @@
+- [ ] Remove Bootstrap and React Bootstrap
+- [ ] Replace Bootstrap with Tailwind CSS and Shadcn/ui
+- [ ] Remove all custom CSS and SASS support
+- [ ] Remove prop types
+- [ ] Replace axios with fetch
+- [ ] Hero section
+    - [ ] Add link to buy me a coffee
+- [ ] Bring back theme provider
+    - [ ] Add light and dark mode
