@@ -53,7 +53,7 @@ export default function Hero() {
           </div>
           <div className="flex justify-center lg:justify-end">
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-100/50 to-purple-100/50 rounded-full blur-3xl scale-150 opacity-30"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-100/50 to-purple-100/50 rounded-full blur-3xl scale-150 opacity-30 -z-1" />
               <div className="relative z-10 transform hover:scale-105 transition-transform duration-300">
                 <img
                   src="/hero.webp"
