@@ -11,7 +11,7 @@ type ActionType = {
   name: string | number;
 };
 
-const initialState: StateType = { name: '' };
+const initialState: StateType = { name: 'Totodile' };
 const pokemon = createContext<{
   state: StateType;
   dispatch: React.Dispatch<ActionType>;
