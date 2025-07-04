@@ -1,5 +1,3 @@
-export const IS_BROWSER = typeof window !== 'undefined';
-
 export const EFFECTS_EMOJIS = ['😶', '🙂', '😁', '😐'];
 
 export const EFFECTS_NAMES = [
@@ -10,6 +8,27 @@ export const EFFECTS_NAMES = [
 ];
 
 export const EFFECTS_COLORS = ['dark', 'light', 'success', 'warning'];
+
+export const TYPE_COLORS = {
+  normal: '#A8A878',
+  fire: '#F08030',
+  water: '#6890F0',
+  electric: '#F8D030',
+  grass: '#78C850',
+  ice: '#98D8D8',
+  fighting: '#C03028',
+  poison: '#A040A0',
+  ground: '#E0C068',
+  flying: '#A890F0',
+  psychic: '#F85888',
+  bug: '#A8B820',
+  rock: '#B8A038',
+  ghost: '#705898',
+  dragon: '#7038F8',
+  dark: '#705848',
+  steel: '#B8B8D0',
+  fairy: '#EE99AC',
+};
 
 export const POKEMON_EXCEPTIONS = [
   { name: 'Nidoran (male)', id: 32 },
@@ -182,27 +201,6 @@ export const POKEMON_EXCEPTIONS = [
   { name: 'Calyrex Shadow Rider', id: 10194 },
   { name: 'Dudunsparce Two-Segment Form', id: 982 },
   { name: 'Dudunsparce Three-Segment Form', id: 10255 },
-];
-
-export const TYPES = [
-  ['normal', '#88887B'],
-  ['fire', '#FF4422'],
-  ['water', '#3399FE'],
-  ['electric', '#FFCC33'],
-  ['grass', '#76CC55'],
-  ['ice', '#65CCFF'],
-  ['fighting', '#BA5544'],
-  ['poison', '#AB579A'],
-  ['ground', '#DEBB54'],
-  ['flying', '#8799FF'],
-  ['psychic', '#FF5599'],
-  ['bug', '#A9BB22'],
-  ['rock', '#BBAA66'],
-  ['ghost', '#6666BA'],
-  ['dragon', '#7666EE'],
-  ['dark', '#775444'],
-  ['steel', '#B7B7C5'],
-  ['fairy', '#F1A8F0'],
 ];
 
 export const EVOLUTION_DETAILS = {

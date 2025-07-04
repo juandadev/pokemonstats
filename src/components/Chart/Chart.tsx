@@ -6,7 +6,7 @@ import {
   EFFECTS_COLORS,
   EFFECTS_EMOJIS,
   LETTERS_CHART,
-  TYPES,
+  TYPE_COLORS,
   WEAKNESS_CHART,
 } from '../../common/constants';
 import s from './Chart.module.scss';
@@ -50,12 +50,12 @@ export default function Chart() {
                 background:
                   ((indexCol === 0 || indexRow === 0) &&
                     col !== -1 &&
-                    TYPES[col][1]) ||
+                    TYPE_COLORS[col][1]) ||
                   '',
                 border:
                   ((indexCol === 0 || indexRow === 0) &&
                     col !== -1 &&
-                    TYPES[col][1]) ||
+                    TYPE_COLORS[col][1]) ||
                   '',
               }}
               variant={col !== -1 ? EFFECTS_COLORS[col] : 'none'}
@@ -64,7 +64,7 @@ export default function Chart() {
               onMouseOver={handleMouseOver}
             >
               {(indexCol === 0 || indexRow === 0) && col !== -1
-                ? TYPES[col][0]
+                ? TYPE_COLORS[col][0]
                 : EFFECTS_EMOJIS[col]}
             </Button>
           ))}

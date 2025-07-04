@@ -67,7 +67,10 @@ export default function Hero() {
         </div>
       </div>
       <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2">
-        <div className="w-10 h-10 border-2 border-gray-400 rounded-full flex items-center justify-center animate-bounce">
+        <a
+          href={'#main'}
+          className="w-10 h-10 border-2 border-gray-400 rounded-full flex items-center justify-center animate-bounce"
+        >
           <svg
             className="w-4 h-4 text-gray-400"
             fill="none"
@@ -81,7 +84,7 @@ export default function Hero() {
               d="M19 14l-7 7m0 0l-7-7m7 7V3"
             />
           </svg>
-        </div>
+        </a>
       </div>
     </section>
   );
