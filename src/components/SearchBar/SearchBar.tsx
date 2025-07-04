@@ -1,23 +1,9 @@
 'use client';
 
-import React, { useContext, useState } from 'react';
-import {
-  FormControl,
-  InputGroup,
-  ListGroup,
-  ListGroupItem,
-} from 'react-bootstrap';
-import { POKEMON_EXCEPTIONS, POKEMON_LIST } from '@/common/constants';
-import { pokemon } from '@/context';
-import { matchStringInArray } from '@/tools/utils';
+import React, { useState } from 'react';
 import { SearchIcon } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-
-type SuggestionType = {
-  name: string;
-  id: number | string;
-};
 
 export default function SearchBar() {
   // const [field, setField] = useState<string>('');

@@ -71,7 +71,8 @@ export default function Footer() {
         <div className="pt-6 border-t border-gray-200">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-gray-600">
-              Made with 💚 by Juan Daniel Martínez
+              Made with 💚 by{' '}
+              <Link href={'https://www.juanda.dev/'}>Juan Daniel Martínez</Link>
             </p>
             <p className="text-sm text-gray-500">
               © 2024 Pokemon Stats. All rights reserved.

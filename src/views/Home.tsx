@@ -1,6 +1,5 @@
 import React from 'react';
-import { Chart, SearchBar } from '../components';
-import PokemonCard from '../components/PokemonCard/PokemonCard';
+import { SearchBar } from '../components';
 
 export default function Home() {
   return (

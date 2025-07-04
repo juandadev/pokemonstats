@@ -8,7 +8,7 @@ import {
   LETTERS_CHART,
   TYPE_COLORS,
   WEAKNESS_CHART,
-} from '../../common/constants';
+} from '@/common/constants';
 import s from './Chart.module.scss';
 
 export default function Chart() {
