@@ -1,10 +1,10 @@
 import React from 'react';
 import { Metadata } from 'next';
 import { ContextProvider } from '@/context';
-import ThemeProvider from '@/components/ThemeProvider/ThemeProvider';
 import Hero from '@/components/Hero/Hero';
 import { Geist } from 'next/font/google';
 import './globals.css';
+import Footer from '@/components/Footer/Footer';
 
 const geist_sans = Geist({
   variable: '--font-geist-sans',
@@ -24,24 +24,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${geist_sans.variable}`}>
-        {/*<ThemeProvider*/}
-        {/*  attribute="class"*/}
-        {/*  defaultTheme="light"*/}
-        {/*  enableSystem*/}
-        {/*  disableTransitionOnChange*/}
-        {/*>*/}
+      <body
+        className={`${geist_sans.variable} bg-gradient-to-br from-blue-50 via-white to-purple-50`}
+      >
         <ContextProvider>
-          <div
-            className={
-              'min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50'
-            }
-          >
+          <div className={'min-h-screen container mx-auto px-4 py-8 max-w-7xl'}>
             <Hero />
             {children}
+            <Footer />
           </div>
         </ContextProvider>
-        {/*</ThemeProvider>*/}
       </body>
     </html>
   );
