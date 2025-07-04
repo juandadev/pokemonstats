@@ -79,7 +79,7 @@ export default function SearchBar() {
   };
 
   return (
-    <Card className="mb-8 shadow-lg border-0 bg-white/80 backdrop-blur-sm">
+    <Card className="mb-8 shadow-lg border-0 bg-white/80 backdrop-blur-sm relative z-[999]">
       <CardContent className="p-6">
         <div className="relative">
           <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 z-10" />
@@ -100,7 +100,7 @@ export default function SearchBar() {
           />
           {showSuggestions && filteredSuggestions.length > 0 && (
             <div
-              className="absolute top-full left-0 right-0 mt-2 bg-white border-2 border-gray-200 rounded-xl shadow-xl max-h-60 overflow-y-auto z-[999]"
+              className="absolute top-full left-0 right-0 mt-2 bg-white border-2 border-gray-200 rounded-xl shadow-xl max-h-60 overflow-y-auto"
               role="listbox"
               aria-label="Pokemon suggestions"
             >
