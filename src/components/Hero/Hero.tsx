@@ -27,7 +27,11 @@ export default function Hero() {
                 className="bg-gray-900 hover:bg-gray-800 text-white px-6 py-3 rounded-xl font-medium transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-xl"
                 asChild
               >
-                <Link href={'#'}>
+                <Link
+                  href={'https://github.com/juandadev/pokemonstats'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <GithubIcon className="w-5 h-5 mr-2" />
                   View Source Code
                 </Link>
@@ -36,7 +40,11 @@ export default function Hero() {
                 className="bg-yellow-500 hover:bg-yellow-400 text-gray-900 px-6 py-3 rounded-xl font-medium transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-xl"
                 asChild
               >
-                <Link href={'#'}>
+                <Link
+                  href={'https://coff.ee/juandadotdev'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <CoffeeIcon className="w-5 h-5 mr-2" />
                   Support Project
                 </Link>
