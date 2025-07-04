@@ -28,7 +28,7 @@ export default function RootLayout({
         className={`${geist_sans.variable} bg-gradient-to-br from-blue-50 via-white to-purple-50`}
       >
         <ContextProvider>
-          <div className={'min-h-screen container mx-auto px-4 py-8 max-w-7xl'}>
+          <div className={'min-h-screen container mx-auto px-4 pb-8 max-w-7xl'}>
             <Hero />
             {children}
             <Footer />
