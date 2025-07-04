@@ -1,46 +1,43 @@
 import { Button } from '@/components/ui/button';
-import { GithubIcon, HeartIcon } from 'lucide-react';
+import { CoffeeIcon, GithubIcon } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-gray-50 min-h-[500px] flex items-center">
       <div className="container mx-auto px-4 py-16">
-        <div className="grid lg:grid-cols-2 gap-5 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium text-gray-600 mb-8 shadow-sm border border-gray-200">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
               Live Pokédex Data
             </div>
             <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
-              Pokémon
+              Pokemon
               <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 Stats
               </span>
             </h1>
-            <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-lg">
+            <p className="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed max-w-lg">
               Quickly explore weaknesses, evolutions, and more. A clean Pokédex
               companion made for casual trainers.
             </p>
-            <div className="flex flex-col gap-4 sm:flex-row sm:justify-center md:justify-start mt-3">
-              <Button size="lg" asChild>
-                <Link
-                  href={'https://github.com/juandadev/pokemonstats'}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center"
-                >
-                  <GithubIcon className="mr-2 h-5 w-5" />
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button
+                className="bg-gray-900 hover:bg-gray-800 text-white px-6 py-3 rounded-xl font-medium transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-xl"
+                asChild
+              >
+                <Link href={'#'}>
+                  <GithubIcon className="w-5 h-5 mr-2" />
                   View Source Code
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" asChild>
-                <Link
-                  href={'https://coff.ee/juandamartn'}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <HeartIcon className="mr-2 h-5 w-5" />
+              <Button
+                className="bg-yellow-500 hover:bg-yellow-400 text-gray-900 px-6 py-3 rounded-xl font-medium transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-xl"
+                asChild
+              >
+                <Link href={'#'}>
+                  <CoffeeIcon className="w-5 h-5 mr-2" />
                   Support Project
                 </Link>
               </Button>
@@ -52,16 +49,16 @@ export default function Hero() {
               <div className="relative z-10 transform hover:scale-105 transition-transform duration-300">
                 <img
                   src="/hero.webp"
-                  alt="Pokémon Trainer with Pikachu"
+                  alt="Ash with Pikachu"
                   className="w-80 md:w-96 h-auto object-contain drop-shadow-2xl"
                 />
               </div>
-              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-32 h-8 bg-gray-300 rounded-full opacity-20 blur-md"></div>
+              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-32 h-8 bg-gray-300 rounded-full opacity-20 blur-md" />
             </div>
           </div>
         </div>
       </div>
-      <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2">
+      <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2">
         <div className="w-10 h-10 border-2 border-gray-400 rounded-full flex items-center justify-center animate-bounce">
           <svg
             className="w-4 h-4 text-gray-400"
