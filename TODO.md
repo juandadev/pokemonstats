@@ -9,3 +9,4 @@
     - [ ] Add light and dark mode
 - [ ] Support select two types and merge weakness and strengths
 - [ ] Include static images for all Pokemon for searchbar and evolution chains
+- [ ] Fix empty species or evolution chains in pokemon results

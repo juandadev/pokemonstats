@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { POKEMON_EXCEPTIONS, POKEMON_LIST } from '@/common/constants';
 import { pokemon } from '@/context';
 import NoSuggestion from '@/components/SearchBar/NoSuggestion';
+import { toPokeApiName } from '@/lib/utils';
 
 export default function SearchBar() {
   const { state, dispatch } = useContext(pokemon);
@@ -63,11 +64,16 @@ export default function SearchBar() {
     const getException = POKEMON_EXCEPTIONS.findIndex(
       ({ name }) => name === suggestion
     );
+    const isMegaEvolution = suggestion.includes('Mega');
 
     dispatch({
       type: 'CHANGE_INPUT',
       name:
-        getException >= 0 ? POKEMON_EXCEPTIONS[getException].id : suggestion,
+        getException >= 0
+          ? POKEMON_EXCEPTIONS[getException].id
+          : isMegaEvolution
+          ? toPokeApiName(suggestion)
+          : suggestion,
     });
   };
 
