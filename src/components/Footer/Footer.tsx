@@ -7,6 +7,8 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 
+const currentYear = new Date().getFullYear();
+
 export default function Footer() {
   return (
     <footer className="mt-15 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-200">
@@ -77,7 +79,7 @@ export default function Footer() {
               </Link>
             </p>
             <p className="text-sm text-gray-500">
-              © 2024 Pokemon Stats. All rights reserved.
+              © {currentYear} Pokemon Stats. All rights reserved.
             </p>
           </div>
         </div>

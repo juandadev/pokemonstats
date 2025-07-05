@@ -199,7 +199,7 @@ export default function PokemonCard() {
   }, [fetchPokemonData, state.name]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 w-full max-w-lg m-auto">
       <Card className="shadow-xl border-0 bg-white/90 backdrop-blur-sm overflow-hidden pt-0">
         <div className="bg-gradient-to-br from-blue-400 to-blue-600 p-6 text-white">
           <div className="flex items-center justify-between mb-4">

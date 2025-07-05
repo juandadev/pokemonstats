@@ -4,10 +4,10 @@ import Link from 'next/link';
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden min-h-[500px] flex items-center">
-      <div className="container mx-auto px-4 py-16">
+    <section className="relative overflow-hidden">
+      <div className="mx-auto px-4 py-16">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="max-w-2xl">
+          <div>
             <div className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium text-gray-600 mb-8 shadow-sm border border-gray-200">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
               Live Pokédex Data

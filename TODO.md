@@ -21,3 +21,4 @@
     - [ ] Split components into smaller ones
     - [ ] Remove all unused code
     - [ ] Remove all unused dependencies
+- [ ] Fix Hero alignment

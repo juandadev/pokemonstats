@@ -156,7 +156,9 @@
     @apply border-border outline-ring/50;
     font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
     scroll-behavior: smooth;
+    box-sizing: border-box;
   }
+
   body {
     @apply bg-background text-foreground;
   }
