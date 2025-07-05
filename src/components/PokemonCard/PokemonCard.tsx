@@ -1,12 +1,7 @@
 'use client';
 
 import React, { useCallback, useContext, useEffect, useState } from 'react';
-import Image from 'next/legacy/image';
-import { Badge, Button, Spinner } from 'react-bootstrap';
-import EvolutionImage from '../EvolutionImage';
 import { pokemon as searchField } from '../../context';
-import s from './PokemonCard.module.scss';
-import bg from './BackgroundPatterns.module.scss';
 import {
   Chain,
   EvolutionsData,
@@ -16,7 +11,18 @@ import {
   Sprites,
   Stat,
   Type,
-} from '../../types/Pokemon.type';
+} from '@/types/Pokemon.type';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { TYPE_COLORS } from '@/common/constants';
+import { Badge } from '@/components/ui/badge';
+import { InfoIcon } from 'lucide-react';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
+import { displayEvolutionDetails } from '@/lib/utils';
 
 type PokemonType = {
   id: number;
@@ -41,7 +47,6 @@ export default function PokemonCard() {
   const [imagePath, setImagePath] = useState<string>(
     `https://projectpokemon.org/images/normal-sprite/${pokemon.name}.gif`
   );
-  const [toggle, setToggle] = useState<boolean[]>([true, true]);
   const { state } = useContext(searchField);
 
   const fetchPokemonData = useCallback(
@@ -194,88 +199,90 @@ export default function PokemonCard() {
   }, [fetchPokemonData, state.name]);
 
   return (
-    <div className={s.card}>
-      <div className={s.cover}>
-        {loading && (
-          <Spinner animation="border" variant="dark" className={s.spinner} />
-        )}
-        <Image
-          id="pokemon-sprite"
-          className={s.image}
-          src={imagePath}
-          alt="pokemon sprite"
-          width={286}
-          height={315}
-          onLoadingComplete={handleLoading}
-          onError={handleError}
-        />
-        <div className={`${s.back_img} ${bg[pokemon?.types[0]?.type?.name]}`} />
-      </div>
-      <div className={s.body}>
-        {pokemon.name && (
-          <div className={s.info}>
-            <div className={s.title}>{`#${pokemon.id} ${pokemon.name}`}</div>
-            <div className={s.types}>{renderTypes(pokemon.types)}</div>
-          </div>
-        )}
-        {pokemon.name && (
-          <>
-            <div
-              className={`d-flex justify-content-center ${s.sprite_options}`}
+    <div className="space-y-6">
+      <Card className="shadow-xl border-0 bg-white/90 backdrop-blur-sm overflow-hidden pt-0">
+        <div className="bg-gradient-to-br from-blue-400 to-blue-600 p-6 text-white">
+          <div className="flex items-center justify-between mb-4">
+            <span className="text-sm font-medium opacity-90">
+              #{pokemon.id.toString().padStart(3, '0')}
+            </span>
+            <Badge
+              className="text-white border-white/30"
+              style={{
+                backgroundColor:
+                  TYPE_COLORS[
+                    pokemon.types[0]?.type.name as keyof typeof TYPE_COLORS
+                  ],
+              }}
             >
-              <Button
-                className="me-3"
-                onClick={() =>
-                  switch3d(
-                    pokemon.id,
-                    pokemon.name,
-                    setImagePath,
-                    toggle,
-                    setToggle
-                  )
-                }
-              >
-                {toggle[0] ? '3D sprite' : 'Normal image'}
-              </Button>
-              <Button
-                onClick={() =>
-                  switch2d(
-                    pokemon.id,
-                    pokemon.sprites.front_default || '',
-                    setImagePath,
-                    toggle,
-                    setToggle
-                  )
-                }
-              >
-                {toggle[1] ? '2D sprite' : 'Normal image'}
-              </Button>
-            </div>
-            <div className={s.evolutions_container}>
-              <div className="d-flex flex-column">
-                <strong className="mb-3">Evolution chain:</strong>
-                <p className={s.hint}>
-                  Some evolution details may vary depending on the{' '}
-                  <code>generation</code> and <code>game</code>
-                </p>
-                <div className={s.image_container}>
-                  {evolutions.chain &&
-                    evolutionChain(evolutions.chain) &&
-                    evolutionChain(evolutions.chain).map((item) => (
-                      <EvolutionImage
-                        key={`evolution-${item.name}`}
-                        name={pokemon.name}
-                        evolution={item.name}
-                        details={item.evolutionDetails}
-                        setToggle={setToggle}
-                      />
-                    ))}
-                </div>
+              {pokemon.types[0]?.type.name}
+            </Badge>
+          </div>
+          <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-cyan-200 to-blue-200 bg-clip-text text-transparent capitalize">
+            {pokemon.name}
+          </h2>
+        </div>
+        <CardContent className="p-6">
+          <div className="flex justify-center mb-6">
+            <div className="relative">
+              <div className="w-48 h-48 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full flex items-center justify-center shadow-inner">
+                <img
+                  src={imagePath}
+                  alt={pokemon.name}
+                  className="w-40 h-40 object-contain"
+                />
               </div>
             </div>
-          </>
-        )}
-      </div>
+          </div>
+        </CardContent>
+      </Card>
+      <Card className="shadow-xl border-0 bg-white/90 backdrop-blur-sm">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2 text-2xl">
+            Evolution Chain
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            {evolutions.chain &&
+              evolutionChain(evolutions.chain)?.map((evolution, index) => (
+                <div
+                  key={index}
+                  className="flex items-center gap-4 p-3 rounded-lg bg-gray-50"
+                >
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full flex items-center justify-center overflow-hidden">
+                    <img
+                      src={`https://projectpokemon.org/images/normal-sprite/${evolution.name}.gif`}
+                      alt={evolution.name}
+                      className="w-10 h-10 object-contain"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <div className="font-semibold capitalize">
+                      {evolution.name}
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      {displayEvolutionDetails(
+                        evolution.name,
+                        evolution.evolutionDetails
+                      )}
+                    </div>
+                  </div>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <InfoIcon className="h-4 w-4 text-blue-500" />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Special evolution requirements</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </div>
+              ))}
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }

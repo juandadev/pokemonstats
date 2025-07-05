@@ -10,3 +10,8 @@
 - [ ] Support select two types and merge weakness and strengths
 - [ ] Include static images for all Pokemon for searchbar and evolution chains
 - [ ] Fix empty species or evolution chains in pokemon results
+- [ ] Fix all a11y issues
+- [ ] Fix pokemon card type colors
+- [ ] Fix all any and unknown types
+- [ ] Fix Evolution details
+- [ ] Add loading states whe fetching pokemon data

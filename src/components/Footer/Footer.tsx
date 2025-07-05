@@ -9,7 +9,7 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="mt-20 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-200">
+    <footer className="mt-15 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-200">
       <div className="px-8 py-12">
         <div className="mb-8 p-4 bg-yellow-50 border border-yellow-200 rounded-xl">
           <div className="flex items-start gap-3">

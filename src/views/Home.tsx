@@ -1,12 +1,15 @@
 import React from 'react';
-import { SearchBar } from '../components';
+import PokemonCard from '@/components/PokemonCard/PokemonCard';
+import SearchBar from '@/components/SearchBar/SearchBar';
 
 export default function Home() {
   return (
-    <main id="main">
+    <main id="main" className={'mt-10'}>
       <SearchBar />
-      {/*<PokemonCard />*/}
-      {/*    <Chart />*/}
+      <div className={'grid lg:grid-cols-2 gap-8'}>
+        <PokemonCard />
+        {/*    <Chart />*/}
+      </div>
     </main>
   );
 }
