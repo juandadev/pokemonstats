@@ -8,7 +8,6 @@ export default function Home() {
       <SearchBar />
       <div className={'grid lg:grid-cols-2 gap-8'}>
         <PokemonCard />
-        {/*    <Chart />*/}
       </div>
     </main>
   );

@@ -15,3 +15,9 @@
 - [ ] Fix all any and unknown types
 - [ ] Fix Evolution details
 - [ ] Add loading states whe fetching pokemon data
+- [ ] Refactor all shitty code
+    - [ ] Better use of hooks
+    - [ ] Better use of context
+    - [ ] Split components into smaller ones
+    - [ ] Remove all unused code
+    - [ ] Remove all unused dependencies
