@@ -1,9 +1,83 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
+@tailwind utilities;
+
 @custom-variant dark (&:is(.dark *));
 
-@tailwind utilities;
+@layer utilities {
+  .normal-gradient {
+    background: linear-gradient(135deg, rgb(168, 168, 120), rgb(117, 117, 69));
+  }
+
+  .fire-gradient {
+    background: linear-gradient(135deg, rgb(168, 168, 120), rgb(117, 117, 69));
+  }
+
+  .water-gradient {
+    background: linear-gradient(135deg, rgb(104, 144, 240), rgb(53, 93, 189));
+  }
+
+  .electric-gradient {
+    background: linear-gradient(135deg, rgb(248, 208, 48), rgb(197, 157, 0));
+  }
+
+  .grass-gradient {
+    background: linear-gradient(135deg, rgb(120, 200, 80), rgb(69, 149, 29));
+  }
+
+  .ice-gradient {
+    background: linear-gradient(135deg, rgb(152, 216, 216), rgb(101, 165, 165));
+  }
+
+  .fighting-gradient {
+    background: linear-gradient(135deg, rgb(192, 48, 40), rgb(141, 0, 0));
+  }
+
+  .poison-gradient {
+    background: linear-gradient(135deg, rgb(160, 64, 160), rgb(109, 13, 109));
+  }
+
+  .ground-gradient {
+    background: linear-gradient(135deg, rgb(224, 192, 104), rgb(173, 141, 53));
+  }
+
+  .flying-gradient {
+    background: linear-gradient(135deg, rgb(168, 144, 240), rgb(117, 93, 189));
+  }
+
+  .psychic-gradient {
+    background: linear-gradient(135deg, rgb(248, 88, 136), rgb(197, 37, 85));
+  }
+
+  .bug-gradient {
+    background: linear-gradient(135deg, rgb(168, 184, 32), rgb(117, 133, 0));
+  }
+
+  .rock-gradient {
+    background: linear-gradient(135deg, rgb(184, 160, 56), rgb(133, 109, 5));
+  }
+
+  .ghost-gradient {
+    background: linear-gradient(135deg, rgb(112, 88, 152), rgb(61, 37, 101));
+  }
+
+  .dragon-gradient {
+    background: linear-gradient(135deg, rgb(112, 56, 248), rgb(61, 5, 197));
+  }
+
+  .dark-gradient {
+    background: linear-gradient(135deg, rgb(112, 88, 72), rgb(61, 37, 21));
+  }
+
+  .steel-gradient {
+    background: linear-gradient(135deg, rgb(184, 184, 208), rgb(133, 133, 157));
+  }
+
+  .fairy-gradient {
+    background: linear-gradient(135deg, rgb(238, 153, 172), rgb(187, 102, 121));
+  }
+}
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
