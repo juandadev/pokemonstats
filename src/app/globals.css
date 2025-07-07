@@ -79,6 +79,79 @@
     background: linear-gradient(135deg, rgb(238, 153, 172), rgb(187, 102, 121));
   }
 
+  /* Light Gradient Backgrounds */
+  .bg-normal-gradient-light {
+    background: linear-gradient(135deg, #a8a87820, #a8a87810);
+  }
+
+  .bg-fire-gradient-light {
+    background: linear-gradient(135deg, #f0803020, #f0803010);
+  }
+
+  .bg-water-gradient-light {
+    background: linear-gradient(135deg, #6890f020, #6890f010);
+  }
+
+  .bg-electric-gradient-light {
+    background: linear-gradient(135deg, #f8d03020, #f8d03010);
+  }
+
+  .bg-grass-gradient-light {
+    background: linear-gradient(135deg, #78c85020, #78c85010);
+  }
+
+  .bg-ice-gradient-light {
+    background: linear-gradient(135deg, #98d8d820, #98d8d810);
+  }
+
+  .bg-fighting-gradient-light {
+    background: linear-gradient(135deg, #c0303020, #c0303010);
+  }
+
+  .bg-poison-gradient-light {
+    background: linear-gradient(135deg, #a040a020, #a040a010);
+  }
+
+  .bg-ground-gradient-light {
+    background: linear-gradient(135deg, #e0c04020, #e0c04010);
+  }
+
+  .bg-flying-gradient-light {
+    background: linear-gradient(135deg, #a890f020, #a890f010);
+  }
+
+  .bg-psychic-gradient-light {
+    background: linear-gradient(135deg, #f8588820, #f8588810);
+  }
+
+  .bg-bug-gradient-light {
+    background: linear-gradient(135deg, #a8b82020, #a8b82010);
+  }
+
+  .bg-rock-gradient-light {
+    background: linear-gradient(135deg, #b8a04020, #b8a04010);
+  }
+
+  .bg-ghost-gradient-light {
+    background: linear-gradient(135deg, #70589820, #70589810);
+  }
+
+  .bg-dragon-gradient-light {
+    background: linear-gradient(135deg, #7038f820, #7038f810);
+  }
+
+  .bg-dark-gradient-light {
+    background: linear-gradient(135deg, #70585020, #70585010);
+  }
+
+  .bg-steel-gradient-light {
+    background: linear-gradient(135deg, #b8b8d020, #b8b8d010);
+  }
+
+  .bg-fairy-gradient-light {
+    background: linear-gradient(135deg, #ee99aa20, #ee99aa10);
+  }
+
   /* Gradient Headings */
   .text-normal-gradient {
     background: linear-gradient(135deg, #e7e5e4, #d6d3d1);
