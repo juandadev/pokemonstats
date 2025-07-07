@@ -1,22 +1,31 @@
-export type PokemonTypes = 
+import { POKEMON_LIST } from '@/common/constants';
+
+export type PokemonTypes =
   | 'normal'
-  | 'fighting'
-  | 'flying'
-  | 'poison'
-  | 'ground' // Change text contrast: Darker
-  | 'rock'
-  | 'bug'
-  | 'ghost'
-  | 'steel'
-  | 'fire' // Change text contrast: Brighter
+  | 'fire'
   | 'water'
-  | 'grass'
   | 'electric'
-  | 'psychic'
+  | 'grass'
   | 'ice'
+  | 'fighting'
+  | 'poison'
+  | 'ground'
+  | 'flying'
+  | 'psychic'
+  | 'bug'
+  | 'rock'
+  | 'ghost'
   | 'dragon'
   | 'dark'
-  | 'fairy'; // Change text contrast: Brighter
+  | 'steel'
+  | 'fairy';
+
+export type PokemonName = typeof POKEMON_LIST[number];
+
+export type PokemonExceptions = {
+  name: PokemonName;
+  id: number;
+};
 
 export type PokemonTypeColors = {
   background: string;

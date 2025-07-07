@@ -1,7 +1,9 @@
+import React from 'react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import { EvolutionDetail, Species } from '@/types/Pokemon.type';
-import { EVOLUTION_DETAILS } from '@/common/constants';
+import { EvolutionDetail, PokemonTypes, Species } from '@/types/Pokemon.type';
+import { EVOLUTION_DETAILS, TYPE_ICONS } from '@/common/constants';
+import { CircleIcon } from 'lucide-react';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -108,4 +110,9 @@ export const displayEvolutionDetails = (
     case 'gender':
       return `${value === 2 ? `Male ♂` : 'Female ♀'}${additionalRules}`;
   }
+};
+
+export const getTypeIcon = (type: PokemonTypes) => {
+  const Icon = TYPE_ICONS[type] || CircleIcon;
+  return (props: React.ComponentProps<'svg'>) => <Icon {...props} />;
 };

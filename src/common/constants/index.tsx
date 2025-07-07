@@ -1,4 +1,29 @@
-import { PokemonTypeColors, PokemonTypes } from '@/types/Pokemon.type';
+import React from 'react';
+import {
+  PokemonExceptions,
+  PokemonTypeColors,
+  PokemonTypes,
+} from '@/types/Pokemon.type';
+import {
+  BadgeIcon,
+  BirdIcon,
+  BrainIcon,
+  BugIcon,
+  CircleIcon,
+  CogIcon,
+  DropletIcon,
+  EyeIcon,
+  FlameIcon,
+  GhostIcon,
+  GrabIcon,
+  LeafIcon,
+  MountainIcon,
+  SkullIcon,
+  SnowflakeIcon,
+  StarIcon,
+  WindIcon,
+  ZapIcon,
+} from 'lucide-react';
 
 export const TYPE_LABELS: Record<PokemonTypes, PokemonTypeColors> = {
   normal: {
@@ -6,54 +31,6 @@ export const TYPE_LABELS: Record<PokemonTypes, PokemonTypeColors> = {
     gradientBackground: 'bg-normal-gradient',
     gradientBackgroundLight: 'bg-normal-gradient-light',
     text: 'text-normal-gradient',
-  },
-  fighting: {
-    background: 'bg-fighting',
-    gradientBackground: 'bg-fighting-gradient',
-    gradientBackgroundLight: 'bg-fighting-gradient-light',
-    text: 'text-fighting-gradient',
-  },
-  flying: {
-    background: 'bg-flying',
-    gradientBackground: 'bg-flying-gradient',
-    gradientBackgroundLight: 'bg-flying-gradient-light',
-    text: 'text-flying-gradient',
-  },
-  poison: {
-    background: 'bg-poison',
-    gradientBackground: 'bg-poison-gradient',
-    gradientBackgroundLight: 'bg-poison-gradient-light',
-    text: 'text-poison-gradient',
-  },
-  ground: {
-    background: 'bg-ground',
-    gradientBackground: 'bg-ground-gradient',
-    gradientBackgroundLight: 'bg-ground-gradient-light',
-    text: 'text-ground-gradient',
-  },
-  rock: {
-    background: 'bg-rock',
-    gradientBackground: 'bg-rock-gradient',
-    gradientBackgroundLight: 'bg-rock-gradient-light',
-    text: 'text-rock-gradient',
-  },
-  bug: {
-    background: 'bg-bug',
-    gradientBackground: 'bg-bug-gradient',
-    gradientBackgroundLight: 'bg-bug-gradient-light',
-    text: 'text-bug-gradient',
-  },
-  ghost: {
-    background: 'bg-ghost',
-    gradientBackground: 'bg-ghost-gradient',
-    gradientBackgroundLight: 'bg-ghost-gradient-light',
-    text: 'text-ghost-gradient',
-  },
-  steel: {
-    background: 'bg-steel',
-    gradientBackground: 'bg-steel-gradient',
-    gradientBackgroundLight: 'bg-steel-gradient-light',
-    text: 'text-steel-gradient',
   },
   fire: {
     background: 'bg-fire',
@@ -67,17 +44,47 @@ export const TYPE_LABELS: Record<PokemonTypes, PokemonTypeColors> = {
     gradientBackgroundLight: 'bg-water-gradient-light',
     text: 'text-water-gradient',
   },
+  electric: {
+    background: 'bg-electric',
+    gradientBackground: 'bg-electric-gradient',
+    gradientBackgroundLight: 'bg-electric-gradient-light',
+    text: 'text-electric-gradient',
+  },
   grass: {
     background: 'bg-grass',
     gradientBackground: 'bg-grass-gradient',
     gradientBackgroundLight: 'bg-grass-gradient-light',
     text: 'text-grass-gradient',
   },
-  electric: {
-    background: 'bg-electric',
-    gradientBackground: 'bg-electric-gradient',
-    gradientBackgroundLight: 'bg-electric-gradient-light',
-    text: 'text-electric-gradient',
+  ice: {
+    background: 'bg-ice',
+    gradientBackground: 'bg-ice-gradient',
+    gradientBackgroundLight: 'bg-ice-gradient-light',
+    text: 'text-ice-gradient',
+  },
+  fighting: {
+    background: 'bg-fighting',
+    gradientBackground: 'bg-fighting-gradient',
+    gradientBackgroundLight: 'bg-fighting-gradient-light',
+    text: 'text-fighting-gradient',
+  },
+  poison: {
+    background: 'bg-poison',
+    gradientBackground: 'bg-poison-gradient',
+    gradientBackgroundLight: 'bg-poison-gradient-light',
+    text: 'text-poison-gradient',
+  },
+  ground: {
+    background: 'bg-ground',
+    gradientBackground: 'bg-ground-gradient',
+    gradientBackgroundLight: 'bg-ground-gradient-light',
+    text: 'text-ground-gradient',
+  },
+  flying: {
+    background: 'bg-flying',
+    gradientBackground: 'bg-flying-gradient',
+    gradientBackgroundLight: 'bg-flying-gradient-light',
+    text: 'text-flying-gradient',
   },
   psychic: {
     background: 'bg-psychic',
@@ -85,11 +92,23 @@ export const TYPE_LABELS: Record<PokemonTypes, PokemonTypeColors> = {
     gradientBackgroundLight: 'bg-psychic-gradient-light',
     text: 'text-psychic-gradient',
   },
-  ice: {
-    background: 'bg-ice',
-    gradientBackground: 'bg-ice-gradient',
-    gradientBackgroundLight: 'bg-ice-gradient-light',
-    text: 'text-ice-gradient',
+  bug: {
+    background: 'bg-bug',
+    gradientBackground: 'bg-bug-gradient',
+    gradientBackgroundLight: 'bg-bug-gradient-light',
+    text: 'text-bug-gradient',
+  },
+  rock: {
+    background: 'bg-rock',
+    gradientBackground: 'bg-rock-gradient',
+    gradientBackgroundLight: 'bg-rock-gradient-light',
+    text: 'text-rock-gradient',
+  },
+  ghost: {
+    background: 'bg-ghost',
+    gradientBackground: 'bg-ghost-gradient',
+    gradientBackgroundLight: 'bg-ghost-gradient-light',
+    text: 'text-ghost-gradient',
   },
   dragon: {
     background: 'bg-dragon',
@@ -103,12 +122,39 @@ export const TYPE_LABELS: Record<PokemonTypes, PokemonTypeColors> = {
     gradientBackgroundLight: 'bg-dark-gradient-light',
     text: 'text-dark-gradient',
   },
+  steel: {
+    background: 'bg-steel',
+    gradientBackground: 'bg-steel-gradient',
+    gradientBackgroundLight: 'bg-steel-gradient-light',
+    text: 'text-steel-gradient',
+  },
   fairy: {
     background: 'bg-fairy',
     gradientBackground: 'bg-fairy-gradient',
     gradientBackgroundLight: 'bg-fairy-gradient-light',
     text: 'text-fairy-gradient',
   },
+};
+
+export const TYPE_ICONS: Record<PokemonTypes, React.ElementType> = {
+  normal: CircleIcon,
+  fire: FlameIcon,
+  water: DropletIcon,
+  electric: ZapIcon,
+  grass: LeafIcon,
+  ice: SnowflakeIcon,
+  fighting: GrabIcon,
+  poison: SkullIcon,
+  ground: MountainIcon,
+  flying: WindIcon,
+  psychic: BrainIcon,
+  bug: BugIcon,
+  rock: BadgeIcon,
+  ghost: GhostIcon,
+  dragon: BirdIcon,
+  dark: EyeIcon,
+  steel: CogIcon,
+  fairy: StarIcon,
 };
 
 export const TYPE_COLORS: Record<PokemonTypes, string> = {
@@ -132,7 +178,9 @@ export const TYPE_COLORS: Record<PokemonTypes, string> = {
   fairy: '#EE99AC',
 };
 
-export const POKEMON_EXCEPTIONS = [
+export const POKEMON_EXCEPTIONS: PokemonExceptions[] = [
+  { name: 'Mega Charizard X', id: 10034 },
+  { name: 'Mega Charizard Y', id: 10035 },
   { name: 'Nidoran (male)', id: 32 },
   { name: 'Nidoran (female)', id: 29 },
   { name: 'Lycanroc Midday Form', id: 745 },
@@ -345,28 +393,6 @@ export const EVOLUTION_DETAILS = {
   min_happiness: 'Friendship',
   min_beauty: 'Beauty',
 };
-
-export const LETTERS_CHART = [
-  'A',
-  'B',
-  'C',
-  'D',
-  'E',
-  'F',
-  'G',
-  'H',
-  'I',
-  'J',
-  'K',
-  'L',
-  'M',
-  'N',
-  'O',
-  'P',
-  'Q',
-  'R',
-  'S',
-];
 
 export const WEAKNESS_CHART = [
   [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
