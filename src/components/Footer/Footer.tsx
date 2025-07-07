@@ -1,8 +1,8 @@
 import {
   AlertTriangleIcon,
-  CoffeeIcon,
   ExternalLinkIcon,
   GithubIcon,
+  HeartIcon,
   InfoIcon,
 } from 'lucide-react';
 
@@ -55,9 +55,9 @@ export default function Footer() {
           href="https://buymeacoffee.com/juandadotdev"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 text-gray-600 hover:text-yellow-600 transition-colors duration-200 group"
+          className="flex items-center gap-2 text-gray-600 hover:text-fairy transition-colors duration-200 group"
         >
-          <CoffeeIcon className="w-4 h-4 group-hover:scale-110 transition-transform duration-200" />
+          <HeartIcon className="w-4 h-4 group-hover:scale-110 transition-transform duration-200" />
           <span className="text-sm font-medium">Support Project</span>
           <ExternalLinkIcon className="w-3 h-3 opacity-50" />
         </a>

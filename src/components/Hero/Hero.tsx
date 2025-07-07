@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { CoffeeIcon, GithubIcon } from 'lucide-react';
+import { GithubIcon, HeartIcon } from 'lucide-react';
 
 export default function Hero() {
   return (
@@ -37,16 +37,13 @@ export default function Hero() {
               View Source Code
             </a>
           </Button>
-          <Button
-            className="bg-yellow-500 hover:bg-yellow-400 text-gray-900"
-            asChild
-          >
+          <Button variant={'outline'} asChild>
             <a
               href="https://coff.ee/juandadotdev"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <CoffeeIcon className="w-5 h-5" />
+              <HeartIcon className="w-5 h-5 text-fairy" />
               Support Project
             </a>
           </Button>
