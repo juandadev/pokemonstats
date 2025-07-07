@@ -20,6 +20,7 @@ export type PokemonTypes =
 
 export type PokemonTypeColors = {
   background: string;
+  backgroundLight: string;
   text: string;
 };
 
@@ -51,7 +52,7 @@ export type Ability = {
 };
 
 export type Species = {
-  name: string;
+  name: PokemonTypes;
   url: string;
 };
 

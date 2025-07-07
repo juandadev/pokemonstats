@@ -3,74 +3,92 @@ import { PokemonTypeColors, PokemonTypes } from '@/types/Pokemon.type';
 export const TYPE_LABELS: Record<PokemonTypes, PokemonTypeColors> = {
   normal: {
     background: 'bg-normal-gradient',
+    backgroundLight: 'bg-normal-gradient-light',
     text: 'text-normal-gradient',
   },
   fighting: {
     background: 'bg-fighting-gradient',
+    backgroundLight: 'bg-fighting-gradient-light',
     text: 'text-fighting-gradient',
   },
   flying: {
     background: 'bg-flying-gradient',
+    backgroundLight: 'bg-flying-gradient-light',
     text: 'text-flying-gradient',
   },
   poison: {
     background: 'bg-poison-gradient',
+    backgroundLight: 'bg-poison-gradient-light',
     text: 'text-poison-gradient',
   },
   ground: {
     background: 'bg-ground-gradient',
+    backgroundLight: 'bg-ground-gradient-light',
     text: 'text-ground-gradient',
   },
   rock: {
     background: 'bg-rock-gradient',
+    backgroundLight: 'bg-rock-gradient-light',
     text: 'text-rock-gradient',
   },
   bug: {
     background: 'bg-bug-gradient',
+    backgroundLight: 'bg-bug-gradient-light',
     text: 'text-bug-gradient',
   },
   ghost: {
     background: 'bg-ghost-gradient',
+    backgroundLight: 'bg-ghost-gradient-light',
     text: 'text-ghost-gradient',
   },
   steel: {
     background: 'bg-steel-gradient',
+    backgroundLight: 'bg-steel-gradient-light',
     text: 'text-steel-gradient',
   },
   fire: {
     background: 'bg-fire-gradient',
+    backgroundLight: 'bg-fire-gradient-light',
     text: 'text-fire-gradient',
   },
   water: {
     background: 'bg-water-gradient',
+    backgroundLight: 'bg-water-gradient-light',
     text: 'text-water-gradient',
   },
   grass: {
     background: 'bg-grass-gradient',
+    backgroundLight: 'bg-grass-gradient-light',
     text: 'text-grass-gradient',
   },
   electric: {
     background: 'bg-electric-gradient',
+    backgroundLight: 'bg-electric-gradient-light',
     text: 'text-electric-gradient',
   },
   psychic: {
     background: 'bg-psychic-gradient',
+    backgroundLight: 'bg-psychic-gradient-light',
     text: 'text-psychic-gradient',
   },
   ice: {
     background: 'bg-ice-gradient',
+    backgroundLight: 'bg-ice-gradient-light',
     text: 'text-ice-gradient',
   },
   dragon: {
     background: 'bg-dragon-gradient',
+    backgroundLight: 'bg-dragon-gradient-light',
     text: 'text-dragon-gradient',
   },
   dark: {
     background: 'bg-dark-gradient',
+    backgroundLight: 'bg-dark-gradient-light',
     text: 'text-dark-gradient',
   },
   fairy: {
     background: 'bg-fairy-gradient',
+    backgroundLight: 'bg-fairy-gradient-light',
     text: 'text-fairy-gradient',
   },
 };
