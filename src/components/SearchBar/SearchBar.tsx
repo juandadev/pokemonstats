@@ -93,7 +93,7 @@ export default function SearchBar() {
             id="search-pokemon"
             name="search-pokemon"
             autoComplete={'off'}
-            placeholder="Search Pokémon by name or number..."
+            placeholder="Search Pokémon..."
             value={searchTerm}
             onChange={handleSearchChange}
             onKeyDown={handleKeyDown}
