@@ -6,76 +6,168 @@
 @custom-variant dark (&:is(.dark *));
 
 @layer utilities {
-  .normal-gradient {
+  /* Gradient Backgrounds */
+  .bg-normal-gradient {
     background: linear-gradient(135deg, rgb(168, 168, 120), rgb(117, 117, 69));
   }
 
-  .fire-gradient {
+  .bg-fire-gradient {
     background: linear-gradient(135deg, rgb(168, 168, 120), rgb(117, 117, 69));
   }
 
-  .water-gradient {
+  .bg-water-gradient {
     background: linear-gradient(135deg, rgb(104, 144, 240), rgb(53, 93, 189));
   }
 
-  .electric-gradient {
+  .bg-electric-gradient {
     background: linear-gradient(135deg, rgb(248, 208, 48), rgb(197, 157, 0));
   }
 
-  .grass-gradient {
+  .bg-grass-gradient {
     background: linear-gradient(135deg, rgb(120, 200, 80), rgb(69, 149, 29));
   }
 
-  .ice-gradient {
+  .bg-ice-gradient {
     background: linear-gradient(135deg, rgb(152, 216, 216), rgb(101, 165, 165));
   }
 
-  .fighting-gradient {
+  .bg-fighting-gradient {
     background: linear-gradient(135deg, rgb(192, 48, 40), rgb(141, 0, 0));
   }
 
-  .poison-gradient {
+  .bg-poison-gradient {
     background: linear-gradient(135deg, rgb(160, 64, 160), rgb(109, 13, 109));
   }
 
-  .ground-gradient {
+  .bg-ground-gradient {
     background: linear-gradient(135deg, rgb(224, 192, 104), rgb(173, 141, 53));
   }
 
-  .flying-gradient {
+  .bg-flying-gradient {
     background: linear-gradient(135deg, rgb(168, 144, 240), rgb(117, 93, 189));
   }
 
-  .psychic-gradient {
+  .bg-psychic-gradient {
     background: linear-gradient(135deg, rgb(248, 88, 136), rgb(197, 37, 85));
   }
 
-  .bug-gradient {
+  .bg-bug-gradient {
     background: linear-gradient(135deg, rgb(168, 184, 32), rgb(117, 133, 0));
   }
 
-  .rock-gradient {
+  .bg-rock-gradient {
     background: linear-gradient(135deg, rgb(184, 160, 56), rgb(133, 109, 5));
   }
 
-  .ghost-gradient {
+  .bg-ghost-gradient {
     background: linear-gradient(135deg, rgb(112, 88, 152), rgb(61, 37, 101));
   }
 
-  .dragon-gradient {
+  .bg-dragon-gradient {
     background: linear-gradient(135deg, rgb(112, 56, 248), rgb(61, 5, 197));
   }
 
-  .dark-gradient {
+  .bg-dark-gradient {
     background: linear-gradient(135deg, rgb(112, 88, 72), rgb(61, 37, 21));
   }
 
-  .steel-gradient {
+  .bg-steel-gradient {
     background: linear-gradient(135deg, rgb(184, 184, 208), rgb(133, 133, 157));
   }
 
-  .fairy-gradient {
+  .bg-fairy-gradient {
     background: linear-gradient(135deg, rgb(238, 153, 172), rgb(187, 102, 121));
+  }
+
+  /* Gradient Headings */
+  .text-normal-gradient {
+    background: linear-gradient(135deg, #e7e5e4, #d6d3d1);
+    @apply bg-clip-text text-transparent;
+  }
+
+  .text-fire-gradient {
+    background: linear-gradient(135deg, #fdba74, #fca5a5);
+    @apply bg-clip-text text-transparent;
+  }
+
+  .text-water-gradient {
+    background: linear-gradient(135deg, #a5f3fc, #bfdbfe);
+    @apply bg-clip-text text-transparent;
+  }
+
+  .text-electric-gradient {
+    background: linear-gradient(135deg, #fef9c3, #fde68a);
+    @apply bg-clip-text text-transparent;
+  }
+
+  .text-grass-gradient {
+    background: linear-gradient(135deg, #bbf7d0, #86efac);
+    @apply bg-clip-text text-transparent;
+  }
+
+  .text-ice-gradient {
+    background: linear-gradient(135deg, #ccfbf1, #a5f3fc);
+    @apply bg-clip-text text-transparent;
+  }
+
+  .text-fighting-gradient {
+    background: linear-gradient(135deg, #fca5a5, #f87171);
+    @apply bg-clip-text text-transparent;
+  }
+
+  .text-poison-gradient {
+    background: linear-gradient(135deg, #e9d5ff, #c4b5fd);
+    @apply bg-clip-text text-transparent;
+  }
+
+  .text-ground-gradient {
+    background: linear-gradient(135deg, #fcd34d, #fde68a);
+    @apply bg-clip-text text-transparent;
+  }
+
+  .text-flying-gradient {
+    background: linear-gradient(135deg, #ddd6fe, #c4b5fd);
+    @apply bg-clip-text text-transparent;
+  }
+
+  .text-psychic-gradient {
+    background: linear-gradient(135deg, #fbcfe8, #f9a8d4);
+    @apply bg-clip-text text-transparent;
+  }
+
+  .text-bug-gradient {
+    background: linear-gradient(135deg, #d9f99d, #bef264);
+    @apply bg-clip-text text-transparent;
+  }
+
+  .text-rock-gradient {
+    background: linear-gradient(135deg, #fcd34d, #fbbf24);
+    @apply bg-clip-text text-transparent;
+  }
+
+  .text-ghost-gradient {
+    background: linear-gradient(135deg, #e9d5ff, #d8b4fe);
+    @apply bg-clip-text text-transparent;
+  }
+
+  .text-dragon-gradient {
+    background: linear-gradient(135deg, #c4b5fd, #a5b4fc);
+    @apply bg-clip-text text-transparent;
+  }
+
+  .text-dark-gradient {
+    background: linear-gradient(135deg, #d6d3d1, #a8a29e);
+    @apply bg-clip-text text-transparent;
+  }
+
+  .text-steel-gradient {
+    background: linear-gradient(135deg, #e5e7eb, #cbd5e1);
+    @apply bg-clip-text text-transparent;
+  }
+
+  .text-fairy-gradient {
+    background: linear-gradient(135deg, #fbcfe8, #f9a8d4);
+    @apply bg-clip-text text-transparent;
   }
 }
 
