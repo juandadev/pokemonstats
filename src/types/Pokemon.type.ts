@@ -1,3 +1,28 @@
+export type PokemonTypes =
+  | 'normal'
+  | 'fighting'
+  | 'flying'
+  | 'poison'
+  | 'ground'
+  | 'rock'
+  | 'bug'
+  | 'ghost'
+  | 'steel'
+  | 'fire'
+  | 'water'
+  | 'grass'
+  | 'electric'
+  | 'psychic'
+  | 'ice'
+  | 'dragon'
+  | 'dark'
+  | 'fairy';
+
+export type PokemonTypeColors = {
+  background: string;
+  text: string;
+};
+
 export type PokemonData = {
   abilities: Ability[];
   base_experience: number;

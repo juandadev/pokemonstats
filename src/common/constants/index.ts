@@ -1,15 +1,81 @@
-export const EFFECTS_EMOJIS = ['😶', '🙂', '😁', '😐'];
+import { PokemonTypeColors, PokemonTypes } from '@/types/Pokemon.type';
 
-export const EFFECTS_NAMES = [
-  'no effect',
-  'normal',
-  'super effective',
-  'not very effective',
-];
+export const TYPE_LABELS: Record<PokemonTypes, PokemonTypeColors> = {
+  normal: {
+    background: 'bg-normal-gradient',
+    text: 'text-normal-gradient',
+  },
+  fighting: {
+    background: 'bg-fighting-gradient',
+    text: 'text-fighting-gradient',
+  },
+  flying: {
+    background: 'bg-flying-gradient',
+    text: 'text-flying-gradient',
+  },
+  poison: {
+    background: 'bg-poison-gradient',
+    text: 'text-poison-gradient',
+  },
+  ground: {
+    background: 'bg-ground-gradient',
+    text: 'text-ground-gradient',
+  },
+  rock: {
+    background: 'bg-rock-gradient',
+    text: 'text-rock-gradient',
+  },
+  bug: {
+    background: 'bg-bug-gradient',
+    text: 'text-bug-gradient',
+  },
+  ghost: {
+    background: 'bg-ghost-gradient',
+    text: 'text-ghost-gradient',
+  },
+  steel: {
+    background: 'bg-steel-gradient',
+    text: 'text-steel-gradient',
+  },
+  fire: {
+    background: 'bg-fire-gradient',
+    text: 'text-fire-gradient',
+  },
+  water: {
+    background: 'bg-water-gradient',
+    text: 'text-water-gradient',
+  },
+  grass: {
+    background: 'bg-grass-gradient',
+    text: 'text-grass-gradient',
+  },
+  electric: {
+    background: 'bg-electric-gradient',
+    text: 'text-electric-gradient',
+  },
+  psychic: {
+    background: 'bg-psychic-gradient',
+    text: 'text-psychic-gradient',
+  },
+  ice: {
+    background: 'bg-ice-gradient',
+    text: 'text-ice-gradient',
+  },
+  dragon: {
+    background: 'bg-dragon-gradient',
+    text: 'text-dragon-gradient',
+  },
+  dark: {
+    background: 'bg-dark-gradient',
+    text: 'text-dark-gradient',
+  },
+  fairy: {
+    background: 'bg-fairy-gradient',
+    text: 'text-fairy-gradient',
+  },
+};
 
-export const EFFECTS_COLORS = ['dark', 'light', 'success', 'warning'];
-
-export const TYPE_COLORS = {
+export const TYPE_COLORS: Record<PokemonTypes, string> = {
   normal: '#A8A878',
   fire: '#F08030',
   water: '#6890F0',
