@@ -4,17 +4,17 @@
 - [ ] Remove prop types
 - [ ] Replace axios with fetch
 - [ ] Hero section
-    - [ ] Add link to buy me a coffee
+    - [ ] Add a link to buy me a coffee
 - [ ] Bring back theme provider
     - [ ] Add light and dark mode
-- [ ] Support select two types and merge weakness and strengths
-- [ ] Include static images for all Pokemon for searchbar and evolution chains
-- [ ] Fix empty species or evolution chains in pokemon results
+- [ ] Supports selecting two types and merge weakness and strengths
+- [ ] Include static images for all pokémon for searchbar and evolution chains
+- [ ] Fix empty species or evolution chains in pokémon results
 - [ ] Fix all a11y issues
-- [ ] Fix pokemon card type colors
+- [ ] Fix pokémon card type colors
 - [ ] Fix all any and unknown types
 - [ ] Fix Evolution details
-- [ ] Add loading states while fetching pokemon data
+- [ ] Add loading states while fetching pokémon data
 - [ ] Refactor all shitty code
     - [ ] Better use of hooks
     - [ ] Better use of context
@@ -22,5 +22,6 @@
     - [ ] Remove all unused code
     - [ ] Remove all unused dependencies
 - [ ] Fix Hero alignment
-- [ ] When searching for a pokemon, select the type in the effectiveness chart
+- [ ] When searching for a pokémon, select the type in the effectiveness chart
 - [ ] Support selecting two types in the effectiveness chart
+- [ ] Get a cool placeholder image when no pokémon image is available
