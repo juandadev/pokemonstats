@@ -14,7 +14,7 @@
 - [ ] Fix pokemon card type colors
 - [ ] Fix all any and unknown types
 - [ ] Fix Evolution details
-- [ ] Add loading states whe fetching pokemon data
+- [ ] Add loading states while fetching pokemon data
 - [ ] Refactor all shitty code
     - [ ] Better use of hooks
     - [ ] Better use of context

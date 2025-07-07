@@ -12,7 +12,7 @@
   }
 
   .bg-fire-gradient {
-    background: linear-gradient(135deg, rgb(168, 168, 120), rgb(117, 117, 69));
+    background: linear-gradient(135deg, rgb(240, 128, 48), rgb(189, 77, 0));
   }
 
   .bg-water-gradient {
@@ -159,7 +159,7 @@
   }
 
   .text-fire-gradient {
-    background: linear-gradient(135deg, #fdba74, #fca5a5);
+    background: linear-gradient(135deg, #fbc386, #fbbcbc);
     @apply bg-clip-text text-transparent;
   }
 
@@ -194,7 +194,7 @@
   }
 
   .text-ground-gradient {
-    background: linear-gradient(135deg, #fcd34d, #fde68a);
+    background: linear-gradient(135deg, #ffdc7e, #ffedb4);
     @apply bg-clip-text text-transparent;
   }
 
@@ -239,7 +239,7 @@
   }
 
   .text-fairy-gradient {
-    background: linear-gradient(135deg, #fbcfe8, #f9a8d4);
+    background: linear-gradient(135deg, #ffdaf0, #fdbbe0);
     @apply bg-clip-text text-transparent;
   }
 }
@@ -280,6 +280,26 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Pokémon Type Colors */
+  --color-normal: #88887b;
+  --color-fire: #ff4422;
+  --color-water: #3399fe;
+  --color-electric: #ffcc33;
+  --color-grass: #76cc55;
+  --color-ice: #65ccff;
+  --color-fighting: #ba5544;
+  --color-poison: #ab579a;
+  --color-ground: #debb54;
+  --color-flying: #8799ff;
+  --color-psychic: #ff5599;
+  --color-bug: #a9bb22;
+  --color-rock: #bbaa66;
+  --color-ghost: #6666ba;
+  --color-dragon: #7666ee;
+  --color-dark: #775444;
+  --color-steel: #b7b7c5;
+  --color-fairy: #f1a8f0;
 }
 
 :root {
@@ -315,25 +335,6 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
-
-  --color-normal: #88887b;
-  --color-fire: #ff4422;
-  --color-water: #3399fe;
-  --color-electric: #ffcc33;
-  --color-grass: #76cc55;
-  --color-ice: #65ccff;
-  --color-fighting: #ba5544;
-  --color-poison: #ab579a;
-  --color-ground: #debb54;
-  --color-flying: #8799ff;
-  --color-psychic: #ff5599;
-  --color-bug: #a9bb22;
-  --color-rock: #bbaa66;
-  --color-ghost: #6666ba;
-  --color-dragon: #7666ee;
-  --color-dark: #775444;
-  --color-steel: #b7b7c5;
-  --color-fairy: #f1a8f0;
 }
 
 .dark {

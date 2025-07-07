@@ -92,6 +92,7 @@ export default function SearchBar() {
           <Input
             id="search-pokemon"
             name="search-pokemon"
+            autoComplete={'off'}
             placeholder="Search Pokémon by name or number..."
             value={searchTerm}
             onChange={handleSearchChange}

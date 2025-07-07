@@ -13,7 +13,7 @@ import {
   Type,
 } from '@/types/Pokemon.type';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { TYPE_COLORS, TYPE_LABELS } from '@/common/constants';
+import { TYPE_LABELS } from '@/common/constants';
 import { Badge } from '@/components/ui/badge';
 import { InfoIcon } from 'lucide-react';
 import {
@@ -95,18 +95,6 @@ export default function PokemonCard() {
     }
 
     return evolutions;
-  };
-
-  const renderTypes = (types: Type[]) => {
-    return types.map((item) => {
-      const { name } = item.type;
-
-      return (
-        <Badge key={`badge-${name}`} bg={name}>
-          {name}
-        </Badge>
-      );
-    });
   };
 
   const fetchSpecies = async ({ id }) => {
@@ -205,21 +193,26 @@ export default function PokemonCard() {
         <div
           className={clsx(
             'water-gradient p-6 text-white',
-            TYPE_LABELS[pokemon.types[0]?.type.name]?.background
+            TYPE_LABELS[pokemon.types[0]?.type.name]?.gradientBackground
           )}
         >
           <div className="flex items-center justify-between mb-4">
             <span className="text-sm font-medium opacity-90">
               #{pokemon.id.toString().padStart(3, '0')}
             </span>
-            <Badge
-              className="text-white border-white/30"
-              style={{
-                backgroundColor: TYPE_COLORS[pokemon.types[0]?.type.name],
-              }}
-            >
-              {pokemon.types[0]?.type.name}
-            </Badge>
+            <div className={'flex gap-2'}>
+              {pokemon.types.map(({ type }) => (
+                <Badge
+                  key={`type-${type.name}`}
+                  className={clsx(
+                    'text-white border-white/30',
+                    TYPE_LABELS[type.name]?.background
+                  )}
+                >
+                  {type.name}
+                </Badge>
+              ))}
+            </div>
           </div>
           <h2
             className={clsx(
@@ -236,7 +229,8 @@ export default function PokemonCard() {
               <div
                 className={clsx(
                   'w-48 h-48 rounded-full flex items-center justify-center shadow-inner',
-                  TYPE_LABELS[pokemon.types[0]?.type.name]?.backgroundLight
+                  TYPE_LABELS[pokemon.types[0]?.type.name]
+                    ?.gradientBackgroundLight
                 )}
               >
                 <img
@@ -263,7 +257,13 @@ export default function PokemonCard() {
                   key={index}
                   className="flex items-center gap-4 p-3 rounded-lg bg-gray-50"
                 >
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full flex items-center justify-center overflow-hidden">
+                  <div
+                    className={clsx(
+                      'w-12 h-12 rounded-full flex items-center justify-center overflow-hidden',
+                      TYPE_LABELS[pokemon.types[0]?.type.name]
+                        ?.gradientBackgroundLight
+                    )}
+                  >
                     <img
                       src={`https://projectpokemon.org/images/normal-sprite/${evolution.name}.gif`}
                       alt={evolution.name}

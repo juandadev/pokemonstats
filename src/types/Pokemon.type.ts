@@ -1,14 +1,14 @@
-export type PokemonTypes =
+export type PokemonTypes = 
   | 'normal'
   | 'fighting'
   | 'flying'
   | 'poison'
-  | 'ground'
+  | 'ground' // Change text contrast: Darker
   | 'rock'
   | 'bug'
   | 'ghost'
   | 'steel'
-  | 'fire'
+  | 'fire' // Change text contrast: Brighter
   | 'water'
   | 'grass'
   | 'electric'
@@ -16,11 +16,12 @@ export type PokemonTypes =
   | 'ice'
   | 'dragon'
   | 'dark'
-  | 'fairy';
+  | 'fairy'; // Change text contrast: Brighter
 
 export type PokemonTypeColors = {
   background: string;
-  backgroundLight: string;
+  gradientBackground: string;
+  gradientBackgroundLight: string;
   text: string;
 };
 
