@@ -7,7 +7,6 @@ import {
   EvolutionsData,
   PokemonData,
   PokemonEvolutionType,
-  PokemonTypes,
   Species,
   Sprites,
   Stat,
