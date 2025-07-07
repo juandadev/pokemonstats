@@ -28,13 +28,16 @@ export default function EffectivenessChart() {
             {Object.keys(TYPE_LABELS).map((type) => {
               const IconComponent = getTypeIcon(type as PokemonTypes);
               const isSelected = selectedType === type;
+
               return (
                 <button
                   key={type}
                   className={clsx(
                     'group relative flex flex-col items-center gap-2 p-3 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-lg border-2',
                     isSelected
-                      ? 'border-gray-400 shadow-lg scale-105'
+                      ? `${
+                          TYPE_LABELS[type as PokemonTypes]?.border
+                        } shadow-lg scale-105`
                       : 'border-gray-100 hover:border-gray-200',
                     isSelected
                       ? TYPE_LABELS[type as PokemonTypes]

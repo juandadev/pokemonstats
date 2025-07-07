@@ -22,3 +22,5 @@
     - [ ] Remove all unused code
     - [ ] Remove all unused dependencies
 - [ ] Fix Hero alignment
+- [ ] When searching for a pokemon, select the type in the effectiveness chart
+- [ ] Support selecting two types in the effectiveness chart

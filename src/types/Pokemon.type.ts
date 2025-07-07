@@ -32,6 +32,7 @@ export type PokemonTypeColors = {
   gradientBackground: string;
   gradientBackgroundLight: string;
   text: string;
+  border: string;
 };
 
 export type PokemonData = {
