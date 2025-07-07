@@ -13,7 +13,7 @@ import {
   Type,
 } from '@/types/Pokemon.type';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { TYPE_COLORS } from '@/common/constants';
+import { TYPE_COLORS, TYPE_LABELS } from '@/common/constants';
 import { Badge } from '@/components/ui/badge';
 import { InfoIcon } from 'lucide-react';
 import {
@@ -23,6 +23,7 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { displayEvolutionDetails } from '@/lib/utils';
+import { clsx } from 'clsx';
 
 type PokemonType = {
   id: number;
@@ -201,7 +202,12 @@ export default function PokemonCard() {
   return (
     <div className="space-y-6 w-full max-w-lg m-auto">
       <Card className="shadow-xl border-0 bg-white/90 backdrop-blur-sm overflow-hidden pt-0">
-        <div className="bg-gradient-to-br from-blue-400 to-blue-600 p-6 text-white">
+        <div
+          className={clsx(
+            'water-gradient p-6 text-white',
+            TYPE_LABELS[pokemon.types[0]?.type.name]?.background
+          )}
+        >
           <div className="flex items-center justify-between mb-4">
             <span className="text-sm font-medium opacity-90">
               #{pokemon.id.toString().padStart(3, '0')}
@@ -209,23 +215,30 @@ export default function PokemonCard() {
             <Badge
               className="text-white border-white/30"
               style={{
-                backgroundColor:
-                  TYPE_COLORS[
-                    pokemon.types[0]?.type.name as keyof typeof TYPE_COLORS
-                  ],
+                backgroundColor: TYPE_COLORS[pokemon.types[0]?.type.name],
               }}
             >
               {pokemon.types[0]?.type.name}
             </Badge>
           </div>
-          <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-cyan-200 to-blue-200 bg-clip-text text-transparent capitalize">
+          <h2
+            className={clsx(
+              'text-3xl font-bold mb-4 capitalize',
+              TYPE_LABELS[pokemon.types[0]?.type.name]?.text
+            )}
+          >
             {pokemon.name}
           </h2>
         </div>
         <CardContent className="p-6">
           <div className="flex justify-center mb-6">
             <div className="relative">
-              <div className="w-48 h-48 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full flex items-center justify-center shadow-inner">
+              <div
+                className={clsx(
+                  'w-48 h-48 rounded-full flex items-center justify-center shadow-inner',
+                  TYPE_LABELS[pokemon.types[0]?.type.name]?.backgroundLight
+                )}
+              >
                 <img
                   src={imagePath}
                   alt={pokemon.name}
