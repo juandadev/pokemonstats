@@ -3,8 +3,8 @@ import { Metadata } from 'next';
 import { ContextProvider } from '@/context';
 import Hero from '@/components/Hero/Hero';
 import { Geist } from 'next/font/google';
-import './globals.css';
 import Footer from '@/components/Footer/Footer';
+import './globals.css';
 
 const geist_sans = Geist({
   variable: '--font-geist-sans',
@@ -35,7 +35,7 @@ export default function RootLayout({
           >
             <Hero />
             {/*{children}*/}
-            {/*<Footer />*/}
+            <Footer />
           </div>
         </ContextProvider>
       </body>
