@@ -1,16 +1,29 @@
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { TYPE_LABELS } from '@/common/constants';
-import { getTypeIcon } from '@/lib/utils';
+import { TYPE_LABELS, WEAKNESS_CHART } from '@/common/constants';
+import { getEffectivenessList, getTypeIcon } from '@/lib/utils';
 import { PokemonTypes } from '@/types/Pokemon.type';
-import { DropletIcon, FlameIcon, ShieldIcon } from 'lucide-react';
+import { ShieldIcon } from 'lucide-react';
 import clsx from 'clsx';
 import TypeBadge from '@/components/TypeBadge/TypeBadge';
 
+interface SelectedType {
+  type: PokemonTypes | null;
+  index: number | null;
+}
+
 export default function EffectivenessChart() {
-  const [selectedType, setSelectedType] = useState<string | null>(null);
+  const [selectedType, setSelectedType] = useState<SelectedType>({
+    type: null,
+    index: null,
+  });
+
+  const effectivenessList = useMemo(
+    () => getEffectivenessList(selectedType.index),
+    [selectedType.index]
+  );
 
   return (
     <div>
@@ -26,9 +39,9 @@ export default function EffectivenessChart() {
         <CardContent>
           {/* Types Grid */}
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 mb-8">
-            {Object.keys(TYPE_LABELS).map((type) => {
+            {Object.keys(TYPE_LABELS).map((type, index) => {
               const IconComponent = getTypeIcon(type as PokemonTypes);
-              const isSelected = selectedType === type;
+              const isSelected = selectedType.type === type;
 
               return (
                 <button
@@ -45,7 +58,12 @@ export default function EffectivenessChart() {
                           ?.gradientBackgroundLight
                       : 'white'
                   )}
-                  onClick={() => setSelectedType(type)}
+                  onClick={() =>
+                    setSelectedType({
+                      type: type as PokemonTypes,
+                      index: index + 1,
+                    })
+                  }
                 >
                   {/* Type Icon Circle */}
                   <div
@@ -76,30 +94,48 @@ export default function EffectivenessChart() {
               <div>
                 <h3 className="text-lg font-semibold text-green-700 mb-3 flex items-center gap-2">
                   <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                  Super Effective (2x)
+                  Super Effective Against (2x)
                 </h3>
                 <div className="flex flex-wrap gap-2">
-                  <TypeBadge type={'fire'} />
+                  {effectivenessList.superEffective.length > 0 ? (
+                    effectivenessList.superEffective.map((type) => (
+                      <TypeBadge key={type} type={type as PokemonTypes} />
+                    ))
+                  ) : (
+                    <span className="text-gray-500 italic">None</span>
+                  )}
                 </div>
               </div>
               {/* Not Very Effective */}
               <div>
                 <h3 className="text-lg font-semibold text-orange-700 mb-3 flex items-center gap-2">
                   <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
-                  Not Very Effective (0.5x)
+                  Not Very Effective Against (0.5x)
                 </h3>
                 <div className="flex flex-wrap gap-2">
-                  <TypeBadge type={'water'} />
+                  {effectivenessList.notVeryEffective.length > 0 ? (
+                    effectivenessList.notVeryEffective.map((type) => (
+                      <TypeBadge key={type} type={type as PokemonTypes} />
+                    ))
+                  ) : (
+                    <span className="text-gray-500 italic">None</span>
+                  )}
                 </div>
               </div>
               {/* No Effect */}
               <div>
                 <h3 className="text-lg font-semibold text-gray-700 mb-3 flex items-center gap-2">
                   <div className="w-3 h-3 bg-gray-500 rounded-full"></div>
-                  No Effect (0x)
+                  No Effect Against (0x)
                 </h3>
                 <div className="flex flex-wrap gap-2">
-                  <span className="text-gray-500 italic">None</span>
+                  {effectivenessList.noEffect.length > 0 ? (
+                    effectivenessList.noEffect.map((type) => (
+                      <TypeBadge key={type} type={type as PokemonTypes} />
+                    ))
+                  ) : (
+                    <span className="text-gray-500 italic">None</span>
+                  )}
                 </div>
               </div>
             </div>

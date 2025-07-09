@@ -2,7 +2,12 @@ import React from 'react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { EvolutionDetail, PokemonTypes, Species } from '@/types/Pokemon.type';
-import { EVOLUTION_DETAILS, TYPE_ICONS } from '@/common/constants';
+import {
+  EVOLUTION_DETAILS,
+  TYPE_ICONS,
+  TYPE_LABELS,
+  WEAKNESS_CHART,
+} from '@/common/constants';
 import { CircleIcon } from 'lucide-react';
 
 export function cn(...inputs: ClassValue[]) {
@@ -115,4 +120,52 @@ export const displayEvolutionDetails = (
 export const getTypeIcon = (type: PokemonTypes) => {
   const Icon = TYPE_ICONS[type] || CircleIcon;
   return (props: React.ComponentProps<'svg'>) => <Icon {...props} />;
+};
+
+interface EffectivenessList {
+  superEffective: string[];
+  notVeryEffective: string[];
+  noEffect: string[];
+}
+
+export const getEffectivenessList = (
+  typeIndex: number | null
+): EffectivenessList => {
+  let effectivenessList: EffectivenessList = {
+    superEffective: [],
+    notVeryEffective: [],
+    noEffect: [],
+  };
+
+  if (!typeIndex) return effectivenessList;
+
+  const weaknessRow = WEAKNESS_CHART[typeIndex];
+
+  // We start from index 1 because index 0 is the type itself
+  for (let i = 1; i < weaknessRow.length; i++) {
+    const getTypeName = Object.keys(TYPE_LABELS)[i - 1];
+
+    if (weaknessRow[i] === 2) {
+      effectivenessList.superEffective = [
+        ...(effectivenessList.superEffective || []),
+        getTypeName,
+      ];
+    }
+
+    if (weaknessRow[i] === 0.5) {
+      effectivenessList.notVeryEffective = [
+        ...(effectivenessList.notVeryEffective || []),
+        getTypeName,
+      ];
+    }
+
+    if (weaknessRow[i] === 0) {
+      effectivenessList.noEffect = [
+        ...(effectivenessList.noEffect || []),
+        getTypeName,
+      ];
+    }
+  }
+
+  return effectivenessList;
 };
