@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <main id="main" className={'mt-10'}>
       <SearchBar />
-      <div className={'grid lg:grid-cols-2 gap-8'}>
+      <div className={'grid grid-cols-[100%] lg:grid-cols-2 gap-8'}>
         <PokemonCard />
         <EffectivenessChart />
       </div>
