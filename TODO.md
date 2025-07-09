@@ -25,3 +25,4 @@
 - [ ] When searching for a pokémon, select the type in the effectiveness chart
 - [ ] Support selecting two types in the effectiveness chart
 - [ ] Get a cool placeholder image when no pokémon image is available
+- [ ] Add an X icon to the search bar to clear the input

@@ -24,6 +24,7 @@ import {
 } from '@/components/ui/tooltip';
 import { displayEvolutionDetails, getTypeIcon } from '@/lib/utils';
 import { clsx } from 'clsx';
+import TypeBadge from '@/components/TypeBadge/TypeBadge';
 
 type PokemonType = {
   id: number;
@@ -201,22 +202,9 @@ export default function PokemonCard() {
               #{pokemon.id.toString().padStart(3, '0')}
             </span>
             <div className={'flex gap-2'}>
-              {pokemon.types.map(({ type }) => {
-                const IconComponent = getTypeIcon(type.name);
-
-                return (
-                  <Badge
-                    key={`type-${type.name}`}
-                    className={clsx(
-                      'text-white border-white/30',
-                      TYPE_LABELS[type.name]?.background
-                    )}
-                  >
-                    <IconComponent />
-                    {type.name}
-                  </Badge>
-                );
-              })}
+              {pokemon.types.map(({ type }) => (
+                <TypeBadge key={`type-${type.name}`} type={type.name} />
+              ))}
             </div>
           </div>
           <h2

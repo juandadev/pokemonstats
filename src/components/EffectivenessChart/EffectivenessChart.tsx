@@ -5,8 +5,9 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { TYPE_LABELS } from '@/common/constants';
 import { getTypeIcon } from '@/lib/utils';
 import { PokemonTypes } from '@/types/Pokemon.type';
+import { DropletIcon, FlameIcon, ShieldIcon } from 'lucide-react';
 import clsx from 'clsx';
-import { ShieldIcon } from 'lucide-react';
+import TypeBadge from '@/components/TypeBadge/TypeBadge';
 
 export default function EffectivenessChart() {
   const [selectedType, setSelectedType] = useState<string | null>(null);
@@ -69,128 +70,40 @@ export default function EffectivenessChart() {
             })}
           </div>
           {/* Effectiveness Display */}
-          {/*{selectedType && (*/}
-          {/*  <div className="space-y-6">*/}
-          {/*    /!* Super Effective *!/*/}
-          {/*    <div>*/}
-          {/*      <h3 className="text-lg font-semibold text-green-700 mb-3 flex items-center gap-2">*/}
-          {/*        <div className="w-3 h-3 bg-green-500 rounded-full"></div>*/}
-          {/*        Super Effective (2x)*/}
-          {/*      </h3>*/}
-          {/*      <div className="flex flex-wrap gap-2">*/}
-          {/*        {typeEffectiveness[*/}
-          {/*          selectedType as keyof typeof typeEffectiveness*/}
-          {/*        ].resist.length > 0 ? (*/}
-          {/*          typeEffectiveness[*/}
-          {/*            selectedType as keyof typeof typeEffectiveness*/}
-          {/*          ].resist.map((effectiveType) => {*/}
-          {/*            const IconComponent = getTypeIcon(effectiveType);*/}
-          {/*            return (*/}
-          {/*              <div*/}
-          {/*                key={effectiveType}*/}
-          {/*                className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-white font-medium shadow-sm"*/}
-          {/*                style={{*/}
-          {/*                  background: `linear-gradient(135deg, ${*/}
-          {/*                    typeColors[*/}
-          {/*                      effectiveType as keyof typeof typeColors*/}
-          {/*                    ]*/}
-          {/*                  }, ${adjustColorBrightness(*/}
-          {/*                    typeColors[*/}
-          {/*                      effectiveType as keyof typeof typeColors*/}
-          {/*                    ],*/}
-          {/*                    -20*/}
-          {/*                  )})`,*/}
-          {/*                  fontSize: '12px',*/}
-          {/*                }}*/}
-          {/*              >*/}
-          {/*                <IconComponent className="w-3 h-3" />*/}
-          {/*                <span className="capitalize">{effectiveType}</span>*/}
-          {/*              </div>*/}
-          {/*            );*/}
-          {/*          })*/}
-          {/*        ) : (*/}
-          {/*          <span className="text-gray-500 italic">None</span>*/}
-          {/*        )}*/}
-          {/*      </div>*/}
-          {/*    </div>*/}
-          {/*    /!* Not Very Effective *!/*/}
-          {/*    <div>*/}
-          {/*      <h3 className="text-lg font-semibold text-orange-700 mb-3 flex items-center gap-2">*/}
-          {/*        <div className="w-3 h-3 bg-orange-500 rounded-full"></div>*/}
-          {/*        Not Very Effective (0.5x)*/}
-          {/*      </h3>*/}
-          {/*      <div className="flex flex-wrap gap-2">*/}
-          {/*        {typeEffectiveness[*/}
-          {/*          selectedType as keyof typeof typeEffectiveness*/}
-          {/*        ].weak.length > 0 ? (*/}
-          {/*          typeEffectiveness[*/}
-          {/*            selectedType as keyof typeof typeEffectiveness*/}
-          {/*          ].weak.map((weakType) => {*/}
-          {/*            const IconComponent = getTypeIcon(weakType);*/}
-          {/*            return (*/}
-          {/*              <div*/}
-          {/*                key={weakType}*/}
-          {/*                className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-white font-medium shadow-sm"*/}
-          {/*                style={{*/}
-          {/*                  background: `linear-gradient(135deg, ${*/}
-          {/*                    typeColors[weakType as keyof typeof typeColors]*/}
-          {/*                  }, ${adjustColorBrightness(*/}
-          {/*                    typeColors[weakType as keyof typeof typeColors],*/}
-          {/*                    -20*/}
-          {/*                  )})`,*/}
-          {/*                  fontSize: '12px',*/}
-          {/*                }}*/}
-          {/*              >*/}
-          {/*                <IconComponent className="w-3 h-3" />*/}
-          {/*                <span className="capitalize">{weakType}</span>*/}
-          {/*              </div>*/}
-          {/*            );*/}
-          {/*          })*/}
-          {/*        ) : (*/}
-          {/*          <span className="text-gray-500 italic">None</span>*/}
-          {/*        )}*/}
-          {/*      </div>*/}
-          {/*    </div>*/}
-          {/*    /!* No Effect *!/*/}
-          {/*    <div>*/}
-          {/*      <h3 className="text-lg font-semibold text-gray-700 mb-3 flex items-center gap-2">*/}
-          {/*        <div className="w-3 h-3 bg-gray-500 rounded-full"></div>*/}
-          {/*        No Effect (0x)*/}
-          {/*      </h3>*/}
-          {/*      <div className="flex flex-wrap gap-2">*/}
-          {/*        {typeEffectiveness[*/}
-          {/*          selectedType as keyof typeof typeEffectiveness*/}
-          {/*        ].immune.length > 0 ? (*/}
-          {/*          typeEffectiveness[*/}
-          {/*            selectedType as keyof typeof typeEffectiveness*/}
-          {/*          ].immune.map((immuneType) => {*/}
-          {/*            const IconComponent = getTypeIcon(immuneType);*/}
-          {/*            return (*/}
-          {/*              <div*/}
-          {/*                key={immuneType}*/}
-          {/*                className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-white font-medium shadow-sm"*/}
-          {/*                style={{*/}
-          {/*                  background: `linear-gradient(135deg, ${*/}
-          {/*                    typeColors[immuneType as keyof typeof typeColors]*/}
-          {/*                  }, ${adjustColorBrightness(*/}
-          {/*                    typeColors[immuneType as keyof typeof typeColors],*/}
-          {/*                    -20*/}
-          {/*                  )})`,*/}
-          {/*                  fontSize: '12px',*/}
-          {/*                }}*/}
-          {/*              >*/}
-          {/*                <IconComponent className="w-3 h-3" />*/}
-          {/*                <span className="capitalize">{immuneType}</span>*/}
-          {/*              </div>*/}
-          {/*            );*/}
-          {/*          })*/}
-          {/*        ) : (*/}
-          {/*          <span className="text-gray-500 italic">None</span>*/}
-          {/*        )}*/}
-          {/*      </div>*/}
-          {/*    </div>*/}
-          {/*  </div>*/}
-          {/*)}*/}
+          {selectedType && (
+            <div className="space-y-6">
+              {/* Super Effective */}
+              <div>
+                <h3 className="text-lg font-semibold text-green-700 mb-3 flex items-center gap-2">
+                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                  Super Effective (2x)
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  <TypeBadge type={'fire'} />
+                </div>
+              </div>
+              {/* Not Very Effective */}
+              <div>
+                <h3 className="text-lg font-semibold text-orange-700 mb-3 flex items-center gap-2">
+                  <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
+                  Not Very Effective (0.5x)
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  <TypeBadge type={'water'} />
+                </div>
+              </div>
+              {/* No Effect */}
+              <div>
+                <h3 className="text-lg font-semibold text-gray-700 mb-3 flex items-center gap-2">
+                  <div className="w-3 h-3 bg-gray-500 rounded-full"></div>
+                  No Effect (0x)
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  <span className="text-gray-500 italic">None</span>
+                </div>
+              </div>
+            </div>
+          )}
           {/* Initial state message */}
           {!selectedType && (
             <div className="text-center py-8 text-gray-500">
