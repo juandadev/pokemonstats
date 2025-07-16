@@ -8,6 +8,14 @@
 
 ---
 
+## 🌟 Why This Project Exists
+
+As a lifelong Pokémon fan and frontend developer, I got tired of jumping between wikis, PDFs, and forums just to check something as simple as a type matchup or evolution path. I wanted a tool that gave me exactly what I needed — fast, clean, and focused — especially while playing.
+
+That’s how Pokémon Stats was born. Originally, it was just a personal tool I built for myself, with no fancy UI or intentions of sharing it. But as I replayed older games, I realized others might be dealing with the same annoyances. So I decided to redesign it (WIP), improve the UX, and open source it for anyone who finds it useful.
+
+This project reflects my passion for games, clean interfaces, and solving small real-world annoyances with code.
+
 ## 🎯 Features
 
 - 🔥 Interactive type effectiveness matrix
