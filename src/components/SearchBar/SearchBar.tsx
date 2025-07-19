@@ -11,7 +11,9 @@ import { toPokeApiName } from '@/lib/utils';
 
 export default function SearchBar() {
   const { state, dispatch } = useContext(pokemon);
-  const [searchTerm, setSearchTerm] = useState<string>(state.name.toString());
+  const [searchTerm, setSearchTerm] = useState<string>(
+    state.searchQuery.toString()
+  );
   const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
   const [selectedSuggestionIndex, setSelectedSuggestionIndex] =
     useState<number>(-1);
@@ -68,7 +70,7 @@ export default function SearchBar() {
 
     dispatch({
       type: 'CHANGE_INPUT',
-      name:
+      payload:
         getException >= 0
           ? POKEMON_EXCEPTIONS[getException].id
           : isMegaEvolution

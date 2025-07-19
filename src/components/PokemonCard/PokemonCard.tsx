@@ -226,9 +226,9 @@ export default function PokemonCard() {
   // };
 
   useEffect(() => {
-    if (state.name !== '') {
+    if (state.searchQuery !== '') {
       // setLoading(true);
-      fetchPokemonData(state.name, setPokemon, setImagePath).then(
+      fetchPokemonData(state.searchQuery, setPokemon, setImagePath).then(
         (pokemonData: PokemonData) => {
           fetchSpecies(pokemonData).then((speciesData) => {
             fetchEvolutions(speciesData, setEvolutions);
@@ -236,7 +236,7 @@ export default function PokemonCard() {
         }
       );
     }
-  }, [fetchPokemonData, state.name]);
+  }, [fetchPokemonData, state.searchQuery]);
 
   return (
     <div className="space-y-6 w-full max-w-lg m-auto">
