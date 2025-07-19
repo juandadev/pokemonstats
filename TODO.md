@@ -39,3 +39,4 @@
 - [ ] Add sticky pokémon header for mobile devices
 - [ ] Change pokemon fetch implementation to pass the whole data and not in two parts
 - [ ] Consider removing search query property from context. It's not too necessary
+- [ ] Configure again function to select a pokemon from the evolution chain list

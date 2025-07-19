@@ -6,9 +6,15 @@ import { TYPE_LABELS } from '@/common/constants';
 import { clsx } from 'clsx';
 import TypeBadge from '@/components/TypeBadge/TypeBadge';
 import usePokemonData from '@/hooks/usePokemonData';
+import Image from 'next/image';
 
 export default function PokemonCard() {
-  const { pokemonImage, pokemonData, updateSelectedPokemon } = usePokemonData();
+  const {
+    pokemonImage,
+    pokemonData,
+    updateSelectedPokemon,
+    pokemonImageFallback,
+  } = usePokemonData();
 
   const isMounted = useRef(false);
 
@@ -114,9 +120,13 @@ export default function PokemonCard() {
                   ?.gradientBackgroundLight
               )}
             >
-              <img
+              <Image
+                loading="eager"
                 src={pokemonImage}
                 alt={pokemonData.name}
+                onError={pokemonImageFallback}
+                width={160}
+                height={160}
                 className="w-40 h-40 object-contain"
               />
             </div>

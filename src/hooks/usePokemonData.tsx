@@ -26,24 +26,33 @@ export default function usePokemonData() {
   }
 
   async function updateSelectedPokemon(pokemonName: string): Promise<void> {
+    const getException = POKEMON_EXCEPTIONS.findIndex(
+      ({ name }) => name === pokemonName
+    );
+    const isException = getException >= 0;
+    const isMegaEvolution = pokemonName.includes('Mega');
+    const pokemonSearchQuery = isException
+      ? POKEMON_EXCEPTIONS[getException].id
+      : isMegaEvolution
+      ? toPokeApiName(pokemonName)
+      : pokemonName;
+
     try {
       const pokemonResponse = await fetch(
-        `https://pokeapi.co/api/v2/pokemon/${pokemonName}/`
+        `https://pokeapi.co/api/v2/pokemon/${pokemonSearchQuery}/`
       );
 
       if (!pokemonResponse.ok) {
-        toast.error('Error fetching Pokémon data');
+        toast.error('Error fetching pokémon data');
         return;
       }
 
       const pokemonData: PokemonData = await pokemonResponse.json();
 
-      const speciesResponse = await fetch(
-        `https://pokeapi.co/api/v2/pokemon-species/${pokemonData.id}/`
-      );
+      const speciesResponse = await fetch(pokemonData.species.url);
 
       if (!speciesResponse.ok) {
-        toast.error('Error fetching Species data');
+        toast.error('Error fetching species data');
         return;
       }
 
@@ -54,7 +63,7 @@ export default function usePokemonData() {
       const evolutionsResponse = await fetch(speciesData.evolution_chain.url);
 
       if (!evolutionsResponse.ok) {
-        toast.error('Error fetching Evolutions data');
+        toast.error('Error fetching evolutions data');
         return;
       }
 
@@ -75,6 +84,15 @@ export default function usePokemonData() {
     }
   }
 
+  function pokemonImageFallback() {
+    dispatch({
+      type: 'SET_POKEMON_DATA',
+      payload: {
+        pokemonImage: state.pokemon.sprites.front_default,
+      },
+    });
+  }
+
   return {
     searchQuery: state.searchQuery,
     pokemonImage: state.pokemonImage,
@@ -82,5 +100,6 @@ export default function usePokemonData() {
     evolutionsData: state.evolutions,
     setSearchQuery,
     updateSelectedPokemon,
+    pokemonImageFallback,
   };
 }
