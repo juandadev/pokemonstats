@@ -1,34 +1,84 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div align="center">
+  <h1>Pokémon Stats</h1>
+  <img src="https://img.shields.io/badge/production-live-brightgreen?style=flat&logo=vercel" alt="Production Live" />
+  <p>A sleek, mobile-first Pokédex focused on quick and visual access to type matchups and evolution chains.</p>
+  <p><em>No clutter. No distractions. Just the info you actually need while playing.</em></p>
+  <img src="/public/preview.png" alt="App Screenshot" width="100%" />
+</div>
 
-## Getting Started
+---
 
-First, run the development server:
+## 🌟 Why This Project Exists
+
+As a lifelong Pokémon fan and frontend developer, I got tired of jumping between wikis, PDFs, and forums just to check something as simple as a type matchup or evolution path. I wanted a tool that gave me exactly what I needed — fast, clean, and focused — especially while playing.
+
+That’s how Pokémon Stats was born. Originally, it was just a personal tool I built for myself, with no fancy UI or intentions of sharing it. But as I replayed older games, I realized others might be dealing with the same annoyances. So I decided to redesign it (WIP), improve the UX, and open source it for anyone who finds it useful.
+
+This project reflects my passion for games, clean interfaces, and solving small real-world annoyances with code.
+
+## 🎯 Features
+
+- 🔥 Interactive type effectiveness matrix
+- 🔍 Smart search by name or national Pokédex number
+- 🧬 Visual evolution chains, including regional and alternate forms
+- 💡 Automatic image fallback system (HD → sprite)
+- ⚡ Fast and responsive UI for both mobile and desktop
+- 📦 Local caching to reduce API calls and boost performance
+
+## 🚀 Technologies
+
+- **Next.js 14** (App Router)
+- **React 18**
+- **Bootstrap 5** (temporary design system)
+- **PokéAPI** + custom local data
+- **Vercel** for deployment
+
+## 📦 Getting Started
 
 ```bash
+# Clone the repo
+git clone https://github.com/juandadev/pokemonstats.git
+cd pokemonstats
+
+# Install dependencies
+npm install
+
+# Run locally
 npm run dev
-# or
-yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+---
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## 🤝 Contributing
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+This project was born from a real need while playing Pokémon — it’s not meant to be a commercial product, just a helpful
+tool made with love. If you’d like to help improve it, check out:
 
-## Learn More
+- [Code of Conduct](./CODE_OF_CONDUCT.md)
+- [Contribution Guide](./CONTRIBUTING.md)
+- [License](./LICENSE)
 
-To learn more about Next.js, take a look at the following resources:
+Feel free to open issues, forks, or pull requests. Collaboration is welcome!
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## 🪪 License
 
-## Deploy on Vercel
+This project is licensed under the [GNU GPLv3](./LICENSE). If you reuse or modify the code, make sure your version
+remains open source under the same terms.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## 🙋‍♂️ About the Author
+
+This app was created and maintained by a lifelong Pokémon fan and frontend developer, focused on building useful,
+minimalist tools.  
+Say hi or check out more projects here: [juandadev](https://juanda.dev)
+
+---
+
+<div align="center">
+  <sub>Pokémon and related content are © Nintendo, Game Freak, and The Pokémon Company. This project is fan-made and not affiliated.</sub>
+</div>
