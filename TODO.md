@@ -1,5 +1,5 @@
 - [ ] Remove Bootstrap and React Bootstrap
-- [ ] Replace Bootstrap with Tailwind CSS and Shadcn/ui
+- [ ] Replace Bootstrap with Tailwind CSS and shadcn/ui
 - [ ] Remove all custom CSS and SASS support
 - [ ] Remove prop types
 - [ ] Replace axios with fetch
@@ -37,6 +37,6 @@
     - [ ] Track page views
     - [ ] Track search queries
 - [ ] Add sticky pokémon header for mobile devices
-- [ ] Change pokemon fetch implementation to pass the whole data and not in two parts
+- [ ] Change Pokémon fetch implementation to pass the whole data and not in two parts
 - [ ] Consider removing search query property from context. It's not too necessary
-- [ ] Configure again function to select a pokemon from the evolution chain list
+- [ ] Configure again function to select a Pokémon from the evolution chain list
