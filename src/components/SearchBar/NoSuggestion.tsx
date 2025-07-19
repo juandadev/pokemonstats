@@ -11,7 +11,7 @@ export default function NoSuggestion() {
         <div>
           <div className="font-medium">No Pokémon found</div>
           <div className="text-sm">
-            Try searching for "pikachu" or "charizard"
+            Try searching for &#34;pikachu&#34; or &ldquo;charizard&quot;
           </div>
         </div>
       </div>

@@ -404,9 +404,9 @@ export const EVOLUTION_DETAILS = {
     'cracked-pot': 'Cracked Pot',
   },
   stats: {
-    1: 'ATK > DEF',
+    '1': 'ATK > DEF',
     '-1': 'ATK < DEF',
-    0: 'ATK = DEF',
+    '0': 'ATK = DEF',
   },
   min_happiness: 'Friendship',
   min_beauty: 'Beauty',

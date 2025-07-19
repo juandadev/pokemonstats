@@ -62,11 +62,6 @@ export type Ability = {
   slot: number;
 };
 
-export type Species = {
-  name: PokemonTypes;
-  url: string;
-};
-
 export type Cries = {
   latest: string;
   legacy: string;
@@ -238,10 +233,10 @@ export type Chain = {
 export type EvolutionDetail = {
   gender: null;
   held_item: null;
-  item: Species | null;
+  item: GenericPropertyDetails<Items> | null;
   known_move: Species;
   known_move_type: null;
-  location: null;
+  location: GenericPropertyDetails;
   min_affection: null;
   min_beauty: null;
   min_happiness: number | null;
@@ -249,14 +244,112 @@ export type EvolutionDetail = {
   needs_overworld_rain: boolean;
   party_species: { name: string };
   party_type: null;
-  relative_physical_stats: null;
+  relative_physical_stats: number;
   time_of_day: string;
   trade_species: null;
   trigger: Species;
   turn_upside_down: boolean;
 };
 
+export type Items =
+  | 'water-stone'
+  | 'thunder-stone'
+  | 'fire-stone'
+  | 'leaf-stone'
+  | 'sun-stone'
+  | 'shiny-stone'
+  | 'dusk-stone'
+  | 'dawn-stone'
+  | 'moon-stone'
+  | 'oval-stone'
+  | 'kings-rock'
+  | 'up-grade'
+  | 'dubious-disc'
+  | 'metal-coat'
+  | 'black-augurite'
+  | 'dragon-scale'
+  | 'reaper-cloth'
+  | 'electirizer'
+  | 'magmarizer'
+  | 'protector'
+  | 'sachet'
+  | 'whipped-dream'
+  | 'prism-scale'
+  | 'deep-sea-tooth'
+  | 'deep-sea-scale'
+  | 'razor-claw'
+  | 'peat-block'
+  | 'razor-fang'
+  | 'cracked-pot';
+
 export type PokemonEvolutionType = {
   name: string;
   evolutionDetails: EvolutionDetail;
 };
+
+export interface Species {
+  base_happiness: number;
+  capture_rate: number;
+  color: GenericPropertyDetails;
+  egg_groups: GenericPropertyDetails[];
+  evolution_chain: Pick<GenericPropertyDetails, 'url'>;
+  evolves_from_species: GenericPropertyDetails;
+  flavor_text_entries: FlavorTextEntry[];
+  form_descriptions: string[];
+  forms_switchable: boolean;
+  gender_rate: number;
+  genera: Genera[];
+  generation: GenericPropertyDetails;
+  growth_rate: GenericPropertyDetails;
+  habitat: GenericPropertyDetails;
+  has_gender_differences: boolean;
+  hatch_counter: number;
+  id: number;
+  is_baby: boolean;
+  is_legendary: boolean;
+  is_mythical: boolean;
+  name: PokemonTypes;
+  names: Name[];
+  order: number;
+  pal_park_encounters: PalParkEncounter[];
+  pokedex_numbers: PokedexNumber[];
+  shape: GenericPropertyDetails;
+  varieties: Variety[];
+}
+
+export interface FlavorTextEntry {
+  flavor_text: string;
+  language: GenericPropertyDetails;
+  version: GenericPropertyDetails;
+}
+
+export interface Genera {
+  genus: string;
+  language: GenericPropertyDetails;
+}
+
+export interface Name {
+  language: GenericPropertyDetails;
+  name: string;
+}
+
+export interface PalParkEncounter {
+  area: GenericPropertyDetails;
+  base_score: number;
+  rate: number;
+}
+
+export interface PokedexNumber {
+  entry_number: number;
+  pokedex: GenericPropertyDetails;
+}
+
+export interface Variety {
+  is_default: boolean;
+  pokemon: GenericPropertyDetails;
+}
+
+export interface GenericPropertyDetails<T = string> {
+  name: T;
+  url: string;
+}

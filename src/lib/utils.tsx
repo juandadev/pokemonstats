@@ -26,6 +26,7 @@ export const displayEvolutionDetails = (
   evolution: string,
   details: EvolutionDetail
 ) => {
+  console.log(details);
   if (!details || Object.keys(details).length === 0) {
     return;
   }
@@ -33,29 +34,31 @@ export const displayEvolutionDetails = (
   let key = Object.keys(details)[0];
   const value = Object.values(details)[0];
   let additionalRules = '';
-  if (key === 'min_level') {
-    const statsRule = Object.entries(details).filter(
-      ([key]) => key === 'relative_physical_stats'
-    );
 
-    if (statsRule.length !== 0) {
+  if (details.min_level) {
+    const statsRule = details.relative_physical_stats;
+    console.log(statsRule);
+
+    if (statsRule) {
       additionalRules = ` when ${
-        EVOLUTION_DETAILS.stats[statsRule[0][1]?.toString() || '']
+        EVOLUTION_DETAILS.stats[
+          (statsRule.toString() as '1' | '0' | '-1') || ''
+        ]
       }`;
     }
   }
   if (evolution === 'mantine') {
     key = 'party_species';
   }
-  if (key === 'held_item') {
+  if (details.held_item) {
     if (details.time_of_day && details.time_of_day !== '') {
       additionalRules = `during ${details.time_of_day}`;
     } else {
       additionalRules = 'while trading';
     }
   }
-  if (key === 'location') {
-    switch ((value as Species)?.name) {
+  if (details.location) {
+    switch (details.location.name) {
       case 'mt-coronet':
         return 'Thunder Stone';
 
@@ -66,7 +69,7 @@ export const displayEvolutionDetails = (
         return 'Ice Stone';
     }
   }
-  if (key === 'gender') {
+  if (details.gender) {
     if (details.item) {
       additionalRules = ` using ${EVOLUTION_DETAILS.item[details.item.name]}`;
     }
@@ -75,9 +78,10 @@ export const displayEvolutionDetails = (
       additionalRules = ` at lvl ${details.min_level}`;
     }
   }
+
   switch (key) {
     case 'item':
-      return EVOLUTION_DETAILS.item[details.item?.name || ''];
+      return EVOLUTION_DETAILS.item[details.item!.name];
 
     case 'min_happiness':
       return `${EVOLUTION_DETAILS[key]}${
@@ -101,7 +105,7 @@ export const displayEvolutionDetails = (
 
     case 'held_item':
       return `Holding ${
-        EVOLUTION_DETAILS.item[(value as Species).name]
+        EVOLUTION_DETAILS.item[details.item!.name]
       } ${additionalRules}`;
 
     case 'needs_overworld_rain':
@@ -119,7 +123,10 @@ export const displayEvolutionDetails = (
 
 export const getTypeIcon = (type: PokemonTypes) => {
   const Icon = TYPE_ICONS[type] || CircleIcon;
-  return (props: React.ComponentProps<'svg'>) => <Icon {...props} />;
+  const TypeIcon = (props: React.ComponentProps<'svg'>) => <Icon {...props} />;
+  TypeIcon.displayName = 'TypeIcon';
+
+  return TypeIcon;
 };
 
 interface EffectivenessList {
@@ -131,7 +138,7 @@ interface EffectivenessList {
 export const getEffectivenessList = (
   typeIndex: number | null
 ): EffectivenessList => {
-  let effectivenessList: EffectivenessList = {
+  const effectivenessList: EffectivenessList = {
     superEffective: [],
     notVeryEffective: [],
     noEffect: [],

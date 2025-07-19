@@ -14,7 +14,6 @@ import {
 } from '@/types/Pokemon.type';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { TYPE_LABELS } from '@/common/constants';
-import { Badge } from '@/components/ui/badge';
 import { InfoIcon } from 'lucide-react';
 import {
   Tooltip,
@@ -22,7 +21,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
-import { displayEvolutionDetails, getTypeIcon } from '@/lib/utils';
+import { displayEvolutionDetails } from '@/lib/utils';
 import { clsx } from 'clsx';
 import TypeBadge from '@/components/TypeBadge/TypeBadge';
 
@@ -45,7 +44,7 @@ export default function PokemonCard() {
   const [evolutions, setEvolutions] = useState<
     EvolutionsData | Partial<EvolutionsData>
   >({});
-  const [loading, setLoading] = useState<boolean>(true);
+  // const [loading, setLoading] = useState<boolean>(true);
   const [imagePath, setImagePath] = useState<string>(
     `https://projectpokemon.org/images/normal-sprite/${pokemon.name}.gif`
   );
@@ -98,86 +97,137 @@ export default function PokemonCard() {
     return evolutions;
   };
 
-  const fetchSpecies = async ({ id }) => {
+  const fetchSpecies = async ({ id }: PokemonData): Promise<Species> => {
     try {
       const response = await fetch(
         `https://pokeapi.co/api/v2/pokemon-species/${id}/`
       );
-      const data: Species = await response.json();
-      return data;
-    } catch (error) {
-      return error;
+      return (await response.json()) as Species;
+    } catch {
+      return {
+        base_happiness: 0,
+        capture_rate: 0,
+        color: {
+          name: '',
+          url: '',
+        },
+        egg_groups: [],
+        evolution_chain: {
+          url: '',
+        },
+        evolves_from_species: {
+          name: '',
+          url: '',
+        },
+        flavor_text_entries: [],
+        form_descriptions: [],
+        forms_switchable: false,
+        gender_rate: 0,
+        genera: [],
+        generation: {
+          name: '',
+          url: '',
+        },
+        growth_rate: {
+          name: '',
+          url: '',
+        },
+        habitat: {
+          name: '',
+          url: '',
+        },
+        has_gender_differences: false,
+        hatch_counter: 0,
+        id: 0,
+        is_baby: false,
+        is_legendary: false,
+        is_mythical: false,
+        name: 'normal',
+        names: [],
+        order: 0,
+        pal_park_encounters: [],
+        pokedex_numbers: [],
+        shape: {
+          name: '',
+          url: '',
+        },
+        varieties: [],
+      };
     }
   };
 
   const fetchEvolutions = (
-    { evolution_chain },
-    setEvolutions: React.Dispatch<React.SetStateAction<EvolutionsData>>
+    { evolution_chain }: Species,
+    setEvolutions: React.Dispatch<
+      React.SetStateAction<EvolutionsData | Partial<EvolutionsData>>
+    >
   ) => {
     fetch(evolution_chain?.url)
       .then((response) => response.json())
-      .then((data) => setEvolutions(data))
+      .then((data) => {
+        setEvolutions(data);
+      })
       .catch((error) => error);
   };
 
-  const switch3d = (
-    id: number,
-    name: string,
-    setPath: React.Dispatch<React.SetStateAction<string>>,
-    toggle: boolean[],
-    setToggle: React.Dispatch<React.SetStateAction<boolean[]>>
-  ) => {
-    if (toggle[0]) {
-      setPath(`https://projectpokemon.org/images/normal-sprite/${name}.gif`);
-    } else {
-      setPath(
-        `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${id
-          .toString()
-          .padStart(3, '0')}.png`
-      );
-    }
+  // const switch3d = (
+  //   id: number,
+  //   name: string,
+  //   setPath: React.Dispatch<React.SetStateAction<string>>,
+  //   toggle: boolean[],
+  //   setToggle: React.Dispatch<React.SetStateAction<boolean[]>>
+  // ) => {
+  //   if (toggle[0]) {
+  //     setPath(`https://projectpokemon.org/images/normal-sprite/${name}.gif`);
+  //   } else {
+  //     setPath(
+  //       `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${id
+  //         .toString()
+  //         .padStart(3, '0')}.png`
+  //     );
+  //   }
+  //
+  //   setToggle((state) => [!state[0], true]);
+  // };
 
-    setToggle((state) => [!state[0], true]);
-  };
+  // const switch2d = (
+  //   id: number,
+  //   name: string,
+  //   setPath: React.Dispatch<React.SetStateAction<string>>,
+  //   toggle: boolean[],
+  //   setToggle: React.Dispatch<React.SetStateAction<boolean[]>>
+  // ) => {
+  //   if (toggle[1]) {
+  //     setPath(name);
+  //   } else {
+  //     setPath(
+  //       `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${id
+  //         .toString()
+  //         .padStart(3, '0')}.png`
+  //     );
+  //   }
+  //
+  //   setToggle((state) => [true, !state[1]]);
+  // };
 
-  const switch2d = (
-    id: number,
-    name: string,
-    setPath: React.Dispatch<React.SetStateAction<string>>,
-    toggle: boolean[],
-    setToggle: React.Dispatch<React.SetStateAction<boolean[]>>
-  ) => {
-    if (toggle[1]) {
-      setPath(name);
-    } else {
-      setPath(
-        `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${id
-          .toString()
-          .padStart(3, '0')}.png`
-      );
-    }
-
-    setToggle((state) => [true, !state[1]]);
-  };
-
-  const handleError = () => {
-    const { sprites } = pokemon;
-
-    setImagePath(
-      sprites.front_default ||
-        'https://i.ebayimg.com/images/g/q8AAAOSwhvpeEZBn/s-l300.png'
-    );
-
-    setLoading(false);
-  };
-
-  const handleLoading = () => {
-    setLoading(false);
-  };
+  // const handleError = () => {
+  //   const { sprites } = pokemon;
+  //
+  //   setImagePath(
+  //     sprites.front_default ||
+  //       'https://i.ebayimg.com/images/g/q8AAAOSwhvpeEZBn/s-l300.png'
+  //   );
+  //
+  //   setLoading(false);
+  // };
+  //
+  // const handleLoading = () => {
+  //   setLoading(false);
+  // };
 
   useEffect(() => {
     if (state.name !== '') {
-      setLoading(true);
+      // setLoading(true);
       fetchPokemonData(state.name, setPokemon, setImagePath).then(
         (pokemonData: PokemonData) => {
           fetchSpecies(pokemonData).then((speciesData) => {
