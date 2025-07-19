@@ -53,7 +53,6 @@ function reducer(state: StateType, action: ActionType): StateType {
         ...state,
         pokemon: action.payload.pokemon || state.pokemon,
         evolutions: action.payload.evolutions || state.evolutions,
-        // TODO: Change this implementation to pass the whole data and not in two parts
       };
     }
 

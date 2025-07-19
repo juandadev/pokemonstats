@@ -37,3 +37,4 @@
     - [ ] Track page views
     - [ ] Track search queries
 - [ ] Add sticky pokémon header for mobile devices
+- [ ] Change pokemon fetch implementation to pass the whole data and not in two parts
