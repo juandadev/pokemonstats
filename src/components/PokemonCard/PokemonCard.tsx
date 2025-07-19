@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { TYPE_LABELS } from '@/common/constants';
 import { clsx } from 'clsx';
@@ -8,16 +8,9 @@ import TypeBadge from '@/components/TypeBadge/TypeBadge';
 import usePokemonData from '@/hooks/usePokemonData';
 
 export default function PokemonCard() {
-  const { pokemonData, updateSelectedPokemon } = usePokemonData();
-  const isMounted = useRef(false);
+  const { pokemonImage, pokemonData, updateSelectedPokemon } = usePokemonData();
 
-  const [imagePath, setImagePath] = useState<string>(
-    `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${(
-      pokemonData.id || ''
-    )
-      .toString()
-      .padStart(3, '0')}.png`
-  );
+  const isMounted = useRef(false);
 
   // const switch3d = (
   //   id: number,
@@ -122,7 +115,7 @@ export default function PokemonCard() {
               )}
             >
               <img
-                src={imagePath}
+                src={pokemonImage}
                 alt={pokemonData.name}
                 className="w-40 h-40 object-contain"
               />

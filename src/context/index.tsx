@@ -5,6 +5,7 @@ import { EvolutionsData, PokemonData } from '@/types/Pokemon.type';
 
 type StateType = {
   searchQuery: string | number;
+  pokemonImage: string;
   pokemon: PokemonData | Record<string, never>;
   evolutions: EvolutionsData | Record<string, never>;
 };
@@ -17,12 +18,15 @@ type ActionType =
   | {
       type: 'SET_POKEMON_DATA';
       payload: {
+        pokemonImage: string;
         pokemon: PokemonData;
         evolutions: EvolutionsData;
       };
     };
 
 const initialState: StateType = {
+  pokemonImage:
+    'https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/132.png',
   searchQuery: 'Totodile',
   pokemon: {},
   evolutions: {},
@@ -51,6 +55,7 @@ function reducer(state: StateType, action: ActionType): StateType {
     case 'SET_POKEMON_DATA': {
       return {
         ...state,
+        pokemonImage: action.payload.pokemonImage,
         pokemon: action.payload.pokemon || state.pokemon,
         evolutions: action.payload.evolutions || state.evolutions,
       };

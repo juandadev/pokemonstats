@@ -63,6 +63,9 @@ export default function usePokemonData() {
       dispatch({
         type: 'SET_POKEMON_DATA',
         payload: {
+          pokemonImage: `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${pokemonData.id
+            .toString()
+            .padStart(3, '0')}.png`,
           pokemon: pokemonData,
           evolutions: evolutionsData,
         },
@@ -74,6 +77,7 @@ export default function usePokemonData() {
 
   return {
     searchQuery: state.searchQuery,
+    pokemonImage: state.pokemonImage,
     pokemonData: state.pokemon,
     evolutionsData: state.evolutions,
     setSearchQuery,
