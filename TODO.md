@@ -29,3 +29,11 @@
 - [ ] Divide the effectiveness chart into two sections
     - [ ] One for attacks
     - [ ] One for defenses (https://pokemondb.net/type/fire)
+- [ ] Support internationalization (i18n)
+    - [ ] Use react-i18next
+    - [ ] Add translations for Spanish
+- [ ] Add Analytics
+    - [ ] Use Google Analytics
+    - [ ] Track page views
+    - [ ] Track search queries
+- [ ] Add sticky pokémon header for mobile devices
