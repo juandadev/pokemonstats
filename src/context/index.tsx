@@ -17,8 +17,8 @@ type ActionType =
   | {
       type: 'SET_POKEMON_DATA';
       payload: {
-        pokemon?: PokemonData;
-        evolutions?: EvolutionsData;
+        pokemon: PokemonData;
+        evolutions: EvolutionsData;
       };
     };
 

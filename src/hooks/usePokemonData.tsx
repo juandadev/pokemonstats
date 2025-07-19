@@ -2,7 +2,8 @@ import { useContext } from 'react';
 import { pokemon } from '@/context';
 import { POKEMON_EXCEPTIONS } from '@/common/constants';
 import { toPokeApiName } from '@/lib/utils';
-import { EvolutionsData, PokemonData } from '@/types/Pokemon.type';
+import { EvolutionsData, PokemonData, Species } from '@/types/Pokemon.type';
+import { toast } from 'sonner';
 
 export default function usePokemonData() {
   const { state, dispatch } = useContext(pokemon);
@@ -24,20 +25,51 @@ export default function usePokemonData() {
     });
   }
 
-  function setPokemonData({
-    pokemon,
-    evolutions,
-  }: {
-    pokemon?: PokemonData;
-    evolutions?: EvolutionsData;
-  }) {
-    dispatch({
-      type: 'SET_POKEMON_DATA',
-      payload: {
-        pokemon,
-        evolutions,
-      },
-    });
+  async function updateSelectedPokemon(): Promise<void> {
+    try {
+      const pokemonResponse = await fetch(
+        `https://pokeapi.co/api/v2/pokemon/${state.searchQuery}/`
+      );
+
+      if (!pokemonResponse.ok) {
+        toast.error('Error fetching Pokémon data');
+        return;
+      }
+
+      const pokemonData: PokemonData = await pokemonResponse.json();
+
+      const speciesResponse = await fetch(
+        `https://pokeapi.co/api/v2/pokemon-species/${pokemonData.id}/`
+      );
+
+      if (!speciesResponse.ok) {
+        toast.error('Error fetching Species data');
+        return;
+      }
+
+      const speciesData: Species = await speciesResponse.json();
+
+      if (!speciesData.evolution_chain) return;
+
+      const evolutionsResponse = await fetch(speciesData.evolution_chain.url);
+
+      if (!evolutionsResponse.ok) {
+        toast.error('Error fetching Evolutions data');
+        return;
+      }
+
+      const evolutionsData: EvolutionsData = await evolutionsResponse.json();
+
+      dispatch({
+        type: 'SET_POKEMON_DATA',
+        payload: {
+          pokemon: pokemonData,
+          evolutions: evolutionsData,
+        },
+      });
+    } catch {
+      toast.error('An unknown error has occurred');
+    }
   }
 
   return {
@@ -45,6 +77,6 @@ export default function usePokemonData() {
     pokemonData: state.pokemon,
     evolutionsData: state.evolutions,
     setSearchQuery,
-    setPokemonData,
+    updateSelectedPokemon,
   };
 }

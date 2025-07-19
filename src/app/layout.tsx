@@ -5,6 +5,7 @@ import Hero from '@/components/Hero/Hero';
 import { Geist } from 'next/font/google';
 import Footer from '@/components/Footer/Footer';
 import './globals.css';
+import { Toaster } from '@/components/ui/sonner';
 
 const geist_sans = Geist({
   variable: '--font-geist-sans',
@@ -36,6 +37,7 @@ export default function RootLayout({
             <Hero />
             {children}
             <Footer />
+            <Toaster richColors />
           </div>
         </ContextProvider>
       </body>

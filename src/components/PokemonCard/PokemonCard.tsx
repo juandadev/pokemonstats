@@ -1,7 +1,6 @@
 'use client';
 
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { EvolutionsData, PokemonData, Species } from '@/types/Pokemon.type';
+import React, { useEffect, useRef, useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { TYPE_LABELS } from '@/common/constants';
 import { clsx } from 'clsx';
@@ -9,69 +8,16 @@ import TypeBadge from '@/components/TypeBadge/TypeBadge';
 import usePokemonData from '@/hooks/usePokemonData';
 
 export default function PokemonCard() {
-  const { pokemonData, searchQuery, setPokemonData } = usePokemonData();
+  const { pokemonData, updateSelectedPokemon } = usePokemonData();
   const isMounted = useRef(false);
 
-  // const [loading, setLoading] = useState<boolean>(true);
   const [imagePath, setImagePath] = useState<string>(
-    `https://projectpokemon.org/images/normal-sprite/${pokemonData.name}.gif`
+    `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${(
+      pokemonData.id || ''
+    )
+      .toString()
+      .padStart(3, '0')}.png`
   );
-
-  const fetchPokemonData = useCallback(
-    async (
-      name: string | number,
-      setPokemon: (data: {
-        pokemon?: PokemonData;
-        evolutions?: EvolutionsData;
-      }) => void,
-      setPath: React.Dispatch<React.SetStateAction<string>>
-    ) => {
-      try {
-        const response = await fetch(
-          `https://pokeapi.co/api/v2/pokemon/${name}/`
-        );
-        const data = await response.json();
-        setPokemon({ pokemon: data });
-        setPath(
-          `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${data.id
-            .toString()
-            .padStart(3, '0')}.png`
-        );
-        return data;
-      } catch (error) {
-        return error;
-      }
-    },
-    []
-  );
-
-  const fetchSpecies = async ({
-    id,
-  }: PokemonData): Promise<Species | Record<string, never>> => {
-    try {
-      const response = await fetch(
-        `https://pokeapi.co/api/v2/pokemon-species/${id}/`
-      );
-      return (await response.json()) as Species;
-    } catch {
-      return {};
-    }
-  };
-
-  const fetchEvolutions = (
-    { evolution_chain }: Species | Record<string, never>,
-    setEvolutions: (data: {
-      pokemon?: PokemonData;
-      evolutions?: EvolutionsData;
-    }) => void
-  ) => {
-    fetch(evolution_chain?.url)
-      .then((response) => response.json())
-      .then((data) => {
-        setEvolutions({ evolutions: data });
-      })
-      .catch((error) => error);
-  };
 
   // const switch3d = (
   //   id: number,
@@ -131,16 +77,10 @@ export default function PokemonCard() {
   useEffect(() => {
     if (!isMounted.current) {
       isMounted.current = true;
-      // setLoading(true);
-      fetchPokemonData(searchQuery, setPokemonData, setImagePath).then(
-        (pokemonData: PokemonData) => {
-          fetchSpecies(pokemonData).then((speciesData) => {
-            fetchEvolutions(speciesData, setPokemonData);
-          });
-        }
-      );
+
+      updateSelectedPokemon();
     }
-  }, [fetchPokemonData, searchQuery, setPokemonData]);
+  }, [updateSelectedPokemon]);
 
   if (Object.keys(pokemonData).length === 0) return null;
 
