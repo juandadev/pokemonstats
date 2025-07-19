@@ -1,19 +1,17 @@
 'use client';
 
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { SearchIcon } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { POKEMON_EXCEPTIONS, POKEMON_LIST } from '@/common/constants';
-import { pokemon } from '@/context';
+import { POKEMON_LIST } from '@/common/constants';
 import NoSuggestion from '@/components/SearchBar/NoSuggestion';
-import { toPokeApiName } from '@/lib/utils';
+import usePokemonData from '@/hooks/usePokemonData';
 
 export default function SearchBar() {
-  const { state, dispatch } = useContext(pokemon);
-  const [searchTerm, setSearchTerm] = useState<string>(
-    state.searchQuery.toString()
-  );
+  const { searchQuery, setSearchQuery } = usePokemonData();
+
+  const [searchTerm, setSearchTerm] = useState<string>(searchQuery.toString());
   const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
   const [selectedSuggestionIndex, setSelectedSuggestionIndex] =
     useState<number>(-1);
@@ -63,20 +61,7 @@ export default function SearchBar() {
     setShowSuggestions(false);
     setSelectedSuggestionIndex(-1);
 
-    const getException = POKEMON_EXCEPTIONS.findIndex(
-      ({ name }) => name === suggestion
-    );
-    const isMegaEvolution = suggestion.includes('Mega');
-
-    dispatch({
-      type: 'CHANGE_INPUT',
-      payload:
-        getException >= 0
-          ? POKEMON_EXCEPTIONS[getException].id
-          : isMegaEvolution
-          ? toPokeApiName(suggestion)
-          : suggestion,
-    });
+    setSearchQuery(suggestion);
   };
 
   const handleInputBlur = () => {
