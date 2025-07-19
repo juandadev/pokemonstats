@@ -9,9 +9,9 @@ import NoSuggestion from '@/components/SearchBar/NoSuggestion';
 import usePokemonData from '@/hooks/usePokemonData';
 
 export default function SearchBar() {
-  const { searchQuery, setSearchQuery } = usePokemonData();
+  const { setSearchQuery, updateSelectedPokemon } = usePokemonData();
 
-  const [searchTerm, setSearchTerm] = useState<string>(searchQuery.toString());
+  const [searchTerm, setSearchTerm] = useState<string>('Totodile');
   const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
   const [selectedSuggestionIndex, setSelectedSuggestionIndex] =
     useState<number>(-1);
@@ -62,6 +62,7 @@ export default function SearchBar() {
     setSelectedSuggestionIndex(-1);
 
     setSearchQuery(suggestion);
+    updateSelectedPokemon(suggestion);
   };
 
   const handleInputBlur = () => {

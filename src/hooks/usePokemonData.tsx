@@ -25,10 +25,10 @@ export default function usePokemonData() {
     });
   }
 
-  async function updateSelectedPokemon(): Promise<void> {
+  async function updateSelectedPokemon(pokemonName: string): Promise<void> {
     try {
       const pokemonResponse = await fetch(
-        `https://pokeapi.co/api/v2/pokemon/${state.searchQuery}/`
+        `https://pokeapi.co/api/v2/pokemon/${pokemonName}/`
       );
 
       if (!pokemonResponse.ok) {

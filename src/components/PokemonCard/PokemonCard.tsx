@@ -71,7 +71,7 @@ export default function PokemonCard() {
     if (!isMounted.current) {
       isMounted.current = true;
 
-      updateSelectedPokemon();
+      updateSelectedPokemon('totodile');
     }
   }, [updateSelectedPokemon]);
 
