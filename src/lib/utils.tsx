@@ -26,7 +26,6 @@ export const displayEvolutionDetails = (
   evolution: string,
   details: EvolutionDetail
 ) => {
-  console.log(details);
   if (!details || Object.keys(details).length === 0) {
     return;
   }
@@ -37,7 +36,6 @@ export const displayEvolutionDetails = (
 
   if (details.min_level) {
     const statsRule = details.relative_physical_stats;
-    console.log(statsRule);
 
     if (statsRule) {
       additionalRules = ` when ${

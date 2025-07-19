@@ -1,16 +1,12 @@
 'use client';
 
-import React, { useCallback, useContext, useEffect, useState } from 'react';
-import { pokemon as searchField } from '../../context';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   Chain,
   EvolutionsData,
   PokemonData,
   PokemonEvolutionType,
   Species,
-  Sprites,
-  Stat,
-  Type,
 } from '@/types/Pokemon.type';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { TYPE_LABELS } from '@/common/constants';
@@ -24,36 +20,24 @@ import {
 import { displayEvolutionDetails } from '@/lib/utils';
 import { clsx } from 'clsx';
 import TypeBadge from '@/components/TypeBadge/TypeBadge';
-
-type PokemonType = {
-  id: number;
-  sprites: Sprites | Partial<Sprites>;
-  name: string;
-  types: Type[];
-  stats: Stat[];
-};
+import usePokemonData from '@/hooks/usePokemonData';
 
 export default function PokemonCard() {
-  const [pokemon, setPokemon] = useState<PokemonType>({
-    id: 0,
-    sprites: {},
-    name: '',
-    types: [],
-    stats: [],
-  });
-  const [evolutions, setEvolutions] = useState<
-    EvolutionsData | Partial<EvolutionsData>
-  >({});
+  const { pokemonData, evolutionsData, searchQuery, setPokemonData } =
+    usePokemonData();
+
   // const [loading, setLoading] = useState<boolean>(true);
   const [imagePath, setImagePath] = useState<string>(
-    `https://projectpokemon.org/images/normal-sprite/${pokemon.name}.gif`
+    `https://projectpokemon.org/images/normal-sprite/${pokemonData.name}.gif`
   );
-  const { state } = useContext(searchField);
 
   const fetchPokemonData = useCallback(
     async (
       name: string | number,
-      setPokemon: React.Dispatch<React.SetStateAction<PokemonType>>,
+      setPokemon: (data: {
+        pokemon?: PokemonData;
+        evolutions?: EvolutionsData;
+      }) => void,
       setPath: React.Dispatch<React.SetStateAction<string>>
     ) => {
       try {
@@ -61,7 +45,7 @@ export default function PokemonCard() {
           `https://pokeapi.co/api/v2/pokemon/${name}/`
         );
         const data = await response.json();
-        setPokemon(data);
+        setPokemon({ pokemon: data });
         setPath(
           `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${data.id
             .toString()
@@ -112,14 +96,15 @@ export default function PokemonCard() {
 
   const fetchEvolutions = (
     { evolution_chain }: Species | Record<string, never>,
-    setEvolutions: React.Dispatch<
-      React.SetStateAction<EvolutionsData | Partial<EvolutionsData>>
-    >
+    setEvolutions: (data: {
+      pokemon?: PokemonData;
+      evolutions?: EvolutionsData;
+    }) => void
   ) => {
     fetch(evolution_chain?.url)
       .then((response) => response.json())
       .then((data) => {
-        setEvolutions(data);
+        setEvolutions({ evolutions: data });
       })
       .catch((error) => error);
   };
@@ -180,17 +165,17 @@ export default function PokemonCard() {
   // };
 
   useEffect(() => {
-    if (state.searchQuery !== '') {
+    if (searchQuery !== '') {
       // setLoading(true);
-      fetchPokemonData(state.searchQuery, setPokemon, setImagePath).then(
+      fetchPokemonData(searchQuery, setPokemonData, setImagePath).then(
         (pokemonData: PokemonData) => {
           fetchSpecies(pokemonData).then((speciesData) => {
-            fetchEvolutions(speciesData, setEvolutions);
+            fetchEvolutions(speciesData, setPokemonData);
           });
         }
       );
     }
-  }, [fetchPokemonData, state.searchQuery]);
+  }, [fetchPokemonData, searchQuery]);
 
   return (
     <div className="space-y-6 w-full max-w-lg m-auto">
@@ -198,15 +183,15 @@ export default function PokemonCard() {
         <div
           className={clsx(
             'water-gradient p-6 text-white',
-            TYPE_LABELS[pokemon.types[0]?.type.name]?.gradientBackground
+            TYPE_LABELS[pokemonData.types[0]?.type.name]?.gradientBackground
           )}
         >
           <div className="flex items-center justify-between mb-4">
             <span className="text-sm font-medium opacity-90">
-              #{pokemon.id.toString().padStart(3, '0')}
+              #{pokemonData.id.toString().padStart(3, '0')}
             </span>
             <div className={'flex gap-2'}>
-              {pokemon.types.map(({ type }) => (
+              {pokemonData.types.map(({ type }) => (
                 <TypeBadge key={`type-${type.name}`} type={type.name} />
               ))}
             </div>
@@ -214,10 +199,10 @@ export default function PokemonCard() {
           <h2
             className={clsx(
               'text-3xl font-bold mb-4 capitalize',
-              TYPE_LABELS[pokemon.types[0]?.type.name]?.text
+              TYPE_LABELS[pokemonData.types[0]?.type.name]?.text
             )}
           >
-            {pokemon.name}
+            {pokemonData.name}
           </h2>
         </div>
         <CardContent className="p-6">
@@ -226,13 +211,13 @@ export default function PokemonCard() {
               <div
                 className={clsx(
                   'w-48 h-48 rounded-full flex items-center justify-center shadow-inner',
-                  TYPE_LABELS[pokemon.types[0]?.type.name]
+                  TYPE_LABELS[pokemonData.types[0]?.type.name]
                     ?.gradientBackgroundLight
                 )}
               >
                 <img
                   src={imagePath}
-                  alt={pokemon.name}
+                  alt={pokemonData.name}
                   className="w-40 h-40 object-contain"
                 />
               </div>
@@ -248,8 +233,8 @@ export default function PokemonCard() {
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            {evolutions.chain &&
-              evolutionChain(evolutions.chain)?.map((evolution, index) => (
+            {evolutionsData.chain &&
+              evolutionChain(evolutionsData.chain)?.map((evolution, index) => (
                 <div
                   key={index}
                   className="flex items-center gap-4 p-3 rounded-lg bg-gray-50"
@@ -257,7 +242,7 @@ export default function PokemonCard() {
                   <div
                     className={clsx(
                       'w-12 h-12 rounded-full flex items-center justify-center overflow-hidden',
-                      TYPE_LABELS[pokemon.types[0]?.type.name]
+                      TYPE_LABELS[pokemonData.types[0]?.type.name]
                         ?.gradientBackgroundLight
                     )}
                   >

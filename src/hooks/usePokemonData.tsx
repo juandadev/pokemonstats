@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { pokemon } from '@/context';
 import { POKEMON_EXCEPTIONS } from '@/common/constants';
 import { toPokeApiName } from '@/lib/utils';
+import { EvolutionsData, PokemonData } from '@/types/Pokemon.type';
 
 export default function usePokemonData() {
   const { state, dispatch } = useContext(pokemon);
@@ -23,10 +24,27 @@ export default function usePokemonData() {
     });
   }
 
+  function setPokemonData({
+    pokemon,
+    evolutions,
+  }: {
+    pokemon?: PokemonData;
+    evolutions?: EvolutionsData;
+  }) {
+    dispatch({
+      type: 'SET_POKEMON_DATA',
+      payload: {
+        pokemon,
+        evolutions,
+      },
+    });
+  }
+
   return {
     searchQuery: state.searchQuery,
     pokemonData: state.pokemon,
     evolutionsData: state.evolutions,
     setSearchQuery,
+    setPokemonData,
   };
 }

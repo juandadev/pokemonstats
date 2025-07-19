@@ -17,8 +17,8 @@ type ActionType =
   | {
       type: 'SET_POKEMON_DATA';
       payload: {
-        pokemon: PokemonData;
-        evolutions: EvolutionsData;
+        pokemon?: PokemonData;
+        evolutions?: EvolutionsData;
       };
     };
 
@@ -51,8 +51,9 @@ function reducer(state: StateType, action: ActionType): StateType {
     case 'SET_POKEMON_DATA': {
       return {
         ...state,
-        pokemon: action.payload.pokemon,
-        evolutions: action.payload.evolutions,
+        pokemon: action.payload.pokemon || state.pokemon,
+        evolutions: action.payload.evolutions || state.evolutions,
+        // TODO: Change this implementation to pass the whole data and not in two parts
       };
     }
 
