@@ -97,67 +97,21 @@ export default function PokemonCard() {
     return evolutions;
   };
 
-  const fetchSpecies = async ({ id }: PokemonData): Promise<Species> => {
+  const fetchSpecies = async ({
+    id,
+  }: PokemonData): Promise<Species | Record<string, never>> => {
     try {
       const response = await fetch(
         `https://pokeapi.co/api/v2/pokemon-species/${id}/`
       );
       return (await response.json()) as Species;
     } catch {
-      return {
-        base_happiness: 0,
-        capture_rate: 0,
-        color: {
-          name: '',
-          url: '',
-        },
-        egg_groups: [],
-        evolution_chain: {
-          url: '',
-        },
-        evolves_from_species: {
-          name: '',
-          url: '',
-        },
-        flavor_text_entries: [],
-        form_descriptions: [],
-        forms_switchable: false,
-        gender_rate: 0,
-        genera: [],
-        generation: {
-          name: '',
-          url: '',
-        },
-        growth_rate: {
-          name: '',
-          url: '',
-        },
-        habitat: {
-          name: '',
-          url: '',
-        },
-        has_gender_differences: false,
-        hatch_counter: 0,
-        id: 0,
-        is_baby: false,
-        is_legendary: false,
-        is_mythical: false,
-        name: 'normal',
-        names: [],
-        order: 0,
-        pal_park_encounters: [],
-        pokedex_numbers: [],
-        shape: {
-          name: '',
-          url: '',
-        },
-        varieties: [],
-      };
+      return {};
     }
   };
 
   const fetchEvolutions = (
-    { evolution_chain }: Species,
+    { evolution_chain }: Species | Record<string, never>,
     setEvolutions: React.Dispatch<
       React.SetStateAction<EvolutionsData | Partial<EvolutionsData>>
     >
