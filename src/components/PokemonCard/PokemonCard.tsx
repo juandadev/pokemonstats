@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { EvolutionsData, PokemonData, Species } from '@/types/Pokemon.type';
 import { Card, CardContent } from '@/components/ui/card';
 import { TYPE_LABELS } from '@/common/constants';
@@ -10,6 +10,7 @@ import usePokemonData from '@/hooks/usePokemonData';
 
 export default function PokemonCard() {
   const { pokemonData, searchQuery, setPokemonData } = usePokemonData();
+  const isMounted = useRef(false);
 
   // const [loading, setLoading] = useState<boolean>(true);
   const [imagePath, setImagePath] = useState<string>(
@@ -128,7 +129,8 @@ export default function PokemonCard() {
   // };
 
   useEffect(() => {
-    if (searchQuery !== '') {
+    if (!isMounted.current) {
+      isMounted.current = true;
       // setLoading(true);
       fetchPokemonData(searchQuery, setPokemonData, setImagePath).then(
         (pokemonData: PokemonData) => {

@@ -20,7 +20,7 @@ export type PokemonTypes =
   | 'steel'
   | 'fairy';
 
-export type PokemonName = typeof POKEMON_LIST[number];
+export type PokemonName = (typeof POKEMON_LIST)[number];
 
 export type PokemonExceptions = {
   name: PokemonName;
@@ -232,10 +232,10 @@ export type Chain = {
 
 export type EvolutionDetail = {
   gender: null;
-  held_item: null;
+  held_item: GenericPropertyDetails<Items> | null;
   item: GenericPropertyDetails<Items> | null;
   known_move: Species;
-  known_move_type: null;
+  known_move_type: GenericPropertyDetails | null;
   location: GenericPropertyDetails;
   min_affection: null;
   min_beauty: null;
@@ -247,7 +247,7 @@ export type EvolutionDetail = {
   relative_physical_stats: number;
   time_of_day: string;
   trade_species: null;
-  trigger: Species;
+  trigger: GenericPropertyDetails | null;
   turn_upside_down: boolean;
 };
 
