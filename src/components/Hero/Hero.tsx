@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { GithubIcon, HeartIcon } from 'lucide-react';
+import { HeartIcon, StarIcon } from 'lucide-react';
 
 export default function Hero() {
   return (
@@ -16,7 +16,7 @@ export default function Hero() {
           Live Pokédex Data
         </div>
         <h1 className="text-5xl md:text-7xl font-bold text-gray-900 leading-tight">
-          Pokemon{' '}
+          Pokémon{' '}
           <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
             Stats
           </span>
@@ -33,8 +33,8 @@ export default function Hero() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <GithubIcon className="w-5 h-5" />
-              View Source Code
+              <StarIcon className="w-5 h-5 text-yellow-500" />
+              Star on GitHub
             </a>
           </Button>
           <Button variant={'outline'} asChild>
