@@ -154,6 +154,11 @@ export const TYPE_LABELS: Record<PokemonTypes, PokemonTypeColors> = {
   },
 };
 
+export const TYPES_LIST = Object.keys(TYPE_LABELS).map((type, index) => ({
+  name: type as PokemonTypes,
+  index: index + 1,
+}));
+
 export const TYPE_ICONS: Record<PokemonTypes, React.ElementType> = {
   normal: CircleIcon,
   fire: FlameIcon,
@@ -743,7 +748,6 @@ export const POKEMON_LIST = [
   'Eelektrik',
   'Eelektross',
   'Eevee',
-  'Partner Eevee',
   'Eiscue Ice Face',
   'Eiscue Noice Face',
   'Ekans',

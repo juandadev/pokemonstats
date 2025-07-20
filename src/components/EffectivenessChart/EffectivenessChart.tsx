@@ -1,13 +1,14 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { TYPE_LABELS } from '@/common/constants';
+import { TYPE_LABELS, TYPES_LIST } from '@/common/constants';
 import { getEffectivenessList, getTypeIcon } from '@/lib/utils';
 import { PokemonTypes } from '@/types/Pokemon.type';
 import { ShieldIcon } from 'lucide-react';
 import clsx from 'clsx';
 import TypeBadge from '@/components/TypeBadge/TypeBadge';
+import usePokemonData from '@/hooks/usePokemonData';
 
 interface SelectedType {
   type: PokemonTypes | null;
@@ -15,15 +16,43 @@ interface SelectedType {
 }
 
 export default function EffectivenessChart() {
+  const { pokemonData } = usePokemonData();
+
   const [selectedType, setSelectedType] = useState<SelectedType>({
     type: null,
     index: null,
   });
+  const [lastPokemonName, setLastPokemonName] = useState<string | null>(null);
+  const [userHasInteracted, setUserHasInteracted] = useState(false);
 
   const effectivenessList = useMemo(
     () => getEffectivenessList(selectedType.index),
     [selectedType.index]
   );
+
+  const handleTypeClick = (type: { name: PokemonTypes; index: number }) => {
+    setUserHasInteracted(true);
+    setSelectedType({
+      type: type.name,
+      index: type.index,
+    });
+  };
+
+  useEffect(() => {
+    console.log('render');
+    if (pokemonData.name !== lastPokemonName) {
+      setUserHasInteracted(false);
+    }
+
+    if (pokemonData.types && !userHasInteracted) {
+      const typeInfo = TYPES_LIST.find(
+        (type) => type.name === pokemonData.types[0].type.name
+      )!;
+
+      setSelectedType({ type: typeInfo.name, index: typeInfo.index });
+      setLastPokemonName(pokemonData.name);
+    }
+  }, [lastPokemonName, pokemonData.name, pokemonData.types, userHasInteracted]);
 
   return (
     <Card className="shadow-xl border-0 bg-white/90 backdrop-blur-sm">
@@ -39,37 +68,29 @@ export default function EffectivenessChart() {
         {/* Types Grid */}
         <div className={'overflow-x-auto mb-8 p-1'}>
           <div className="grid grid-rows-2 grid-cols-9 lg:grid-rows-2 lg:grid-cols-6 gap-3 w-max">
-            {Object.keys(TYPE_LABELS).map((type, index) => {
-              const IconComponent = getTypeIcon(type as PokemonTypes);
-              const isSelected = selectedType.type === type;
+            {TYPES_LIST.map((type) => {
+              const IconComponent = getTypeIcon(type.name);
+              const isSelected = selectedType.type === type.name;
 
               return (
                 <button
-                  key={type}
+                  key={`effectiveness-${type.name}-btn`}
                   className={clsx(
                     'group relative flex flex-col items-center gap-2 p-3 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-lg border-2 cursor-pointer',
                     isSelected
-                      ? `${
-                          TYPE_LABELS[type as PokemonTypes]?.border
-                        } shadow-lg scale-105`
+                      ? `${TYPE_LABELS[type.name]?.border} shadow-lg scale-105`
                       : 'border-gray-100 hover:border-gray-200',
                     isSelected
-                      ? TYPE_LABELS[type as PokemonTypes]
-                          ?.gradientBackgroundLight
+                      ? TYPE_LABELS[type.name]?.gradientBackgroundLight
                       : 'white'
                   )}
-                  onClick={() =>
-                    setSelectedType({
-                      type: type as PokemonTypes,
-                      index: index + 1,
-                    })
-                  }
+                  onClick={() => handleTypeClick(type)}
                 >
                   {/* Type Icon Circle */}
                   <div
                     className={clsx(
                       'w-12 h-12 rounded-full flex items-center justify-center text-white shadow-md transition-transform duration-300 group-hover:scale-110',
-                      TYPE_LABELS[type as PokemonTypes]?.gradientBackground
+                      TYPE_LABELS[type.name]?.gradientBackground
                     )}
                   >
                     <IconComponent className="w-6 h-6" />
@@ -81,7 +102,7 @@ export default function EffectivenessChart() {
                       isSelected ? 'text-gray-900' : 'text-gray-600'
                     )}
                   >
-                    {type}
+                    {type.name}
                   </span>
                 </button>
               );

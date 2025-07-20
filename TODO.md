@@ -7,7 +7,7 @@
     - [ ] Add a link to buy me a coffee
 - [ ] Bring back theme provider
     - [ ] Add light and dark mode
-- [ ] Supports selecting two types and merge weakness and strengths
+- [ ] Supports selecting two types and merge weakness and strengths (UI reference in v0).
 - [ ] Include static images for all pokémon for searchbar and evolution chains
 - [ ] Fix empty species or evolution chains in pokémon results
 - [ ] Fix all a11y issues
@@ -36,7 +36,16 @@
     - [ ] Use Google Analytics
     - [ ] Track page views
     - [ ] Track search queries
+    - [ ] Heat maps
 - [ ] Add sticky pokémon header for mobile devices
+    - [ ] Consider using intersection observer to change layout once it's sticky
 - [ ] Change Pokémon fetch implementation to pass the whole data and not in two parts
 - [ ] Consider removing search query property from context. It's not too necessary
 - [ ] Configure again function to select a Pokémon from the evolution chain list
+- [ ] Replace CTA for GitHub repo button with something like "Star this repo"
+- [ ] Add a tab to Pokémon card to show base stats (UI reference in v0).
+- [ ] Add an expandable list to show evolution details for Pokémon that goes beyond leveling up or using an evolutive
+  stone (UI reference in v0).
+    - [ ] Check if we can fetch more details when there are more than one item in the evolution details array, which
+    - means that it has variations depending on the game ou are playing, so I would like to show those details as well.
+- [ ] Check the app against React scan https://github.com/aidenybai/react-scan#install and fix the performance issues
