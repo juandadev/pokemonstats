@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { TYPE_LABELS, TYPES_LIST } from '@/common/constants';
 import { getEffectivenessList, getTypeIcon } from '@/lib/utils';
@@ -25,6 +25,9 @@ export default function EffectivenessChart() {
   const [lastPokemonName, setLastPokemonName] = useState<string | null>(null);
   const [userHasInteracted, setUserHasInteracted] = useState(false);
 
+  const typesContainerRef = useRef<HTMLDivElement>(null);
+  const typeButtonsRef = useRef<Record<string, HTMLButtonElement | null>>({});
+
   const effectivenessList = useMemo(
     () => getEffectivenessList(selectedType.index),
     [selectedType.index]
@@ -39,7 +42,6 @@ export default function EffectivenessChart() {
   };
 
   useEffect(() => {
-    console.log('render');
     if (pokemonData.name !== lastPokemonName) {
       setUserHasInteracted(false);
     }
@@ -48,6 +50,25 @@ export default function EffectivenessChart() {
       const typeInfo = TYPES_LIST.find(
         (type) => type.name === pokemonData.types[0].type.name
       )!;
+
+      const button = typeButtonsRef.current[typeInfo.name];
+      const container = typesContainerRef.current;
+
+      if (button && container) {
+        const containerRect = container.getBoundingClientRect();
+        const buttonRect = button.getBoundingClientRect();
+
+        const offsetLeft = buttonRect.left - containerRect.left;
+        const scroll =
+          offsetLeft - container.clientWidth / 2 + button.clientWidth / 2;
+
+        console.log(container.scrollLeft, scroll);
+
+        container.scrollTo({
+          left: container.scrollLeft + scroll,
+          behavior: 'smooth',
+        });
+      }
 
       setSelectedType({ type: typeInfo.name, index: typeInfo.index });
       setLastPokemonName(pokemonData.name);
@@ -66,8 +87,8 @@ export default function EffectivenessChart() {
       </CardHeader>
       <CardContent>
         {/* Types Grid */}
-        <div className={'overflow-x-auto mb-8 p-1'}>
-          <div className="grid grid-rows-2 grid-cols-9 lg:grid-rows-2 lg:grid-cols-6 gap-3 w-max">
+        <div ref={typesContainerRef} className={'overflow-x-auto mb-8 p-1'}>
+          <div className="grid grid-rows-2 grid-cols-9 lg:grid-rows-2 lg:grid-cols-6 gap-3 w-max pb-5">
             {TYPES_LIST.map((type) => {
               const IconComponent = getTypeIcon(type.name);
               const isSelected = selectedType.type === type.name;
@@ -75,6 +96,9 @@ export default function EffectivenessChart() {
               return (
                 <button
                   key={`effectiveness-${type.name}-btn`}
+                  ref={(el) => {
+                    typeButtonsRef.current[type.name] = el;
+                  }}
                   className={clsx(
                     'group relative flex flex-col items-center gap-2 p-3 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-lg border-2 cursor-pointer',
                     isSelected
