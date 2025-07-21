@@ -62,8 +62,6 @@ export default function EffectivenessChart() {
         const scroll =
           offsetLeft - container.clientWidth / 2 + button.clientWidth / 2;
 
-        console.log(container.scrollLeft, scroll);
-
         container.scrollTo({
           left: container.scrollLeft + scroll,
           behavior: 'smooth',
