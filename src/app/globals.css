@@ -1,0 +1,405 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@tailwind utilities;
+
+@custom-variant dark (&:is(.dark *));
+
+@layer utilities {
+  /* Gradient Backgrounds */
+  .bg-normal-gradient {
+    background: linear-gradient(135deg, rgb(168, 168, 120), rgb(117, 117, 69));
+  }
+
+  .bg-fire-gradient {
+    background: linear-gradient(135deg, rgb(240, 128, 48), rgb(189, 77, 0));
+  }
+
+  .bg-water-gradient {
+    background: linear-gradient(135deg, rgb(104, 144, 240), rgb(53, 93, 189));
+  }
+
+  .bg-electric-gradient {
+    background: linear-gradient(135deg, rgb(248, 208, 48), rgb(197, 157, 0));
+  }
+
+  .bg-grass-gradient {
+    background: linear-gradient(135deg, rgb(120, 200, 80), rgb(69, 149, 29));
+  }
+
+  .bg-ice-gradient {
+    background: linear-gradient(135deg, rgb(152, 216, 216), rgb(101, 165, 165));
+  }
+
+  .bg-fighting-gradient {
+    background: linear-gradient(135deg, rgb(192, 48, 40), rgb(141, 0, 0));
+  }
+
+  .bg-poison-gradient {
+    background: linear-gradient(135deg, rgb(160, 64, 160), rgb(109, 13, 109));
+  }
+
+  .bg-ground-gradient {
+    background: linear-gradient(135deg, rgb(224, 192, 104), rgb(173, 141, 53));
+  }
+
+  .bg-flying-gradient {
+    background: linear-gradient(135deg, rgb(168, 144, 240), rgb(117, 93, 189));
+  }
+
+  .bg-psychic-gradient {
+    background: linear-gradient(135deg, rgb(248, 88, 136), rgb(197, 37, 85));
+  }
+
+  .bg-bug-gradient {
+    background: linear-gradient(135deg, rgb(168, 184, 32), rgb(117, 133, 0));
+  }
+
+  .bg-rock-gradient {
+    background: linear-gradient(135deg, rgb(184, 160, 56), rgb(133, 109, 5));
+  }
+
+  .bg-ghost-gradient {
+    background: linear-gradient(135deg, rgb(112, 88, 152), rgb(61, 37, 101));
+  }
+
+  .bg-dragon-gradient {
+    background: linear-gradient(135deg, rgb(112, 56, 248), rgb(61, 5, 197));
+  }
+
+  .bg-dark-gradient {
+    background: linear-gradient(135deg, rgb(112, 88, 72), rgb(61, 37, 21));
+  }
+
+  .bg-steel-gradient {
+    background: linear-gradient(135deg, rgb(184, 184, 208), rgb(133, 133, 157));
+  }
+
+  .bg-fairy-gradient {
+    background: linear-gradient(135deg, rgb(238, 153, 172), rgb(187, 102, 121));
+  }
+
+  /* Light Gradient Backgrounds */
+  .bg-normal-gradient-light {
+    background: linear-gradient(135deg, #a8a87820, #a8a87810);
+  }
+
+  .bg-fire-gradient-light {
+    background: linear-gradient(135deg, #f0803020, #f0803010);
+  }
+
+  .bg-water-gradient-light {
+    background: linear-gradient(135deg, #6890f020, #6890f010);
+  }
+
+  .bg-electric-gradient-light {
+    background: linear-gradient(135deg, #f8d03020, #f8d03010);
+  }
+
+  .bg-grass-gradient-light {
+    background: linear-gradient(135deg, #78c85020, #78c85010);
+  }
+
+  .bg-ice-gradient-light {
+    background: linear-gradient(135deg, #98d8d820, #98d8d810);
+  }
+
+  .bg-fighting-gradient-light {
+    background: linear-gradient(135deg, #c0303020, #c0303010);
+  }
+
+  .bg-poison-gradient-light {
+    background: linear-gradient(135deg, #a040a020, #a040a010);
+  }
+
+  .bg-ground-gradient-light {
+    background: linear-gradient(135deg, #e0c04020, #e0c04010);
+  }
+
+  .bg-flying-gradient-light {
+    background: linear-gradient(135deg, #a890f020, #a890f010);
+  }
+
+  .bg-psychic-gradient-light {
+    background: linear-gradient(135deg, #f8588820, #f8588810);
+  }
+
+  .bg-bug-gradient-light {
+    background: linear-gradient(135deg, #a8b82020, #a8b82010);
+  }
+
+  .bg-rock-gradient-light {
+    background: linear-gradient(135deg, #b8a04020, #b8a04010);
+  }
+
+  .bg-ghost-gradient-light {
+    background: linear-gradient(135deg, #70589820, #70589810);
+  }
+
+  .bg-dragon-gradient-light {
+    background: linear-gradient(135deg, #7038f820, #7038f810);
+  }
+
+  .bg-dark-gradient-light {
+    background: linear-gradient(135deg, #70585020, #70585010);
+  }
+
+  .bg-steel-gradient-light {
+    background: linear-gradient(135deg, #b8b8d020, #b8b8d010);
+  }
+
+  .bg-fairy-gradient-light {
+    background: linear-gradient(135deg, #ee99aa20, #ee99aa10);
+  }
+
+  /* Gradient Headings */
+  .text-normal-gradient {
+    background: linear-gradient(135deg, #e7e5e4, #d6d3d1);
+    @apply bg-clip-text text-transparent;
+  }
+
+  .text-fire-gradient {
+    background: linear-gradient(135deg, #fbc386, #fbbcbc);
+    @apply bg-clip-text text-transparent;
+  }
+
+  .text-water-gradient {
+    background: linear-gradient(135deg, #a5f3fc, #bfdbfe);
+    @apply bg-clip-text text-transparent;
+  }
+
+  .text-electric-gradient {
+    background: linear-gradient(135deg, #fef9c3, #fde68a);
+    @apply bg-clip-text text-transparent;
+  }
+
+  .text-grass-gradient {
+    background: linear-gradient(135deg, #bbf7d0, #86efac);
+    @apply bg-clip-text text-transparent;
+  }
+
+  .text-ice-gradient {
+    background: linear-gradient(135deg, #ccfbf1, #a5f3fc);
+    @apply bg-clip-text text-transparent;
+  }
+
+  .text-fighting-gradient {
+    background: linear-gradient(135deg, #fca5a5, #f87171);
+    @apply bg-clip-text text-transparent;
+  }
+
+  .text-poison-gradient {
+    background: linear-gradient(135deg, #e9d5ff, #c4b5fd);
+    @apply bg-clip-text text-transparent;
+  }
+
+  .text-ground-gradient {
+    background: linear-gradient(135deg, #ffdc7e, #ffedb4);
+    @apply bg-clip-text text-transparent;
+  }
+
+  .text-flying-gradient {
+    background: linear-gradient(135deg, #ddd6fe, #c4b5fd);
+    @apply bg-clip-text text-transparent;
+  }
+
+  .text-psychic-gradient {
+    background: linear-gradient(135deg, #fbcfe8, #f9a8d4);
+    @apply bg-clip-text text-transparent;
+  }
+
+  .text-bug-gradient {
+    background: linear-gradient(135deg, #d9f99d, #bef264);
+    @apply bg-clip-text text-transparent;
+  }
+
+  .text-rock-gradient {
+    background: linear-gradient(135deg, #fcd34d, #fbbf24);
+    @apply bg-clip-text text-transparent;
+  }
+
+  .text-ghost-gradient {
+    background: linear-gradient(135deg, #e9d5ff, #d8b4fe);
+    @apply bg-clip-text text-transparent;
+  }
+
+  .text-dragon-gradient {
+    background: linear-gradient(135deg, #c4b5fd, #a5b4fc);
+    @apply bg-clip-text text-transparent;
+  }
+
+  .text-dark-gradient {
+    background: linear-gradient(135deg, #d6d3d1, #a8a29e);
+    @apply bg-clip-text text-transparent;
+  }
+
+  .text-steel-gradient {
+    background: linear-gradient(135deg, #e5e7eb, #cbd5e1);
+    @apply bg-clip-text text-transparent;
+  }
+
+  .text-fairy-gradient {
+    background: linear-gradient(135deg, #ffdaf0, #fdbbe0);
+    @apply bg-clip-text text-transparent;
+  }
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Pokémon Type Colors */
+  --color-normal: #88887b;
+  --color-fire: #ff4422;
+  --color-water: #3399fe;
+  --color-electric: #ffcc33;
+  --color-grass: #76cc55;
+  --color-ice: #65ccff;
+  --color-fighting: #ba5544;
+  --color-poison: #ab579a;
+  --color-ground: #debb54;
+  --color-flying: #8799ff;
+  --color-psychic: #ff5599;
+  --color-bug: #a9bb22;
+  --color-rock: #bbaa66;
+  --color-ghost: #6666ba;
+  --color-dragon: #7666ee;
+  --color-dark: #775444;
+  --color-steel: #b7b7c5;
+  --color-fairy: #f1a8f0;
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+
+  --color-normal: #6c6c5f;
+  --color-fire: #ff5733;
+  --color-water: #4da6ff;
+  --color-electric: #ffdd57;
+  --color-grass: #6fbf4d;
+  --color-ice: #56cfff;
+  --color-fighting: #a44233;
+  --color-poison: #9e3d89;
+  --color-ground: #d4a938;
+  --color-flying: #6f87ff;
+  --color-psychic: #ff77bb;
+  --color-bug: #99aa22;
+  --color-rock: #a99955;
+  --color-ghost: #5555a4;
+  --color-dragon: #5c55cc;
+  --color-dark: #5c4335;
+  --color-steel: #a0a0b2;
+  --color-fairy: #e68ae6;
+}
+
+@layer base {
+  /*noinspection CssUnresolvedCustomProperty*/
+  * {
+    @apply border-border outline-ring/50;
+    font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}

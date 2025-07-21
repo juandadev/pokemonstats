@@ -1,21 +1,43 @@
 'use client';
 
 import React, { createContext, ReactNode, useReducer } from 'react';
+import { EvolutionsData, PokemonData } from '@/types/Pokemon.type';
 
 type StateType = {
-  name: string | number;
+  searchQuery: string | number;
+  pokemonImage: string;
+  pokemon: PokemonData | Record<string, never>;
+  evolutions: EvolutionsData | Record<string, never>;
 };
 
-type ActionType = {
-  type: string;
-  name: string | number;
+type ActionType =
+  | {
+      type: 'CHANGE_INPUT';
+      payload: string | number;
+    }
+  | {
+      type: 'SET_POKEMON_DATA';
+      payload: {
+        pokemonImage?: string;
+        pokemon?: PokemonData;
+        evolutions?: EvolutionsData;
+      };
+    };
+
+const initialState: StateType = {
+  pokemonImage: '',
+  searchQuery: 'Totodile',
+  pokemon: {},
+  evolutions: {},
 };
 
-const initialState: StateType = { name: '' };
 const pokemon = createContext<{
   state: StateType;
   dispatch: React.Dispatch<ActionType>;
-}>({ state: initialState, dispatch: () => {} });
+}>({
+  state: initialState,
+  dispatch: () => {},
+});
 const { Provider } = pokemon;
 
 function reducer(state: StateType, action: ActionType): StateType {
@@ -23,11 +45,20 @@ function reducer(state: StateType, action: ActionType): StateType {
     case 'CHANGE_INPUT':
       return {
         ...state,
-        name:
-          typeof action.name === 'string'
-            ? action.name.toLowerCase().replaceAll(/[\s.]+/g, '-')
-            : action.name,
+        searchQuery:
+          typeof action.payload === 'string'
+            ? action.payload.toLowerCase().replaceAll(/[\s.]+/g, '-')
+            : action.payload,
       };
+
+    case 'SET_POKEMON_DATA': {
+      return {
+        ...state,
+        pokemonImage: action.payload.pokemonImage || state.pokemonImage,
+        pokemon: action.payload.pokemon || state.pokemon,
+        evolutions: action.payload.evolutions || state.evolutions,
+      };
+    }
 
     default:
       return state;

@@ -1,17 +1,209 @@
-export const IS_BROWSER = typeof window !== 'undefined';
+import React from 'react';
+import {
+  PokemonExceptions,
+  PokemonTypeColors,
+  PokemonTypes,
+} from '@/types/Pokemon.type';
+import {
+  BadgeIcon,
+  BirdIcon,
+  BrainIcon,
+  BugIcon,
+  CircleIcon,
+  CogIcon,
+  DropletIcon,
+  EyeIcon,
+  FlameIcon,
+  GhostIcon,
+  GrabIcon,
+  LeafIcon,
+  MountainIcon,
+  SkullIcon,
+  SnowflakeIcon,
+  StarIcon,
+  WindIcon,
+  ZapIcon,
+} from 'lucide-react';
 
-export const EFFECTS_EMOJIS = ['😶', '🙂', '😁', '😐'];
+export const TYPE_LABELS: Record<PokemonTypes, PokemonTypeColors> = {
+  normal: {
+    background: 'bg-normal',
+    gradientBackground: 'bg-normal-gradient',
+    gradientBackgroundLight: 'bg-normal-gradient-light',
+    text: 'text-normal-gradient',
+    border: 'border-normal',
+  },
+  fire: {
+    background: 'bg-fire',
+    gradientBackground: 'bg-fire-gradient',
+    gradientBackgroundLight: 'bg-fire-gradient-light',
+    text: 'text-fire-gradient',
+    border: 'border-fire',
+  },
+  water: {
+    background: 'bg-water',
+    gradientBackground: 'bg-water-gradient',
+    gradientBackgroundLight: 'bg-water-gradient-light',
+    text: 'text-water-gradient',
+    border: 'border-water',
+  },
+  electric: {
+    background: 'bg-electric',
+    gradientBackground: 'bg-electric-gradient',
+    gradientBackgroundLight: 'bg-electric-gradient-light',
+    text: 'text-electric-gradient',
+    border: 'border-electric',
+  },
+  grass: {
+    background: 'bg-grass',
+    gradientBackground: 'bg-grass-gradient',
+    gradientBackgroundLight: 'bg-grass-gradient-light',
+    text: 'text-grass-gradient',
+    border: 'border-grass',
+  },
+  ice: {
+    background: 'bg-ice',
+    gradientBackground: 'bg-ice-gradient',
+    gradientBackgroundLight: 'bg-ice-gradient-light',
+    text: 'text-ice-gradient',
+    border: 'border-ice',
+  },
+  fighting: {
+    background: 'bg-fighting',
+    gradientBackground: 'bg-fighting-gradient',
+    gradientBackgroundLight: 'bg-fighting-gradient-light',
+    text: 'text-fighting-gradient',
+    border: 'border-fighting',
+  },
+  poison: {
+    background: 'bg-poison',
+    gradientBackground: 'bg-poison-gradient',
+    gradientBackgroundLight: 'bg-poison-gradient-light',
+    text: 'text-poison-gradient',
+    border: 'border-poison',
+  },
+  ground: {
+    background: 'bg-ground',
+    gradientBackground: 'bg-ground-gradient',
+    gradientBackgroundLight: 'bg-ground-gradient-light',
+    text: 'text-ground-gradient',
+    border: 'border-ground',
+  },
+  flying: {
+    background: 'bg-flying',
+    gradientBackground: 'bg-flying-gradient',
+    gradientBackgroundLight: 'bg-flying-gradient-light',
+    text: 'text-flying-gradient',
+    border: 'border-flying',
+  },
+  psychic: {
+    background: 'bg-psychic',
+    gradientBackground: 'bg-psychic-gradient',
+    gradientBackgroundLight: 'bg-psychic-gradient-light',
+    text: 'text-psychic-gradient',
+    border: 'border-psychic',
+  },
+  bug: {
+    background: 'bg-bug',
+    gradientBackground: 'bg-bug-gradient',
+    gradientBackgroundLight: 'bg-bug-gradient-light',
+    text: 'text-bug-gradient',
+    border: 'border-bug',
+  },
+  rock: {
+    background: 'bg-rock',
+    gradientBackground: 'bg-rock-gradient',
+    gradientBackgroundLight: 'bg-rock-gradient-light',
+    text: 'text-rock-gradient',
+    border: 'border-rock',
+  },
+  ghost: {
+    background: 'bg-ghost',
+    gradientBackground: 'bg-ghost-gradient',
+    gradientBackgroundLight: 'bg-ghost-gradient-light',
+    text: 'text-ghost-gradient',
+    border: 'border-ghost',
+  },
+  dragon: {
+    background: 'bg-dragon',
+    gradientBackground: 'bg-dragon-gradient',
+    gradientBackgroundLight: 'bg-dragon-gradient-light',
+    text: 'text-dragon-gradient',
+    border: 'border-dragon',
+  },
+  dark: {
+    background: 'bg-dark',
+    gradientBackground: 'bg-dark-gradient',
+    gradientBackgroundLight: 'bg-dark-gradient-light',
+    text: 'text-dark-gradient',
+    border: 'border-dark',
+  },
+  steel: {
+    background: 'bg-steel',
+    gradientBackground: 'bg-steel-gradient',
+    gradientBackgroundLight: 'bg-steel-gradient-light',
+    text: 'text-steel-gradient',
+    border: 'border-steel',
+  },
+  fairy: {
+    background: 'bg-fairy',
+    gradientBackground: 'bg-fairy-gradient',
+    gradientBackgroundLight: 'bg-fairy-gradient-light',
+    text: 'text-fairy-gradient',
+    border: 'border-fairy',
+  },
+};
 
-export const EFFECTS_NAMES = [
-  'no effect',
-  'normal',
-  'super effective',
-  'not very effective',
-];
+export const TYPES_LIST = Object.keys(TYPE_LABELS).map((type, index) => ({
+  name: type as PokemonTypes,
+  index: index + 1,
+}));
 
-export const EFFECTS_COLORS = ['dark', 'light', 'success', 'warning'];
+export const TYPE_ICONS: Record<PokemonTypes, React.ElementType> = {
+  normal: CircleIcon,
+  fire: FlameIcon,
+  water: DropletIcon,
+  electric: ZapIcon,
+  grass: LeafIcon,
+  ice: SnowflakeIcon,
+  fighting: GrabIcon,
+  poison: SkullIcon,
+  ground: MountainIcon,
+  flying: WindIcon,
+  psychic: BrainIcon,
+  bug: BugIcon,
+  rock: BadgeIcon,
+  ghost: GhostIcon,
+  dragon: BirdIcon,
+  dark: EyeIcon,
+  steel: CogIcon,
+  fairy: StarIcon,
+};
 
-export const POKEMON_EXCEPTIONS = [
+export const TYPE_COLORS: Record<PokemonTypes, string> = {
+  normal: '#A8A878',
+  fire: '#F08030',
+  water: '#6890F0',
+  electric: '#F8D030',
+  grass: '#78C850',
+  ice: '#98D8D8',
+  fighting: '#C03028',
+  poison: '#A040A0',
+  ground: '#E0C068',
+  flying: '#A890F0',
+  psychic: '#F85888',
+  bug: '#A8B820',
+  rock: '#B8A038',
+  ghost: '#705898',
+  dragon: '#7038F8',
+  dark: '#705848',
+  steel: '#B8B8D0',
+  fairy: '#EE99AC',
+};
+
+export const POKEMON_EXCEPTIONS: PokemonExceptions[] = [
+  { name: 'Mega Charizard X', id: 10034 },
+  { name: 'Mega Charizard Y', id: 10035 },
   { name: 'Nidoran (male)', id: 32 },
   { name: 'Nidoran (female)', id: 29 },
   { name: 'Lycanroc Midday Form', id: 745 },
@@ -184,27 +376,6 @@ export const POKEMON_EXCEPTIONS = [
   { name: 'Dudunsparce Three-Segment Form', id: 10255 },
 ];
 
-export const TYPES = [
-  ['normal', '#88887B'],
-  ['fire', '#FF4422'],
-  ['water', '#3399FE'],
-  ['electric', '#FFCC33'],
-  ['grass', '#76CC55'],
-  ['ice', '#65CCFF'],
-  ['fighting', '#BA5544'],
-  ['poison', '#AB579A'],
-  ['ground', '#DEBB54'],
-  ['flying', '#8799FF'],
-  ['psychic', '#FF5599'],
-  ['bug', '#A9BB22'],
-  ['rock', '#BBAA66'],
-  ['ghost', '#6666BA'],
-  ['dragon', '#7666EE'],
-  ['dark', '#775444'],
-  ['steel', '#B7B7C5'],
-  ['fairy', '#F1A8F0'],
-];
-
 export const EVOLUTION_DETAILS = {
   item: {
     'water-stone': 'Water Stone',
@@ -238,56 +409,48 @@ export const EVOLUTION_DETAILS = {
     'cracked-pot': 'Cracked Pot',
   },
   stats: {
-    1: 'ATK > DEF',
+    '1': 'ATK > DEF',
     '-1': 'ATK < DEF',
-    0: 'ATK = DEF',
+    '0': 'ATK = DEF',
   },
   min_happiness: 'Friendship',
   min_beauty: 'Beauty',
 };
 
-export const LETTERS_CHART = [
-  'A',
-  'B',
-  'C',
-  'D',
-  'E',
-  'F',
-  'G',
-  'H',
-  'I',
-  'J',
-  'K',
-  'L',
-  'M',
-  'N',
-  'O',
-  'P',
-  'Q',
-  'R',
-  'S',
-];
-
+/**
+ * Weakness chart for Pokémon types.
+ * The first level index represents the attacking type effectiveness list.
+ * The first item in each subarray is the index of the type itself.
+ *
+ * The following items represent the effectiveness against other types in the order:
+ * Normal, Fire, Water, Electric, Grass, Ice, Fighting, Poison, Ground, Flying, Psychic, Bug, Rock, Ghost, Dragon, Dark, Steel, Fairy.
+ *
+ * Values:
+ * 0: No Effect
+ * 0.5: Not Very Effective (0.5x)
+ * 1: Neutral (1x)
+ * 2: Super Effective (2x)
+ */
 export const WEAKNESS_CHART = [
   [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
-  [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 0, 1, 1, 3, 1],
-  [1, 1, 3, 3, 1, 2, 2, 1, 1, 1, 1, 1, 2, 3, 1, 3, 1, 2, 1],
-  [2, 1, 2, 3, 1, 3, 1, 1, 1, 2, 1, 1, 1, 2, 1, 3, 1, 1, 1],
-  [3, 1, 1, 2, 3, 3, 1, 1, 1, 0, 2, 1, 1, 1, 1, 3, 1, 1, 1],
-  [4, 1, 3, 2, 1, 3, 1, 1, 3, 2, 3, 1, 3, 2, 1, 3, 1, 3, 1],
-  [5, 1, 3, 3, 1, 2, 3, 1, 1, 2, 2, 1, 1, 1, 1, 2, 1, 3, 1],
-  [6, 2, 1, 1, 1, 1, 2, 1, 3, 1, 3, 3, 3, 2, 0, 1, 2, 2, 3],
-  [7, 1, 1, 1, 1, 2, 1, 1, 3, 3, 1, 1, 1, 3, 3, 1, 1, 0, 2],
-  [8, 1, 2, 1, 2, 3, 1, 1, 2, 1, 0, 1, 3, 2, 1, 1, 1, 2, 1],
-  [9, 1, 1, 1, 3, 2, 1, 2, 1, 1, 1, 1, 2, 3, 1, 1, 1, 3, 1],
-  [10, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 3, 1, 1, 1, 1, 0, 3, 1],
-  [11, 1, 3, 1, 1, 2, 1, 3, 3, 1, 3, 2, 1, 1, 3, 1, 2, 3, 3],
-  [12, 1, 2, 1, 1, 1, 2, 3, 1, 3, 2, 1, 2, 1, 1, 1, 1, 3, 1],
-  [13, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 3, 1, 1],
-  [14, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 3, 0],
-  [15, 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 2, 1, 1, 2, 1, 3, 1, 3],
-  [16, 1, 3, 3, 3, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 3, 2],
-  [17, 1, 3, 1, 1, 1, 1, 2, 3, 1, 1, 1, 1, 1, 1, 2, 2, 3, 1],
+  [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.5, 0, 1, 1, 0.5, 1],
+  [1, 1, 0.5, 0.5, 1, 2, 2, 1, 1, 1, 1, 1, 2, 0.5, 1, 0.5, 1, 2, 1],
+  [2, 1, 2, 0.5, 1, 0.5, 1, 1, 1, 2, 1, 1, 1, 2, 1, 0.5, 1, 1, 1],
+  [3, 1, 1, 2, 0.5, 0.5, 1, 1, 1, 0, 2, 1, 1, 1, 1, 0.5, 1, 1, 1],
+  [4, 1, 0.5, 2, 1, 0.5, 1, 1, 0.5, 2, 0.5, 1, 0.5, 2, 1, 0.5, 1, 0.5, 1],
+  [5, 1, 0.5, 0.5, 1, 2, 0.5, 1, 1, 2, 2, 1, 1, 1, 1, 2, 1, 0.5, 1],
+  [6, 2, 1, 1, 1, 1, 2, 1, 0.5, 1, 0.5, 0.5, 0.5, 2, 0, 1, 2, 2, 0.5],
+  [7, 1, 1, 1, 1, 2, 1, 1, 0.5, 0.5, 1, 1, 1, 0.5, 0.5, 1, 1, 0, 2],
+  [8, 1, 2, 1, 2, 0.5, 1, 1, 2, 1, 0, 1, 0.5, 2, 1, 1, 1, 2, 1],
+  [9, 1, 1, 1, 0.5, 2, 1, 2, 1, 1, 1, 1, 2, 0.5, 1, 1, 1, 0.5, 1],
+  [10, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 0.5, 1, 1, 1, 1, 0, 0.5, 1],
+  [11, 1, 0.5, 1, 1, 2, 1, 0.5, 0.5, 1, 0.5, 2, 1, 1, 0.5, 1, 2, 0.5, 0.5],
+  [12, 1, 2, 1, 1, 1, 2, 0.5, 1, 0.5, 2, 1, 2, 1, 1, 1, 1, 0.5, 1],
+  [13, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 0.5, 1, 1],
+  [14, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 0.5, 0],
+  [15, 1, 1, 1, 1, 1, 1, 0.5, 1, 1, 1, 2, 1, 1, 2, 1, 0.5, 1, 0.5],
+  [16, 1, 0.5, 0.5, 0.5, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 0.5, 2],
+  [17, 1, 0.5, 1, 1, 1, 1, 2, 0.5, 1, 1, 1, 1, 1, 1, 2, 2, 0.5, 1],
 ];
 
 export const POKEMON_LIST = [
@@ -585,7 +748,6 @@ export const POKEMON_LIST = [
   'Eelektrik',
   'Eelektross',
   'Eevee',
-  'Partner Eevee',
   'Eiscue Ice Face',
   'Eiscue Noice Face',
   'Ekans',

@@ -1,22 +1,21 @@
 import React from 'react';
 import { Metadata } from 'next';
-import { ContextProvider } from '../context';
-import { Container } from 'react-bootstrap';
-import '../styles/globals.scss';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { ContextProvider } from '@/context';
+import { Geist } from 'next/font/google';
+import Footer from '@/components/Footer/Footer';
+import './globals.css';
+import { Toaster } from '@/components/ui/sonner';
+
+const geist_sans = Geist({
+  variable: '--font-geist-sans',
+  subsets: ['latin'],
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'Pokémon stats',
   description: 'An useful tool for your pokémon adventures.',
 };
-
-// TODO: Configure fonts:
-// <link rel="preconnect" href="https://fonts.googleapis.com" />
-// <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
-// <link
-//   href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"
-//   rel="stylesheet"
-// />
 
 export default function RootLayout({
   children,
@@ -25,11 +24,21 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <ContextProvider>
-        <body>
-          <Container>{children}</Container>
-        </body>
-      </ContextProvider>
+      <body
+        className={`${geist_sans.variable} bg-gradient-to-br from-blue-50 via-white to-purple-50`}
+      >
+        <ContextProvider>
+          <div
+            className={
+              'min-h-screen container mx-auto md:px-8 px-4 pt-16 pb-8 max-w-7xl'
+            }
+          >
+            {children}
+            <Footer />
+            <Toaster richColors />
+          </div>
+        </ContextProvider>
+      </body>
     </html>
   );
 }

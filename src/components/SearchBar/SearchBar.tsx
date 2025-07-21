@@ -1,165 +1,177 @@
 'use client';
 
-import React, { useContext, useState } from 'react';
-import {
-  FormControl,
-  InputGroup,
-  ListGroup,
-  ListGroupItem,
-} from 'react-bootstrap';
-import { POKEMON_EXCEPTIONS, POKEMON_LIST } from '../../common/constants';
-import { pokemon } from '../../context';
-import s from './SearchBar.module.scss';
-import { matchStringInArray } from '../../tools/utils';
-
-type SuggestionType = {
-  name: string;
-  id: number | string;
-};
+import React, { useState } from 'react';
+import { SearchIcon } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { POKEMON_LIST } from '@/common/constants';
+import NoSuggestion from '@/components/SearchBar/NoSuggestion';
+import usePokemonData from '@/hooks/usePokemonData';
 
 export default function SearchBar() {
-  const [field, setField] = useState<string>('');
-  const [showDropdown, setShowDropdown] = useState<boolean>(false);
-  const [dropdownList, setDropdownList] = useState<SuggestionType[]>([]);
-  const [activeItem, setActiveItem] = useState<SuggestionType>({
-    name: '',
-    id: '',
-  });
-  const { dispatch } = useContext(pokemon);
+  const { setSearchQuery, updateSelectedPokemon } = usePokemonData();
 
-  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
-    const { value } = event.target;
+  const [searchTerm, setSearchTerm] = useState<string>('Totodile');
+  const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
+  const [selectedSuggestionIndex, setSelectedSuggestionIndex] =
+    useState<number>(-1);
 
-    setField(value);
+  const filteredSuggestions = POKEMON_LIST.filter((pokemon) =>
+    pokemon.toLowerCase().includes(searchTerm.toLowerCase())
+  ).slice(0, 5);
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+    setShowSuggestions(value.length > 0);
+    setSelectedSuggestionIndex(-1);
   };
 
-  const handleDropdownItemClick: React.MouseEventHandler<HTMLButtonElement> = (
-    event
-  ) => {
-    const { id } = (event.target as HTMLButtonElement).dataset;
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (!showSuggestions || filteredSuggestions.length === 0) return;
 
-    dispatch({
-      type: 'CHANGE_INPUT',
-      name: id ?? 0,
-    });
-    setField('');
-    setShowDropdown(false);
-    setDropdownList([]);
-    setActiveItem({ name: '', id: '' });
-  };
-
-  const handleKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    const { key, target } = event;
-    const { value } = target as HTMLInputElement;
-    const sanitizedValue = value.toLowerCase().trim();
-    const searchResults = matchStringInArray(POKEMON_LIST, sanitizedValue, 4);
-    const activeItemIndex = searchResults.findIndex(
-      (item) => item === activeItem?.name
-    );
-    const pokemonExceptionIndex = (item: string) =>
-      POKEMON_EXCEPTIONS.findIndex(({ name }) => name === item);
-
-    switch (key) {
-      case 'Escape':
-        setActiveItem({ name: '', id: '' });
-        setDropdownList([]);
-        setShowDropdown(false);
-        return;
-
-      case 'Enter':
-        dispatch({
-          type: 'CHANGE_INPUT',
-          name: activeItem?.id ?? field.trim(),
-        });
-
-        setField('');
-        setActiveItem({ name: '', id: '' });
-        setDropdownList([]);
-        setShowDropdown(false);
-        return;
-
-      case 'ArrowUp':
-        if (activeItemIndex > 0)
-          setActiveItem({
-            name: searchResults[activeItemIndex - 1],
-            id:
-              POKEMON_EXCEPTIONS[
-                pokemonExceptionIndex(searchResults[activeItemIndex - 1])
-              ]?.id ?? searchResults[activeItemIndex - 1],
-          });
-        return;
-
+    switch (e.key) {
       case 'ArrowDown':
-        if (activeItemIndex <= searchResults.length)
-          setActiveItem({
-            name: searchResults[activeItemIndex + 1] ?? activeItem.name,
-            id:
-              POKEMON_EXCEPTIONS[
-                pokemonExceptionIndex(searchResults[activeItemIndex + 1])
-              ]?.id ??
-              searchResults[activeItemIndex + 1] ??
-              activeItem.id,
-          });
-        return;
-    }
-
-    if (sanitizedValue !== '') {
-      const resultsObjectList: SuggestionType[] = searchResults.map(
-        (result) => {
-          const getPokemonException = POKEMON_EXCEPTIONS.find(
-            ({ name }) => name === result
-          );
-
-          return {
-            name: result,
-            id: getPokemonException ? getPokemonException.id : result,
-          };
+        e.preventDefault();
+        setSelectedSuggestionIndex((prev) =>
+          prev < filteredSuggestions.length - 1 ? prev + 1 : 0
+        );
+        break;
+      case 'ArrowUp':
+        e.preventDefault();
+        setSelectedSuggestionIndex((prev) =>
+          prev > 0 ? prev - 1 : filteredSuggestions.length - 1
+        );
+        break;
+      case 'Enter':
+        e.preventDefault();
+        if (selectedSuggestionIndex >= 0) {
+          selectSuggestion(filteredSuggestions[selectedSuggestionIndex]);
         }
-      );
-
-      setDropdownList(resultsObjectList);
-      setShowDropdown(true);
-      setActiveItem(resultsObjectList[0]);
-
-      return;
+        break;
+      case 'Escape':
+        setShowSuggestions(false);
+        setSelectedSuggestionIndex(-1);
+        break;
     }
+  };
 
-    setActiveItem({ name: '', id: '' });
-    setDropdownList([]);
-    setShowDropdown(false);
+  const selectSuggestion = (suggestion: string) => {
+    setSearchTerm(suggestion);
+    setShowSuggestions(false);
+    setSelectedSuggestionIndex(-1);
+
+    setSearchQuery(suggestion);
+    updateSelectedPokemon(suggestion);
+  };
+
+  const handleInputBlur = () => {
+    setTimeout(() => {
+      setShowSuggestions(false);
+      setSelectedSuggestionIndex(-1);
+    }, 150);
   };
 
   return (
-    <>
-      <div className={s.searchContainer}>
-        <InputGroup>
-          <InputGroup.Text id="searchPokemon">Search</InputGroup.Text>
-          <FormControl
-            autoComplete="off"
-            placeholder="Type pokémon name"
-            aria-label="pokémon"
-            aria-describedby="searchPokémon"
-            value={field}
-            onChange={handleChange}
-            onKeyUp={handleKeyUp}
+    <Card className="mb-8 shadow-lg border-0 bg-white/80 backdrop-blur-sm relative z-[999]">
+      <CardContent className="p-6">
+        <div className="relative">
+          <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 z-10" />
+          <Input
+            id="search-pokemon"
+            name="search-pokemon"
+            autoComplete={'off'}
+            placeholder="Search Pokémon..."
+            value={searchTerm}
+            onChange={handleSearchChange}
+            onKeyDown={handleKeyDown}
+            onBlur={handleInputBlur}
+            onFocus={() => searchTerm.length > 0 && setShowSuggestions(true)}
+            className="pl-10 h-12 text-lg border-2 border-gray-200 focus:border-blue-500 rounded-xl"
+            aria-expanded={showSuggestions}
+            aria-haspopup="listbox"
+            aria-autocomplete="list"
+            role="combobox"
           />
-        </InputGroup>
-        {showDropdown && (
-          <ListGroup className={s.dropdown}>
-            {dropdownList.map(({ name, id }) => (
-              <ListGroupItem
-                key={`search-${name}-${id}`}
-                data-id={id}
-                action
-                onClick={handleDropdownItemClick}
-                active={activeItem.name === name}
-              >
-                {name}
-              </ListGroupItem>
-            ))}
-          </ListGroup>
-        )}
-      </div>
-    </>
+          {showSuggestions && filteredSuggestions.length > 0 && (
+            <div
+              className="absolute top-full left-0 right-0 mt-2 bg-white border-2 border-gray-200 rounded-xl shadow-xl max-h-60 overflow-y-auto"
+              role="listbox"
+              aria-label="Pokemon suggestions"
+            >
+              {filteredSuggestions.map((suggestion, index) => (
+                <button
+                  key={suggestion}
+                  className={`w-full px-4 py-3 text-left hover:bg-blue-50 focus:bg-blue-50 focus:outline-none transition-colors duration-150 flex items-center gap-3 ${
+                    index === selectedSuggestionIndex
+                      ? 'bg-blue-100 text-blue-900'
+                      : 'text-gray-700 hover:text-blue-700'
+                  } ${index === 0 ? 'rounded-t-xl' : ''} ${
+                    index === filteredSuggestions.length - 1
+                      ? 'rounded-b-xl'
+                      : 'border-b border-gray-100'
+                  }`}
+                  onClick={() => selectSuggestion(suggestion)}
+                  onMouseEnter={() => setSelectedSuggestionIndex(index)}
+                  role="option"
+                  aria-selected={index === selectedSuggestionIndex}
+                  tabIndex={-1}
+                >
+                  <div className="w-8 h-8 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-sm">🔍</span>
+                  </div>
+                  <div className="flex-1">
+                    <div className="font-medium capitalize">
+                      {suggestion.split('').map((char, charIndex) => {
+                        const isMatch = searchTerm
+                          .toLowerCase()
+                          .includes(char.toLowerCase());
+                        return (
+                          <span
+                            key={charIndex}
+                            className={
+                              isMatch ? 'bg-yellow-200 text-yellow-900' : ''
+                            }
+                          >
+                            {char}
+                          </span>
+                        );
+                      })}
+                    </div>
+                    <div className="text-xs text-gray-500">Pokémon</div>
+                  </div>
+                  {index === selectedSuggestionIndex && (
+                    <div className="text-blue-500">
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </div>
+                  )}
+                </button>
+              ))}
+              <div className="px-4 py-2 bg-gray-50 border-t border-gray-100 rounded-b-xl">
+                <div className="flex items-center justify-between text-xs text-gray-500">
+                  <span>Use ↑↓ to navigate</span>
+                  <span>Press Enter to select</span>
+                </div>
+              </div>
+            </div>
+          )}
+          {showSuggestions &&
+            searchTerm.length > 0 &&
+            filteredSuggestions.length === 0 && <NoSuggestion />}
+        </div>
+      </CardContent>
+    </Card>
   );
 }
