@@ -1,7 +1,6 @@
 import React from 'react';
 import { Metadata } from 'next';
 import { ContextProvider } from '@/context';
-import Hero from '@/components/Hero/Hero';
 import { Geist } from 'next/font/google';
 import Footer from '@/components/Footer/Footer';
 import './globals.css';
@@ -31,10 +30,9 @@ export default function RootLayout({
         <ContextProvider>
           <div
             className={
-              'min-h-screen container mx-auto px-4 pt-16 pb-8 max-w-7xl'
+              'min-h-screen container mx-auto md:px-8 px-4 pt-16 pb-8 max-w-7xl'
             }
           >
-            <Hero />
             {children}
             <Footer />
             <Toaster richColors />
