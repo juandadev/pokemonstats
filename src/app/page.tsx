@@ -34,14 +34,6 @@ export default function WaitlistPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-blue-200/20 rounded-full blur-xl"></div>
-        <div className="absolute top-40 right-20 w-48 h-48 bg-purple-200/20 rounded-full blur-xl"></div>
-        <div className="absolute bottom-32 left-1/4 w-40 h-40 bg-yellow-200/20 rounded-full blur-xl"></div>
-        <div className="absolute bottom-20 right-1/3 w-36 h-36 bg-green-200/20 rounded-full blur-xl"></div>
-      </div>
-
       <div className="relative z-10 container mx-auto px-4 pt-8 max-w-4xl">
         {/* Header */}
         <div className="text-center mb-12">
@@ -72,9 +64,6 @@ export default function WaitlistPage() {
           {/* Left side - Illustration */}
           <div className="flex justify-center">
             <div className="relative">
-              {/* Subtle background circle */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-100/50 to-purple-100/50 rounded-full blur-3xl scale-150 opacity-30"></div>
-
               {/* Main illustration */}
               <div className="relative z-10 transform hover:scale-105 transition-transform duration-300">
                 <img
@@ -387,7 +376,7 @@ export default function WaitlistPage() {
                   rel="noopener noreferrer"
                 >
                   <TwitterIcon className="w-6 h-6 mr-3" />
-                  Follow @juandadotdev on X (formerly Twitter)
+                  Follow @juandadotdev
                 </Link>
               </Button>
 
