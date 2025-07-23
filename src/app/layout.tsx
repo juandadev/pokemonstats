@@ -5,6 +5,7 @@ import { Geist } from 'next/font/google';
 import Footer from '@/components/Footer/Footer';
 import './globals.css';
 import { Toaster } from '@/components/ui/sonner';
+import { BotIdClient } from 'botid/client';
 
 const geist_sans = Geist({
   variable: '--font-geist-sans',
@@ -17,6 +18,13 @@ export const metadata: Metadata = {
   description: 'An useful tool for your pokémon adventures.',
 };
 
+const protectedRoutes = [
+  {
+    path: '/api/waitlist',
+    method: 'POST',
+  },
+];
+
 export default function RootLayout({
   children,
 }: {
@@ -24,6 +32,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <BotIdClient protect={protectedRoutes} />
+      </head>
       <body
         className={`${geist_sans.variable} bg-gradient-to-br from-blue-50 via-white to-purple-50`}
       >
