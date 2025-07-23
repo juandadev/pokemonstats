@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { CheckCircle, Mail, Shield, Users } from 'lucide-react';
 import { Input } from '@/components/ui/input';
@@ -8,19 +8,43 @@ import { Button } from '@/components/ui/button';
 import TwitterIcon from '@/icons/TwitterIcon';
 import Link from 'next/link';
 import { submitToWaitlist } from '@/services/waitlist';
+import { toast } from 'sonner';
 
-interface WaitlistFormProps {
-  csrfToken: string;
-  setCsrfToken: React.Dispatch<React.SetStateAction<string | null>>;
-}
-
-export default function WaitlistForm({
-  csrfToken,
-  setCsrfToken,
-}: WaitlistFormProps) {
+export default function WaitlistForm() {
   const [email, setEmail] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [csrfToken, setCsrfToken] = useState<string | null>(null);
+
+  useEffect(() => {
+    const isMounted = true;
+
+    fetch('/api/waitlist/token', {
+      credentials: 'include',
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (isMounted && data.token) {
+          setCsrfToken(data.token);
+        }
+      })
+      .catch((err) => {
+        console.error('Failed to fetch CSRF token:', err);
+
+        if (isMounted) {
+          toast.error('Security initialization failed', {
+            description: 'Please refresh the page to continue.',
+          });
+        }
+      });
+  }, []);
+
+  if (!csrfToken) {
+    toast.error('Security error', {
+      description: 'Please refresh the page and try again.',
+    });
+    return;
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
