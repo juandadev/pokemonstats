@@ -49,3 +49,4 @@
     - [ ] Check if we can fetch more details when there are more than one item in the evolution details array, which
     - means that it has variations depending on the game ou are playing, so I would like to show those details as well.
 - [ ] Check the app against React scan https://github.com/aidenybai/react-scan#install and fix the performance issues
+- [ ] Implement waitlist form with rate limiter and bot detection
