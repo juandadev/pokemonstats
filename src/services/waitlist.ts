@@ -1,3 +1,5 @@
+// noinspection ExceptionCaughtLocallyJS
+
 import React from 'react';
 import { GenericResponse } from '@/types/services';
 import { Waitlist } from '@/types/waitlist';
@@ -25,9 +27,7 @@ export async function submitToWaitlist(
     const data: GenericResponse<Waitlist> = await response.json();
 
     if (!response.ok) {
-      return {
-        message: data.message,
-      };
+      throw new Error(data.message);
     }
 
     fetch('/api/waitlist/token', { credentials: 'include' })
@@ -40,10 +40,11 @@ export async function submitToWaitlist(
       });
 
     return data;
-  } catch {
-    return {
-      message:
-        'An error occurred while submitting your email. Please try again later.',
-    };
+  } catch (error) {
+    throw new Error(
+      error instanceof Error
+        ? error.message
+        : 'An error occurred while submitting your email. Please try again later.'
+    );
   }
 }

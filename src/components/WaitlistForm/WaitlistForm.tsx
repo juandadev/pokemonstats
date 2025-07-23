@@ -46,17 +46,30 @@ export default function WaitlistForm() {
     return;
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
 
     setIsLoading(true);
 
-    await submitToWaitlist(email, csrfToken, setCsrfToken);
-
-    setIsSubmitted(true);
-    setIsLoading(false);
-    setEmail('');
+    submitToWaitlist(email, csrfToken, setCsrfToken)
+      .then(() => {
+        setIsSubmitted(true);
+      })
+      .catch((error) => {
+        toast.error(
+          error instanceof Error
+            ? error.message
+            : 'Failed to join the waitlist',
+          {
+            description: 'Please try again later.',
+          }
+        );
+      })
+      .finally(() => {
+        setIsLoading(false);
+        setEmail('');
+      });
   };
 
   return (
