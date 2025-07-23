@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import TwitterIcon from '@/icons/TwitterIcon';
 import Link from 'next/link';
+import { submitToWaitlist } from '@/services/waitlist';
 
 export default function WaitlistForm() {
   const [email, setEmail] = useState('');
@@ -18,9 +19,8 @@ export default function WaitlistForm() {
     if (!email) return;
 
     setIsLoading(true);
-
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    
+    await submitToWaitlist(email);
 
     setIsSubmitted(true);
     setIsLoading(false);
