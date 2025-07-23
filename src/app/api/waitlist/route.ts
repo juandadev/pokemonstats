@@ -5,6 +5,15 @@ import { Waitlist } from '@/types/waitlist';
 import { checkBotId } from 'botid/server';
 import { validateCSRFToken } from '@/services/auth';
 
+export async function GET(): Promise<NextResponse<GenericResponse<number>>> {
+  const waitlistCount = await prisma.waitlist.count();
+
+  return NextResponse.json({
+    message: 'Waitlist count retrieved successfully',
+    data: waitlistCount || 0,
+  });
+}
+
 export async function POST(
   req: NextRequest
 ): Promise<NextResponse<GenericResponse<Waitlist>>> {

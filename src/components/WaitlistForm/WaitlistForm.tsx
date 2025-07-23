@@ -9,12 +9,14 @@ import TwitterIcon from '@/icons/TwitterIcon';
 import Link from 'next/link';
 import { submitToWaitlist } from '@/services/waitlist';
 import { toast } from 'sonner';
+import { formatDisplayCount } from '@/lib/utils';
 
 export default function WaitlistForm() {
   const [email, setEmail] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [csrfToken, setCsrfToken] = useState<string | null>(null);
+  const [waitlistCount, setWaitlistCount] = useState<number>(0);
 
   useEffect(() => {
     const isMounted = true;
@@ -36,6 +38,21 @@ export default function WaitlistForm() {
             description: 'Please refresh the page to continue.',
           });
         }
+      });
+  }, []);
+
+  useEffect(() => {
+    const isMounted = true;
+
+    fetch('/api/waitlist')
+      .then((res) => res.json())
+      .then((data) => {
+        if (isMounted && data.data) {
+          setWaitlistCount(data.data);
+        }
+      })
+      .catch((err) => {
+        console.error('Failed to fetch waitlist count:', err);
       });
   }, []);
 
@@ -127,7 +144,9 @@ export default function WaitlistForm() {
                 <div className="flex items-center justify-center gap-4 text-sm text-gray-500">
                   <div className="flex items-center gap-1">
                     <Users className="w-4 h-4" />
-                    <span>1,247 trainers waiting</span>
+                    <span>
+                      {formatDisplayCount(waitlistCount)} trainers waiting
+                    </span>
                   </div>
                   <div className="w-1 h-1 bg-gray-300 rounded-full"></div>
                   <div className="flex items-center gap-1">
