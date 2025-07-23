@@ -1,9 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import crypto from 'crypto';
+import { CSRF_TOKEN_NAME, TOKEN_EXPIRY } from '@/types/services';
 
-const CSRF_TOKEN_NAME = 'waitlist-csrf';
-const TOKEN_EXPIRY = 60 * 60 * 1000;
 const allowedHosts =
   process.env.NODE_ENV === 'development'
     ? ['localhost:3000', '127.0.0.1:3000']
