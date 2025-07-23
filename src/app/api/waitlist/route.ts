@@ -31,7 +31,7 @@ export async function POST(
     );
   }
 
-  const { email, userAgent, source } = await req.json();
+  const { email, source } = await req.json();
 
   if (!email || !email.includes('@')) {
     return NextResponse.json({ message: 'Invalid email' }, { status: 400 });
@@ -41,7 +41,6 @@ export async function POST(
     const entry = await prisma.waitlist.create({
       data: {
         email,
-        userAgent,
         source,
       },
     });

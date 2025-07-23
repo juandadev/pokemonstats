@@ -1,7 +1,6 @@
 export type Waitlist = {
   id: string;
   email: string;
-  userAgent: string | null;
   source: string | null;
   status: StatusType;
   createdAt: Date;
