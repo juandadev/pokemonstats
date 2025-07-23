@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import {
@@ -13,8 +15,41 @@ import {
 import TwitterIcon from '@/icons/TwitterIcon';
 import Link from 'next/link';
 import WaitlistForm from '@/components/WaitlistForm/WaitlistForm';
+import { toast } from 'sonner';
 
 export default function WaitlistPage() {
+  const [csrfToken, setCsrfToken] = useState<string | null>(null);
+
+  useEffect(() => {
+    const isMounted = true;
+
+    fetch('/api/waitlist/token', {
+      credentials: 'include',
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (isMounted && data.token) {
+          setCsrfToken(data.token);
+        }
+      })
+      .catch((err) => {
+        console.error('Failed to fetch CSRF token:', err);
+
+        if (isMounted) {
+          toast.error('Security initialization failed', {
+            description: 'Please refresh the page to continue.',
+          });
+        }
+      });
+  }, []);
+
+  if (!csrfToken) {
+    toast.error('Security error', {
+      description: 'Please refresh the page and try again.',
+    });
+    return;
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
       <div className="relative z-10 container mx-auto px-4 pt-8 max-w-4xl">
@@ -71,7 +106,7 @@ export default function WaitlistPage() {
             </div>
           </div>
 
-          <WaitlistForm />
+          <WaitlistForm csrfToken={csrfToken} setCsrfToken={setCsrfToken} />
         </div>
 
         {/* What's Coming Section */}

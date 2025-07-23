@@ -9,7 +9,15 @@ import TwitterIcon from '@/icons/TwitterIcon';
 import Link from 'next/link';
 import { submitToWaitlist } from '@/services/waitlist';
 
-export default function WaitlistForm() {
+interface WaitlistFormProps {
+  csrfToken: string;
+  setCsrfToken: React.Dispatch<React.SetStateAction<string | null>>;
+}
+
+export default function WaitlistForm({
+  csrfToken,
+  setCsrfToken,
+}: WaitlistFormProps) {
   const [email, setEmail] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -19,8 +27,8 @@ export default function WaitlistForm() {
     if (!email) return;
 
     setIsLoading(true);
-    
-    await submitToWaitlist(email);
+
+    await submitToWaitlist(email, csrfToken, setCsrfToken);
 
     setIsSubmitted(true);
     setIsLoading(false);
@@ -61,7 +69,7 @@ export default function WaitlistForm() {
 
                 <Button
                   type="submit"
-                  disabled={isLoading || !email}
+                  disabled={isLoading || !email || !csrfToken}
                   className="w-full h-12 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-xl transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                 >
                   {isLoading ? (

@@ -1,8 +1,11 @@
+import React from 'react';
 import { GenericResponse } from '@/types/services';
 import { Waitlist } from '@/types/waitlist';
 
 export async function submitToWaitlist(
-  email: string
+  email: string,
+  csrfToken: string,
+  setCsrfToken: React.Dispatch<React.SetStateAction<string | null>>
 ): Promise<GenericResponse<Waitlist>> {
   try {
     const response = await fetch('/api/waitlist', {
@@ -12,8 +15,10 @@ export async function submitToWaitlist(
         userAgent: navigator.userAgent,
         source: 'landing',
       }),
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
+        'x-csrf-token': csrfToken,
       },
     });
 
@@ -24,6 +29,15 @@ export async function submitToWaitlist(
         message: data.message,
       };
     }
+
+    fetch('/api/waitlist/token', { credentials: 'include' })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.token) setCsrfToken(data.token);
+      })
+      .catch((err) => {
+        console.error('Failed to refresh CSRF token:', err);
+      });
 
     return data;
   } catch {
