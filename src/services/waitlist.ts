@@ -14,7 +14,6 @@ export async function submitToWaitlist(
       method: 'POST',
       body: JSON.stringify({
         email,
-        userAgent: navigator.userAgent,
         source: 'landing',
       }),
       credentials: 'include',

@@ -18,8 +18,6 @@ datasource db {
 model Waitlist {
   id        String         @id @default(uuid())
   email     String         @unique
-  userAgent String?
-  ipAddress String?
   source    String?
   status    WaitlistStatus @default(PENDING)
   createdAt DateTime       @default(now())
