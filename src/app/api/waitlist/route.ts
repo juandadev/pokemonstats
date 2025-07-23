@@ -32,7 +32,6 @@ export async function POST(
   }
 
   const { email, userAgent, source } = await req.json();
-  const ip = req.headers.get('x-forwarded-for') || 'unknown';
 
   if (!email || !email.includes('@')) {
     return NextResponse.json({ message: 'Invalid email' }, { status: 400 });
@@ -43,7 +42,6 @@ export async function POST(
       data: {
         email,
         userAgent,
-        ipAddress: ip,
         source,
       },
     });
