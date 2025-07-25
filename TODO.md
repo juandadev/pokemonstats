@@ -57,6 +57,8 @@
 
 # Nice to have
 
+- [ ] If the user clicks on the sticky header, it should scroll to the search input
+    - [ ] Add a floating button as well to scroll to the search input, placed in the bottom right corner of the screen.
 - [ ] Add star count to the GitHub repo button on the Hero section
 - [ ] Bring back theme provider
     - [ ] Add light and dark mode

@@ -124,7 +124,7 @@ export const getTypeIcon = (type: PokemonTypes) => {
   return TypeIcon;
 };
 
-interface EffectivenessList {
+export interface EffectivenessList {
   superEffective: string[];
   notVeryEffective: string[];
   noEffect: string[];
