@@ -37,8 +37,7 @@
     - [ ] Track page views
     - [ ] Track search queries
     - [ ] Heat maps
-- [ ] Add sticky pokémon header for mobile devices
-    - [ ] Consider using intersection observer to change layout once it's sticky
+- [x] Add sticky pokémon header for mobile devices
 - [x] Change Pokémon fetch implementation to pass the whole data and not in two parts
 - [ ] Consider removing search query property from context. It's not too necessary
 - [ ] Configure again function to select a Pokémon from the evolution chain list
