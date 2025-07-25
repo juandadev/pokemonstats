@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { HeartIcon, StarIcon } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Hero() {
   return (
@@ -53,7 +54,10 @@ export default function Hero() {
       <div className="flex justify-center relative">
         {/* Main illustration */}
         <div className="relative transform hover:scale-105 transition-transform duration-300">
-          <img
+          <Image
+            width={320}
+            height={320}
+            sizes="(max-width: 768px) 320px, (min-width: 768px) 384px"
             src="/hero.webp"
             alt="Pokémon Trainer with Pikachu"
             className="w-80 md:w-96 h-auto object-contain drop-shadow-2xl"

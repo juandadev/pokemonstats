@@ -15,6 +15,7 @@ export default function Header() {
   useEffect(() => {
     const handleScroll = () => {
       const pokemonCard = document.getElementById('pokemon-card-header');
+      
       if (pokemonCard) {
         const rect = pokemonCard.getBoundingClientRect();
         setStickyHeaderVisible(rect.top <= 0);
@@ -22,18 +23,14 @@ export default function Header() {
     };
 
     window.addEventListener('scroll', handleScroll);
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   if (!stickyHeaderVisible) return null;
 
   return (
-    <div
-      className={clsx(
-        'fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm'
-        // TYPE_LABELS[pokemonData.types[0]?.type.name]?.gradientBackground
-      )}
-    >
+    <div className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
       <div className="container mx-auto px-4 py-3 max-w-6xl">
         <div className="flex items-center gap-4">
           <div
@@ -55,19 +52,14 @@ export default function Header() {
           <div className="flex-1">
             <div className="grid grid-cols-[1fr_78px] grid-rows-1">
               <div>
-                <h2
-                  className={clsx(
-                    'text-xl font-bold text-gray-900 capitalize whitespace-nowrap overflow-hidden text-ellipsis'
-                    // TYPE_LABELS[pokemonData.types[0]?.type.name]?.text
-                  )}
-                >
+                <h2 className="text-xl font-bold text-gray-900 capitalize whitespace-nowrap overflow-hidden text-ellipsis">
                   {pokemonData.name}
                 </h2>
                 <span className="text-sm font-medium text-gray-600">
                   #{pokemonData.id.toString().padStart(3, '0')}
                 </span>
               </div>
-              <div className={'flex flex-col gap-1 items-end justify-center'}>
+              <div className="flex flex-col gap-1 items-end justify-center">
                 {pokemonData.types.map(({ type }) => (
                   <TypeBadge key={`type-${type.name}`} type={type.name} />
                 ))}
