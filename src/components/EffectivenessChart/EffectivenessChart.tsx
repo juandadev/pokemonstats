@@ -38,11 +38,13 @@ export default function EffectivenessChart() {
     () => getEffectivenessList(selectedTypes[0]?.index) || null,
     [selectedTypes]
   );
+  const selectedTypesNames = useMemo(
+    () => selectedTypes.map((t) => t.type),
+    [selectedTypes]
+  );
 
   const handleTypeClick = (type: SelectedType) => {
     setUserHasInteracted(true);
-
-    const selectedTypesNames = selectedTypes.map((t) => t.type);
 
     if (selectedTypesNames.includes(type.type)) {
       // Remove type if already selected
@@ -102,10 +104,12 @@ export default function EffectivenessChart() {
       <CardContent>
         {/* Types Grid */}
         <div ref={typesContainerRef} className={'overflow-x-auto mb-8 p-1'}>
-          <div className="grid grid-rows-2 grid-cols-9 lg:grid-rows-2 lg:grid-cols-6 gap-3 w-max pb-5">
+          <div className="grid grid-rows-2 grid-cols-9 lg:grid-rows-2 lg:grid-cols-6 gap-3 w-max pb-5 pt-2">
             {TYPES_LIST.map((type) => {
               const IconComponent = getTypeIcon(type.name);
-              const isSelected = selectedTypes[0]?.type === type.name;
+              const isSelected = selectedTypes.some(
+                (t) => t.type === type.name
+              );
 
               return (
                 <button
@@ -126,6 +130,17 @@ export default function EffectivenessChart() {
                     handleTypeClick({ index: type.index, type: type.name })
                   }
                 >
+                  {/* Selection number mark */}
+                  {isSelected && (
+                    <div
+                      className={clsx(
+                        'absolute -top-2 -right-2 w-5 h-5 text-white text-xs font-bold rounded-full flex items-center justify-center shadow-md',
+                        TYPE_LABELS[type.name]?.background
+                      )}
+                    >
+                      {selectedTypesNames.indexOf(type.name) + 1}
+                    </div>
+                  )}
                   {/* Type Icon Circle */}
                   <div
                     className={clsx(
