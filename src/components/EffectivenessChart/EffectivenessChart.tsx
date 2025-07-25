@@ -64,11 +64,16 @@ export default function EffectivenessChart() {
     }
 
     if (pokemonData.types && !userHasInteracted) {
-      const typeInfo = TYPES_LIST.find(
-        (type) => type.name === pokemonData.types[0].type.name
-      )!;
+      const getPokemonTypes: SelectedType[] = pokemonData.types.map((type) => {
+        const typeData = TYPES_LIST.find((t) => t.name === type.type.name);
 
-      const button = typeButtonsRef.current[typeInfo.name];
+        return {
+          type: typeData?.name || null,
+          index: typeData?.index || null,
+        };
+      });
+
+      const button = typeButtonsRef.current[getPokemonTypes[0].type!];
       const container = typesContainerRef.current;
 
       if (button && container) {
@@ -85,7 +90,7 @@ export default function EffectivenessChart() {
         });
       }
 
-      setSelectedTypes([{ type: typeInfo.name, index: typeInfo.index }]);
+      setSelectedTypes(getPokemonTypes);
       setLastPokemonName(pokemonData.name);
     }
   }, [lastPokemonName, pokemonData.name, pokemonData.types, userHasInteracted]);
