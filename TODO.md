@@ -18,6 +18,11 @@
 - [x] Replace CTA for GitHub repo button with something like "Star this repo"
 - [x] Implement a waitlist form with rate limiter and bot detection
 
+# Bugs
+
+- [ ] When navigating with the keyboard the suggestions items, it should scroll to the selected item for the items that
+  overflows the container.
+
 # Priority
 
 - [ ] Supports selecting two types and merge weakness and strengths (UI reference in v0).
