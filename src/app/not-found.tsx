@@ -3,6 +3,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Home, Search, Github, Sparkles, AlertTriangle } from 'lucide-react';
 import Link from 'next/link';
 import TwitterIcon from '@/icons/TwitterIcon';
+import Image from 'next/image';
 
 export default function NotFound() {
   return (
@@ -43,7 +44,10 @@ export default function NotFound() {
             <div className="relative">
               {/* Main illustration */}
               <div className="relative z-10 transform hover:scale-105 transition-transform duration-300">
-                <img
+                <Image
+                  width={240}
+                  height={370}
+                  sizes="(max-width: 768px) 240px, (min-width: 768px) 288px"
                   src="/not-found.webp"
                   alt="Lost Pokémon Trainer"
                   className="w-60 md:w-72 h-auto object-contain drop-shadow-2xl"

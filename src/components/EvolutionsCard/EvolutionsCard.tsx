@@ -14,6 +14,7 @@ import { InfoIcon } from 'lucide-react';
 import React from 'react';
 import { Chain, PokemonEvolutionType } from '@/types/Pokemon.type';
 import usePokemonData from '@/hooks/usePokemonData';
+import Image from 'next/image';
 
 export default function EvolutionsCard() {
   const { evolutionsData, pokemonData } = usePokemonData();
@@ -64,7 +65,9 @@ export default function EvolutionsCard() {
                       ?.gradientBackgroundLight
                   )}
                 >
-                  <img
+                  <Image
+                    width={40}
+                    height={40}
                     src={`https://projectpokemon.org/images/normal-sprite/${evolution.name}.gif`}
                     alt={evolution.name}
                     className="w-10 h-10 object-contain"
