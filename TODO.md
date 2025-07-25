@@ -57,6 +57,7 @@
 
 # Nice to have
 
+- [ ] Add star count to the GitHub repo button on the Hero section
 - [ ] Bring back theme provider
     - [ ] Add light and dark mode
 - [ ] Include static images for all pokémon for searchbar and evolution chains

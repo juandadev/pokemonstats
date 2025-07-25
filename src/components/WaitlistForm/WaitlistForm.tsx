@@ -96,7 +96,7 @@ export default function WaitlistForm() {
           {!isSubmitted ? (
             <>
               <div className="text-center mb-6">
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Mail className="w-8 h-8 text-white" />
                 </div>
                 <h2 className="text-2xl font-bold text-gray-900 mb-2">
@@ -116,7 +116,7 @@ export default function WaitlistForm() {
                     placeholder="Enter your email address"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="h-12 text-lg border-2 border-gray-200 focus:border-blue-500 rounded-xl"
+                    className="h-12 text-sm border-2 border-gray-200 focus:border-blue-500 rounded-xl"
                     required
                   />
                 </div>
@@ -124,7 +124,7 @@ export default function WaitlistForm() {
                 <Button
                   type="submit"
                   disabled={isLoading || !email || !csrfToken}
-                  className="w-full h-12 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-xl transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                  className="w-full h-12 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white font-semibold rounded-xl transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                 >
                   {isLoading ? (
                     <div className="flex items-center gap-2">
@@ -141,7 +141,7 @@ export default function WaitlistForm() {
               </form>
 
               <div className="mt-6 pt-6 border-t border-gray-200">
-                <div className="flex items-center justify-center gap-4 text-sm text-gray-500">
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-4 text-sm text-gray-500">
                   <div className="flex items-center gap-1">
                     <Users className="w-4 h-4" />
                     <span>
