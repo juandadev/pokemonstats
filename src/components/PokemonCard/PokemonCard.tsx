@@ -86,6 +86,7 @@ export default function PokemonCard() {
   return (
     <Card className="shadow-xl border-0 bg-white/90 backdrop-blur-sm overflow-hidden pt-0">
       <div
+        id="pokemon-card-header"
         className={clsx(
           'water-gradient p-6 text-white',
           TYPE_LABELS[pokemonData.types[0]?.type.name]?.gradientBackground

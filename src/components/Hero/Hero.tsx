@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { HeartIcon, StarIcon } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Hero() {
   return (
@@ -17,7 +18,7 @@ export default function Hero() {
         </div>
         <h1 className="text-5xl md:text-7xl font-bold text-gray-900 leading-tight">
           Pokémon{' '}
-          <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-yellow-500 to-yellow-700 bg-clip-text text-transparent">
             Stats
           </span>
         </h1>
@@ -53,7 +54,10 @@ export default function Hero() {
       <div className="flex justify-center relative">
         {/* Main illustration */}
         <div className="relative transform hover:scale-105 transition-transform duration-300">
-          <img
+          <Image
+            width={320}
+            height={320}
+            sizes="(max-width: 768px) 320px, (min-width: 768px) 384px"
             src="/hero.webp"
             alt="Pokémon Trainer with Pikachu"
             className="w-80 md:w-96 h-auto object-contain drop-shadow-2xl"
