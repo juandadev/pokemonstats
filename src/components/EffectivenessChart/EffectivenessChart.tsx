@@ -9,7 +9,7 @@ import {
   getTypeIcon,
 } from '@/lib/utils';
 import { PokemonTypes } from '@/types/Pokemon.type';
-import { ShieldIcon } from 'lucide-react';
+import { ShieldIcon, XIcon } from 'lucide-react';
 import clsx from 'clsx';
 import TypeBadge from '@/components/TypeBadge/TypeBadge';
 import usePokemonData from '@/hooks/usePokemonData';
@@ -56,6 +56,10 @@ export default function EffectivenessChart() {
       // Replace first type if 2 already selected
       setSelectedTypes([selectedTypes[1], type]);
     }
+  };
+
+  const clearSelectedTypes = () => {
+    setSelectedTypes([]);
   };
 
   useEffect(() => {
@@ -107,8 +111,37 @@ export default function EffectivenessChart() {
         </p>
       </CardHeader>
       <CardContent>
+        {/* Selected Types Display */}
+        {selectedTypes.length > 0 && (
+          <div className="mb-6 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl border border-blue-200">
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="text-sm font-semibold text-gray-900">
+                Selected Types{' '}
+                {selectedTypes.length === 2 && (
+                  <span className="text-yellow-600">(Dual-Type)</span>
+                )}
+              </h3>
+              <button
+                onClick={clearSelectedTypes}
+                className="text-xs text-gray-500 hover:text-red-600 transition-colors duration-200 flex items-center gap-1"
+              >
+                <XIcon className="w-3 h-3" />
+                Clear
+              </button>
+            </div>
+            <div className="flex items-center gap-3">
+              {selectedTypes.map((type) => (
+                <TypeBadge
+                  key={`selected-type-${type.type}`}
+                  type={type.type!}
+                />
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Types Grid */}
-        <div ref={typesContainerRef} className={'overflow-x-auto mb-8 p-1'}>
+        <div ref={typesContainerRef} className={'overflow-x-auto mb-3 p-1'}>
           <div className="grid grid-rows-2 grid-cols-9 lg:grid-rows-2 lg:grid-cols-6 gap-3 w-max pb-5 pt-2">
             {TYPES_LIST.map((type) => {
               const IconComponent = getTypeIcon(type.name);
@@ -169,6 +202,29 @@ export default function EffectivenessChart() {
             })}
           </div>
         </div>
+
+        {/* Instructions */}
+        <div className="flex justify-center mt-2 mb-3">
+          <div className="text-xs text-gray-500 text-center">
+            <div className="flex items-center justify-center gap-1 mb-1">
+              <svg
+                className="w-3 h-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
+              Scroll horizontally • Tap to select up to 2 types
+            </div>
+          </div>
+        </div>
+
         {/* Effectiveness Display */}
         {selectedTypes[0]?.type && (
           <div className="space-y-6">
