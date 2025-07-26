@@ -25,7 +25,7 @@
 
 # Priority
 
-- [ ] Supports selecting two types and merge weakness and strengths (UI reference in v0).
+- [x] Supports selecting two types and merge weakness and strengths (UI reference in v0).
 - [ ] Divide the effectiveness chart into two sections (UI reference in v0).
     - [ ] One for attacks
     - [ ] One for defenses (https://pokemondb.net/type/fire)
