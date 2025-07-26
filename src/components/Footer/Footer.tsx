@@ -12,7 +12,7 @@ export default function Footer() {
   return (
     <footer
       className={
-        'flex flex-col gap-8 mt-10 px-8 py-12 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-200'
+        'flex flex-col gap-8 mt-10 md:px-8 md:py-12 px-4 py-6 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-200'
       }
     >
       {/* Disclaimer Section */}

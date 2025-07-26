@@ -18,7 +18,7 @@ import ProjectProgress from '@/components/Landing/ProjectProgress/ProjectProgres
 export default function WaitlistPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
-      <div className="relative z-10 container mx-auto px-4 pt-8 max-w-4xl">
+      <div className="relative z-10 container mx-auto pt-8 max-w-4xl">
         {/* Header */}
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 bg-orange-100 text-orange-800 px-4 py-2 rounded-full text-sm font-medium mb-6">
@@ -82,7 +82,7 @@ export default function WaitlistPage() {
 
         {/* Follow Progress Section */}
         <Card className="mb-16 shadow-xl bg-gradient-to-br from-blue-50 to-purple-50 backdrop-blur-sm border border-blue-200">
-          <CardContent className="p-8">
+          <CardContent className="pb-8 px-3 md:px-6">
             <div className="text-center">
               <div className="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
                 <TwitterIcon className="w-8 h-8 text-white" />
@@ -149,7 +149,7 @@ export default function WaitlistPage() {
 
         {/* Current Issues Notice */}
         <Card className="mb-16 shadow-lg border-0 bg-orange-50/80 backdrop-blur-sm border-orange-200">
-          <CardContent className="p-6">
+          <CardContent className="py-2 px-3 md:px-6">
             <div className="flex items-start gap-4">
               <AlertCircle className="w-6 h-6 text-orange-600 mt-1 flex-shrink-0" />
               <div>

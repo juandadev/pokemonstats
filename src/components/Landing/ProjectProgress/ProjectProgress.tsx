@@ -337,7 +337,7 @@ export default function ProjectProgress() {
 
   return (
     <Card className="mb-16 shadow-xl border-0 bg-white/90 backdrop-blur-sm">
-      <CardContent className="p-8">
+      <CardContent className="py-4 px-3 md:px-6">
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium mb-4">
             <ClockIcon className="w-4 h-4" />
