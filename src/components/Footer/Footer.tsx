@@ -86,7 +86,7 @@ export default function Footer() {
           </a>
         </p>
         <p className="text-sm text-gray-500 text-center md:text-left">
-          © {currentYear} Pokemon Stats. All rights reserved.
+          © 2021-{currentYear} Pokemon Stats. All rights reserved.
         </p>
       </div>
     </footer>

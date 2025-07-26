@@ -125,47 +125,49 @@ export const getTypeIcon = (type: PokemonTypes) => {
 };
 
 export interface EffectivenessList {
-  superEffective: string[];
-  notVeryEffective: string[];
-  noEffect: string[];
+  '4x': string[];
+  '2x': string[];
+  '0.5': string[];
+  '0.25': string[];
+  0: string[];
 }
 
 export const getEffectivenessList = (
-  typeIndex: number | null
+  typeIndexes: number[]
 ): EffectivenessList => {
   const effectivenessList: EffectivenessList = {
-    superEffective: [],
-    notVeryEffective: [],
-    noEffect: [],
+    '4x': [],
+    '2x': [],
+    0.5: [],
+    0.25: [],
+    0: [],
   };
 
-  if (!typeIndex) return effectivenessList;
+  if (!typeIndexes || typeIndexes.length === 0) return effectivenessList;
 
-  const weaknessRow = WEAKNESS_CHART[typeIndex];
+  const weaknessRows = typeIndexes.map((index) => WEAKNESS_CHART[index]);
 
   // We start from index 1 because index 0 is the type itself
-  for (let i = 1; i < weaknessRow.length; i++) {
+  for (let i = 1; i < weaknessRows[0].length; i++) {
     const getTypeName = Object.keys(TYPE_LABELS)[i - 1];
 
-    if (weaknessRow[i] === 2) {
-      effectivenessList.superEffective = [
-        ...(effectivenessList.superEffective || []),
-        getTypeName,
-      ];
+    const type1Effectiveness = weaknessRows[0][i];
+    const type2Effectiveness = weaknessRows[1] ? weaknessRows[1][i] : 1;
+
+    if (type1Effectiveness === 2 || type2Effectiveness === 2) {
+      effectivenessList['2x'] = [...effectivenessList['2x'], getTypeName];
+
+      continue;
     }
 
-    if (weaknessRow[i] === 0.5) {
-      effectivenessList.notVeryEffective = [
-        ...(effectivenessList.notVeryEffective || []),
-        getTypeName,
-      ];
+    if (type1Effectiveness === 0.5 || type2Effectiveness === 0.5) {
+      effectivenessList['0.5'] = [...effectivenessList['0.5'], getTypeName];
+
+      continue;
     }
 
-    if (weaknessRow[i] === 0) {
-      effectivenessList.noEffect = [
-        ...(effectivenessList.noEffect || []),
-        getTypeName,
-      ];
+    if (type1Effectiveness === 0 || type2Effectiveness === 0) {
+      effectivenessList['0'] = [...effectivenessList['0'], getTypeName];
     }
   }
 

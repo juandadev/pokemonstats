@@ -29,6 +29,40 @@
 - [ ] Divide the effectiveness chart into two sections (UI reference in v0).
     - [ ] One for attacks
     - [ ] One for defenses (https://pokemondb.net/type/fire)
+- [ ] Add support for special modifiers in the effectiveness chart (UI reference in v0).
+    - [ ] Flying Press move for Hawlucha
+    - [ ] Thousand Arrows move for Zygarde
+    - [ ] Freeze Dry move for ice type Pokémon
+    - [ ] Inverse battles
+    - [ ] Stellar type (?)
+    - [ ] Tera forms (?)
+    - [ ] Passive abilities that change the effectiveness of moves. Identify if the effect applies on attacker or
+      defender and if it's a specific ability of a Pokémon.
+        - **Attacker**
+        - [ ] Scrappy
+        - [ ] Tinted Lens
+        - [ ] Electrify
+        - **Defender**
+        - [ ] Delta Stream
+        - [ ] Dry Skin
+        - [ ] Earth Eater
+        - [ ] Filter
+        - [ ] Flash Fire
+        - [ ] Fluffy
+        - [ ] Heatproof
+        - [ ] Levitate
+        - [ ] Lightning Rod
+        - [ ] Motor Drive
+        - [ ] Purifying Salt
+        - [ ] Sap Sipper
+        - [ ] Storm Drain
+        - [ ] Tera Shell
+        - [ ] Thick Fat
+        - [ ] Volt Absorb
+        - [ ] Water Absorb
+        - [ ] Water Bubble
+        - [ ] Well-Baked Body
+        - [ ] Wonder Guard
 - [ ] Add an X icon to the search bar to clear the input
 - [ ] Add a tab to Pokémon card to show base stats (UI reference in v0).
 - [ ] Configure again function to select a Pokémon from the evolution chain list
@@ -42,6 +76,17 @@
     - [ ] Track page views
     - [ ] Track search queries
     - [ ] Heat maps
+- [ ] Add a "More" page to show the roadmap, contributors, special thanks and other information about the future of the
+  project
+- [ ] Add an element or page to give special thanks to:
+    - [ ] All the people that are contributing to the project (check if I can get this list somewhere to display it
+      dynamically)
+    - [ ] All the people that are supporting the project with a coffee
+    - [ ] [Pokemon Palette](https://github.com/yassenshopov/pokemonpalette-nextjs) for the inspiration and UI
+      reference
+    - [ ] PokeAPI
+    - [ ] [pkmn.help](https://github.com/wavebeem/pkmn.help?tab=readme-ov-file) to verify the effectiveness calculations
+      and special modifiers
 
 # Final touches
 
@@ -54,6 +99,7 @@
     - [ ] Remove all unused dependencies
 - [ ] Consider removing search query property from context. It's not too necessary
 - [ ] Check the app against React scan https://github.com/aidenybai/react-scan#install and fix the performance issues
+- [ ] Protect GitHub branches
 
 # Nice to have
 
@@ -67,3 +113,33 @@
 - [ ] Support internationalization (i18n)
     - [ ] Use react-i18next
     - [ ] Add translations for Spanish
+
+# Roadmap
+
+- [ ] Support for all generations
+    - [ ] Add a page to show all generations
+    - [ ] Add a page to show all regions
+    - [ ] Add a page to show all forms
+    - [ ] Add a page to show all variants
+- [ ] Support for competitive battling
+    - [ ] Add a page to show all moves
+    - [ ] Add a page to show all abilities
+    - [ ] Add a page to show all items
+    - [ ] Add a page to show all natures
+    - [ ] Add a page to show all held items
+    - [ ] Add a page to show all tera types
+- [ ] Add a page to show all pokémon
+    - [ ] Add pagination
+    - [ ] Add filters
+        - [ ] By type
+        - [ ] By generation
+        - [ ] By region
+        - [ ] By evolution stage
+- [ ] Team builder
+    - [ ] Add a page to show all pokémon in a team
+    - [ ] Add a page to show the effectiveness chart for a team
+    - [ ] Add a page to show the weaknesses and resistances of a team
+- [ ] TCG support
+    - [ ] Add a page to show all TCG cards
+    - [ ] Add a page to show the effectiveness chart for TCG cards
+    - [ ] Add a page to show the weaknesses and resistances of TCG cards
