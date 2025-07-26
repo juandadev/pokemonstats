@@ -3,42 +3,63 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { TYPE_LABELS, TYPES_LIST } from '@/common/constants';
-import { getEffectivenessList, getTypeIcon } from '@/lib/utils';
+import {
+  EffectivenessList,
+  getEffectivenessList,
+  getTypeIcon,
+} from '@/lib/utils';
 import { PokemonTypes } from '@/types/Pokemon.type';
-import { ShieldIcon } from 'lucide-react';
+import { ShieldIcon, XIcon } from 'lucide-react';
 import clsx from 'clsx';
 import TypeBadge from '@/components/TypeBadge/TypeBadge';
 import usePokemonData from '@/hooks/usePokemonData';
 
 interface SelectedType {
-  type: PokemonTypes | null;
-  index: number | null;
+  type: PokemonTypes;
+  index: number;
 }
 
 export default function EffectivenessChart() {
   const { pokemonData } = usePokemonData();
 
-  const [selectedType, setSelectedType] = useState<SelectedType>({
-    type: null,
-    index: null,
-  });
+  const [selectedTypes, setSelectedTypes] = useState<SelectedType[]>([]);
   const [lastPokemonName, setLastPokemonName] = useState<string | null>(null);
   const [userHasInteracted, setUserHasInteracted] = useState(false);
 
   const typesContainerRef = useRef<HTMLDivElement>(null);
   const typeButtonsRef = useRef<Record<string, HTMLButtonElement | null>>({});
 
-  const effectivenessList = useMemo(
-    () => getEffectivenessList(selectedType.index),
-    [selectedType.index]
+  const selectedTypesNames = useMemo(
+    () => selectedTypes.map((t) => t.type) || [],
+    [selectedTypes]
   );
+  const selectedTypesIndexes = useMemo(
+    () => selectedTypes.map((t) => t.index) || [],
+    [selectedTypes]
+  );
+  const effectivenessList: EffectivenessList | null = useMemo(
+    () => getEffectivenessList(selectedTypesIndexes),
+    [selectedTypesIndexes]
+  );
+  const isDualType = useMemo(() => selectedTypes.length === 2, [selectedTypes]);
 
-  const handleTypeClick = (type: { name: PokemonTypes; index: number }) => {
+  const handleTypeClick = (type: SelectedType) => {
     setUserHasInteracted(true);
-    setSelectedType({
-      type: type.name,
-      index: type.index,
-    });
+
+    if (selectedTypesNames.includes(type.type)) {
+      // Remove type if already selected
+      setSelectedTypes(selectedTypes.filter((t) => t.type !== type.type));
+    } else if (selectedTypes.length < 2) {
+      // Add type if less than 2 selected
+      setSelectedTypes([...selectedTypes, type]);
+    } else {
+      // Replace first type if 2 already selected
+      setSelectedTypes([selectedTypes[1], type]);
+    }
+  };
+
+  const clearSelectedTypes = () => {
+    setSelectedTypes([]);
   };
 
   useEffect(() => {
@@ -47,11 +68,16 @@ export default function EffectivenessChart() {
     }
 
     if (pokemonData.types && !userHasInteracted) {
-      const typeInfo = TYPES_LIST.find(
-        (type) => type.name === pokemonData.types[0].type.name
-      )!;
+      const getPokemonTypes: SelectedType[] = pokemonData.types.map((type) => {
+        const typeData = TYPES_LIST.find((t) => t.name === type.type.name);
 
-      const button = typeButtonsRef.current[typeInfo.name];
+        return {
+          type: typeData!.name,
+          index: typeData!.index,
+        };
+      });
+
+      const button = typeButtonsRef.current[getPokemonTypes[0].type!];
       const container = typesContainerRef.current;
 
       if (button && container) {
@@ -68,7 +94,7 @@ export default function EffectivenessChart() {
         });
       }
 
-      setSelectedType({ type: typeInfo.name, index: typeInfo.index });
+      setSelectedTypes(getPokemonTypes);
       setLastPokemonName(pokemonData.name);
     }
   }, [lastPokemonName, pokemonData.name, pokemonData.types, userHasInteracted]);
@@ -80,16 +106,48 @@ export default function EffectivenessChart() {
           Type Effectiveness Chart
         </CardTitle>
         <p className="text-sm text-gray-600">
-          Select any type to see its effectiveness against other types
+          Select up to 2 types to see effectiveness{' '}
+          {selectedTypes.length > 1 ? '(dual-type)' : '(single-type)'}
         </p>
       </CardHeader>
       <CardContent>
+        {/* Selected Types Display */}
+        {selectedTypes.length > 0 && (
+          <div className="mb-6 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl border border-blue-200">
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="text-sm font-semibold text-gray-900">
+                Selected Types{' '}
+                {isDualType && (
+                  <span className="text-yellow-600">(Dual-Type)</span>
+                )}
+              </h3>
+              <button
+                onClick={clearSelectedTypes}
+                className="text-xs text-gray-500 hover:text-red-600 transition-colors duration-200 flex items-center gap-1"
+              >
+                <XIcon className="w-3 h-3" />
+                Clear
+              </button>
+            </div>
+            <div className="flex items-center gap-3">
+              {selectedTypes.map((type) => (
+                <TypeBadge
+                  key={`selected-type-${type.type}`}
+                  type={type.type!}
+                />
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Types Grid */}
-        <div ref={typesContainerRef} className={'overflow-x-auto mb-8 p-1'}>
-          <div className="grid grid-rows-2 grid-cols-9 lg:grid-rows-2 lg:grid-cols-6 gap-3 w-max pb-5">
+        <div ref={typesContainerRef} className={'overflow-x-auto mb-3 p-1'}>
+          <div className="grid grid-rows-2 grid-cols-9 lg:grid-rows-2 lg:grid-cols-6 gap-3 w-max pb-5 pt-2">
             {TYPES_LIST.map((type) => {
               const IconComponent = getTypeIcon(type.name);
-              const isSelected = selectedType.type === type.name;
+              const isSelected = selectedTypes.some(
+                (t) => t.type === type.name
+              );
 
               return (
                 <button
@@ -106,8 +164,21 @@ export default function EffectivenessChart() {
                       ? TYPE_LABELS[type.name]?.gradientBackgroundLight
                       : 'white'
                   )}
-                  onClick={() => handleTypeClick(type)}
+                  onClick={() =>
+                    handleTypeClick({ index: type.index, type: type.name })
+                  }
                 >
+                  {/* Selection number mark */}
+                  {isSelected && (
+                    <div
+                      className={clsx(
+                        'absolute -top-2 -right-2 w-5 h-5 text-white text-xs font-bold rounded-full flex items-center justify-center shadow-md',
+                        TYPE_LABELS[type.name]?.background
+                      )}
+                    >
+                      {selectedTypesNames.indexOf(type.name) + 1}
+                    </div>
+                  )}
                   {/* Type Icon Circle */}
                   <div
                     className={clsx(
@@ -131,9 +202,42 @@ export default function EffectivenessChart() {
             })}
           </div>
         </div>
+
+        {/* Instructions */}
+        <div className="flex justify-center mt-2 mb-3">
+          <div className="text-xs text-gray-500 text-center">
+            <div className="flex items-center justify-center gap-1 mb-1">
+              <svg
+                className="w-3 h-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
+              Scroll horizontally • Tap to select up to 2 types
+            </div>
+          </div>
+        </div>
+
         {/* Effectiveness Display */}
-        {selectedType.type && (
+        {selectedTypes[0]?.type && (
           <div className="space-y-6">
+            {isDualType && (
+              <div className="p-3 bg-purple-50 border border-purple-200 rounded-lg">
+                <p className="text-sm text-purple-800 font-medium">
+                  🔥 Dual-Type Analysis: Showing combined effectiveness of{' '}
+                  {selectedTypes[0].type} + {selectedTypes[1].type} moves.
+                  Actual damage will depend on the specific move type used.
+                </p>
+              </div>
+            )}
+
             {/* Super Effective */}
             <div>
               <h3 className="text-lg font-semibold text-green-700 mb-3 flex items-center gap-2">
@@ -141,8 +245,8 @@ export default function EffectivenessChart() {
                 Super Effective Against (2x)
               </h3>
               <div className="flex flex-wrap gap-2">
-                {effectivenessList.superEffective.length > 0 ? (
-                  effectivenessList.superEffective.map((type) => (
+                {effectivenessList['2x'].length > 0 ? (
+                  effectivenessList['2x'].map((type) => (
                     <TypeBadge key={type} type={type as PokemonTypes} />
                   ))
                 ) : (
@@ -157,8 +261,8 @@ export default function EffectivenessChart() {
                 Not Very Effective Against (0.5x)
               </h3>
               <div className="flex flex-wrap gap-2">
-                {effectivenessList.notVeryEffective.length > 0 ? (
-                  effectivenessList.notVeryEffective.map((type) => (
+                {effectivenessList['0.5'].length > 0 ? (
+                  effectivenessList['0.5'].map((type) => (
                     <TypeBadge key={type} type={type as PokemonTypes} />
                   ))
                 ) : (
@@ -173,8 +277,8 @@ export default function EffectivenessChart() {
                 No Effect Against (0x)
               </h3>
               <div className="flex flex-wrap gap-2">
-                {effectivenessList.noEffect.length > 0 ? (
-                  effectivenessList.noEffect.map((type) => (
+                {effectivenessList['0'].length > 0 ? (
+                  effectivenessList['0'].map((type) => (
                     <TypeBadge key={type} type={type as PokemonTypes} />
                   ))
                 ) : (
@@ -185,14 +289,14 @@ export default function EffectivenessChart() {
           </div>
         )}
         {/* Initial state message */}
-        {!selectedType.type && (
+        {!selectedTypes[0]?.type && (
           <div className="text-center py-8 text-gray-500">
             <ShieldIcon className="w-12 h-12 mx-auto mb-3 opacity-50" />
             <p className="text-lg font-medium">
-              Select a type above to see effectiveness
+              Select types above to see effectiveness
             </p>
             <p className="text-sm">
-              Click on any type icon to view its strengths and weaknesses
+              Choose 1 type for single-type or 2 types for dual-type analysis
             </p>
           </div>
         )}

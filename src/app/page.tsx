@@ -4,7 +4,6 @@ import { Card, CardContent } from '@/components/ui/card';
 import {
   Sparkles,
   Zap,
-  Shield,
   Clock,
   AlertCircle,
   StarIcon,
@@ -14,11 +13,12 @@ import TwitterIcon from '@/icons/TwitterIcon';
 import Link from 'next/link';
 import WaitlistForm from '@/components/WaitlistForm/WaitlistForm';
 import Image from 'next/image';
+import ProjectProgress from '@/components/Landing/ProjectProgress/ProjectProgress';
 
 export default function WaitlistPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
-      <div className="relative z-10 container mx-auto px-4 pt-8 max-w-4xl">
+      <div className="relative z-10 container mx-auto pt-8 max-w-4xl">
         {/* Header */}
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 bg-orange-100 text-orange-800 px-4 py-2 rounded-full text-sm font-medium mb-6">
@@ -44,7 +44,7 @@ export default function WaitlistPage() {
         </div>
 
         {/* Main Content */}
-        <div className="grid grid-cols-1 gap-12 items-center mb-16">
+        <div className="grid md:grid-cols-2 grid-cols-1 gap-12 items-center mb-16">
           {/* Left side - Illustration */}
           <div className="flex justify-center">
             <div className="relative">
@@ -78,134 +78,11 @@ export default function WaitlistPage() {
           <WaitlistForm />
         </div>
 
-        {/* What's Coming Section */}
-        <Card className="mb-16 shadow-xl border-0 bg-white/80 backdrop-blur-sm">
-          <CardContent className="p-8">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                What&apos;s Coming in the New Version
-              </h2>
-              <p className="text-lg text-gray-600">
-                We&apos;re rebuilding from the ground up with exciting new
-                features
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="text-center p-6 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200">
-                <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Zap className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Dual-Type Analysis
-                </h3>
-                <p className="text-sm text-gray-600">
-                  Advanced type effectiveness calculator for single and
-                  dual-type combinations with real-time multipliers.
-                </p>
-              </div>
-
-              <div className="text-center p-6 rounded-xl bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200">
-                <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Shield className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Enhanced UI/UX
-                </h3>
-                <p className="text-sm text-gray-600">
-                  Completely redesigned interface with smooth animations, better
-                  mobile experience, and intuitive navigation.
-                </p>
-              </div>
-
-              <div className="text-center p-6 rounded-xl bg-gradient-to-br from-green-50 to-green-100 border border-green-200">
-                <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Sparkles className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  More Features
-                </h3>
-                <p className="text-sm text-gray-600">
-                  Evolution details, base stats visualization, search
-                  improvements, and many more quality-of-life updates.
-                </p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Support Section */}
-        <div className="text-center mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">
-            Stay Connected & Support the Project
-          </h2>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-medium transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-xl"
-              asChild
-            >
-              <Link
-                href="https://x.com/juandadotdev"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <TwitterIcon className="w-5 h-5 mr-2" />
-                Follow on X
-              </Link>
-            </Button>
-            <Button
-              className="bg-gray-900 hover:bg-gray-800 text-white px-6 py-3 rounded-xl font-medium transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-xl"
-              asChild
-            >
-              <Link
-                href="https://github.com/juandadev/pokemonstats"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <StarIcon className="w-5 h-5 mr-2 text-yellow-500" />
-                Star on GitHub
-              </Link>
-            </Button>
-            <Button variant={'outline'} asChild>
-              <Link
-                href="https://buymeacoffee.com/juandadotdev"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <HeartIcon className="w-5 h-5 mr-2 text-fairy" />
-                Support Project
-              </Link>
-            </Button>
-          </div>
-        </div>
-
-        {/* Current Issues Notice */}
-        <Card className="mb-16 shadow-lg border-0 bg-orange-50/80 backdrop-blur-sm border-orange-200">
-          <CardContent className="p-6">
-            <div className="flex items-start gap-4">
-              <AlertCircle className="w-6 h-6 text-orange-600 mt-1 flex-shrink-0" />
-              <div>
-                <h3 className="text-lg font-semibold text-orange-900 mb-2">
-                  Why is the site temporarily down?
-                </h3>
-                <p className="text-orange-800 mb-3">
-                  The current version has several issues including outdated type
-                  effectiveness data, mobile responsiveness problems, and
-                  performance issues that were affecting the user experience.
-                </p>
-                <p className="text-orange-800">
-                  Rather than letting users struggle with these problems, we
-                  decided to take the site offline temporarily while we build a
-                  much better version that you&apos;ll love.
-                </p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        <ProjectProgress />
 
         {/* Follow Progress Section */}
         <Card className="mb-16 shadow-xl bg-gradient-to-br from-blue-50 to-purple-50 backdrop-blur-sm border border-blue-200">
-          <CardContent className="p-8">
+          <CardContent className="pb-8 px-3 md:px-6">
             <div className="text-center">
               <div className="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
                 <TwitterIcon className="w-8 h-8 text-white" />
@@ -269,6 +146,75 @@ export default function WaitlistPage() {
             </div>
           </CardContent>
         </Card>
+
+        {/* Current Issues Notice */}
+        <Card className="mb-16 shadow-lg border-0 bg-orange-50/80 backdrop-blur-sm border-orange-200">
+          <CardContent className="py-2 px-3 md:px-6">
+            <div className="flex items-start gap-4">
+              <AlertCircle className="w-6 h-6 text-orange-600 mt-1 flex-shrink-0" />
+              <div>
+                <h3 className="text-lg font-semibold text-orange-900 mb-2">
+                  Why is the site temporarily down?
+                </h3>
+                <p className="text-orange-800 mb-3">
+                  The current version has several issues including outdated type
+                  effectiveness data, mobile responsiveness problems, and
+                  performance issues that were affecting the user experience.
+                </p>
+                <p className="text-orange-800">
+                  Rather than letting users struggle with these problems, we
+                  decided to take the site offline temporarily while we build a
+                  much better version that you&apos;ll love.
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Support Section */}
+        <div className="text-center mb-12">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">
+            Stay Connected & Support the Project
+          </h2>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button
+              className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-medium transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-xl"
+              asChild
+            >
+              <Link
+                href="https://x.com/juandadotdev"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <TwitterIcon className="w-5 h-5 mr-2" />
+                Follow on X
+              </Link>
+            </Button>
+            <Button
+              className="bg-gray-900 hover:bg-gray-800 text-white px-6 py-3 rounded-xl font-medium transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-xl"
+              asChild
+            >
+              <Link
+                href="https://github.com/juandadev/pokemonstats"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <StarIcon className="w-5 h-5 mr-2 text-yellow-500" />
+                Star on GitHub
+              </Link>
+            </Button>
+            <Button variant={'outline'} asChild>
+              <Link
+                href="https://buymeacoffee.com/juandadotdev"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <HeartIcon className="w-5 h-5 mr-2 text-fairy" />
+                Support Project
+              </Link>
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   );

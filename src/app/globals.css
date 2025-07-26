@@ -300,6 +300,9 @@
   --color-dark: #775444;
   --color-steel: #b7b7c5;
   --color-fairy: #f1a8f0;
+
+  /*noinspection CssUnresolvedCustomProperty*/
+  --font-geist: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
 
 :root {
