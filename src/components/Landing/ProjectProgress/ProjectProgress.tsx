@@ -7,6 +7,12 @@ import {
   ZapIcon,
 } from 'lucide-react';
 import { clsx } from 'clsx';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 
 type RoadmapStatus = 'Done' | 'In Progress' | 'Planned';
 
@@ -385,14 +391,21 @@ export default function ProjectProgress() {
         </div>
 
         {/* Progress Categories */}
-        <div className="space-y-8">
+        <Accordion
+          type="single"
+          collapsible
+          defaultValue="core-features"
+          className="space-y-8"
+        >
           {/* Core Features */}
-          <div>
-            <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-              <ZapIcon className="w-5 h-5 text-yellow-500" />
-              Core Features
-            </h3>
-            <div className="grid gap-3">
+          <AccordionItem value="core-features">
+            <AccordionTrigger>
+              <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <ZapIcon className="w-5 h-5 text-yellow-500" />
+                Core Features
+              </h3>
+            </AccordionTrigger>
+            <AccordionContent className="grid gap-3 pb-3">
               {coreFeatures.map((item) => {
                 const Status = statusVariants[item.status];
 
@@ -417,16 +430,18 @@ export default function ProjectProgress() {
                   </div>
                 );
               })}
-            </div>
-          </div>
+            </AccordionContent>
+          </AccordionItem>
 
           {/* UI/UX Improvements */}
-          <div>
-            <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-              <SparklesIcon className="w-5 h-5 text-purple-500" />
-              UI/UX Improvements
-            </h3>
-            <div className="grid gap-3">
+          <AccordionItem value="ux-improvements">
+            <AccordionTrigger>
+              <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <SparklesIcon className="w-5 h-5 text-purple-500" />
+                UI/UX Improvements
+              </h3>
+            </AccordionTrigger>
+            <AccordionContent className="grid gap-3 pb-3">
               {uiImprovements.map((item) => {
                 const Status = statusVariants[item.status];
 
@@ -451,16 +466,18 @@ export default function ProjectProgress() {
                   </div>
                 );
               })}
-            </div>
-          </div>
+            </AccordionContent>
+          </AccordionItem>
 
           {/* Advanced Features */}
-          <div>
-            <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-              <StarIcon className="w-5 h-5 text-yellow-500" />
-              Advanced Features
-            </h3>
-            <div className="grid gap-3">
+          <AccordionItem value="advanced-features">
+            <AccordionTrigger>
+              <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <StarIcon className="w-5 h-5 text-yellow-500" />
+                Advanced Features
+              </h3>
+            </AccordionTrigger>
+            <AccordionContent className="grid gap-3 pb-3">
               {advancedFeatures.map((item) => {
                 const Status = statusVariants[item.status];
 
@@ -485,16 +502,18 @@ export default function ProjectProgress() {
                   </div>
                 );
               })}
-            </div>
-          </div>
+            </AccordionContent>
+          </AccordionItem>
 
           {/* Performance & Technical */}
-          <div>
-            <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-              <ZapIcon className="w-5 h-5 text-green-500" />
-              Performance & Technical
-            </h3>
-            <div className="grid gap-3">
+          <AccordionItem value="technical-improvements">
+            <AccordionTrigger>
+              <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <ZapIcon className="w-5 h-5 text-green-500" />
+                Performance & Technical
+              </h3>
+            </AccordionTrigger>
+            <AccordionContent className="grid gap-3">
               {technicalImprovements.map((item) => {
                 const Status = statusVariants[item.status];
 
@@ -519,9 +538,9 @@ export default function ProjectProgress() {
                   </div>
                 );
               })}
-            </div>
-          </div>
-        </div>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
 
         {/* Progress Timeline */}
         <div className="mt-8 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl border border-blue-200">
