@@ -252,7 +252,17 @@ const ROADMAP: Roadmap[] = [
     category: 'Core Features',
     phase: 1,
   },
+  {
+    title: 'Improve mobile layout',
+    description:
+      'Enhancing the mobile layout for better usability on smaller screens',
+    status: 'In Progress',
+    category: 'Core Features',
+    phase: 1,
+  },
 ];
+
+const itemsOrder = { Done: 1, 'In Progress': 2, Planned: 3 };
 
 export default function ProjectProgress() {
   const completedItemsLength = ROADMAP.filter(
@@ -267,16 +277,16 @@ export default function ProjectProgress() {
 
   const coreFeatures = ROADMAP.filter(
     (item) => item.category === 'Core Features'
-  );
+  ).sort((a, b) => itemsOrder[a.status] - itemsOrder[b.status]);
   const uiImprovements = ROADMAP.filter(
     (item) => item.category === 'UI/UX Improvements'
-  );
+  ).sort((a, b) => itemsOrder[a.status] - itemsOrder[b.status]);
   const advancedFeatures = ROADMAP.filter(
     (item) => item.category === 'Advanced Features'
-  );
+  ).sort((a, b) => itemsOrder[a.status] - itemsOrder[b.status]);
   const technicalImprovements = ROADMAP.filter(
     (item) => item.category === 'Performance & Technical'
-  );
+  ).sort((a, b) => itemsOrder[a.status] - itemsOrder[b.status]);
 
   const phase1Items = ROADMAP.filter((item) => item.phase === 1);
   const completedPhase1Items = phase1Items.filter(

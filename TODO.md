@@ -91,6 +91,7 @@
 
 # Final touches
 
+- [ ] Double check and fix all mobile layout issues
 - [ ] Fix all a11y issues
 - [ ] Refactor all shitty code
     - [ ] Better use of hooks
