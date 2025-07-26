@@ -128,7 +128,7 @@ const ROADMAP: Roadmap[] = [
     title: 'Dual type effectiveness support',
     description:
       'Allowing users to select up to two types for effectiveness calculations',
-    status: 'Done',
+    status: 'In Progress',
     category: 'Advanced Features',
     phase: 2,
   },
@@ -136,7 +136,7 @@ const ROADMAP: Roadmap[] = [
     title: 'Extend effectiveness chart to defender mode',
     description:
       'Adding defender mode to the type effectiveness calculator with dual type support',
-    status: 'In Progress',
+    status: 'Planned',
     category: 'Advanced Features',
     phase: 2,
   },
