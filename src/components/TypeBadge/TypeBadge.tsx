@@ -8,9 +8,14 @@ import { PokemonTypes } from '@/types/Pokemon.type';
 interface TypeBadgeProps {
   type: PokemonTypes;
   collapsed?: boolean;
+  effectivenessLabel?: string;
 }
 
-export default function TypeBadge({ type, collapsed = false }: TypeBadgeProps) {
+export default function TypeBadge({
+  type,
+  collapsed = false,
+  effectivenessLabel,
+}: TypeBadgeProps) {
   const IconComponent = getTypeIcon(type);
 
   return (
@@ -22,6 +27,7 @@ export default function TypeBadge({ type, collapsed = false }: TypeBadgeProps) {
     >
       <IconComponent />
       {!collapsed && type}
+      {effectivenessLabel && <span>{effectivenessLabel}</span>}
     </Badge>
   );
 }

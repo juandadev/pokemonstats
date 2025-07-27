@@ -230,13 +230,18 @@ export default function EffectivenessChart() {
                   Super Effective Against (2x)
                 </h3>
                 <div className="flex flex-wrap gap-2">
-                  {effectivenessList['2x'].length > 0 ? (
+                  {effectivenessList['4x'].length > 0 &&
+                    effectivenessList['4x'].map((type) => (
+                      <TypeBadge key={type} type={type as PokemonTypes} />
+                    ))}
+                  {effectivenessList['2x'].length > 0 &&
                     effectivenessList['2x'].map((type) => (
                       <TypeBadge key={type} type={type as PokemonTypes} />
-                    ))
-                  ) : (
-                    <span className="text-gray-500 italic">None</span>
-                  )}
+                    ))}
+                  {effectivenessList['4x'].length === 0 &&
+                    effectivenessList['2x'].length === 0 && (
+                      <span className="text-gray-500 italic">None</span>
+                    )}
                 </div>
               </div>
               {/* Not Very Effective */}
@@ -246,13 +251,18 @@ export default function EffectivenessChart() {
                   Not Very Effective Against (0.5x)
                 </h3>
                 <div className="flex flex-wrap gap-2">
-                  {effectivenessList['0.5'].length > 0 ? (
+                  {effectivenessList['0.5'].length > 0 &&
                     effectivenessList['0.5'].map((type) => (
                       <TypeBadge key={type} type={type as PokemonTypes} />
-                    ))
-                  ) : (
-                    <span className="text-gray-500 italic">None</span>
-                  )}
+                    ))}
+                  {effectivenessList['0.25'].length > 0 &&
+                    effectivenessList['0.25'].map((type) => (
+                      <TypeBadge key={type} type={type as PokemonTypes} />
+                    ))}
+                  {effectivenessList['0.5'].length === 0 &&
+                    effectivenessList['0.25'].length === 0 && (
+                      <span className="text-gray-500 italic">None</span>
+                    )}
                 </div>
               </div>
               {/* No Effect */}
