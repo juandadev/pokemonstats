@@ -66,6 +66,7 @@ export default function EvolutionsCard() {
                   )}
                 >
                   <Image
+                    unoptimized
                     width={40}
                     height={40}
                     src={`https://projectpokemon.org/images/normal-sprite/${evolution.name}.gif`}

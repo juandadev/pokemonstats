@@ -13,8 +13,10 @@ import { ShieldIcon, XIcon } from 'lucide-react';
 import clsx from 'clsx';
 import TypeBadge from '@/components/TypeBadge/TypeBadge';
 import usePokemonData from '@/hooks/usePokemonData';
+import SelectedTypesDisplay from '@/components/EffectivenessChart/SelectedTypesDisplay';
+import { Button } from '@/components/ui/button';
 
-interface SelectedType {
+export interface SelectedType {
   type: PokemonTypes;
   index: number;
 }
@@ -25,6 +27,8 @@ export default function EffectivenessChart() {
   const [selectedTypes, setSelectedTypes] = useState<SelectedType[]>([]);
   const [lastPokemonName, setLastPokemonName] = useState<string | null>(null);
   const [userHasInteracted, setUserHasInteracted] = useState(false);
+  const [isInformationMessageClosed, setIsInformationMessageClosed] =
+    useState<boolean>(false);
 
   const typesContainerRef = useRef<HTMLDivElement>(null);
   const typeButtonsRef = useRef<Record<string, HTMLButtonElement | null>>({});
@@ -56,10 +60,6 @@ export default function EffectivenessChart() {
       // Replace first type if 2 already selected
       setSelectedTypes([selectedTypes[1], type]);
     }
-  };
-
-  const clearSelectedTypes = () => {
-    setSelectedTypes([]);
   };
 
   useEffect(() => {
@@ -100,207 +100,193 @@ export default function EffectivenessChart() {
   }, [lastPokemonName, pokemonData.name, pokemonData.types, userHasInteracted]);
 
   return (
-    <Card className="shadow-xl border-0 bg-white/90 backdrop-blur-sm">
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2 text-2xl">
-          Type Effectiveness Chart
-        </CardTitle>
-        <p className="text-sm text-gray-600">
-          Select up to 2 types to see effectiveness{' '}
-          {selectedTypes.length > 1 ? '(dual-type)' : '(single-type)'}
-        </p>
-      </CardHeader>
-      <CardContent>
-        {/* Selected Types Display */}
-        {selectedTypes.length > 0 && (
-          <div className="mb-6 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl border border-blue-200">
-            <div className="flex items-center justify-between mb-3">
-              <h3 className="text-sm font-semibold text-gray-900">
-                Selected Types{' '}
-                {isDualType && (
-                  <span className="text-yellow-600">(Dual-Type)</span>
-                )}
-              </h3>
-              <button
-                onClick={clearSelectedTypes}
-                className="text-xs text-gray-500 hover:text-red-600 transition-colors duration-200 flex items-center gap-1"
-              >
-                <XIcon className="w-3 h-3" />
-                Clear
-              </button>
-            </div>
-            <div className="flex items-center gap-3">
-              {selectedTypes.map((type) => (
-                <TypeBadge
-                  key={`selected-type-${type.type}`}
-                  type={type.type!}
-                />
-              ))}
-            </div>
-          </div>
-        )}
+    <>
+      <SelectedTypesDisplay
+        selectedTypes={selectedTypes}
+        setSelectedTypes={setSelectedTypes}
+      />
+      <Card className="shadow-xl border-0 bg-white/90 backdrop-blur-sm">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2 text-2xl">
+            Type Effectiveness Chart
+          </CardTitle>
+          <p className="text-sm text-gray-600">
+            Select up to 2 types to see effectiveness{' '}
+            {selectedTypes.length > 1 ? '(dual-type)' : '(single-type)'}
+          </p>
+        </CardHeader>
+        <CardContent>
+          {/* Types Grid */}
+          <div ref={typesContainerRef} className={'overflow-x-auto mb-3 p-1'}>
+            <div className="grid grid-rows-2 grid-cols-9 lg:grid-rows-2 lg:grid-cols-6 gap-3 w-max pb-5 pt-2">
+              {TYPES_LIST.map((type) => {
+                const IconComponent = getTypeIcon(type.name);
+                const isSelected = selectedTypes.some(
+                  (t) => t.type === type.name
+                );
 
-        {/* Types Grid */}
-        <div ref={typesContainerRef} className={'overflow-x-auto mb-3 p-1'}>
-          <div className="grid grid-rows-2 grid-cols-9 lg:grid-rows-2 lg:grid-cols-6 gap-3 w-max pb-5 pt-2">
-            {TYPES_LIST.map((type) => {
-              const IconComponent = getTypeIcon(type.name);
-              const isSelected = selectedTypes.some(
-                (t) => t.type === type.name
-              );
-
-              return (
-                <button
-                  key={`effectiveness-${type.name}-btn`}
-                  ref={(el) => {
-                    typeButtonsRef.current[type.name] = el;
-                  }}
-                  className={clsx(
-                    'group relative flex flex-col items-center gap-2 p-3 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-lg border-2 cursor-pointer',
-                    isSelected
-                      ? `${TYPE_LABELS[type.name]?.border} shadow-lg scale-105`
-                      : 'border-gray-100 hover:border-gray-200',
-                    isSelected
-                      ? TYPE_LABELS[type.name]?.gradientBackgroundLight
-                      : 'white'
-                  )}
-                  onClick={() =>
-                    handleTypeClick({ index: type.index, type: type.name })
-                  }
-                >
-                  {/* Selection number mark */}
-                  {isSelected && (
+                return (
+                  <button
+                    key={`effectiveness-${type.name}-btn`}
+                    ref={(el) => {
+                      typeButtonsRef.current[type.name] = el;
+                    }}
+                    className={clsx(
+                      'group relative flex flex-col items-center gap-2 p-3 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-lg border-2 cursor-pointer',
+                      isSelected
+                        ? `${
+                            TYPE_LABELS[type.name]?.border
+                          } shadow-lg scale-105`
+                        : 'border-gray-100 hover:border-gray-200',
+                      isSelected
+                        ? TYPE_LABELS[type.name]?.gradientBackgroundLight
+                        : 'white'
+                    )}
+                    onClick={() =>
+                      handleTypeClick({ index: type.index, type: type.name })
+                    }
+                  >
+                    {/* Selection number mark */}
+                    {isSelected && (
+                      <div
+                        className={clsx(
+                          'absolute -top-2 -right-2 w-5 h-5 text-white text-xs font-bold rounded-full flex items-center justify-center shadow-md',
+                          TYPE_LABELS[type.name]?.background
+                        )}
+                      >
+                        {selectedTypesNames.indexOf(type.name) + 1}
+                      </div>
+                    )}
+                    {/* Type Icon Circle */}
                     <div
                       className={clsx(
-                        'absolute -top-2 -right-2 w-5 h-5 text-white text-xs font-bold rounded-full flex items-center justify-center shadow-md',
-                        TYPE_LABELS[type.name]?.background
+                        'w-12 h-12 rounded-full flex items-center justify-center text-white shadow-md transition-transform duration-300 group-hover:scale-110',
+                        TYPE_LABELS[type.name]?.gradientBackground
                       )}
                     >
-                      {selectedTypesNames.indexOf(type.name) + 1}
+                      <IconComponent className="w-6 h-6" />
                     </div>
+                    {/* Type Name */}
+                    <span
+                      className={clsx(
+                        'text-xs font-semibold capitalize transition-colors duration-300',
+                        isSelected ? 'text-gray-900' : 'text-gray-600'
+                      )}
+                    >
+                      {type.name}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Instructions */}
+          <div className="flex justify-center mt-2 mb-3">
+            <div className="text-xs text-gray-500 text-center">
+              <div className="flex items-center justify-center gap-1 mb-1">
+                <svg
+                  className="w-3 h-3"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  />
+                </svg>
+                Scroll horizontally • Tap to select up to 2 types
+              </div>
+            </div>
+          </div>
+
+          {/* Effectiveness Display */}
+          {selectedTypes[0]?.type && (
+            <div className="space-y-6">
+              {isDualType && !isInformationMessageClosed && (
+                <div className="p-3 bg-purple-50 border border-purple-200 rounded-lg grid grid-cols-[1fr_auto] grid-rows-1">
+                  <p className="text-sm text-purple-800 font-medium">
+                    🔥 Dual-Type Analysis: Showing combined effectiveness of{' '}
+                    {selectedTypes[0].type} + {selectedTypes[1].type} moves.
+                    Actual damage will depend on the specific move type used.
+                  </p>
+                  <Button
+                    onClick={() => setIsInformationMessageClosed(true)}
+                    variant="ghost"
+                    size="icon"
+                    className="size-6 md:size-7"
+                  >
+                    <XIcon className="w-3 h-3" />
+                  </Button>
+                </div>
+              )}
+              {/* Super Effective */}
+              <div>
+                <h3 className="text-lg font-semibold text-green-700 mb-3 flex items-center gap-2">
+                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                  Super Effective Against (2x)
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {effectivenessList['2x'].length > 0 ? (
+                    effectivenessList['2x'].map((type) => (
+                      <TypeBadge key={type} type={type as PokemonTypes} />
+                    ))
+                  ) : (
+                    <span className="text-gray-500 italic">None</span>
                   )}
-                  {/* Type Icon Circle */}
-                  <div
-                    className={clsx(
-                      'w-12 h-12 rounded-full flex items-center justify-center text-white shadow-md transition-transform duration-300 group-hover:scale-110',
-                      TYPE_LABELS[type.name]?.gradientBackground
-                    )}
-                  >
-                    <IconComponent className="w-6 h-6" />
-                  </div>
-                  {/* Type Name */}
-                  <span
-                    className={clsx(
-                      'text-xs font-semibold capitalize transition-colors duration-300',
-                      isSelected ? 'text-gray-900' : 'text-gray-600'
-                    )}
-                  >
-                    {type.name}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Instructions */}
-        <div className="flex justify-center mt-2 mb-3">
-          <div className="text-xs text-gray-500 text-center">
-            <div className="flex items-center justify-center gap-1 mb-1">
-              <svg
-                className="w-3 h-3"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                />
-              </svg>
-              Scroll horizontally • Tap to select up to 2 types
-            </div>
-          </div>
-        </div>
-
-        {/* Effectiveness Display */}
-        {selectedTypes[0]?.type && (
-          <div className="space-y-6">
-            {isDualType && (
-              <div className="p-3 bg-purple-50 border border-purple-200 rounded-lg">
-                <p className="text-sm text-purple-800 font-medium">
-                  🔥 Dual-Type Analysis: Showing combined effectiveness of{' '}
-                  {selectedTypes[0].type} + {selectedTypes[1].type} moves.
-                  Actual damage will depend on the specific move type used.
-                </p>
+                </div>
               </div>
-            )}
-
-            {/* Super Effective */}
-            <div>
-              <h3 className="text-lg font-semibold text-green-700 mb-3 flex items-center gap-2">
-                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                Super Effective Against (2x)
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {effectivenessList['2x'].length > 0 ? (
-                  effectivenessList['2x'].map((type) => (
-                    <TypeBadge key={type} type={type as PokemonTypes} />
-                  ))
-                ) : (
-                  <span className="text-gray-500 italic">None</span>
-                )}
+              {/* Not Very Effective */}
+              <div>
+                <h3 className="text-lg font-semibold text-orange-700 mb-3 flex items-center gap-2">
+                  <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
+                  Not Very Effective Against (0.5x)
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {effectivenessList['0.5'].length > 0 ? (
+                    effectivenessList['0.5'].map((type) => (
+                      <TypeBadge key={type} type={type as PokemonTypes} />
+                    ))
+                  ) : (
+                    <span className="text-gray-500 italic">None</span>
+                  )}
+                </div>
+              </div>
+              {/* No Effect */}
+              <div>
+                <h3 className="text-lg font-semibold text-gray-700 mb-3 flex items-center gap-2">
+                  <div className="w-3 h-3 bg-gray-500 rounded-full"></div>
+                  No Effect Against (0x)
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {effectivenessList['0'].length > 0 ? (
+                    effectivenessList['0'].map((type) => (
+                      <TypeBadge key={type} type={type as PokemonTypes} />
+                    ))
+                  ) : (
+                    <span className="text-gray-500 italic">None</span>
+                  )}
+                </div>
               </div>
             </div>
-            {/* Not Very Effective */}
-            <div>
-              <h3 className="text-lg font-semibold text-orange-700 mb-3 flex items-center gap-2">
-                <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
-                Not Very Effective Against (0.5x)
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {effectivenessList['0.5'].length > 0 ? (
-                  effectivenessList['0.5'].map((type) => (
-                    <TypeBadge key={type} type={type as PokemonTypes} />
-                  ))
-                ) : (
-                  <span className="text-gray-500 italic">None</span>
-                )}
-              </div>
+          )}
+          {/* Initial state message */}
+          {!selectedTypes[0]?.type && (
+            <div className="text-center py-8 text-gray-500">
+              <ShieldIcon className="w-12 h-12 mx-auto mb-3 opacity-50" />
+              <p className="text-lg font-medium">
+                Select types above to see effectiveness
+              </p>
+              <p className="text-sm">
+                Choose 1 type for single-type or 2 types for dual-type analysis
+              </p>
             </div>
-            {/* No Effect */}
-            <div>
-              <h3 className="text-lg font-semibold text-gray-700 mb-3 flex items-center gap-2">
-                <div className="w-3 h-3 bg-gray-500 rounded-full"></div>
-                No Effect Against (0x)
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {effectivenessList['0'].length > 0 ? (
-                  effectivenessList['0'].map((type) => (
-                    <TypeBadge key={type} type={type as PokemonTypes} />
-                  ))
-                ) : (
-                  <span className="text-gray-500 italic">None</span>
-                )}
-              </div>
-            </div>
-          </div>
-        )}
-        {/* Initial state message */}
-        {!selectedTypes[0]?.type && (
-          <div className="text-center py-8 text-gray-500">
-            <ShieldIcon className="w-12 h-12 mx-auto mb-3 opacity-50" />
-            <p className="text-lg font-medium">
-              Select types above to see effectiveness
-            </p>
-            <p className="text-sm">
-              Choose 1 type for single-type or 2 types for dual-type analysis
-            </p>
-          </div>
-        )}
-      </CardContent>
-    </Card>
+          )}
+        </CardContent>
+      </Card>
+    </>
   );
 }
