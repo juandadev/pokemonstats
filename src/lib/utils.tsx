@@ -28,7 +28,7 @@ export const displayEvolutionDetails = (
   details: EvolutionDetail
 ) => {
   if (!details || Object.keys(details).length === 0) {
-    return;
+    return 'Base Form';
   }
 
   // Priority special cases
@@ -72,7 +72,7 @@ export const displayEvolutionDetails = (
   }
 
   if (details.min_level != null) {
-    rules.push(`at lvl ${details.min_level}`);
+    rules.push(`At lvl ${details.min_level}`);
   }
 
   if (details.min_happiness != null) {
@@ -112,6 +112,10 @@ export const displayEvolutionDetails = (
 
   if (details.trigger?.name === 'level-up' && rules.length === 0) {
     return 'Level up';
+  }
+
+  if (details.trigger?.name === 'trade' && rules.length === 0) {
+    return 'Trade';
   }
 
   return rules.length > 0 ? rules.join(', ') : undefined;

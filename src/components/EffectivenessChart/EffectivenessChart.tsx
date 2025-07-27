@@ -278,11 +278,23 @@ export default function EffectivenessChart() {
                 <div className="flex flex-wrap gap-2">
                   {effectivenessList['4x'].length > 0 &&
                     effectivenessList['4x'].map((type) => (
-                      <TypeBadge key={type} type={type as PokemonTypes} />
+                      <TypeBadge
+                        key={type}
+                        type={type as PokemonTypes}
+                        effectivenessLabel={
+                          effectivenessMode === 'defensive' ? '4x' : ''
+                        }
+                      />
                     ))}
                   {effectivenessList['2x'].length > 0 &&
                     effectivenessList['2x'].map((type) => (
-                      <TypeBadge key={type} type={type as PokemonTypes} />
+                      <TypeBadge
+                        key={type}
+                        type={type as PokemonTypes}
+                        effectivenessLabel={
+                          effectivenessMode === 'defensive' ? '2x' : ''
+                        }
+                      />
                     ))}
                   {effectivenessList['4x'].length === 0 &&
                     effectivenessList['2x'].length === 0 && (
@@ -301,11 +313,23 @@ export default function EffectivenessChart() {
                 <div className="flex flex-wrap gap-2">
                   {effectivenessList['0.5'].length > 0 &&
                     effectivenessList['0.5'].map((type) => (
-                      <TypeBadge key={type} type={type as PokemonTypes} />
+                      <TypeBadge
+                        key={type}
+                        type={type as PokemonTypes}
+                        effectivenessLabel={
+                          effectivenessMode === 'defensive' ? '0.5x' : ''
+                        }
+                      />
                     ))}
                   {effectivenessList['0.25'].length > 0 &&
                     effectivenessList['0.25'].map((type) => (
-                      <TypeBadge key={type} type={type as PokemonTypes} />
+                      <TypeBadge
+                        key={type}
+                        type={type as PokemonTypes}
+                        effectivenessLabel={
+                          effectivenessMode === 'defensive' ? '0.25x' : ''
+                        }
+                      />
                     ))}
                   {effectivenessList['0.5'].length === 0 &&
                     effectivenessList['0.25'].length === 0 && (
