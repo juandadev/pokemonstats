@@ -8,8 +8,8 @@ export default function Home() {
   return (
     <main id="main" className={'mt-10'}>
       <SearchBar />
-      <div className={'grid grid-cols-[100%] lg:grid-cols-2 gap-8'}>
-        <div className="space-y-6 w-full max-w-lg m-auto">
+      <div className="grid grid-cols-[100%] lg:grid-cols-2 gap-8 items-start">
+        <div className="space-y-6 w-full max-w-lg mx-auto">
           <PokemonCard />
           <EvolutionsCard />
         </div>
