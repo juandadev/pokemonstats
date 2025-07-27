@@ -4,6 +4,7 @@ import { ChevronDownIcon, ChevronUpIcon, XIcon } from 'lucide-react';
 import TypeBadge from '@/components/TypeBadge/TypeBadge';
 import { clsx } from 'clsx';
 import { Button } from '@/components/ui/button';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 
 interface SelectedTypesDisplayProps {
   selectedTypes: SelectedType[];
@@ -18,6 +19,7 @@ export default function SelectedTypesDisplay({
     useState<boolean>(false);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
+  const isMobile = useMediaQuery('(max-width: 1023px)');
   const isDualType = useMemo(() => selectedTypes.length === 2, [selectedTypes]);
 
   const clearSelectedTypes = () => {
@@ -39,7 +41,10 @@ export default function SelectedTypesDisplay({
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  if (!selectedTypes || selectedTypes.length === 0 || !displaySelectedTypes)
+  if (
+    (!selectedTypes || selectedTypes.length === 0 || !displaySelectedTypes) &&
+    isMobile
+  )
     return null;
 
   return (
@@ -80,6 +85,9 @@ export default function SelectedTypesDisplay({
           </div>
         )}
         <div className="flex items-center gap-3">
+          {selectedTypes.length === 0 && (
+            <p className="text-sm text-gray-500">No types selected</p>
+          )}
           {selectedTypes.map((type) => (
             <TypeBadge
               key={`selected-type-${type.type}`}

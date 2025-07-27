@@ -22,6 +22,7 @@
 
 - [ ] When navigating with the keyboard the suggestions items, it should scroll to the selected item for the items that
   overflows the container.
+- [ ] Prevent searching the same Pokémon from the search bar
 
 # Priority
 
