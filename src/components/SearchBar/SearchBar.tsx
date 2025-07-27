@@ -73,7 +73,7 @@ export default function SearchBar() {
   };
 
   return (
-    <Card className="mb-8 shadow-lg border-0 bg-white/80 backdrop-blur-sm relative z-[999]">
+    <Card className="mb-8 shadow-lg border-0 bg-white/80 backdrop-blur-sm relative z-10">
       <CardContent className="p-6">
         <div className="relative">
           <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 z-10" />
