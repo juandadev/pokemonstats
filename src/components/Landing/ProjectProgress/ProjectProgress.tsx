@@ -136,7 +136,7 @@ const ROADMAP: Roadmap[] = [
     title: 'Extend effectiveness chart to defender mode',
     description:
       'Adding defender mode to the type effectiveness calculator with dual type support',
-    status: 'In Progress',
+    status: 'Done',
     category: 'Advanced Features',
     phase: 2,
   },
@@ -158,7 +158,7 @@ const ROADMAP: Roadmap[] = [
   {
     title: 'Display Pokémon base stats in the Pokemon card',
     description: 'Adding base stats to the Pokémon card for quick reference',
-    status: 'Planned',
+    status: 'In Progress',
     category: 'Advanced Features',
     phase: 2,
   },

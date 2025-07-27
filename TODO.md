@@ -27,10 +27,10 @@
 # Priority
 
 - [x] Supports selecting two types and merge weakness and strengths (UI reference in v0).
-    - [ ] Fix mobile view
-- [ ] Divide the effectiveness chart into two sections (UI reference in v0).
-    - [ ] One for attacks
-    - [ ] One for defenses (https://pokemondb.net/type/fire)
+    - [x] Fix mobile view
+- [x] Divide the effectiveness chart into two sections (UI reference in v0).
+    - [x] One for attacks
+    - [x] One for defenses (https://pokemondb.net/type/fire)
 - [ ] Cache query results for Pokémon data and evolutions
 - [ ] Add support for special modifiers in the effectiveness chart (UI reference in v0).
     - [ ] Flying Press move for Hawlucha
