@@ -61,6 +61,7 @@ export default function Hero() {
             src="/hero.webp"
             alt="Pokémon Trainer with Pikachu"
             className="w-80 md:w-96 h-auto object-contain drop-shadow-2xl"
+            priority
           />
         </div>
       </div>
