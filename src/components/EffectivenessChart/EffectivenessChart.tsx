@@ -27,6 +27,8 @@ export default function EffectivenessChart() {
   const [selectedTypes, setSelectedTypes] = useState<SelectedType[]>([]);
   const [lastPokemonName, setLastPokemonName] = useState<string | null>(null);
   const [userHasInteracted, setUserHasInteracted] = useState(false);
+  const [isInformationMessageClosed, setIsInformationMessageClosed] =
+    useState<boolean>(false);
 
   const typesContainerRef = useRef<HTMLDivElement>(null);
   const typeButtonsRef = useRef<Record<string, HTMLButtonElement | null>>({});
@@ -204,7 +206,7 @@ export default function EffectivenessChart() {
           {/* Effectiveness Display */}
           {selectedTypes[0]?.type && (
             <div className="space-y-6">
-              {isDualType && (
+              {isDualType && !isInformationMessageClosed && (
                 <div className="p-3 bg-purple-50 border border-purple-200 rounded-lg grid grid-cols-[1fr_auto] grid-rows-1">
                   <p className="text-sm text-purple-800 font-medium">
                     🔥 Dual-Type Analysis: Showing combined effectiveness of{' '}
@@ -212,9 +214,10 @@ export default function EffectivenessChart() {
                     Actual damage will depend on the specific move type used.
                   </p>
                   <Button
-                    // onClick={clearSelectedTypes}
+                    onClick={() => setIsInformationMessageClosed(true)}
                     variant="ghost"
                     size="icon"
+                    className="size-6 md:size-7"
                   >
                     <XIcon className="w-3 h-3" />
                   </Button>
