@@ -208,26 +208,23 @@ const calculateDefenderEffectiveness = (
     '0': [],
   };
 
-  const typeCount = Object.keys(TYPE_LABELS).length;
+  for (let i = 1; i <= 18; i++) {
+    const typeName = Object.keys(TYPE_LABELS)[i - 1];
 
-  for (let attackerIndex = 1; attackerIndex <= typeCount; attackerIndex++) {
-    const typeName = Object.keys(TYPE_LABELS)[attackerIndex - 1];
+    const attackerRow = WEAKNESS_CHART[i];
+    const type1Effectiveness = attackerRow[typeIndexes[0]];
+    const type2Effectiveness = attackerRow[typeIndexes[1]] ?? 1;
+    const calculateWeakness = type1Effectiveness * type2Effectiveness;
 
-    const effectivenessValues = typeIndexes.map(
-      (defenderIndex) => WEAKNESS_CHART[attackerIndex][defenderIndex + 1] // +1 to skip type label column
-    );
-
-    const combined = effectivenessValues.reduce((acc, val) => acc * val, 1);
-
-    if (combined === 4) {
+    if (calculateWeakness === 4) {
       effectiveness['4x'].push(typeName);
-    } else if (combined === 2) {
+    } else if (calculateWeakness === 2) {
       effectiveness['2x'].push(typeName);
-    } else if (combined === 0.25) {
+    } else if (calculateWeakness === 0.25) {
       effectiveness['0.25'].push(typeName);
-    } else if (combined === 0.5) {
+    } else if (calculateWeakness === 0.5) {
       effectiveness['0.5'].push(typeName);
-    } else if (combined === 0) {
+    } else if (calculateWeakness === 0) {
       effectiveness['0'].push(typeName);
     }
   }
