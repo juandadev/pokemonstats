@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useMemo } from 'react';
+import { Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react';
 import { SelectedType } from '@/components/EffectivenessChart/EffectivenessChart';
 import { XIcon } from 'lucide-react';
 import TypeBadge from '@/components/TypeBadge/TypeBadge';
@@ -12,13 +12,32 @@ export default function SelectedTypesDisplay({
   selectedTypes,
   setSelectedTypes,
 }: SelectedTypesDisplayProps) {
+  const [displaySelectedTypes, setDisplaySelectedTypes] =
+    useState<boolean>(false);
+
   const isDualType = useMemo(() => selectedTypes.length === 2, [selectedTypes]);
 
   const clearSelectedTypes = () => {
     setSelectedTypes([]);
   };
 
-  if (!selectedTypes || selectedTypes.length === 0) return null;
+  useEffect(() => {
+    const handleScroll = () => {
+      const pokemonCard = document.getElementById('pokemon-card-header');
+
+      if (pokemonCard) {
+        const rect = pokemonCard.getBoundingClientRect();
+        setDisplaySelectedTypes(rect.top <= 0);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  if (!selectedTypes || selectedTypes.length === 0 || !displaySelectedTypes)
+    return null;
 
   return (
     <div className="fixed bottom-4 right-4 z-10 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl border border-blue-200">
