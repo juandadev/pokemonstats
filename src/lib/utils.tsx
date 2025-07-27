@@ -9,6 +9,7 @@ import {
   WEAKNESS_CHART,
 } from '@/common/constants';
 import { CircleIcon } from 'lucide-react';
+import { EffectivenessMode } from '@/types';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -133,9 +134,10 @@ export interface EffectivenessList {
 }
 
 export const getEffectivenessList = (
-  typeIndexes: number[]
+  typeIndexes: number[],
+  mode: EffectivenessMode = 'offensive'
 ): EffectivenessList => {
-  const effectivenessList: EffectivenessList = {
+  const INITIAL_EFFECTIVENESS: EffectivenessList = {
     '4x': [],
     '2x': [],
     0.5: [],
@@ -143,35 +145,96 @@ export const getEffectivenessList = (
     0: [],
   };
 
-  if (!typeIndexes || typeIndexes.length === 0) return effectivenessList;
+  if (!typeIndexes.length) return INITIAL_EFFECTIVENESS;
 
-  const weaknessRows = typeIndexes.map((index) => WEAKNESS_CHART[index]);
+  const effectiveness: Record<EffectivenessMode, EffectivenessList> = {
+    offensive: calculateAttackerEffectiveness(typeIndexes),
+    defensive: calculateDefenderEffectiveness(typeIndexes),
+  };
 
-  // We start from index 1 because index 0 is the type itself
-  for (let i = 1; i < weaknessRows[0].length; i++) {
-    const getTypeName = Object.keys(TYPE_LABELS)[i - 1];
+  return effectiveness[mode] || INITIAL_EFFECTIVENESS;
+};
 
-    const type1Effectiveness = weaknessRows[0][i];
-    const type2Effectiveness = weaknessRows[1] ? weaknessRows[1][i] : 1;
+export const calculateAttackerEffectiveness = (
+  typeIndexes: number[]
+): EffectivenessList => {
+  const effectiveness: EffectivenessList = {
+    '4x': [],
+    '2x': [],
+    0.5: [],
+    0.25: [],
+    0: [],
+  };
 
-    if (type1Effectiveness === 2 || type2Effectiveness === 2) {
-      effectivenessList['2x'] = [...effectivenessList['2x'], getTypeName];
+  const [primaryRow, secondaryRow = createNeutralRow()] = typeIndexes.map(
+    (index) => WEAKNESS_CHART[index]
+  );
 
-      continue;
-    }
+  for (let i = 1; i < primaryRow.length; i++) {
+    const typeName = Object.keys(TYPE_LABELS)[i - 1];
 
-    if (type1Effectiveness === 0.5 || type2Effectiveness === 0.5) {
-      effectivenessList['0.5'] = [...effectivenessList['0.5'], getTypeName];
+    const type1 = primaryRow[i];
+    const type2 = secondaryRow[i];
+    const combined = type1 * type2;
 
-      continue;
-    }
-
-    if (type1Effectiveness === 0 || type2Effectiveness === 0) {
-      effectivenessList['0'] = [...effectivenessList['0'], getTypeName];
+    if (combined === 4) {
+      effectiveness['4x'].push(typeName);
+    } else if (combined === 2) {
+      effectiveness['2x'].push(typeName);
+    } else if (combined === 0.25) {
+      effectiveness['0.25'].push(typeName);
+    } else if (combined === 0.5) {
+      effectiveness['0.5'].push(typeName);
+    } else if (combined === 0) {
+      effectiveness['0'].push(typeName);
     }
   }
 
-  return effectivenessList;
+  return effectiveness;
+};
+
+const calculateDefenderEffectiveness = (
+  typeIndexes: number[]
+): EffectivenessList => {
+  const effectiveness: EffectivenessList = {
+    '4x': [],
+    '2x': [],
+    0.5: [],
+    '0.25': [],
+    '0': [],
+  };
+
+  const typeCount = Object.keys(TYPE_LABELS).length;
+
+  for (let attackerIndex = 1; attackerIndex <= typeCount; attackerIndex++) {
+    const typeName = Object.keys(TYPE_LABELS)[attackerIndex - 1];
+
+    const effectivenessValues = typeIndexes.map(
+      (defenderIndex) => WEAKNESS_CHART[attackerIndex][defenderIndex + 1] // +1 to skip type label column
+    );
+
+    const combined = effectivenessValues.reduce((acc, val) => acc * val, 1);
+
+    if (combined === 4) {
+      effectiveness['4x'].push(typeName);
+    } else if (combined === 2) {
+      effectiveness['2x'].push(typeName);
+    } else if (combined === 0.25) {
+      effectiveness['0.25'].push(typeName);
+    } else if (combined === 0.5) {
+      effectiveness['0.5'].push(typeName);
+    } else if (combined === 0) {
+      effectiveness['0'].push(typeName);
+    }
+  }
+
+  return effectiveness;
+};
+
+export const createNeutralRow = (): number[] => {
+  const typeCount = Object.keys(TYPE_LABELS).length + 1;
+
+  return new Array(typeCount).fill(1);
 };
 
 export function formatDisplayCount(count: number): string {

@@ -31,6 +31,7 @@
 - [ ] Divide the effectiveness chart into two sections (UI reference in v0).
     - [ ] One for attacks
     - [ ] One for defenses (https://pokemondb.net/type/fire)
+- [ ] Cache query results for Pokémon data and evolutions
 - [ ] Add support for special modifiers in the effectiveness chart (UI reference in v0).
     - [ ] Flying Press move for Hawlucha
     - [ ] Thousand Arrows move for Zygarde
