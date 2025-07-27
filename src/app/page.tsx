@@ -51,6 +51,7 @@ export default function WaitlistPage() {
               {/* Main illustration */}
               <div className="relative z-10 transform hover:scale-105 transition-transform duration-300">
                 <Image
+                  priority
                   width={384}
                   height={384}
                   sizes="(min-width: 768px) 384px, (max-width: 768px) 320px"

@@ -9,6 +9,7 @@ import {
   WEAKNESS_CHART,
 } from '@/common/constants';
 import { CircleIcon } from 'lucide-react';
+import { EffectivenessMode } from '@/types';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -27,7 +28,7 @@ export const displayEvolutionDetails = (
   details: EvolutionDetail
 ) => {
   if (!details || Object.keys(details).length === 0) {
-    return;
+    return 'Base Form';
   }
 
   // Priority special cases
@@ -71,7 +72,7 @@ export const displayEvolutionDetails = (
   }
 
   if (details.min_level != null) {
-    rules.push(`at lvl ${details.min_level}`);
+    rules.push(`At lvl ${details.min_level}`);
   }
 
   if (details.min_happiness != null) {
@@ -113,6 +114,10 @@ export const displayEvolutionDetails = (
     return 'Level up';
   }
 
+  if (details.trigger?.name === 'trade' && rules.length === 0) {
+    return 'Trade';
+  }
+
   return rules.length > 0 ? rules.join(', ') : undefined;
 };
 
@@ -133,9 +138,10 @@ export interface EffectivenessList {
 }
 
 export const getEffectivenessList = (
-  typeIndexes: number[]
+  typeIndexes: number[],
+  mode: EffectivenessMode = 'offensive'
 ): EffectivenessList => {
-  const effectivenessList: EffectivenessList = {
+  const INITIAL_EFFECTIVENESS: EffectivenessList = {
     '4x': [],
     '2x': [],
     0.5: [],
@@ -143,35 +149,93 @@ export const getEffectivenessList = (
     0: [],
   };
 
-  if (!typeIndexes || typeIndexes.length === 0) return effectivenessList;
+  if (!typeIndexes.length) return INITIAL_EFFECTIVENESS;
 
-  const weaknessRows = typeIndexes.map((index) => WEAKNESS_CHART[index]);
+  const effectiveness: Record<EffectivenessMode, EffectivenessList> = {
+    offensive: calculateAttackerEffectiveness(typeIndexes),
+    defensive: calculateDefenderEffectiveness(typeIndexes),
+  };
 
-  // We start from index 1 because index 0 is the type itself
-  for (let i = 1; i < weaknessRows[0].length; i++) {
-    const getTypeName = Object.keys(TYPE_LABELS)[i - 1];
+  return effectiveness[mode] || INITIAL_EFFECTIVENESS;
+};
 
-    const type1Effectiveness = weaknessRows[0][i];
-    const type2Effectiveness = weaknessRows[1] ? weaknessRows[1][i] : 1;
+export const calculateAttackerEffectiveness = (
+  typeIndexes: number[]
+): EffectivenessList => {
+  const effectiveness: EffectivenessList = {
+    '4x': [],
+    '2x': [],
+    0.5: [],
+    0.25: [],
+    0: [],
+  };
 
-    if (type1Effectiveness === 2 || type2Effectiveness === 2) {
-      effectivenessList['2x'] = [...effectivenessList['2x'], getTypeName];
+  const [primaryRow, secondaryRow = createNeutralRow()] = typeIndexes.map(
+    (index) => WEAKNESS_CHART[index]
+  );
 
-      continue;
-    }
+  for (let i = 1; i < primaryRow.length; i++) {
+    const typeName = Object.keys(TYPE_LABELS)[i - 1];
 
-    if (type1Effectiveness === 0.5 || type2Effectiveness === 0.5) {
-      effectivenessList['0.5'] = [...effectivenessList['0.5'], getTypeName];
+    const type1 = primaryRow[i];
+    const type2 = secondaryRow[i];
+    const combined = type1 * type2;
 
-      continue;
-    }
-
-    if (type1Effectiveness === 0 || type2Effectiveness === 0) {
-      effectivenessList['0'] = [...effectivenessList['0'], getTypeName];
+    if (combined === 4) {
+      effectiveness['4x'].push(typeName);
+    } else if (combined === 2) {
+      effectiveness['2x'].push(typeName);
+    } else if (combined === 0.25) {
+      effectiveness['0.25'].push(typeName);
+    } else if (combined === 0.5) {
+      effectiveness['0.5'].push(typeName);
+    } else if (combined === 0) {
+      effectiveness['0'].push(typeName);
     }
   }
 
-  return effectivenessList;
+  return effectiveness;
+};
+
+const calculateDefenderEffectiveness = (
+  typeIndexes: number[]
+): EffectivenessList => {
+  const effectiveness: EffectivenessList = {
+    '4x': [],
+    '2x': [],
+    0.5: [],
+    '0.25': [],
+    '0': [],
+  };
+
+  for (let i = 1; i <= 18; i++) {
+    const typeName = Object.keys(TYPE_LABELS)[i - 1];
+
+    const attackerRow = WEAKNESS_CHART[i];
+    const type1Effectiveness = attackerRow[typeIndexes[0]];
+    const type2Effectiveness = attackerRow[typeIndexes[1]] ?? 1;
+    const calculateWeakness = type1Effectiveness * type2Effectiveness;
+
+    if (calculateWeakness === 4) {
+      effectiveness['4x'].push(typeName);
+    } else if (calculateWeakness === 2) {
+      effectiveness['2x'].push(typeName);
+    } else if (calculateWeakness === 0.25) {
+      effectiveness['0.25'].push(typeName);
+    } else if (calculateWeakness === 0.5) {
+      effectiveness['0.5'].push(typeName);
+    } else if (calculateWeakness === 0) {
+      effectiveness['0'].push(typeName);
+    }
+  }
+
+  return effectiveness;
+};
+
+export const createNeutralRow = (): number[] => {
+  const typeCount = Object.keys(TYPE_LABELS).length + 1;
+
+  return new Array(typeCount).fill(1);
 };
 
 export function formatDisplayCount(count: number): string {

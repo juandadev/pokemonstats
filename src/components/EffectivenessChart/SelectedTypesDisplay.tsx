@@ -1,19 +1,28 @@
 import { Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react';
 import { SelectedType } from '@/components/EffectivenessChart/EffectivenessChart';
-import { ChevronDownIcon, ChevronUpIcon, XIcon } from 'lucide-react';
+import {
+  ChevronDownIcon,
+  ChevronUpIcon,
+  ShieldIcon,
+  SwordIcon,
+  XIcon,
+} from 'lucide-react';
 import TypeBadge from '@/components/TypeBadge/TypeBadge';
 import { clsx } from 'clsx';
 import { Button } from '@/components/ui/button';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
+import { EffectivenessMode } from '@/types';
 
 interface SelectedTypesDisplayProps {
   selectedTypes: SelectedType[];
   setSelectedTypes: Dispatch<SetStateAction<SelectedType[]>>;
+  effectivenessMode?: EffectivenessMode;
 }
 
 export default function SelectedTypesDisplay({
   selectedTypes,
   setSelectedTypes,
+  effectivenessMode = 'offensive',
 }: SelectedTypesDisplayProps) {
   const [displaySelectedTypes, setDisplaySelectedTypes] =
     useState<boolean>(false);
@@ -50,7 +59,7 @@ export default function SelectedTypesDisplay({
   return (
     <div
       className={clsx(
-        'fixed bottom-4 right-4 z-10 bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 grid grid-cols-[auto_1fr] grid-rows-1',
+        'fixed bottom-4 right-4 z-10 bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 grid grid-cols-[auto_auto_1fr] grid-rows-1 items-start',
         isExpanded ? 'p-4 rounded-xl' : 'p-2 rounded-lg'
       )}
     >
@@ -66,6 +75,13 @@ export default function SelectedTypesDisplay({
           <ChevronUpIcon size={12} />
         )}
       </Button>
+      <span className={'flex justify-center items-center p-1 pl-0'}>
+        {effectivenessMode === 'offensive' ? (
+          <SwordIcon size={12} />
+        ) : (
+          <ShieldIcon size={12} />
+        )}
+      </span>
       <div>
         {isExpanded && (
           <div className="flex items-center justify-between mb-3">
@@ -84,7 +100,7 @@ export default function SelectedTypesDisplay({
             </button>
           </div>
         )}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           {selectedTypes.length === 0 && (
             <p className="text-sm text-gray-500">No types selected</p>
           )}

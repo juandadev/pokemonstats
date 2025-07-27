@@ -9,12 +9,13 @@ import {
   getTypeIcon,
 } from '@/lib/utils';
 import { PokemonTypes } from '@/types/Pokemon.type';
-import { ShieldIcon, XIcon } from 'lucide-react';
+import { ShieldIcon, SwordIcon, XIcon } from 'lucide-react';
 import clsx from 'clsx';
 import TypeBadge from '@/components/TypeBadge/TypeBadge';
 import usePokemonData from '@/hooks/usePokemonData';
 import SelectedTypesDisplay from '@/components/EffectivenessChart/SelectedTypesDisplay';
 import { Button } from '@/components/ui/button';
+import { EffectivenessMode } from '@/types';
 
 export interface SelectedType {
   type: PokemonTypes;
@@ -29,6 +30,8 @@ export default function EffectivenessChart() {
   const [userHasInteracted, setUserHasInteracted] = useState(false);
   const [isInformationMessageClosed, setIsInformationMessageClosed] =
     useState<boolean>(false);
+  const [effectivenessMode, setEffectivenessMode] =
+    useState<EffectivenessMode>('offensive');
 
   const typesContainerRef = useRef<HTMLDivElement>(null);
   const typeButtonsRef = useRef<Record<string, HTMLButtonElement | null>>({});
@@ -42,8 +45,8 @@ export default function EffectivenessChart() {
     [selectedTypes]
   );
   const effectivenessList: EffectivenessList | null = useMemo(
-    () => getEffectivenessList(selectedTypesIndexes),
-    [selectedTypesIndexes]
+    () => getEffectivenessList(selectedTypesIndexes, effectivenessMode),
+    [effectivenessMode, selectedTypesIndexes]
   );
   const isDualType = useMemo(() => selectedTypes.length === 2, [selectedTypes]);
 
@@ -104,6 +107,7 @@ export default function EffectivenessChart() {
       <SelectedTypesDisplay
         selectedTypes={selectedTypes}
         setSelectedTypes={setSelectedTypes}
+        effectivenessMode={effectivenessMode}
       />
       <Card className="shadow-xl border-0 bg-white/90 backdrop-blur-sm">
         <CardHeader>
@@ -116,6 +120,44 @@ export default function EffectivenessChart() {
           </p>
         </CardHeader>
         <CardContent>
+          {/* Mode Toggle */}
+          <div className="mb-6">
+            <div className="flex gap-1 bg-gray-100 p-1 rounded-lg max-w-md mx-auto">
+              <button
+                onClick={() => setEffectivenessMode('offensive')}
+                className={clsx(
+                  `flex-1 px-4 py-3 text-sm font-medium rounded-md transition-all duration-200 cursor-pointer`,
+                  effectivenessMode === 'offensive'
+                    ? 'bg-white text-gray-900 shadow-sm'
+                    : 'text-gray-600 hover:text-gray-900'
+                )}
+              >
+                <div className="flex items-center justify-center gap-2">
+                  <SwordIcon className="w-4 h-4" />
+                  <span>Attacker</span>
+                </div>
+                <div className="text-xs text-gray-500 mt-1">
+                  What can I hit?
+                </div>
+              </button>
+              <button
+                onClick={() => setEffectivenessMode('defensive')}
+                className={clsx(
+                  `flex-1 px-4 py-3 text-sm font-medium rounded-md transition-all duration-200 cursor-pointer`,
+                  effectivenessMode === 'defensive'
+                    ? 'bg-white text-gray-900 shadow-sm'
+                    : 'text-gray-600 hover:text-gray-900'
+                )}
+              >
+                <div className="flex items-center justify-center gap-2">
+                  <ShieldIcon className="w-4 h-4" />
+                  <span>Defender</span>
+                </div>
+                <div className="text-xs text-gray-500 mt-1">What hits me?</div>
+              </button>
+            </div>
+          </div>
+
           {/* Types Grid */}
           <div ref={typesContainerRef} className={'overflow-x-auto mb-3 p-1'}>
             <div className="grid grid-rows-2 grid-cols-9 lg:grid-rows-2 lg:grid-cols-6 gap-3 w-max pb-5 pt-2">
@@ -209,9 +251,11 @@ export default function EffectivenessChart() {
               {isDualType && !isInformationMessageClosed && (
                 <div className="p-3 bg-purple-50 border border-purple-200 rounded-lg grid grid-cols-[1fr_auto] grid-rows-1">
                   <p className="text-sm text-purple-800 font-medium">
-                    🔥 Dual-Type Analysis: Showing combined effectiveness of{' '}
-                    {selectedTypes[0].type} + {selectedTypes[1].type} moves.
-                    Actual damage will depend on the specific move type used.
+                    🔥 Dual-Type Analysis:{' '}
+                    {effectivenessMode === 'offensive'
+                      ? `Showing combined effectiveness of ${selectedTypes[0].type} + ${selectedTypes[1].type} moves.
+                    Actual damage will depend on the specific move type used.`
+                      : `Showing what types are effective against ${selectedTypes[0].type}/${selectedTypes[1].type} Pokémon`}
                   </p>
                   <Button
                     onClick={() => setIsInformationMessageClosed(true)}
@@ -227,39 +271,79 @@ export default function EffectivenessChart() {
               <div>
                 <h3 className="text-lg font-semibold text-green-700 mb-3 flex items-center gap-2">
                   <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                  Super Effective Against (2x)
+                  {effectivenessMode === 'offensive'
+                    ? 'Super Effective Against (2x)'
+                    : 'Weak To (4x - 2x)'}
                 </h3>
                 <div className="flex flex-wrap gap-2">
-                  {effectivenessList['2x'].length > 0 ? (
+                  {effectivenessList['4x'].length > 0 &&
+                    effectivenessList['4x'].map((type) => (
+                      <TypeBadge
+                        key={type}
+                        type={type as PokemonTypes}
+                        effectivenessLabel={
+                          effectivenessMode === 'defensive' ? '4x' : ''
+                        }
+                      />
+                    ))}
+                  {effectivenessList['2x'].length > 0 &&
                     effectivenessList['2x'].map((type) => (
-                      <TypeBadge key={type} type={type as PokemonTypes} />
-                    ))
-                  ) : (
-                    <span className="text-gray-500 italic">None</span>
-                  )}
+                      <TypeBadge
+                        key={type}
+                        type={type as PokemonTypes}
+                        effectivenessLabel={
+                          effectivenessMode === 'defensive' ? '2x' : ''
+                        }
+                      />
+                    ))}
+                  {effectivenessList['4x'].length === 0 &&
+                    effectivenessList['2x'].length === 0 && (
+                      <span className="text-gray-500 italic">None</span>
+                    )}
                 </div>
               </div>
               {/* Not Very Effective */}
               <div>
                 <h3 className="text-lg font-semibold text-orange-700 mb-3 flex items-center gap-2">
                   <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
-                  Not Very Effective Against (0.5x)
+                  {effectivenessMode === 'offensive'
+                    ? 'Not Very Effective Against (0.5x)'
+                    : 'Resistant To (0.5 - 0.25×)'}
                 </h3>
                 <div className="flex flex-wrap gap-2">
-                  {effectivenessList['0.5'].length > 0 ? (
+                  {effectivenessList['0.5'].length > 0 &&
                     effectivenessList['0.5'].map((type) => (
-                      <TypeBadge key={type} type={type as PokemonTypes} />
-                    ))
-                  ) : (
-                    <span className="text-gray-500 italic">None</span>
-                  )}
+                      <TypeBadge
+                        key={type}
+                        type={type as PokemonTypes}
+                        effectivenessLabel={
+                          effectivenessMode === 'defensive' ? '0.5x' : ''
+                        }
+                      />
+                    ))}
+                  {effectivenessList['0.25'].length > 0 &&
+                    effectivenessList['0.25'].map((type) => (
+                      <TypeBadge
+                        key={type}
+                        type={type as PokemonTypes}
+                        effectivenessLabel={
+                          effectivenessMode === 'defensive' ? '0.25x' : ''
+                        }
+                      />
+                    ))}
+                  {effectivenessList['0.5'].length === 0 &&
+                    effectivenessList['0.25'].length === 0 && (
+                      <span className="text-gray-500 italic">None</span>
+                    )}
                 </div>
               </div>
               {/* No Effect */}
               <div>
                 <h3 className="text-lg font-semibold text-gray-700 mb-3 flex items-center gap-2">
                   <div className="w-3 h-3 bg-gray-500 rounded-full"></div>
-                  No Effect Against (0x)
+                  {effectivenessMode === 'offensive'
+                    ? 'No Effect (0x)'
+                    : 'Immune To (0×)'}
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {effectivenessList['0'].length > 0 ? (
