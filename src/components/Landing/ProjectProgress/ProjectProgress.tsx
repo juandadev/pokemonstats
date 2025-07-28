@@ -158,7 +158,7 @@ const ROADMAP: Roadmap[] = [
   {
     title: 'Display Pokémon base stats in the Pokemon card',
     description: 'Adding base stats to the Pokémon card for quick reference',
-    status: 'In Progress',
+    status: 'Done',
     category: 'Advanced Features',
     phase: 2,
   },
