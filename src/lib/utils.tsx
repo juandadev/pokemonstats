@@ -1,15 +1,21 @@
 import React from 'react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import { EvolutionDetail, PokemonTypes } from '@/types/Pokemon.type';
 import {
-  EVOLUTION_DETAILS,
+  EvolutionDetail,
+  EvolutionDetailDisplay,
+  GenericPropertyDetails,
+  PokemonTypes,
+} from '@/types/Pokemon.type';
+import {
+  EVOLUTION_DETAILS_OLD,
   TYPE_ICONS,
   TYPE_LABELS,
   WEAKNESS_CHART,
 } from '@/common/constants';
 import { CircleIcon } from 'lucide-react';
 import { EffectivenessMode } from '@/types';
+import { EVOLUTION_DETAILS } from '@/common/constants/evolutions';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -22,6 +28,44 @@ export function toPokeApiName(name: string) {
   const base = parts.slice(1).join('-').toLowerCase(); // everything after "Mega"
   return `${base}-mega`;
 }
+
+export const getEvolutionDetails = (
+  details?: EvolutionDetail
+): EvolutionDetailDisplay[] => {
+  if (!details || Object.keys(details).length === 0) {
+    return [
+      {
+        type: 'trigger',
+        label: 'Base Form',
+      },
+    ];
+  }
+
+  const evolutionEntries = Object.entries(details);
+  const triggerEntry = (
+    evolutionEntries.find(
+      ([key]) => key === 'trigger'
+    )![1] as GenericPropertyDetails
+  ).name;
+
+  console.log('trigger entries', triggerEntry);
+
+  const evolutionDetails: EvolutionDetailDisplay[] = [
+    EVOLUTION_DETAILS(triggerEntry).trigger,
+  ];
+
+  for (const [key, value] of Object.entries(details)) {
+    if (key === 'trigger') continue;
+    if (value)
+      evolutionDetails.push(
+        EVOLUTION_DETAILS(value)[key as keyof EvolutionDetail]
+      );
+  }
+
+  console.log(evolutionDetails);
+
+  return evolutionDetails;
+};
 
 export const displayEvolutionDetails = (
   evolution: string,
@@ -54,11 +98,13 @@ export const displayEvolutionDetails = (
   const rules: string[] = [];
 
   if (details.item?.name) {
-    rules.push(`using ${EVOLUTION_DETAILS.item[details.item.name]}`);
+    rules.push(`using ${EVOLUTION_DETAILS_OLD.item[details.item.name]}`);
   }
 
   if (details.held_item?.name) {
-    const base = `Holding ${EVOLUTION_DETAILS.item[details.held_item.name]}`;
+    const base = `Holding ${
+      EVOLUTION_DETAILS_OLD.item[details.held_item.name]
+    }`;
     if (details.time_of_day) {
       rules.push(`${base} during ${details.time_of_day}`);
     } else {
@@ -76,14 +122,14 @@ export const displayEvolutionDetails = (
   }
 
   if (details.min_happiness != null) {
-    const happiness = `${EVOLUTION_DETAILS.min_happiness}${
+    const happiness = `${EVOLUTION_DETAILS_OLD.min_happiness}${
       details.time_of_day ? ` during ${details.time_of_day}` : ''
     }`;
     rules.push(happiness);
   }
 
   if (details.min_beauty != null) {
-    rules.push(EVOLUTION_DETAILS.min_beauty);
+    rules.push(EVOLUTION_DETAILS_OLD.min_beauty);
   }
 
   if (details.known_move_type) {
@@ -102,7 +148,7 @@ export const displayEvolutionDetails = (
 
   if (details.relative_physical_stats != null) {
     const statsRule =
-      EVOLUTION_DETAILS.stats[
+      EVOLUTION_DETAILS_OLD.stats[
         details.relative_physical_stats.toString() as '1' | '0' | '-1'
       ];
     if (statsRule) {

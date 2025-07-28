@@ -1,5 +1,7 @@
 import React from 'react';
 import {
+  EvolutionDetail,
+  EvolutionDetailDisplay,
   PokemonExceptions,
   PokemonTypeColors,
   PokemonTypes,
@@ -378,7 +380,7 @@ export const POKEMON_EXCEPTIONS: PokemonExceptions[] = [
   { name: 'Dudunsparce Three-Segment Form', id: 10255 },
 ];
 
-export const EVOLUTION_DETAILS = {
+export const EVOLUTION_DETAILS_OLD = {
   item: {
     'water-stone': 'Water Stone',
     'thunder-stone': 'Thunder Stone',
