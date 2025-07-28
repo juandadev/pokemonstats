@@ -1,10 +1,12 @@
 import React from 'react';
-import { clsx, type ClassValue } from 'clsx';
+import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import {
+  Chain,
   EvolutionDetail,
   EvolutionDetailDisplay,
   GenericPropertyDetails,
+  PokemonEvolutionType,
   PokemonTypes,
 } from '@/types/Pokemon.type';
 import {
@@ -47,8 +49,6 @@ export const getEvolutionDetails = (
       ([key]) => key === 'trigger'
     )![1] as GenericPropertyDetails
   ).name;
-
-  console.log('trigger entries', triggerEntry);
 
   const evolutionDetails: EvolutionDetailDisplay[] = [
     EVOLUTION_DETAILS(triggerEntry).trigger,
@@ -322,4 +322,26 @@ export const getStatColor = (statName: string) => {
     speed: '#FA92B2',
   };
   return colorMap[statName] || '#94A3B8';
+};
+
+export const buildEvolutionChain = (pokemonChain: Chain) => {
+  const evolutions: PokemonEvolutionType[] = [];
+
+  if (pokemonChain) {
+    const { species, evolves_to, evolution_details } = pokemonChain;
+
+    evolutions.push({
+      name: species.name,
+      evolutionDetails: evolution_details?.[0],
+    });
+
+    if (evolves_to.length) {
+      evolves_to.forEach((evolve) => {
+        const subEvolutions = buildEvolutionChain(evolve);
+        evolutions.push(...subEvolutions);
+      });
+    }
+  }
+
+  return evolutions;
 };

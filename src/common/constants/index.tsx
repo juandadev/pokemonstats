@@ -1,7 +1,5 @@
 import React from 'react';
 import {
-  EvolutionDetail,
-  EvolutionDetailDisplay,
   PokemonExceptions,
   PokemonTypeColors,
   PokemonTypes,

@@ -1,4 +1,5 @@
 import { POKEMON_LIST } from '@/common/constants';
+import React from 'react';
 
 export type PokemonTypes =
   | 'normal'
@@ -252,9 +253,9 @@ export type EvolutionDetail = {
 
 export type EvolutionDetailDisplay = {
   type: keyof EvolutionDetail;
-  label: string;
+  label: React.ReactNode;
   image?: string;
-  icon?: string;
+  icon?: React.ReactNode;
   details?: string;
   generation?: string;
   gameVersion?: string;

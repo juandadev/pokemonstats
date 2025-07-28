@@ -5,9 +5,22 @@ import {
   Items,
   Species,
 } from '@/types/Pokemon.type';
+import {
+  CircleFadingArrowUpIcon,
+  MarsIcon,
+  SparklesIcon,
+  VenusIcon,
+} from 'lucide-react';
+import React from 'react';
 
-export const PARSED_EVOLUTION_TRIGGER: Record<string, string> = {
-  'level-up': 'Level Up',
+export const PARSED_EVOLUTION_TRIGGER: Record<
+  string,
+  { label: string; icon: React.ReactNode }
+> = {
+  'level-up': {
+    label: 'Level Up',
+    icon: <CircleFadingArrowUpIcon className="w-4 h-4 text-purple-500" />,
+  },
 };
 
 export const EVOLUTION_DETAILS = (
@@ -21,18 +34,31 @@ export const EVOLUTION_DETAILS = (
 ): Record<keyof EvolutionDetail, EvolutionDetailDisplay> => ({
   trigger: {
     type: 'trigger',
-    label: PARSED_EVOLUTION_TRIGGER[detail as string] || 'Unknown Trigger',
+    label: PARSED_EVOLUTION_TRIGGER[detail as string]?.label || (
+      <SparklesIcon className="w-4 h-4 text-purple-500" />
+    ),
     image: undefined,
-    icon: undefined,
+    icon: PARSED_EVOLUTION_TRIGGER[detail as string]?.icon || (
+      <div className="w-1 h-1 bg-gray-400 rounded-full" />
+    ),
     details: undefined,
     generation: undefined,
     gameVersion: undefined,
   },
   gender: {
     type: 'gender',
-    label: '',
+    label: (
+      <span>
+        Gender: <strong>{(detail as number) === 1 ? 'Female' : 'Male'}</strong>
+      </span>
+    ),
     image: undefined,
-    icon: undefined,
+    icon:
+      (detail as number) === 1 ? (
+        <VenusIcon className="w-3 h-3 text-pink-500" />
+      ) : (
+        <MarsIcon className="w-3 h-3 text-cyan-500" />
+      ),
     details: undefined,
     generation: undefined,
     gameVersion: undefined,
@@ -111,7 +137,11 @@ export const EVOLUTION_DETAILS = (
   },
   min_level: {
     type: 'min_level',
-    label: (detail as number).toString(),
+    label: (
+      <span>
+        Minimum level: <strong>{detail as number}</strong>
+      </span>
+    ),
     image: undefined,
     icon: undefined,
     details: undefined,
