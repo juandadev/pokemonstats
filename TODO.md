@@ -22,7 +22,9 @@
 
 - [ ] When navigating with the keyboard the suggestions items, it should scroll to the selected item for the items that
   overflows the container.
+- [ ] Some suggestions are not shown completely on mobile devices.
 - [ ] Prevent searching the same Pokémon from the search bar
+- [ ] Parse Pokémon names with the ones in the suggestions list to avoid typos
 
 # Priority
 

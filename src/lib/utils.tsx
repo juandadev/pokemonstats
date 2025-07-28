@@ -25,8 +25,8 @@ export function toPokeApiName(name: string) {
 
 export const displayEvolutionDetails = (
   evolution: string,
-  details: EvolutionDetail
-) => {
+  details?: EvolutionDetail
+): string | undefined => {
   if (!details || Object.keys(details).length === 0) {
     return 'Base Form';
   }

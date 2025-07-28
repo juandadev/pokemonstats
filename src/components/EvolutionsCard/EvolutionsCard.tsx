@@ -4,20 +4,29 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { clsx } from 'clsx';
 import { TYPE_LABELS } from '@/common/constants';
 import { displayEvolutionDetails } from '@/lib/utils';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '@/components/ui/tooltip';
 import { InfoIcon } from 'lucide-react';
-import React from 'react';
+import React, { useState } from 'react';
 import { Chain, PokemonEvolutionType } from '@/types/Pokemon.type';
 import usePokemonData from '@/hooks/usePokemonData';
 import Image from 'next/image';
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+} from '@/components/ui/sheet';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 export default function EvolutionsCard() {
   const { evolutionsData, pokemonData } = usePokemonData();
+
+  const [showEvolutionDetails, setShowEvolutionDetails] =
+    useState<boolean>(false);
+  const [selectedPokemon, setSelectedPokemon] = useState<string | null>(null);
 
   const evolutionChain = (pokemonChain: Chain) => {
     const evolutions: PokemonEvolutionType[] = [];
@@ -39,6 +48,11 @@ export default function EvolutionsCard() {
     }
 
     return evolutions;
+  };
+
+  const handleEvolutionDetails = (pokemon: string) => {
+    setShowEvolutionDetails((prevState) => !prevState);
+    setSelectedPokemon(pokemon);
   };
 
   if (Object.keys(evolutionsData).length === 0) return null;
@@ -85,19 +99,48 @@ export default function EvolutionsCard() {
                     )}
                   </div>
                 </div>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger>
-                      <InfoIcon className="h-4 w-4 text-blue-500" />
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Special evolution requirements</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
+                <button
+                  className="flex items-center gap-1 px-2 py-1 text-xs font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-md transition-colors duration-200 cursor-pointer"
+                  onClick={() => handleEvolutionDetails(evolution.name)}
+                >
+                  <InfoIcon className="w-3 h-3" />
+                  <span className="inline">Details</span>
+                </button>
               </div>
             ))}
         </div>
+        <Sheet
+          open={showEvolutionDetails}
+          onOpenChange={setShowEvolutionDetails}
+        >
+          <SheetContent>
+            <SheetHeader>
+              <SheetTitle className="capitalize">
+                How to evolve into {selectedPokemon}
+              </SheetTitle>
+              <SheetDescription>
+                Some evolutions needs more than just leveling up.
+              </SheetDescription>
+            </SheetHeader>
+            <SheetFooter>
+              <p className="text-sm text-gray-500">
+                Found something wrong, outdated, or missing?{' '}
+                <a
+                  href="https://github.com/juandadev/pokemonstats/issues"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:opacity-70"
+                >
+                  Report an issue here
+                </a>{' '}
+                so we can keep this info accurate for everyone 🙌
+              </p>
+              <SheetClose asChild>
+                <Button variant="outline">Close</Button>
+              </SheetClose>
+            </SheetFooter>
+          </SheetContent>
+        </Sheet>
       </CardContent>
     </Card>
   );

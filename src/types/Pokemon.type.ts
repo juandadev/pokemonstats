@@ -250,6 +250,10 @@ export type EvolutionDetail = {
   turn_upside_down: boolean;
 };
 
+export type EvolutionDetailDisplay = {
+  title: string;
+};
+
 export type Items =
   | 'water-stone'
   | 'thunder-stone'
