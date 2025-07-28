@@ -204,6 +204,8 @@ export const TYPE_COLORS: Record<PokemonTypes, string> = {
 export const POKEMON_EXCEPTIONS: PokemonExceptions[] = [
   { name: 'Mega Charizard X', id: 10034 },
   { name: 'Mega Charizard Y', id: 10035 },
+  { name: 'Mega Mewtwo X', id: 10043 },
+  { name: 'Mega Mewtwo Y', id: 10044 },
   { name: 'Nidoran (male)', id: 32 },
   { name: 'Nidoran (female)', id: 29 },
   { name: 'Lycanroc Midday Form', id: 745 },

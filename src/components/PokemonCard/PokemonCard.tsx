@@ -7,6 +7,8 @@ import { clsx } from 'clsx';
 import TypeBadge from '@/components/TypeBadge/TypeBadge';
 import usePokemonData from '@/hooks/usePokemonData';
 import Image from 'next/image';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { formatStatName, getStatColor } from '@/lib/utils';
 
 export default function PokemonCard() {
   const {
@@ -111,27 +113,89 @@ export default function PokemonCard() {
           {pokemonData.name}
         </h2>
       </div>
-      <CardContent className="p-6">
-        <div className="flex justify-center mb-6">
-          <div className="relative">
-            <div
-              className={clsx(
-                'w-48 h-48 rounded-full flex items-center justify-center shadow-inner',
-                TYPE_LABELS[pokemonData.types[0]?.type.name]
-                  ?.gradientBackgroundLight
-              )}
-            >
-              <Image
-                loading="eager"
-                src={pokemonImage}
-                alt={pokemonData.name}
-                onError={pokemonImageFallback}
-                width={160}
-                height={160}
-                className="w-40 h-40 object-contain"
-              />
-            </div>
-          </div>
+      <CardContent className="px-6">
+        <div className="flex justify-center">
+          <Tabs defaultValue="overview" className="w-full">
+            <TabsList className="w-full">
+              <TabsTrigger value="overview">Overview</TabsTrigger>
+              <TabsTrigger value="stats">Base Stats</TabsTrigger>
+            </TabsList>
+            <TabsContent value="overview">
+              <div className="relative mt-4 flex justify-center">
+                <div
+                  className={clsx(
+                    'w-48 h-48 rounded-full flex items-center justify-center shadow-inner',
+                    TYPE_LABELS[pokemonData.types[0]?.type.name]
+                      ?.gradientBackgroundLight
+                  )}
+                >
+                  <Image
+                    loading="eager"
+                    src={pokemonImage}
+                    alt={pokemonData.name}
+                    onError={pokemonImageFallback}
+                    width={160}
+                    height={160}
+                    className="w-40 h-40 object-contain"
+                  />
+                </div>
+              </div>
+            </TabsContent>
+            <TabsContent value="stats">
+              <div className="space-y-4">
+                {pokemonData.stats.map((statData, index) => {
+                  const statName = statData.stat.name;
+                  const baseStat = statData.base_stat;
+                  const maxStat = 255;
+                  const percentage = (baseStat / maxStat) * 100;
+
+                  return (
+                    <div key={index} className="flex items-center gap-4">
+                      <div className="w-20 text-sm font-medium text-gray-700 text-right">
+                        {formatStatName(statName)}
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-3">
+                          <div className="flex-1 bg-gray-200 rounded-full h-2 overflow-hidden">
+                            <div
+                              className="h-full rounded-full transition-all duration-500 ease-out"
+                              style={{
+                                width: `${Math.min(percentage, 100)}%`,
+                                backgroundColor: getStatColor(statName),
+                              }}
+                            />
+                          </div>
+                          <div className="w-8 text-sm font-semibold text-gray-900 text-right">
+                            {baseStat}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+
+                {/* Total Stats */}
+                <div className="pt-4 border-t border-gray-200">
+                  <div className="flex items-center gap-4">
+                    <div className="w-20 text-sm font-semibold text-gray-900 text-right">
+                      Total
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3">
+                        <div className="flex-1"></div>
+                        <div className="w-8 text-sm font-bold text-gray-900 text-right">
+                          {pokemonData.stats.reduce(
+                            (total, stat) => total + stat.base_stat,
+                            0
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </TabsContent>
+          </Tabs>
         </div>
       </CardContent>
     </Card>

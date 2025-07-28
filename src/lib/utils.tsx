@@ -253,3 +253,27 @@ export function formatDisplayCount(count: number): string {
 
   return `${(count / 1_000).toFixed(1).replace(/\.0$/, '')}k`;
 }
+
+export const formatStatName = (statName: string) => {
+  const statMap: { [key: string]: string } = {
+    hp: 'HP',
+    attack: 'Attack',
+    defense: 'Defense',
+    'special-attack': 'Sp. Attack',
+    'special-defense': 'Sp. Defense',
+    speed: 'Speed',
+  };
+  return statMap[statName] || statName;
+};
+
+export const getStatColor = (statName: string) => {
+  const colorMap: { [key: string]: string } = {
+    hp: '#FF5959',
+    attack: '#F5AC78',
+    defense: '#FAE078',
+    'special-attack': '#9DB7F5',
+    'special-defense': '#A7DB8D',
+    speed: '#FA92B2',
+  };
+  return colorMap[statName] || '#94A3B8';
+};
