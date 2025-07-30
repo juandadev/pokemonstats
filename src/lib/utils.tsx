@@ -9,12 +9,7 @@ import {
   PokemonEvolutionType,
   PokemonTypes,
 } from '@/types/Pokemon.type';
-import {
-  EVOLUTION_DETAILS_OLD,
-  TYPE_ICONS,
-  TYPE_LABELS,
-  WEAKNESS_CHART,
-} from '@/common/constants';
+import { TYPE_ICONS, TYPE_LABELS, WEAKNESS_CHART } from '@/common/constants';
 import { CircleIcon } from 'lucide-react';
 import { EffectivenessMode } from '@/types';
 import { EVOLUTION_DETAILS } from '@/common/constants/evolutions';
@@ -62,109 +57,7 @@ export const getEvolutionDetails = (
       );
   }
 
-  console.log(evolutionDetails);
-
   return evolutionDetails;
-};
-
-export const displayEvolutionDetails = (
-  evolution: string,
-  details?: EvolutionDetail
-): string | undefined => {
-  if (!details || Object.keys(details).length === 0) {
-    return 'Base Form';
-  }
-
-  // Priority special cases
-  if (evolution === 'mantine') {
-    return details.party_species?.name
-      ? `Having ${details.party_species.name} in your party when leveling up`
-      : undefined;
-  }
-
-  if (details.location?.name) {
-    const specialLocationMap: Record<string, string> = {
-      'mt-coronet': 'Thunder Stone',
-      'eterna-forest': 'Leaf Stone',
-      'sinnoh-route-217': 'Ice Stone',
-    };
-    const locationName = details.location.name;
-    if (specialLocationMap[locationName]) {
-      return specialLocationMap[locationName];
-    }
-  }
-
-  // Regular rules
-  const rules: string[] = [];
-
-  if (details.item?.name) {
-    rules.push(`using ${EVOLUTION_DETAILS_OLD.item[details.item.name]}`);
-  }
-
-  if (details.held_item?.name) {
-    const base = `Holding ${
-      EVOLUTION_DETAILS_OLD.item[details.held_item.name]
-    }`;
-    if (details.time_of_day) {
-      rules.push(`${base} during ${details.time_of_day}`);
-    } else {
-      rules.push(`${base} while trading`);
-    }
-  }
-
-  if (details.gender != null) {
-    const genderLabel = details.gender === 2 ? 'Male ♂' : 'Female ♀';
-    rules.push(genderLabel);
-  }
-
-  if (details.min_level != null) {
-    rules.push(`At lvl ${details.min_level}`);
-  }
-
-  if (details.min_happiness != null) {
-    const happiness = `${EVOLUTION_DETAILS_OLD.min_happiness}${
-      details.time_of_day ? ` during ${details.time_of_day}` : ''
-    }`;
-    rules.push(happiness);
-  }
-
-  if (details.min_beauty != null) {
-    rules.push(EVOLUTION_DETAILS_OLD.min_beauty);
-  }
-
-  if (details.known_move_type) {
-    rules.push(
-      `Knows a ${details.known_move_type.name}-type move when leveling up`
-    );
-  }
-
-  if (details.known_move) {
-    rules.push(`Knows ${details.known_move.name} move when leveling up`);
-  }
-
-  if (details.needs_overworld_rain) {
-    rules.push('While raining in overworld');
-  }
-
-  if (details.relative_physical_stats != null) {
-    const statsRule =
-      EVOLUTION_DETAILS_OLD.stats[
-        details.relative_physical_stats.toString() as '1' | '0' | '-1'
-      ];
-    if (statsRule) {
-      rules.push(`when ${statsRule}`);
-    }
-  }
-
-  if (details.trigger?.name === 'level-up' && rules.length === 0) {
-    return 'Level up';
-  }
-
-  if (details.trigger?.name === 'trade' && rules.length === 0) {
-    return 'Trade';
-  }
-
-  return rules.length > 0 ? rules.join(', ') : undefined;
 };
 
 export const getTypeIcon = (type: PokemonTypes) => {

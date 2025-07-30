@@ -46,6 +46,13 @@ export default function EvolutionsCard() {
         const evolutionDetails = getEvolutionDetails(
           evolution.evolutionDetails
         );
+        const shouldDisplayDetails =
+          (evolution.evolutionDetails?.trigger?.name !== 'level-up' ||
+            evolutionDetails.length > 2) &&
+          index !== 0;
+        const lvlUpIndex = evolutionDetails.findIndex(
+          (detail) => detail.type === 'min_level'
+        );
 
         return (
           <div
@@ -71,12 +78,12 @@ export default function EvolutionsCard() {
             <div className="flex-1">
               <div className="font-semibold capitalize">{evolution.name}</div>
               <div className="text-sm text-gray-600">
-                {evolutionDetails[1]?.type === 'min_level'
-                  ? `Level ${evolutionDetails[1].label}`
-                  : evolutionDetails[0].label}
+                {lvlUpIndex === -1
+                  ? evolutionDetails[0].label
+                  : `Level ${evolution.evolutionDetails.min_level}`}
               </div>
             </div>
-            {evolutionDetails.length > 2 && (
+            {shouldDisplayDetails && (
               <button
                 className="flex items-center gap-1 px-2 py-1 text-xs font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-md transition-colors duration-200 cursor-pointer"
                 onClick={() =>

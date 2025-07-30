@@ -6,12 +6,15 @@ import {
   Species,
 } from '@/types/Pokemon.type';
 import {
+  BackpackIcon,
+  CableIcon,
   CircleFadingArrowUpIcon,
   MarsIcon,
   SparklesIcon,
   VenusIcon,
 } from 'lucide-react';
 import React from 'react';
+import { ITEMS_DATA } from '@/common/constants/index';
 
 export const PARSED_EVOLUTION_TRIGGER: Record<
   string,
@@ -19,7 +22,15 @@ export const PARSED_EVOLUTION_TRIGGER: Record<
 > = {
   'level-up': {
     label: 'Level Up',
-    icon: <CircleFadingArrowUpIcon className="w-4 h-4 text-purple-500" />,
+    icon: <CircleFadingArrowUpIcon className="w-4 h-4 text-yellow-600" />,
+  },
+  'use-item': {
+    label: 'Use Item',
+    icon: <BackpackIcon className="w-4 h-4 text-yellow-600" />,
+  },
+  trade: {
+    label: 'Trade or Linking Cord',
+    icon: <CableIcon className="w-4 h-4 text-yellow-600" />,
   },
 };
 
@@ -65,8 +76,15 @@ export const EVOLUTION_DETAILS = (
   },
   held_item: {
     type: 'held_item',
-    label: '',
-    image: undefined,
+    label: (
+      <span>
+        While holding:{' '}
+        <strong>
+          {ITEMS_DATA[(detail as GenericPropertyDetails<Items>).name]?.label}
+        </strong>
+      </span>
+    ),
+    image: ITEMS_DATA[(detail as GenericPropertyDetails<Items>).name]?.image,
     icon: undefined,
     details: undefined,
     generation: undefined,
@@ -74,8 +92,15 @@ export const EVOLUTION_DETAILS = (
   },
   item: {
     type: 'item',
-    label: '',
-    image: undefined,
+    label: (
+      <span>
+        Required item:{' '}
+        <strong>
+          {ITEMS_DATA[(detail as GenericPropertyDetails<Items>).name]?.label}
+        </strong>
+      </span>
+    ),
+    image: ITEMS_DATA[(detail as GenericPropertyDetails<Items>).name]?.image,
     icon: undefined,
     details: undefined,
     generation: undefined,

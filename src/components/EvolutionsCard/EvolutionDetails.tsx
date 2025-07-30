@@ -1,6 +1,6 @@
-import { SparklesIcon } from 'lucide-react';
 import { EvolutionDetailDisplay } from '@/types/Pokemon.type';
 import React from 'react';
+import Image from 'next/image';
 
 interface EvolutionDetailsProps {
   pokemonName: string;
@@ -37,6 +37,16 @@ export default function EvolutionDetails({
                   >
                     {detail.icon || (
                       <div className="w-1 h-1 bg-gray-400 rounded-full" />
+                    )}
+                    {detail.image && (
+                      <Image
+                        width={20}
+                        height={20}
+                        src={detail.image}
+                        alt="Item Sprite"
+                        className="w-5 h-5"
+                        unoptimized
+                      />
                     )}
                     {detail.label}
                   </div>
