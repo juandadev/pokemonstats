@@ -73,10 +73,11 @@
 - [ ] Add an X icon to the search bar to clear the input
 - [ ] Add a tab to Pokémon card to show base stats (UI reference in v0).
 - [ ] Configure again function to select a Pokémon from the evolution chain list
-- [ ] Add an expandable list to show evolution details for Pokémon that goes beyond leveling up or using an evolutive
+- [x] Add an expandable list to show evolution details for Pokémon that goes beyond leveling up or using an evolutive
   stone (UI reference in v0).
-    - [ ] Check if we can fetch more details when there are more than one item in the evolution details array, which
-    - means that it has variations depending on the game ou are playing, so I would like to show those details as well.
+    - [x] Check if we can fetch more details when there are more than one item in the evolution details array, which
+    - means that it has variations depending on the game we are playing, so I would like to show those details as well.
+- [ ] Try to add on which games the evolution variations are effective. (Take Eevee as example)
 - [ ] Add loading states while fetching pokémon data
 - [ ] Add Analytics
     - [ ] Use Google Analytics

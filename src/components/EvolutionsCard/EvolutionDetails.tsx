@@ -46,7 +46,7 @@ export default function EvolutionDetails({
                         className="flex items-center gap-2"
                       >
                         {!item.icon && !item.image && (
-                          <div className="w-1 h-1 bg-gray-400 rounded-full" />
+                          <div className="w-1 h-1 bg-gray-400 rounded-full shrink-0" />
                         )}
                         {item.icon}
                         {item.image && (

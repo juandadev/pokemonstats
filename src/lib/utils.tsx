@@ -49,7 +49,7 @@ export const getEvolutionDetails = (
     const newEvolutionDetailsObject: Partial<EvolutionDetail> = {};
 
     for (const [key, value] of evolutionEntries) {
-      if (value) {
+      if ((key === 'relative_physical_stats' && value !== null) || value) {
         // @ts-expect-error Forgive me I'm too lazy to correctly type this
         newEvolutionDetailsObject[key] = value;
       }
