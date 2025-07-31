@@ -4,15 +4,12 @@ import { twMerge } from 'tailwind-merge';
 import {
   Chain,
   EvolutionDetail,
-  EvolutionDetailDisplay,
-  GenericPropertyDetails,
   PokemonEvolutionType,
   PokemonTypes,
 } from '@/types/Pokemon.type';
 import { TYPE_ICONS, TYPE_LABELS, WEAKNESS_CHART } from '@/common/constants';
 import { CircleIcon } from 'lucide-react';
 import { EffectivenessMode } from '@/types';
-import { EVOLUTION_DETAILS } from '@/common/constants/evolutions';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -27,34 +24,33 @@ export function toPokeApiName(name: string) {
 }
 
 export const getEvolutionDetails = (
-  details?: EvolutionDetail
-): EvolutionDetailDisplay[] => {
-  if (!details || Object.keys(details).length === 0) {
+  details?: EvolutionDetail[]
+): Partial<EvolutionDetail>[] => {
+  if (!details || details.length === 0) {
     return [
       {
-        type: 'trigger',
-        label: 'Base Form',
+        trigger: {
+          name: 'base-form',
+          url: '',
+        },
       },
     ];
   }
 
-  const evolutionEntries = Object.entries(details);
-  const triggerEntry = (
-    evolutionEntries.find(
-      ([key]) => key === 'trigger'
-    )![1] as GenericPropertyDetails
-  ).name;
+  const evolutionDetails: Partial<EvolutionDetail>[] = [];
 
-  const evolutionDetails: EvolutionDetailDisplay[] = [
-    EVOLUTION_DETAILS(triggerEntry).trigger,
-  ];
+  for (let i = 0; i < details.length; i++) {
+    const evolutionEntries = Object.entries(details[i]);
+    const newEvolutionDetailsObject: Partial<EvolutionDetail> = {};
 
-  for (const [key, value] of Object.entries(details)) {
-    if (key === 'trigger') continue;
-    if (value)
-      evolutionDetails.push(
-        EVOLUTION_DETAILS(value)[key as keyof EvolutionDetail]
-      );
+    for (const [key, value] of evolutionEntries) {
+      if (value) {
+        // @ts-expect-error Forgive me I'm too lazy to correctly type this
+        newEvolutionDetailsObject[key] = value;
+      }
+    }
+
+    evolutionDetails.push(newEvolutionDetailsObject);
   }
 
   return evolutionDetails;
@@ -217,7 +213,9 @@ export const getStatColor = (statName: string) => {
   return colorMap[statName] || '#94A3B8';
 };
 
-export const buildEvolutionChain = (pokemonChain: Chain) => {
+export const buildEvolutionChain = (
+  pokemonChain: Chain
+): PokemonEvolutionType[] => {
   const evolutions: PokemonEvolutionType[] = [];
 
   if (pokemonChain) {
@@ -225,7 +223,7 @@ export const buildEvolutionChain = (pokemonChain: Chain) => {
 
     evolutions.push({
       name: species.name,
-      evolutionDetails: evolution_details?.[0],
+      evolutionDetails: evolution_details,
     });
 
     if (evolves_to.length) {
