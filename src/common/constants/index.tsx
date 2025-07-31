@@ -181,29 +181,31 @@ export const TYPE_ICONS: Record<PokemonTypes, React.ElementType> = {
 };
 
 export const TYPE_COLORS: Record<PokemonTypes, string> = {
-  normal: '#A8A878',
-  fire: '#F08030',
-  water: '#6890F0',
-  electric: '#F8D030',
-  grass: '#78C850',
-  ice: '#98D8D8',
-  fighting: '#C03028',
-  poison: '#A040A0',
-  ground: '#E0C068',
-  flying: '#A890F0',
-  psychic: '#F85888',
-  bug: '#A8B820',
-  rock: '#B8A038',
-  ghost: '#705898',
-  dragon: '#7038F8',
-  dark: '#705848',
-  steel: '#B8B8D0',
-  fairy: '#EE99AC',
+  normal: 'text-normal',
+  fire: 'text-fire',
+  water: 'text-water',
+  electric: 'text-electric',
+  grass: 'text-grass',
+  ice: 'text-ice',
+  fighting: 'text-fighting',
+  poison: 'text-poison',
+  ground: 'text-ground',
+  flying: 'text-flying',
+  psychic: 'text-psychic',
+  bug: 'text-bug',
+  rock: 'text-rock',
+  ghost: 'text-ghost',
+  dragon: 'text-dragon',
+  dark: 'text-dark',
+  steel: 'text-steel',
+  fairy: 'text-fairy',
 };
 
 export const POKEMON_EXCEPTIONS: PokemonExceptions[] = [
   { name: 'Mega Charizard X', id: 10034 },
   { name: 'Mega Charizard Y', id: 10035 },
+  { name: 'Mega Mewtwo X', id: 10043 },
+  { name: 'Mega Mewtwo Y', id: 10044 },
   { name: 'Nidoran (male)', id: 32 },
   { name: 'Nidoran (female)', id: 29 },
   { name: 'Lycanroc Midday Form', id: 745 },
@@ -261,6 +263,7 @@ export const POKEMON_EXCEPTIONS: PokemonExceptions[] = [
   { name: 'Galarian Slowpoke', id: 10164 },
   { name: 'Galarian Slowbro', id: 10165 },
   { name: "Galarian Farfetch'd", id: 10166 },
+  { name: "Farfetch'd", id: 83 },
   { name: 'Galarian Weezing', id: 10167 },
   { name: "Sirfetch'd", id: 865 },
   { name: 'Galarian Mr. Mime', id: 10168 },
@@ -376,45 +379,167 @@ export const POKEMON_EXCEPTIONS: PokemonExceptions[] = [
   { name: 'Dudunsparce Three-Segment Form', id: 10255 },
 ];
 
-export const EVOLUTION_DETAILS = {
-  item: {
-    'water-stone': 'Water Stone',
-    'thunder-stone': 'Thunder Stone',
-    'fire-stone': 'Fire Stone',
-    'leaf-stone': 'Leaf Stone',
-    'sun-stone': 'Sun Stone',
-    'shiny-stone': 'Shiny Stone',
-    'dusk-stone': 'Dusk Stone',
-    'dawn-stone': 'Dawn Stone',
-    'moon-stone': 'Moon Stone',
-    'oval-stone': 'Oval Stone',
-    'kings-rock': "King's Rock",
-    'up-grade': 'Up-grade',
-    'dubious-disc': 'Dubious Disc',
-    'metal-coat': 'Metal Coat',
-    'black-augurite': 'Black Augurite',
-    'dragon-scale': 'Dragon Scale',
-    'reaper-cloth': 'Reaper Cloth',
-    electirizer: 'Electirizer',
-    magmarizer: 'Magmarizer',
-    protector: 'Protector',
-    sachet: 'Sachet',
-    'whipped-dream': 'Whipped Dream',
-    'prism-scale': 'Prism Scale',
-    'deep-sea-tooth': 'Deep Sea Tooth',
-    'deep-sea-scale': 'Deep Sea Scale',
-    'razor-claw': 'Razor Claw',
-    'peat-block': 'Peat Block',
-    'razor-fang': 'Razor Fang',
-    'cracked-pot': 'Cracked Pot',
+export const ITEMS_DATA: Record<string, { label: string; image?: string }> = {
+  'water-stone': {
+    label: 'Water Stone',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/water-stone.png',
   },
-  stats: {
-    '1': 'ATK > DEF',
-    '-1': 'ATK < DEF',
-    '0': 'ATK = DEF',
+  'thunder-stone': {
+    label: 'Thunder Stone',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/thunder-stone.png',
   },
-  min_happiness: 'Friendship',
-  min_beauty: 'Beauty',
+  'fire-stone': {
+    label: 'Fire Stone',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/fire-stone.png',
+  },
+  'leaf-stone': {
+    label: 'Leaf Stone',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/leaf-stone.png',
+  },
+  'ice-stone': {
+    label: 'Ice Stone',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/ice-stone.png',
+  },
+  'sun-stone': {
+    label: 'Sun Stone',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/sun-stone.png',
+  },
+  'shiny-stone': {
+    label: 'Shiny Stone',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/shiny-stone.png',
+  },
+  'dusk-stone': {
+    label: 'Dusk Stone',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dusk-stone.png',
+  },
+  'dawn-stone': {
+    label: 'Dawn Stone',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dawn-stone.png',
+  },
+  'moon-stone': {
+    label: 'Moon Stone',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/moon-stone.png',
+  },
+  'oval-stone': {
+    label: 'Oval Stone',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/oval-stone.png',
+  },
+  'kings-rock': {
+    label: "King's Rock",
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/kings-rock.png',
+  },
+  'up-grade': {
+    label: 'Up-grade',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/up-grade.png',
+  },
+  'dubious-disc': {
+    label: 'Dubious Disc',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dubious-disc.png',
+  },
+  'metal-coat': {
+    label: 'Metal Coat',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/metal-coat.png',
+  },
+  'black-augurite': {
+    label: 'Black Augurite',
+    image:
+      'https://archives.bulbagarden.net/media/upload/0/0f/Bag_Black_Augurite_SV_Sprite.png',
+  },
+  'dragon-scale': {
+    label: 'Dragon Scale',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dragon-scale.png',
+  },
+  'reaper-cloth': {
+    label: 'Reaper Cloth',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/reaper-cloth.png',
+  },
+  electirizer: {
+    label: 'Electirizer',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/electirizer.png',
+  },
+  magmarizer: {
+    label: 'Magmarizer',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/magmarizer.png',
+  },
+  protector: {
+    label: 'Protector',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/protector.png',
+  },
+  sachet: {
+    label: 'Sachet',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/sachet.png',
+  },
+  'whipped-dream': {
+    label: 'Whipped Dream',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/whipped-deam.png',
+  },
+  'prism-scale': {
+    label: 'Prism Scale',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/prism-scale.png',
+  },
+  'deep-sea-tooth': {
+    label: 'Deep Sea Tooth',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/deep-sea-tooth.png',
+  },
+  'deep-sea-scale': {
+    label: 'Deep Sea Scale',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/deep-sea-scale.png',
+  },
+  'razor-claw': {
+    label: 'Razor Claw',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/razor-claw.png',
+  },
+  'peat-block': {
+    label: 'Peat Block',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/peat-block.png',
+  },
+  'razor-fang': {
+    label: 'Razor Fang',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/razor-fang.png',
+  },
+  'cracked-pot': {
+    label: 'Cracked Pot',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/cracked-pot.png',
+  },
+  'galarica-cuff': {
+    label: 'Galarica Cuff',
+    image:
+      'https://archives.bulbagarden.net/media/upload/f/f6/Bag_Galarica_Cuff_SV_Sprite.png',
+  },
+  'galarica-wreath': {
+    label: 'Galarica Wreath',
+    image:
+      'https://archives.bulbagarden.net/media/upload/4/44/Bag_Galarica_Wreath_SV_Sprite.png',
+  },
 };
 
 /**

@@ -15,7 +15,7 @@ export default function Header() {
   useEffect(() => {
     const handleScroll = () => {
       const pokemonCard = document.getElementById('pokemon-card-header');
-      
+
       if (pokemonCard) {
         const rect = pokemonCard.getBoundingClientRect();
         setStickyHeaderVisible(rect.top <= 0);
@@ -51,7 +51,7 @@ export default function Header() {
           </div>
           <div className="flex-1">
             <div className="grid grid-cols-[1fr_78px] grid-rows-1">
-              <div>
+              <div className="w-48">
                 <h2 className="text-xl font-bold text-gray-900 capitalize whitespace-nowrap overflow-hidden text-ellipsis">
                   {pokemonData.name}
                 </h2>

@@ -1,15 +1,20 @@
 import React from 'react';
-import { clsx, type ClassValue } from 'clsx';
+import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import { EvolutionDetail, PokemonTypes } from '@/types/Pokemon.type';
 import {
-  EVOLUTION_DETAILS,
-  TYPE_ICONS,
-  TYPE_LABELS,
-  WEAKNESS_CHART,
-} from '@/common/constants';
+  Chain,
+  EvolutionDetail,
+  EvolutionDetailDisplay,
+  GenericPropertyDetails,
+  Items,
+  PokemonEvolutionType,
+  PokemonTypes,
+  Species,
+} from '@/types/Pokemon.type';
+import { TYPE_ICONS, TYPE_LABELS, WEAKNESS_CHART } from '@/common/constants';
 import { CircleIcon } from 'lucide-react';
 import { EffectivenessMode } from '@/types';
+import { EVOLUTION_DETAILS } from '@/common/constants/evolutions';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -23,103 +28,61 @@ export function toPokeApiName(name: string) {
   return `${base}-mega`;
 }
 
-export const displayEvolutionDetails = (
-  evolution: string,
-  details: EvolutionDetail
-) => {
-  if (!details || Object.keys(details).length === 0) {
-    return 'Base Form';
+export const getEvolutionDetails = (
+  details?: EvolutionDetail[]
+): Partial<EvolutionDetail>[] => {
+  if (!details || details.length === 0) {
+    return [
+      {
+        trigger: {
+          name: 'base-form',
+          url: '',
+        },
+      },
+    ];
   }
 
-  // Priority special cases
-  if (evolution === 'mantine') {
-    return details.party_species?.name
-      ? `Having ${details.party_species.name} in your party when leveling up`
-      : undefined;
-  }
+  const evolutionDetails: Partial<EvolutionDetail>[] = [];
 
-  if (details.location?.name) {
-    const specialLocationMap: Record<string, string> = {
-      'mt-coronet': 'Thunder Stone',
-      'eterna-forest': 'Leaf Stone',
-      'sinnoh-route-217': 'Ice Stone',
-    };
-    const locationName = details.location.name;
-    if (specialLocationMap[locationName]) {
-      return specialLocationMap[locationName];
+  for (let i = 0; i < details.length; i++) {
+    const evolutionEntries = Object.entries(details[i]);
+    const newEvolutionDetailsObject: Partial<EvolutionDetail> = {};
+
+    for (const [key, value] of evolutionEntries) {
+      if ((key === 'relative_physical_stats' && value !== null) || value) {
+        // @ts-expect-error Forgive me I'm too lazy to correctly type this
+        newEvolutionDetailsObject[key] = value;
+      }
     }
+
+    evolutionDetails.push(newEvolutionDetailsObject);
   }
 
-  // Regular rules
-  const rules: string[] = [];
-
-  if (details.item?.name) {
-    rules.push(`using ${EVOLUTION_DETAILS.item[details.item.name]}`);
-  }
-
-  if (details.held_item?.name) {
-    const base = `Holding ${EVOLUTION_DETAILS.item[details.held_item.name]}`;
-    if (details.time_of_day) {
-      rules.push(`${base} during ${details.time_of_day}`);
-    } else {
-      rules.push(`${base} while trading`);
-    }
-  }
-
-  if (details.gender != null) {
-    const genderLabel = details.gender === 2 ? 'Male ♂' : 'Female ♀';
-    rules.push(genderLabel);
-  }
-
-  if (details.min_level != null) {
-    rules.push(`At lvl ${details.min_level}`);
-  }
-
-  if (details.min_happiness != null) {
-    const happiness = `${EVOLUTION_DETAILS.min_happiness}${
-      details.time_of_day ? ` during ${details.time_of_day}` : ''
-    }`;
-    rules.push(happiness);
-  }
-
-  if (details.min_beauty != null) {
-    rules.push(EVOLUTION_DETAILS.min_beauty);
-  }
-
-  if (details.known_move_type) {
-    rules.push(
-      `Knows a ${details.known_move_type.name}-type move when leveling up`
-    );
-  }
-
-  if (details.known_move) {
-    rules.push(`Knows ${details.known_move.name} move when leveling up`);
-  }
-
-  if (details.needs_overworld_rain) {
-    rules.push('While raining in overworld');
-  }
-
-  if (details.relative_physical_stats != null) {
-    const statsRule =
-      EVOLUTION_DETAILS.stats[
-        details.relative_physical_stats.toString() as '1' | '0' | '-1'
-      ];
-    if (statsRule) {
-      rules.push(`when ${statsRule}`);
-    }
-  }
-
-  if (details.trigger?.name === 'level-up' && rules.length === 0) {
-    return 'Level up';
-  }
-
-  if (details.trigger?.name === 'trade' && rules.length === 0) {
-    return 'Trade';
-  }
-
-  return rules.length > 0 ? rules.join(', ') : undefined;
+  return evolutionDetails;
 };
+
+export function buildAdditionalDetailsList(
+  detail: Partial<EvolutionDetail>
+): EvolutionDetailDisplay[] {
+  const additionalDetailsList = [];
+
+  for (const [key, value] of Object.entries(detail)) {
+    if (key === 'trigger') continue;
+
+    const detailInfo = EVOLUTION_DETAILS(
+      value as
+        | string
+        | number
+        | boolean
+        | Species
+        | GenericPropertyDetails
+        | GenericPropertyDetails<Items>
+    )[key as keyof EvolutionDetail];
+    additionalDetailsList.push(detailInfo);
+  }
+
+  return additionalDetailsList;
+}
 
 export const getTypeIcon = (type: PokemonTypes) => {
   const Icon = TYPE_ICONS[type] || CircleIcon;
@@ -253,3 +216,51 @@ export function formatDisplayCount(count: number): string {
 
   return `${(count / 1_000).toFixed(1).replace(/\.0$/, '')}k`;
 }
+
+export const formatStatName = (statName: string) => {
+  const statMap: { [key: string]: string } = {
+    hp: 'HP',
+    attack: 'Attack',
+    defense: 'Defense',
+    'special-attack': 'Sp. Attack',
+    'special-defense': 'Sp. Defense',
+    speed: 'Speed',
+  };
+  return statMap[statName] || statName;
+};
+
+export const getStatColor = (statName: string) => {
+  const colorMap: { [key: string]: string } = {
+    hp: '#FF5959',
+    attack: '#F5AC78',
+    defense: '#FAE078',
+    'special-attack': '#9DB7F5',
+    'special-defense': '#A7DB8D',
+    speed: '#FA92B2',
+  };
+  return colorMap[statName] || '#94A3B8';
+};
+
+export const buildEvolutionChain = (
+  pokemonChain: Chain
+): PokemonEvolutionType[] => {
+  const evolutions: PokemonEvolutionType[] = [];
+
+  if (pokemonChain) {
+    const { species, evolves_to, evolution_details } = pokemonChain;
+
+    evolutions.push({
+      name: species.name,
+      evolutionDetails: evolution_details,
+    });
+
+    if (evolves_to.length) {
+      evolves_to.forEach((evolve) => {
+        const subEvolutions = buildEvolutionChain(evolve);
+        evolutions.push(...subEvolutions);
+      });
+    }
+  }
+
+  return evolutions;
+};

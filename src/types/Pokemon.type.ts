@@ -1,4 +1,5 @@
 import { POKEMON_LIST } from '@/common/constants';
+import React from 'react';
 
 export type PokemonTypes =
   | 'normal'
@@ -230,24 +231,34 @@ export type Chain = {
 };
 
 export type EvolutionDetail = {
-  gender: null;
+  gender: number | null;
   held_item: GenericPropertyDetails<Items> | null;
   item: GenericPropertyDetails<Items> | null;
-  known_move: Species;
+  known_move: Species | null;
   known_move_type: GenericPropertyDetails | null;
-  location: GenericPropertyDetails;
-  min_affection: null;
-  min_beauty: null;
+  location: GenericPropertyDetails | null;
+  min_affection: number | null;
+  min_beauty: number | null;
   min_happiness: number | null;
-  min_level: null;
+  min_level: number | null;
   needs_overworld_rain: boolean;
-  party_species: { name: string };
-  party_type: null;
-  relative_physical_stats: number;
+  party_species: GenericPropertyDetails | null;
+  party_type: GenericPropertyDetails | null;
+  relative_physical_stats: number | null;
   time_of_day: string;
-  trade_species: null;
+  trade_species: GenericPropertyDetails | null;
   trigger: GenericPropertyDetails | null;
   turn_upside_down: boolean;
+};
+
+export type EvolutionDetailDisplay = {
+  type: keyof EvolutionDetail;
+  label: React.ReactNode;
+  image?: string;
+  icon?: React.ReactNode;
+  details?: string;
+  generation?: string;
+  gameVersion?: string;
 };
 
 export type Items =
@@ -283,7 +294,7 @@ export type Items =
 
 export type PokemonEvolutionType = {
   name: string;
-  evolutionDetails: EvolutionDetail;
+  evolutionDetails: EvolutionDetail[];
 };
 
 export interface Species {

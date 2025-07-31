@@ -22,10 +22,14 @@
 
 - [ ] When navigating with the keyboard the suggestions items, it should scroll to the selected item for the items that
   overflows the container.
+- [ ] Some suggestions are not shown completely on mobile devices.
 - [ ] Prevent searching the same Pokémon from the search bar
+- [ ] Parse Pokémon names with the ones in the suggestion list to avoid typos
 
 # Priority
 
+- [ ] This is important for some features, fetch the Pokémon group that tells a bit more about belonging generation.
+  This url is contained in the `forms` array from the main Pokémon data
 - [x] Supports selecting two types and merge weakness and strengths (UI reference in v0).
     - [x] Fix mobile view
 - [x] Divide the effectiveness chart into two sections (UI reference in v0).
@@ -69,10 +73,11 @@
 - [ ] Add an X icon to the search bar to clear the input
 - [ ] Add a tab to Pokémon card to show base stats (UI reference in v0).
 - [ ] Configure again function to select a Pokémon from the evolution chain list
-- [ ] Add an expandable list to show evolution details for Pokémon that goes beyond leveling up or using an evolutive
+- [x] Add an expandable list to show evolution details for Pokémon that goes beyond leveling up or using an evolutive
   stone (UI reference in v0).
-    - [ ] Check if we can fetch more details when there are more than one item in the evolution details array, which
-    - means that it has variations depending on the game ou are playing, so I would like to show those details as well.
+    - [x] Check if we can fetch more details when there are more than one item in the evolution details array, which
+    - means that it has variations depending on the game we are playing, so I would like to show those details as well.
+- [ ] Try to add on which games the evolution variations are effective. (Take Eevee as example)
 - [ ] Add loading states while fetching pokémon data
 - [ ] Add Analytics
     - [ ] Use Google Analytics
