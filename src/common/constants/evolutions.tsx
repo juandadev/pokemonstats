@@ -8,6 +8,7 @@ import {
 } from '@/types/Pokemon.type';
 import {
   BackpackIcon,
+  BadgeQuestionMarkIcon,
   CableIcon,
   CandyIcon,
   CircleDashedIcon,
@@ -31,6 +32,10 @@ export const PARSED_EVOLUTION_TRIGGER: Record<
   string,
   { label: string; icon: React.ReactNode }
 > = {
+  'base-form': {
+    label: 'Base Form',
+    icon: <CircleDashedIcon className="w-4 h-4 text-yellow-600" />,
+  },
   'level-up': {
     label: 'Level Up',
     icon: <CandyIcon className="w-4 h-4 text-yellow-600" />,
@@ -47,6 +52,10 @@ export const PARSED_EVOLUTION_TRIGGER: Record<
     label: 'Land three critical hits in a battle',
     icon: <SparklesIcon className="w-4 h-4 text-yellow-600" />,
   },
+  default: {
+    label: 'Unknown',
+    icon: <BadgeQuestionMarkIcon className="w-4 h-4 text-yellow-600" />,
+  },
 };
 
 export const EVOLUTION_DETAILS = (
@@ -60,9 +69,7 @@ export const EVOLUTION_DETAILS = (
 ): Record<keyof EvolutionDetail, EvolutionDetailDisplay> => ({
   trigger: {
     type: 'trigger',
-    label: PARSED_EVOLUTION_TRIGGER[detail as string]?.label || (
-      <CircleDashedIcon className="w-4 h-4 text-yellow-600" />
-    ),
+    label: PARSED_EVOLUTION_TRIGGER[detail as string]?.label || 'Check details',
     image: undefined,
     icon: PARSED_EVOLUTION_TRIGGER[detail as string]?.icon || (
       <div className="w-1 h-1 bg-gray-400 rounded-full" />

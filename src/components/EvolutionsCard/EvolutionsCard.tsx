@@ -20,6 +20,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { EvolutionDetailDisplay } from '@/types/Pokemon.type';
 import EvolutionDetails from '@/components/EvolutionsCard/EvolutionDetails';
+import { EVOLUTION_DETAILS } from '@/common/constants/evolutions';
 
 export default function EvolutionsCard() {
   const { evolutionsData, pokemonData } = usePokemonData();
@@ -47,9 +48,6 @@ export default function EvolutionsCard() {
           evolution.evolutionDetails
         );
         const shouldDisplayDetails = index !== 0;
-        const lvlUpIndex = evolutionDetails.findIndex(
-          (detail) => detail.type === 'min_level'
-        );
 
         return (
           <div
@@ -75,9 +73,12 @@ export default function EvolutionsCard() {
             <div className="flex-1">
               <div className="font-semibold capitalize">{evolution.name}</div>
               <div className="text-sm text-gray-600">
-                {lvlUpIndex === -1
-                  ? evolutionDetails[0].label
-                  : `Level ${evolution.evolutionDetails.min_level}`}
+                {evolutionDetails[0].trigger?.name === 'level-up' &&
+                evolutionDetails[0].min_level
+                  ? `Level ${evolution.evolutionDetails[0].min_level}`
+                  : EVOLUTION_DETAILS(
+                      evolutionDetails[0].trigger?.name || 'default'
+                    ).trigger.label}
               </div>
             </div>
             {shouldDisplayDetails && (
