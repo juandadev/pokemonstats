@@ -174,7 +174,7 @@ const ROADMAP: Roadmap[] = [
     title: 'Expandable evolution details',
     description:
       'Adding an expandable section to show detailed evolution requirements and methods that goes beyond leveling up or using evolution stones',
-    status: 'In Progress',
+    status: 'Done',
     category: 'Advanced Features',
     phase: 2,
   },
