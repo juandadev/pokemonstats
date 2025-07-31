@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { Fragment, useMemo } from 'react';
 import { EvolutionDetail } from '@/types/Pokemon.type';
 import Image from 'next/image';
 import { EVOLUTION_DETAILS } from '@/common/constants/evolutions';
@@ -21,14 +21,10 @@ export default function EvolutionDetails({
           detail.trigger?.name || 'default'
         ).trigger;
         const additionalDetailsList = buildAdditionalDetailsList(detail);
-        console.log(additionalDetailsList);
 
         return (
-          <>
-            <div
-              key={`${pokemonName}-evolution-detail-${index}`}
-              className="flex items-start gap-3"
-            >
+          <Fragment key={`${pokemonName}-evolution-detail-${index}`}>
+            <div className="flex items-start gap-3">
               <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                 <span className="text-xs font-semibold text-blue-600">
                   {index + 1}
@@ -70,7 +66,7 @@ export default function EvolutionDetails({
               </div>
             </div>
             {index !== details.length - 1 && <Separator className="my-5" />}
-          </>
+          </Fragment>
         );
       }),
     [details, pokemonName]
