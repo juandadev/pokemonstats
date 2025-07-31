@@ -4,12 +4,17 @@ import { twMerge } from 'tailwind-merge';
 import {
   Chain,
   EvolutionDetail,
+  EvolutionDetailDisplay,
+  GenericPropertyDetails,
+  Items,
   PokemonEvolutionType,
   PokemonTypes,
+  Species,
 } from '@/types/Pokemon.type';
 import { TYPE_ICONS, TYPE_LABELS, WEAKNESS_CHART } from '@/common/constants';
 import { CircleIcon } from 'lucide-react';
 import { EffectivenessMode } from '@/types';
+import { EVOLUTION_DETAILS } from '@/common/constants/evolutions';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -55,6 +60,29 @@ export const getEvolutionDetails = (
 
   return evolutionDetails;
 };
+
+export function buildAdditionalDetailsList(
+  detail: Partial<EvolutionDetail>
+): EvolutionDetailDisplay[] {
+  const additionalDetailsList = [];
+
+  for (const [key, value] of Object.entries(detail)) {
+    if (key === 'trigger') continue;
+
+    const detailInfo = EVOLUTION_DETAILS(
+      value as
+        | string
+        | number
+        | boolean
+        | Species
+        | GenericPropertyDetails
+        | GenericPropertyDetails<Items>
+    )[key as keyof EvolutionDetail];
+    additionalDetailsList.push(detailInfo);
+  }
+
+  return additionalDetailsList;
+}
 
 export const getTypeIcon = (type: PokemonTypes) => {
   const Icon = TYPE_ICONS[type] || CircleIcon;

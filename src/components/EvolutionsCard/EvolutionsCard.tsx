@@ -18,7 +18,7 @@ import {
   SheetTitle,
 } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
-import { EvolutionDetailDisplay } from '@/types/Pokemon.type';
+import { EvolutionDetail } from '@/types/Pokemon.type';
 import EvolutionDetails from '@/components/EvolutionsCard/EvolutionDetails';
 import { EVOLUTION_DETAILS } from '@/common/constants/evolutions';
 
@@ -29,12 +29,12 @@ export default function EvolutionsCard() {
     useState<boolean>(false);
   const [selectedPokemon, setSelectedPokemon] = useState<string | null>(null);
   const [evolutionDetails, setEvolutionDetails] = useState<
-    EvolutionDetailDisplay[]
+    Partial<EvolutionDetail>[]
   >([]);
 
   const handleEvolutionDetails = (
     pokemon: string,
-    details: EvolutionDetailDisplay[]
+    details: Partial<EvolutionDetail>[]
   ) => {
     setShowEvolutionDetails((prevState) => !prevState);
     setSelectedPokemon(pokemon);

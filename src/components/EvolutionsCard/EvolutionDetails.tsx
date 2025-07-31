@@ -1,60 +1,87 @@
-import { EvolutionDetailDisplay } from '@/types/Pokemon.type';
-import React from 'react';
+import React, { useMemo } from 'react';
+import { EvolutionDetail } from '@/types/Pokemon.type';
 import Image from 'next/image';
+import { EVOLUTION_DETAILS } from '@/common/constants/evolutions';
+import { Separator } from '@/components/ui/separator';
+import { buildAdditionalDetailsList } from '@/lib/utils';
 
 interface EvolutionDetailsProps {
   pokemonName: string;
-  details: EvolutionDetailDisplay[];
+  details: Partial<EvolutionDetail>[];
 }
 
 export default function EvolutionDetails({
   pokemonName,
   details,
 }: EvolutionDetailsProps) {
+  const renderDetailsList = useMemo(
+    () =>
+      details.map((detail, index) => {
+        const triggerInfo = EVOLUTION_DETAILS(
+          detail.trigger?.name || 'default'
+        ).trigger;
+        const additionalDetailsList = buildAdditionalDetailsList(detail);
+        console.log(additionalDetailsList);
+
+        return (
+          <>
+            <div
+              key={`${pokemonName}-evolution-detail-${index}`}
+              className="flex items-start gap-3"
+            >
+              <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                <span className="text-xs font-semibold text-blue-600">
+                  {index + 1}
+                </span>
+              </div>
+              <div className="flex-1 space-y-2">
+                {/* Trigger Method */}
+                <div className="flex items-center gap-2">
+                  {triggerInfo.icon}
+                  <span className="text-sm font-medium text-gray-900">
+                    {triggerInfo.label}
+                  </span>
+                </div>
+                <div className="space-y-1.5 text-sm text-gray-600">
+                  {additionalDetailsList.map((item, index) => {
+                    return (
+                      <div
+                        key={`${pokemonName}-evolution-variation-${index}`}
+                        className="flex items-center gap-2"
+                      >
+                        {item.icon || (
+                          <div className="w-1 h-1 bg-gray-400 rounded-full" />
+                        )}
+                        {item.image && (
+                          <Image
+                            width={20}
+                            height={20}
+                            src={item.image}
+                            alt="Item Sprite"
+                            className="w-5 h-5"
+                            unoptimized
+                          />
+                        )}
+                        {item.label}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+            {index !== details.length - 1 && <Separator className="my-5" />}
+          </>
+        );
+      }),
+    [details, pokemonName]
+  );
+
   if (details.length === 0) return null;
 
   return (
     <div className="mx-3 bg-white border border-gray-200 rounded-lg shadow-sm overflow-y-scroll">
       <div className="divide-y divide-gray-100">
-        <div className="p-4 space-y-2">
-          <div className="flex items-start gap-3">
-            <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-              <span className="text-xs font-semibold text-blue-600">1</span>
-            </div>
-            <div className="flex-1 space-y-2">
-              {/* Trigger Method */}
-              <div className="flex items-center gap-2">
-                {details[0].icon}
-                <span className="text-sm font-medium text-gray-900">
-                  {details[0].label}
-                </span>
-              </div>
-              <div className="space-y-1.5 text-sm text-gray-600">
-                {details.slice(1).map((detail, index) => (
-                  <div
-                    key={`${pokemonName}-evolution-${index}`}
-                    className="flex items-center gap-2"
-                  >
-                    {detail.icon || (
-                      <div className="w-1 h-1 bg-gray-400 rounded-full" />
-                    )}
-                    {detail.image && (
-                      <Image
-                        width={20}
-                        height={20}
-                        src={detail.image}
-                        alt="Item Sprite"
-                        className="w-5 h-5"
-                        unoptimized
-                      />
-                    )}
-                    {detail.label}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
+        <div className="p-4 space-y-2">{renderDetailsList}</div>
       </div>
     </div>
   );

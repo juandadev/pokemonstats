@@ -400,6 +400,11 @@ export const ITEMS_DATA: Record<string, { label: string; image?: string }> = {
     image:
       'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/leaf-stone.png',
   },
+  'ice-stone': {
+    label: 'Ice Stone',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/ice-stone.png',
+  },
   'sun-stone': {
     label: 'Sun Stone',
     image:

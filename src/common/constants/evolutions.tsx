@@ -62,7 +62,7 @@ export const EVOLUTION_DETAILS = (
   detail:
     | string
     | number
-    | true
+    | boolean
     | Species
     | GenericPropertyDetails
     | GenericPropertyDetails<Items>

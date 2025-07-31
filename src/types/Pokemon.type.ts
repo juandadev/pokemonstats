@@ -294,7 +294,7 @@ export type Items =
 
 export type PokemonEvolutionType = {
   name: string;
-  evolutionDetails: EvolutionDetail;
+  evolutionDetails: EvolutionDetail[];
 };
 
 export interface Species {
