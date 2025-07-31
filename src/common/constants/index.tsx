@@ -458,7 +458,7 @@ export const ITEMS_DATA: Record<string, { label: string; image?: string }> = {
   'black-augurite': {
     label: 'Black Augurite',
     image:
-      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/black-augurite.png',
+      'https://archives.bulbagarden.net/media/upload/0/0f/Bag_Black_Augurite_SV_Sprite.png',
   },
   'dragon-scale': {
     label: 'Dragon Scale',
@@ -529,6 +529,16 @@ export const ITEMS_DATA: Record<string, { label: string; image?: string }> = {
     label: 'Cracked Pot',
     image:
       'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/cracked-pot.png',
+  },
+  'galarica-cuff': {
+    label: 'Galarica Cuff',
+    image:
+      'https://archives.bulbagarden.net/media/upload/f/f6/Bag_Galarica_Cuff_SV_Sprite.png',
+  },
+  'galarica-wreath': {
+    label: 'Galarica Wreath',
+    image:
+      'https://archives.bulbagarden.net/media/upload/4/44/Bag_Galarica_Wreath_SV_Sprite.png',
   },
 };
 

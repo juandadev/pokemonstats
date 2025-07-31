@@ -11,6 +11,7 @@ const nextConfig: NextConfig = {
       { protocol: 'https', hostname: 'assets.pokemon.com' },
       { protocol: 'https', hostname: 'www.pokencyclopedia.info' },
       { protocol: 'https', hostname: 'serebii.net' },
+      { protocol: 'https', hostname: 'archives.bulbagarden.net' },
     ],
   },
 };

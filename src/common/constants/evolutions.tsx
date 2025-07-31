@@ -291,8 +291,17 @@ export const EVOLUTION_DETAILS = (
   },
   trade_species: {
     type: 'trade_species',
-    label: 'Trade species',
-    image: undefined,
+    label: (
+      <span>
+        Trade for:{' '}
+        <strong className="capitalize">
+          {(detail as GenericPropertyDetails).name}
+        </strong>
+      </span>
+    ),
+    image: `https://projectpokemon.org/images/normal-sprite/${
+      (detail as GenericPropertyDetails).name
+    }.gif`,
     icon: undefined,
     details: undefined,
     generation: undefined,

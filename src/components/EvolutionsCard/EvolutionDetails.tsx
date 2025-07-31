@@ -45,16 +45,17 @@ export default function EvolutionDetails({
                         key={`${pokemonName}-evolution-variation-${index}`}
                         className="flex items-center gap-2"
                       >
-                        {item.icon || (
+                        {!item.icon && !item.image && (
                           <div className="w-1 h-1 bg-gray-400 rounded-full" />
                         )}
+                        {item.icon}
                         {item.image && (
                           <Image
                             width={20}
                             height={20}
                             src={item.image}
                             alt="Item Sprite"
-                            className="w-5 h-5"
+                            className="w-7 h-7 object-contain"
                             unoptimized
                           />
                         )}
