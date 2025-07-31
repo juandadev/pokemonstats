@@ -3,18 +3,29 @@ import {
   EvolutionDetailDisplay,
   GenericPropertyDetails,
   Items,
+  PokemonTypes,
   Species,
 } from '@/types/Pokemon.type';
 import {
   BackpackIcon,
   CableIcon,
+  CandyIcon,
+  CircleDashedIcon,
   CircleFadingArrowUpIcon,
+  Disc3Icon,
+  FlowerIcon,
+  HandHeartIcon,
+  MapPinnedIcon,
   MarsIcon,
+  MoonIcon,
   SparklesIcon,
+  StickerIcon,
+  SunIcon,
   VenusIcon,
 } from 'lucide-react';
 import React from 'react';
-import { ITEMS_DATA } from '@/common/constants/index';
+import { ITEMS_DATA, TYPE_COLORS } from '@/common/constants/index';
+import { clsx } from 'clsx';
 
 export const PARSED_EVOLUTION_TRIGGER: Record<
   string,
@@ -22,7 +33,7 @@ export const PARSED_EVOLUTION_TRIGGER: Record<
 > = {
   'level-up': {
     label: 'Level Up',
-    icon: <CircleFadingArrowUpIcon className="w-4 h-4 text-yellow-600" />,
+    icon: <CandyIcon className="w-4 h-4 text-yellow-600" />,
   },
   'use-item': {
     label: 'Use Item',
@@ -31,6 +42,10 @@ export const PARSED_EVOLUTION_TRIGGER: Record<
   trade: {
     label: 'Trade or Linking Cord',
     icon: <CableIcon className="w-4 h-4 text-yellow-600" />,
+  },
+  'three-critical-hits': {
+    label: 'Land three critical hits in a battle',
+    icon: <SparklesIcon className="w-4 h-4 text-yellow-600" />,
   },
 };
 
@@ -46,7 +61,7 @@ export const EVOLUTION_DETAILS = (
   trigger: {
     type: 'trigger',
     label: PARSED_EVOLUTION_TRIGGER[detail as string]?.label || (
-      <SparklesIcon className="w-4 h-4 text-purple-500" />
+      <CircleDashedIcon className="w-4 h-4 text-yellow-600" />
     ),
     image: undefined,
     icon: PARSED_EVOLUTION_TRIGGER[detail as string]?.icon || (
@@ -66,9 +81,9 @@ export const EVOLUTION_DETAILS = (
     image: undefined,
     icon:
       (detail as number) === 1 ? (
-        <VenusIcon className="w-3 h-3 text-pink-500" />
+        <VenusIcon className="w-4 h-4 text-pink-500" />
       ) : (
-        <MarsIcon className="w-3 h-3 text-cyan-500" />
+        <MarsIcon className="w-4 h-4 text-cyan-500" />
       ),
     details: undefined,
     generation: undefined,
@@ -108,54 +123,94 @@ export const EVOLUTION_DETAILS = (
   },
   known_move: {
     type: 'known_move',
-    label: '',
+    label: (
+      <span>
+        Knows move:{' '}
+        <strong className="capitalize">
+          {(detail as GenericPropertyDetails).name}
+        </strong>
+      </span>
+    ),
     image: undefined,
-    icon: undefined,
+    icon: <Disc3Icon className="h-4 w-4 text-gray-500" />,
     details: undefined,
     generation: undefined,
     gameVersion: undefined,
   },
   known_move_type: {
     type: 'known_move_type',
-    label: '',
+    label: (
+      <span>
+        Knows any move of type:{' '}
+        <strong className="capitalize">
+          {(detail as GenericPropertyDetails).name}
+        </strong>
+      </span>
+    ),
     image: undefined,
-    icon: undefined,
+    icon: (
+      <Disc3Icon
+        className={clsx(
+          'h-4 w-4',
+          TYPE_COLORS[(detail as GenericPropertyDetails).name as PokemonTypes]
+        )}
+      />
+    ),
     details: undefined,
     generation: undefined,
     gameVersion: undefined,
   },
   location: {
     type: 'location',
-    label: '',
+    label: (
+      <span>
+        Location:{' '}
+        <strong className="capitalize">
+          {(detail as GenericPropertyDetails).name?.replaceAll('-', ' ')}
+        </strong>
+      </span>
+    ),
     image: undefined,
-    icon: undefined,
+    icon: <MapPinnedIcon className="h-4 w-4 text-green-600" />,
     details: undefined,
     generation: undefined,
     gameVersion: undefined,
   },
   min_affection: {
     type: 'min_affection',
-    label: '',
+    label: (
+      <span>
+        Minimum affection: <strong>{detail as number}</strong>
+      </span>
+    ),
     image: undefined,
-    icon: undefined,
+    icon: <HandHeartIcon className="h-4 w-4 text-red-700" />,
     details: undefined,
     generation: undefined,
     gameVersion: undefined,
   },
   min_beauty: {
     type: 'min_beauty',
-    label: '',
+    label: (
+      <span>
+        Minimum beauty: <strong>{detail as number}</strong>
+      </span>
+    ),
     image: undefined,
-    icon: undefined,
+    icon: <FlowerIcon className="w-4 h-4 text-pink-500" />,
     details: undefined,
     generation: undefined,
     gameVersion: undefined,
   },
   min_happiness: {
     type: 'min_happiness',
-    label: '',
+    label: (
+      <span>
+        Minimum happiness: <strong>{detail as number}</strong>
+      </span>
+    ),
     image: undefined,
-    icon: undefined,
+    icon: <StickerIcon className="h-4 w-4 text-yellow-500" />,
     details: undefined,
     generation: undefined,
     gameVersion: undefined,
@@ -168,14 +223,14 @@ export const EVOLUTION_DETAILS = (
       </span>
     ),
     image: undefined,
-    icon: undefined,
+    icon: <CircleFadingArrowUpIcon className="w-4 h-4 text-yellow-600" />,
     details: undefined,
     generation: undefined,
     gameVersion: undefined,
   },
   needs_overworld_rain: {
     type: 'needs_overworld_rain',
-    label: '',
+    label: 'Needs overworld rain',
     image: undefined,
     icon: undefined,
     details: undefined,
@@ -184,7 +239,7 @@ export const EVOLUTION_DETAILS = (
   },
   party_species: {
     type: 'party_species',
-    label: '',
+    label: 'Party species',
     image: undefined,
     icon: undefined,
     details: undefined,
@@ -193,7 +248,7 @@ export const EVOLUTION_DETAILS = (
   },
   party_type: {
     type: 'party_type',
-    label: '',
+    label: 'Party type',
     image: undefined,
     icon: undefined,
     details: undefined,
@@ -202,7 +257,7 @@ export const EVOLUTION_DETAILS = (
   },
   relative_physical_stats: {
     type: 'relative_physical_stats',
-    label: '',
+    label: 'Relative physical stats',
     image: undefined,
     icon: undefined,
     details: undefined,
@@ -211,26 +266,34 @@ export const EVOLUTION_DETAILS = (
   },
   time_of_day: {
     type: 'time_of_day',
-    label: '',
+    label: (
+      <span>
+        Time: <strong className="capitalize">{detail as string}</strong>
+      </span>
+    ),
     image: undefined,
-    icon: undefined,
+    icon:
+      detail === 'day' ? (
+        <SunIcon className="w-4 h-4 text-yellow-500" />
+      ) : (
+        <MoonIcon className="w-4 h-4 text-blue-900" />
+      ),
     details: undefined,
     generation: undefined,
     gameVersion: undefined,
   },
   trade_species: {
     type: 'trade_species',
-    label: '',
+    label: 'Trade species',
     image: undefined,
     icon: undefined,
     details: undefined,
     generation: undefined,
     gameVersion: undefined,
   },
-
   turn_upside_down: {
     type: 'turn_upside_down',
-    label: '',
+    label: 'Turn upside down',
     image: undefined,
     icon: undefined,
     details: undefined,

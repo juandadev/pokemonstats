@@ -46,10 +46,7 @@ export default function EvolutionsCard() {
         const evolutionDetails = getEvolutionDetails(
           evolution.evolutionDetails
         );
-        const shouldDisplayDetails =
-          (evolution.evolutionDetails?.trigger?.name !== 'level-up' ||
-            evolutionDetails.length > 2) &&
-          index !== 0;
+        const shouldDisplayDetails = index !== 0;
         const lvlUpIndex = evolutionDetails.findIndex(
           (detail) => detail.type === 'min_level'
         );

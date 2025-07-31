@@ -24,10 +24,12 @@
   overflows the container.
 - [ ] Some suggestions are not shown completely on mobile devices.
 - [ ] Prevent searching the same Pokémon from the search bar
-- [ ] Parse Pokémon names with the ones in the suggestions list to avoid typos
+- [ ] Parse Pokémon names with the ones in the suggestion list to avoid typos
 
 # Priority
 
+- [ ] This is important for some features, fetch the Pokémon group that tells a bit more about belonging generation.
+  This url is contained in the `forms` array from the main Pokémon data
 - [x] Supports selecting two types and merge weakness and strengths (UI reference in v0).
     - [x] Fix mobile view
 - [x] Divide the effectiveness chart into two sections (UI reference in v0).

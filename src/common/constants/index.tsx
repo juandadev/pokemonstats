@@ -181,24 +181,24 @@ export const TYPE_ICONS: Record<PokemonTypes, React.ElementType> = {
 };
 
 export const TYPE_COLORS: Record<PokemonTypes, string> = {
-  normal: '#A8A878',
-  fire: '#F08030',
-  water: '#6890F0',
-  electric: '#F8D030',
-  grass: '#78C850',
-  ice: '#98D8D8',
-  fighting: '#C03028',
-  poison: '#A040A0',
-  ground: '#E0C068',
-  flying: '#A890F0',
-  psychic: '#F85888',
-  bug: '#A8B820',
-  rock: '#B8A038',
-  ghost: '#705898',
-  dragon: '#7038F8',
-  dark: '#705848',
-  steel: '#B8B8D0',
-  fairy: '#EE99AC',
+  normal: 'text-normal',
+  fire: 'text-fire',
+  water: 'text-water',
+  electric: 'text-electric',
+  grass: 'text-grass',
+  ice: 'text-ice',
+  fighting: 'text-fighting',
+  poison: 'text-poison',
+  ground: 'text-ground',
+  flying: 'text-flying',
+  psychic: 'text-psychic',
+  bug: 'text-bug',
+  rock: 'text-rock',
+  ghost: 'text-ghost',
+  dragon: 'text-dragon',
+  dark: 'text-dark',
+  steel: 'text-steel',
+  fairy: 'text-fairy',
 };
 
 export const POKEMON_EXCEPTIONS: PokemonExceptions[] = [
@@ -263,6 +263,7 @@ export const POKEMON_EXCEPTIONS: PokemonExceptions[] = [
   { name: 'Galarian Slowpoke', id: 10164 },
   { name: 'Galarian Slowbro', id: 10165 },
   { name: "Galarian Farfetch'd", id: 10166 },
+  { name: "Farfetch'd", id: 83 },
   { name: 'Galarian Weezing', id: 10167 },
   { name: "Sirfetch'd", id: 865 },
   { name: 'Galarian Mr. Mime', id: 10168 },
@@ -384,42 +385,146 @@ export const ITEMS_DATA: Record<string, { label: string; image?: string }> = {
     image:
       'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/water-stone.png',
   },
-  'thunder-stone': { label: 'Thunder Stone' },
-  'fire-stone': { label: 'Fire Stone' },
-  'leaf-stone': { label: 'Leaf Stone' },
-  'sun-stone': { label: 'Sun Stone' },
-  'shiny-stone': { label: 'Shiny Stone' },
-  'dusk-stone': { label: 'Dusk Stone' },
-  'dawn-stone': { label: 'Dawn Stone' },
-  'moon-stone': { label: 'Moon Stone' },
-  'oval-stone': { label: 'Oval Stone' },
+  'thunder-stone': {
+    label: 'Thunder Stone',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/thunder-stone.png',
+  },
+  'fire-stone': {
+    label: 'Fire Stone',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/fire-stone.png',
+  },
+  'leaf-stone': {
+    label: 'Leaf Stone',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/leaf-stone.png',
+  },
+  'sun-stone': {
+    label: 'Sun Stone',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/sun-stone.png',
+  },
+  'shiny-stone': {
+    label: 'Shiny Stone',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/shiny-stone.png',
+  },
+  'dusk-stone': {
+    label: 'Dusk Stone',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dusk-stone.png',
+  },
+  'dawn-stone': {
+    label: 'Dawn Stone',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dawn-stone.png',
+  },
+  'moon-stone': {
+    label: 'Moon Stone',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/moon-stone.png',
+  },
+  'oval-stone': {
+    label: 'Oval Stone',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/oval-stone.png',
+  },
   'kings-rock': {
     label: "King's Rock",
     image:
       'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/kings-rock.png',
   },
-  'up-grade': { label: 'Up-grade' },
-  'dubious-disc': { label: 'Dubious Disc' },
+  'up-grade': {
+    label: 'Up-grade',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/up-grade.png',
+  },
+  'dubious-disc': {
+    label: 'Dubious Disc',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dubious-disc.png',
+  },
   'metal-coat': {
     label: 'Metal Coat',
     image:
       'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/metal-coat.png',
   },
-  'black-augurite': { label: 'Black Augurite' },
-  'dragon-scale': { label: 'Dragon Scale' },
-  'reaper-cloth': { label: 'Reaper Cloth' },
-  electirizer: { label: 'Electirizer' },
-  magmarizer: { label: 'Magmarizer' },
-  protector: { label: 'Protector' },
-  sachet: { label: 'Sachet' },
-  'whipped-dream': { label: 'Whipped Dream' },
-  'prism-scale': { label: 'Prism Scale' },
-  'deep-sea-tooth': { label: 'Deep Sea Tooth' },
-  'deep-sea-scale': { label: 'Deep Sea Scale' },
-  'razor-claw': { label: 'Razor Claw' },
-  'peat-block': { label: 'Peat Block' },
-  'razor-fang': { label: 'Razor Fang' },
-  'cracked-pot': { label: 'Cracked Pot' },
+  'black-augurite': {
+    label: 'Black Augurite',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/black-augurite.png',
+  },
+  'dragon-scale': {
+    label: 'Dragon Scale',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dragon-scale.png',
+  },
+  'reaper-cloth': {
+    label: 'Reaper Cloth',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/reaper-cloth.png',
+  },
+  electirizer: {
+    label: 'Electirizer',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/electirizer.png',
+  },
+  magmarizer: {
+    label: 'Magmarizer',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/magmarizer.png',
+  },
+  protector: {
+    label: 'Protector',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/protector.png',
+  },
+  sachet: {
+    label: 'Sachet',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/sachet.png',
+  },
+  'whipped-dream': {
+    label: 'Whipped Dream',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/whipped-deam.png',
+  },
+  'prism-scale': {
+    label: 'Prism Scale',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/prism-scale.png',
+  },
+  'deep-sea-tooth': {
+    label: 'Deep Sea Tooth',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/deep-sea-tooth.png',
+  },
+  'deep-sea-scale': {
+    label: 'Deep Sea Scale',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/deep-sea-scale.png',
+  },
+  'razor-claw': {
+    label: 'Razor Claw',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/razor-claw.png',
+  },
+  'peat-block': {
+    label: 'Peat Block',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/peat-block.png',
+  },
+  'razor-fang': {
+    label: 'Razor Fang',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/razor-fang.png',
+  },
+  'cracked-pot': {
+    label: 'Cracked Pot',
+    image:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/cracked-pot.png',
+  },
 };
 
 /**
