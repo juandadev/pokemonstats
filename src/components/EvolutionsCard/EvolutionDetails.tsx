@@ -56,7 +56,6 @@ export default function EvolutionDetails({
                             src={item.image}
                             alt="Item Sprite"
                             className="w-7 h-7 object-contain"
-                            unoptimized
                           />
                         )}
                         {item.label}
