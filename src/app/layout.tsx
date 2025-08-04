@@ -6,6 +6,7 @@ import Footer from '@/components/Footer/Footer';
 import './globals.css';
 import { Toaster } from '@/components/ui/sonner';
 import { BotIdClient } from 'botid/client';
+import { SessionProvider } from 'next-auth/react';
 
 const geist_sans = Geist({
   variable: '--font-geist-sans',
@@ -38,17 +39,19 @@ export default function RootLayout({
       <body
         className={`${geist_sans.variable} bg-gradient-to-br from-blue-50 via-white to-purple-50`}
       >
-        <ContextProvider>
-          <div
-            className={
-              'min-h-screen container mx-auto md:px-8 px-4 pt-16 pb-8 max-w-7xl'
-            }
-          >
-            {children}
-            <Footer />
-            <Toaster richColors />
-          </div>
-        </ContextProvider>
+        <SessionProvider>
+          <ContextProvider>
+            <div
+              className={
+                'min-h-screen container mx-auto md:px-8 px-4 pt-16 pb-8 max-w-7xl'
+              }
+            >
+              {children}
+              <Footer />
+              <Toaster richColors />
+            </div>
+          </ContextProvider>
+        </SessionProvider>
       </body>
     </html>
   );
