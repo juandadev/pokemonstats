@@ -3,8 +3,32 @@
 import { PrismaAdapter } from '@auth/prisma-adapter';
 import bcrypt from 'bcryptjs';
 import { prisma } from '@/lib/prisma';
-import NextAuth from 'next-auth';
+import NextAuth, { CredentialsSignin } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
+
+class NotVerified extends CredentialsSignin {
+  code = 'You must be on the verified waitlist to access the beta.';
+}
+
+class RequiredFields extends CredentialsSignin {
+  code = 'Email and password are required';
+}
+
+class NameRequired extends CredentialsSignin {
+  code = 'Name is required for registration';
+}
+
+class NoAccount extends CredentialsSignin {
+  code = 'No account found. Please register first.';
+}
+
+class InvalidPassword extends CredentialsSignin {
+  code = 'Invalid password';
+}
+
+class UserExists extends CredentialsSignin {
+  code = 'User already exists. Please login instead.';
+}
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: PrismaAdapter(prisma),
@@ -19,7 +43,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
       authorize: async (credentials) => {
         if (!credentials?.email || !credentials?.password) {
-          throw new Error('Email and password are required');
+          throw new RequiredFields();
         }
 
         const { email, password, name, action } = credentials;
@@ -31,14 +55,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           });
 
           if (!waitlistEntry || waitlistEntry.status !== 'VERIFIED') {
-            throw new Error(
-              'You must be on the verified waitlist to access the beta.'
-            );
+            throw new NotVerified();
           }
 
           if (action === 'register') {
             if (!name) {
-              throw new Error('Name is required for registration');
+              throw new NameRequired();
             }
 
             const existingUser = await prisma.user.findUnique({
@@ -46,7 +68,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             });
 
             if (existingUser) {
-              throw new Error('User already exists. Please login instead.');
+              throw new UserExists();
             }
 
             const hashedPassword = await bcrypt.hash(password as string, 12);
@@ -71,7 +93,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             });
 
             if (!user) {
-              throw new Error('No account found. Please register first.');
+              throw new NoAccount();
             }
 
             const isValidPassword = await bcrypt.compare(
@@ -80,7 +102,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             );
 
             if (!isValidPassword) {
-              throw new Error('Invalid password');
+              throw new InvalidPassword();
             }
 
             return {

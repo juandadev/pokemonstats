@@ -18,6 +18,8 @@ import {
   Loader2,
 } from 'lucide-react';
 import Link from 'next/link';
+import { getSession, signIn } from 'next-auth/react';
+import { router } from 'next/client';
 
 export default function SignInPage() {
   const [email, setEmail] = useState('');
@@ -40,17 +42,21 @@ export default function SignInPage() {
     setSuccess('');
 
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-
-      // Simulate success
-      setSuccess('Sign in successful! Redirecting...');
-      setTimeout(() => {
-        // In a real app, you'd redirect to dashboard or previous page
-        window.location.href = '/waitlist';
-      }, 1500);
-    } catch (err) {
-      setError('Invalid email or password. Please try again.');
+      const result = await signIn('credentials', {
+        email,
+        password,
+        action: 'login',
+        redirect: false,
+      });
+      
+      if (result?.code) {
+        setError(result.code);
+      } else {
+        await getSession();
+        await router.push('/app');
+      }
+    } catch (error) {
+      setError('An unexpected error occurred');
     } finally {
       setIsLoading(false);
     }
@@ -66,7 +72,7 @@ export default function SignInPage() {
       await new Promise((resolve) => setTimeout(resolve, 1500));
       setSuccess('Google sign in successful! Redirecting...');
       setTimeout(() => {
-        window.location.href = '/waitlist';
+        window.location.href = '/app';
       }, 1500);
     } catch (err) {
       setError('Google sign in failed. Please try again.');
@@ -89,7 +95,7 @@ export default function SignInPage() {
         {/* Back Button */}
         <div className="mb-8">
           <Link
-            href="/waitlist"
+            href="/"
             className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors duration-200"
           >
             <ArrowLeft className="w-4 h-4" />
@@ -207,7 +213,6 @@ export default function SignInPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="pl-10 h-12 text-sm border-2 border-gray-200 focus:border-blue-500 rounded-xl"
-                    required
                   />
                 </div>
               </div>
@@ -229,7 +234,6 @@ export default function SignInPage() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className="pl-10 pr-10 h-12 text-sm border-2 border-gray-200 focus:border-blue-500 rounded-xl"
-                    required
                   />
                   <button
                     type="button"
