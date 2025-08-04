@@ -6,9 +6,7 @@ const forbiddenRoutes = ['/app'];
 
 function middleware(request: NextAuthRequest) {
   const url = request.nextUrl.clone();
-  const isForbidden =
-    forbiddenRoutes.includes(url.pathname) &&
-    process.env.NODE_ENV === 'production';
+  const isForbidden = forbiddenRoutes.includes(url.pathname);
 
   if (isForbidden || !!request.auth?.user) {
     url.pathname = '/';
