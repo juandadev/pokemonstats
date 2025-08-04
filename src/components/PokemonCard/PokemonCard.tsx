@@ -79,7 +79,7 @@ export default function PokemonCard() {
     if (!isMounted.current) {
       isMounted.current = true;
 
-      updateSelectedPokemon('burmy');
+      updateSelectedPokemon('totodile');
     }
   }, [updateSelectedPokemon]);
 
