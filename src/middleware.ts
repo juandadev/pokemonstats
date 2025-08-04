@@ -1,19 +1,31 @@
 import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+import { auth } from '@/lib/auth';
+import { NextAuthRequest } from 'next-auth';
 
-const forbiddenRoutes = ['/app'];
+const protectedPaths = ['/app'];
+const redirectedRoutes = ['/auth/signin', '/auth/signup'];
 
-export function middleware(request: NextRequest) {
+function middleware(request: NextAuthRequest) {
   const url = request.nextUrl.clone();
-  const isForbidden =
-    forbiddenRoutes.includes(url.pathname) &&
-    process.env.NODE_ENV === 'production';
+  const isProtected =
+    protectedPaths.includes(request.nextUrl.pathname) && !request.auth?.user;
 
-  if (isForbidden) {
+  if (isProtected) {
     url.pathname = '/';
+
+    return NextResponse.redirect(url);
+  }
+
+  const shouldRedirect =
+    redirectedRoutes.includes(request.nextUrl.pathname) && request.auth?.user;
+
+  if (shouldRedirect) {
+    url.pathname = '/app';
 
     return NextResponse.redirect(url);
   }
 
   return NextResponse.next();
 }
+
+export default auth(middleware);

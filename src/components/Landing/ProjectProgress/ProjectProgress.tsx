@@ -144,7 +144,7 @@ const ROADMAP: Roadmap[] = [
     title: 'Support for special modifier in effectiveness calculations',
     description:
       'Adding special moves, passive abilities and other exceptions that changes the type effectiveness for a more accurate calculation',
-    status: 'Planned',
+    status: 'In Progress',
     category: 'Advanced Features',
     phase: 2,
   },
