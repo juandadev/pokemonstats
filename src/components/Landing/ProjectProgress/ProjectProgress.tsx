@@ -144,7 +144,7 @@ const ROADMAP: Roadmap[] = [
     title: 'Support for special modifier in effectiveness calculations',
     description:
       'Adding special moves, passive abilities and other exceptions that changes the type effectiveness for a more accurate calculation',
-    status: 'In Progress',
+    status: 'Planned',
     category: 'Advanced Features',
     phase: 2,
   },
@@ -238,7 +238,7 @@ const ROADMAP: Roadmap[] = [
     title: 'Scrape Pokemon data',
     description:
       'Gather all available data from APIs and other sources to have static data for faster loading and offline support',
-    status: 'Planned',
+    status: 'In Progress',
     category: 'Performance & Technical',
     phase: 3,
   },
