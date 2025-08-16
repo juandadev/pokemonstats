@@ -13,28 +13,24 @@ export async function getPokemonDataBySlug(
     cache: 'force-cache',
   });
 
-  if (!pokemonResponse.ok)
-    return { pokemonData: {}, evolutionsData: {}, speciesData: {} };
+  if (!pokemonResponse.ok) return {};
 
   const pokemonData: PokemonData = await pokemonResponse.json();
   const speciesResponse = await fetch(pokemonData.species.url, {
     cache: 'force-cache',
   });
 
-  if (!speciesResponse.ok)
-    return { pokemonData: {}, evolutionsData: {}, speciesData: {} };
+  if (!speciesResponse.ok) return {};
 
   const speciesData: Species = await speciesResponse.json();
 
-  if (!speciesData.evolution_chain)
-    return { pokemonData: {}, evolutionsData: {}, speciesData: {} };
+  if (!speciesData.evolution_chain) return {};
 
   const evolutionsResponse = await fetch(speciesData.evolution_chain.url, {
     cache: 'force-cache',
   });
 
-  if (!evolutionsResponse.ok)
-    return { pokemonData: {}, evolutionsData: {}, speciesData: {} };
+  if (!evolutionsResponse.ok) return {};
 
   const evolutionsData: EvolutionChain = await evolutionsResponse.json();
 

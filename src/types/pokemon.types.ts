@@ -37,11 +37,11 @@ export type PokemonTypeColors = {
   border: string;
 };
 
-export type PokemonData = {
+export interface PokemonData {
   abilities: Ability[];
   base_experience: number;
   cries: Cries;
-  forms: Species[];
+  forms: GenericPropertyDetails[];
   game_indices: GameIndex[];
   height: number;
   held_items: HeldItem[];
@@ -56,167 +56,128 @@ export type PokemonData = {
   stats: Stat[];
   types: Type[];
   weight: number;
-};
+}
 
-export type Ability = {
-  ability: Species;
+export interface Ability {
+  ability: GenericPropertyDetails;
   is_hidden: boolean;
   slot: number;
-};
+}
 
-export type Cries = {
+export interface Cries {
   latest: string;
   legacy: string;
-};
+}
 
-export type GameIndex = {
+export interface GameIndex {
   game_index: number;
-  version: Species;
-};
+  version: GenericPropertyDetails;
+}
 
-export type HeldItem = {
-  item: Species;
+export interface HeldItem {
+  item: GenericPropertyDetails;
   version_details: VersionDetail[];
-};
+}
 
-export type VersionDetail = {
+export interface VersionDetail {
   rarity: number;
-  version: Species;
-};
+  version: GenericPropertyDetails;
+}
 
-export type Move = {
-  move: Species;
+export interface Move {
+  move: GenericPropertyDetails;
   version_group_details: VersionGroupDetail[];
-};
+}
 
-export type VersionGroupDetail = {
+export interface VersionGroupDetail {
   level_learned_at: number;
-  move_learn_method: Species;
-  version_group: Species;
-};
+  move_learn_method: GenericPropertyDetails;
+  version_group: GenericPropertyDetails;
+}
 
-export type GenerationV = {
-  'black-white': Sprites;
-};
+export interface Stat {
+  base_stat: number;
+  effort: number;
+  stat: GenericPropertyDetails;
+}
 
-export type GenerationIv = {
-  'diamond-pearl': Sprites;
-  'heartgold-soulsilver': Sprites;
-  platinum: Sprites;
-};
+export interface Type {
+  slot: number;
+  type: GenericPropertyDetails<PokemonTypes>;
+}
 
-export type Versions = {
+// Sprite Types
+export interface Sprites {
+  front_default: string;
+  front_shiny: string;
+  back_default?: string | null;
+  back_female?: string | null;
+  back_shiny?: string | null;
+  back_shiny_female?: string | null;
+  front_female?: string | null;
+  front_shiny_female?: string | null;
+  other?: Other | null;
+  versions?: Versions | null;
+}
+
+export interface Other {
+  dream_world: Sprites;
+  home: Sprites;
+  'official-artwork': Sprites;
+  showdown: Sprites;
+}
+
+export interface Versions {
   'generation-i': GenerationI;
   'generation-ii': GenerationIi;
   'generation-iii': GenerationIii;
   'generation-iv': GenerationIv;
   'generation-v': GenerationV;
-  'generation-vi': { [key: string]: Home };
+  'generation-vi': GenerationVi;
   'generation-vii': GenerationVii;
   'generation-viii': GenerationViii;
-};
+}
 
-export type Other = {
-  dream_world: DreamWorld;
-  home: Home;
-  'official-artwork': OfficialArtwork;
-  showdown: Sprites;
-};
+export interface GenerationI {
+  'red-blue': Partial<Sprites>;
+  yellow: Partial<Sprites>;
+}
 
-export type Sprites = {
-  back_default: string;
-  back_female: string | null;
-  back_shiny: string;
-  back_shiny_female: string | null;
-  front_default: string;
-  front_female: string | null;
-  front_shiny: string;
-  front_shiny_female: string | null;
-  other?: Other | null;
-  versions?: Versions | null;
-};
+export interface GenerationIi {
+  crystal: Partial<Sprites>;
+  gold: Partial<Sprites>;
+  silver: Partial<Sprites>;
+}
 
-export type GenerationI = {
-  'red-blue': RedBlue;
-  yellow: RedBlue;
-};
+export interface GenerationIii {
+  emerald: Partial<Sprites>;
+  'firered-leafgreen': Partial<Sprites>;
+  'ruby-sapphire': Partial<Sprites>;
+}
 
-export type RedBlue = {
-  back_default: string;
-  back_gray: string;
-  back_transparent: string;
-  front_default: string;
-  front_gray: string;
-  front_transparent: string;
-};
+export interface GenerationIv {
+  'diamond-pearl': Partial<Sprites>;
+  'heartgold-soulsilver': Partial<Sprites>;
+  platinum: Partial<Sprites>;
+}
 
-export type GenerationIi = {
-  crystal: Crystal;
-  gold: Gold;
-  silver: Gold;
-};
+export interface GenerationV {
+  'black-white': Partial<Sprites>;
+}
 
-export type Crystal = {
-  back_default: string;
-  back_shiny: string;
-  back_shiny_transparent: string;
-  back_transparent: string;
-  front_default: string;
-  front_shiny: string;
-  front_shiny_transparent: string;
-  front_transparent: string;
-};
+export interface GenerationVi {
+  'omegaruby-alphasapphire': Partial<Sprites>;
+  'x-y': Partial<Sprites>;
+}
 
-export type Gold = {
-  back_default: string;
-  back_shiny: string;
-  front_default: string;
-  front_shiny: string;
-  front_transparent?: string;
-};
+export interface GenerationVii {
+  icons: Partial<Sprites>;
+  'ultra-sun-ultra-moon': Partial<Sprites>;
+}
 
-export type GenerationIii = {
-  emerald: OfficialArtwork;
-  'firered-leafgreen': Gold;
-  'ruby-sapphire': Gold;
-};
-
-export type OfficialArtwork = {
-  front_default: string;
-  front_shiny: string;
-};
-
-export type Home = {
-  front_default: string;
-  front_female: string;
-  front_shiny: string;
-  front_shiny_female: string;
-};
-
-export type GenerationVii = {
-  icons: DreamWorld;
-  'ultra-sun-ultra-moon': Home;
-};
-
-export type DreamWorld = {
-  front_default: string;
-  front_female: null | string;
-};
-
-export type GenerationViii = {
-  icons: DreamWorld;
-};
-
-export type Stat = {
-  base_stat: number;
-  effort: number;
-  stat: Species;
-};
-
-export type Type = {
-  slot: number;
-  type: Species;
-};
+export interface GenerationViii {
+  icons: Partial<Sprites>;
+}
 
 export type Items =
   | 'water-stone'
@@ -260,7 +221,7 @@ export interface GenericPropertyDetails<T = string> {
 }
 
 export interface CompletePokemonData {
-  pokemonData: PokemonData | Record<never, never>;
-  speciesData: Species | Record<never, never>;
-  evolutionsData: EvolutionChain | Record<never, never>;
+  pokemonData?: PokemonData;
+  speciesData?: Species;
+  evolutionsData?: EvolutionChain;
 }
