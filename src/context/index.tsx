@@ -1,75 +1,28 @@
 'use client';
 
-import React, { createContext, ReactNode, useReducer } from 'react';
-import { PokemonData } from '@/types/pokemon.types';
-import { EvolutionChain } from '@/types/evolutions.types';
+import React, { createContext, useState } from 'react';
+import { CompletePokemonData } from '@/types/pokemon.types';
 
-type StateType = {
-  searchQuery: string | number;
-  pokemonImage: string;
-  pokemon: PokemonData | Record<string, never>;
-  evolutions: EvolutionChain | Record<string, never>;
+type PokemonContextValue = {
+  pokemon: CompletePokemonData | null;
+  setPokemon: (p: CompletePokemonData | null) => void;
 };
 
-type ActionType =
-  | {
-      type: 'CHANGE_INPUT';
-      payload: string | number;
-    }
-  | {
-      type: 'SET_POKEMON_DATA';
-      payload: {
-        pokemonImage?: string;
-        pokemon?: PokemonData;
-        evolutions?: EvolutionChain;
-      };
-    };
+const PokemonContext = createContext<PokemonContextValue | undefined>(
+  undefined
+);
 
-const initialState: StateType = {
-  pokemonImage: '',
-  searchQuery: 'Totodile',
-  pokemon: {},
-  evolutions: {},
+type ProviderProps = {
+  initialPokemon: CompletePokemonData | null;
+  children: React.ReactNode;
 };
 
-const pokemon = createContext<{
-  state: StateType;
-  dispatch: React.Dispatch<ActionType>;
-}>({
-  state: initialState,
-  dispatch: () => {},
-});
-const { Provider } = pokemon;
+export function PokemonProvider({ initialPokemon, children }: ProviderProps) {
+  const [pokemon, setPokemon] = useState(initialPokemon);
 
-function reducer(state: StateType, action: ActionType): StateType {
-  switch (action.type) {
-    case 'CHANGE_INPUT':
-      return {
-        ...state,
-        searchQuery:
-          typeof action.payload === 'string'
-            ? action.payload.toLowerCase().replaceAll(/[\s.]+/g, '-')
-            : action.payload,
-      };
-
-    case 'SET_POKEMON_DATA': {
-      return {
-        ...state,
-        pokemonImage: action.payload.pokemonImage || state.pokemonImage,
-        pokemon: action.payload.pokemon || state.pokemon,
-        evolutions: action.payload.evolutions || state.evolutions,
-      };
-    }
-
-    default:
-      return state;
-  }
+  return (
+    <PokemonContext.Provider value={{ pokemon, setPokemon }}>
+      {children}
+    </PokemonContext.Provider>
+  );
 }
-
-function ContextProvider({ children }: { children: ReactNode }) {
-  const [state, dispatch] = useReducer(reducer, initialState);
-
-  return <Provider value={{ state, dispatch }}>{children}</Provider>;
-}
-
-export { pokemon, ContextProvider };

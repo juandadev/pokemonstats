@@ -1,6 +1,5 @@
 import React from 'react';
 import { Metadata } from 'next';
-import { ContextProvider } from '@/context';
 import { Geist } from 'next/font/google';
 import Footer from '@/components/Footer/Footer';
 import './globals.css';
@@ -40,17 +39,15 @@ export default function RootLayout({
         className={`${geist_sans.variable} bg-gradient-to-br from-blue-50 via-white to-purple-50`}
       >
         <SessionProvider>
-          <ContextProvider>
-            <div
-              className={
-                'min-h-screen container mx-auto md:px-8 px-4 pt-16 pb-8 max-w-7xl'
-              }
-            >
-              {children}
-              <Footer />
-              <Toaster richColors />
-            </div>
-          </ContextProvider>
+          <div
+            className={
+              'min-h-screen container mx-auto md:px-8 px-4 pt-16 pb-8 max-w-7xl'
+            }
+          >
+            {children}
+            <Footer />
+            <Toaster richColors />
+          </div>
         </SessionProvider>
       </body>
     </html>
