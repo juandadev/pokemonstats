@@ -238,7 +238,7 @@ const ROADMAP: Roadmap[] = [
     title: 'Scrape Pokemon data',
     description:
       'Gather all available data from APIs and other sources to have static data for faster loading and offline support',
-    status: 'In Progress',
+    status: 'Planned',
     category: 'Performance & Technical',
     phase: 3,
   },
