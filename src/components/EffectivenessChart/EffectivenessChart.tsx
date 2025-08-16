@@ -8,7 +8,7 @@ import {
   getEffectivenessList,
   getTypeIcon,
 } from '@/lib/utils';
-import { PokemonTypes } from '@/types/Pokemon.type';
+import { PokemonTypes } from '@/types/pokemon.types';
 import { ShieldIcon, SwordIcon, XIcon } from 'lucide-react';
 import clsx from 'clsx';
 import TypeBadge from '@/components/TypeBadge/TypeBadge';

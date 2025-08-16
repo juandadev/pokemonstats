@@ -2,8 +2,9 @@ import { useContext } from 'react';
 import { pokemon } from '@/context';
 import { POKEMON_EXCEPTIONS } from '@/common/constants';
 import { toPokeApiName } from '@/lib/utils';
-import { EvolutionsData, PokemonData, Species } from '@/types/Pokemon.type';
+import { PokemonData, Species } from '@/types/pokemon.types';
 import { toast } from 'sonner';
+import { EvolutionChain } from '@/types/evolutions.types';
 
 export default function usePokemonData() {
   const { state, dispatch } = useContext(pokemon);
@@ -67,7 +68,7 @@ export default function usePokemonData() {
         return;
       }
 
-      const evolutionsData: EvolutionsData = await evolutionsResponse.json();
+      const evolutionsData: EvolutionChain = await evolutionsResponse.json();
 
       dispatch({
         type: 'SET_POKEMON_DATA',

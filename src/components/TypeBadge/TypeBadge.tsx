@@ -3,7 +3,7 @@ import { Badge } from '@/components/ui/badge';
 import { clsx } from 'clsx';
 import { TYPE_LABELS } from '@/common/constants';
 import React from 'react';
-import { PokemonTypes } from '@/types/Pokemon.type';
+import { PokemonTypes } from '@/types/pokemon.types';
 
 interface TypeBadgeProps {
   type: PokemonTypes;

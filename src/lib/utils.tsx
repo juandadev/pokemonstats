@@ -10,7 +10,7 @@ import {
   PokemonEvolutionType,
   PokemonTypes,
   Species,
-} from '@/types/Pokemon.type';
+} from '@/types/pokemon.types';
 import { TYPE_ICONS, TYPE_LABELS, WEAKNESS_CHART } from '@/common/constants';
 import { CircleIcon } from 'lucide-react';
 import { EffectivenessMode } from '@/types';

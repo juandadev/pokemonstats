@@ -1,13 +1,14 @@
 'use client';
 
 import React, { createContext, ReactNode, useReducer } from 'react';
-import { EvolutionsData, PokemonData } from '@/types/Pokemon.type';
+import { PokemonData } from '@/types/pokemon.types';
+import { EvolutionChain } from '@/types/evolutions.types';
 
 type StateType = {
   searchQuery: string | number;
   pokemonImage: string;
   pokemon: PokemonData | Record<string, never>;
-  evolutions: EvolutionsData | Record<string, never>;
+  evolutions: EvolutionChain | Record<string, never>;
 };
 
 type ActionType =
@@ -20,7 +21,7 @@ type ActionType =
       payload: {
         pokemonImage?: string;
         pokemon?: PokemonData;
-        evolutions?: EvolutionsData;
+        evolutions?: EvolutionChain;
       };
     };
 

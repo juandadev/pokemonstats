@@ -3,7 +3,7 @@ import {
   PokemonExceptions,
   PokemonTypeColors,
   PokemonTypes,
-} from '@/types/Pokemon.type';
+} from '@/types/pokemon.types';
 import {
   BadgeIcon,
   BirdIcon,

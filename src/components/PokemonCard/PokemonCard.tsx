@@ -20,61 +20,6 @@ export default function PokemonCard() {
 
   const isMounted = useRef(false);
 
-  // const switch3d = (
-  //   id: number,
-  //   name: string,
-  //   setPath: React.Dispatch<React.SetStateAction<string>>,
-  //   toggle: boolean[],
-  //   setToggle: React.Dispatch<React.SetStateAction<boolean[]>>
-  // ) => {
-  //   if (toggle[0]) {
-  //     setPath(`https://projectpokemon.org/images/normal-sprite/${name}.gif`);
-  //   } else {
-  //     setPath(
-  //       `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${id
-  //         .toString()
-  //         .padStart(3, '0')}.png`
-  //     );
-  //   }
-  //
-  //   setToggle((state) => [!state[0], true]);
-  // };
-
-  // const switch2d = (
-  //   id: number,
-  //   name: string,
-  //   setPath: React.Dispatch<React.SetStateAction<string>>,
-  //   toggle: boolean[],
-  //   setToggle: React.Dispatch<React.SetStateAction<boolean[]>>
-  // ) => {
-  //   if (toggle[1]) {
-  //     setPath(name);
-  //   } else {
-  //     setPath(
-  //       `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${id
-  //         .toString()
-  //         .padStart(3, '0')}.png`
-  //     );
-  //   }
-  //
-  //   setToggle((state) => [true, !state[1]]);
-  // };
-
-  // const handleError = () => {
-  //   const { sprites } = pokemon;
-  //
-  //   setImagePath(
-  //     sprites.front_default ||
-  //       'https://i.ebayimg.com/images/g/q8AAAOSwhvpeEZBn/s-l300.png'
-  //   );
-  //
-  //   setLoading(false);
-  // };
-  //
-  // const handleLoading = () => {
-  //   setLoading(false);
-  // };
-
   useEffect(() => {
     if (!isMounted.current) {
       isMounted.current = true;

@@ -18,9 +18,9 @@ import {
   SheetTitle,
 } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
-import { EvolutionDetail } from '@/types/Pokemon.type';
 import EvolutionDetails from '@/components/EvolutionsCard/EvolutionDetails';
 import { EVOLUTION_DETAILS } from '@/common/constants/evolutions';
+import { EvolutionDetails as EvolutionDetail } from '@/types/evolutions.types';
 
 export default function EvolutionsCard() {
   const { evolutionsData, pokemonData } = usePokemonData();

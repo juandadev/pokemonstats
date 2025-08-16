@@ -1,11 +1,9 @@
 import {
-  EvolutionDetail,
-  EvolutionDetailDisplay,
   GenericPropertyDetails,
   Items,
   PokemonTypes,
   Species,
-} from '@/types/Pokemon.type';
+} from '@/types/pokemon.types';
 import {
   BackpackIcon,
   BadgeQuestionMarkIcon,
@@ -30,6 +28,10 @@ import React from 'react';
 import { ITEMS_DATA, TYPE_COLORS } from '@/common/constants/index';
 import { clsx } from 'clsx';
 import TypeBadge from '@/components/TypeBadge/TypeBadge';
+import {
+  EvolutionDetailDisplay,
+  EvolutionDetails,
+} from '@/types/evolutions.types';
 
 export const PARSED_EVOLUTION_TRIGGER: Record<
   string,
@@ -71,7 +73,7 @@ export const EVOLUTION_DETAILS = (
     | Species
     | GenericPropertyDetails
     | GenericPropertyDetails<Items>
-): Record<keyof EvolutionDetail, EvolutionDetailDisplay> => ({
+): Record<keyof EvolutionDetails, EvolutionDetailDisplay> => ({
   trigger: {
     type: 'trigger',
     label: PARSED_EVOLUTION_TRIGGER[detail as string]?.label || 'Check details',

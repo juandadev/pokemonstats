@@ -98,6 +98,7 @@
 
 # Final touches
 
+- [ ] Fix Login redirection
 - [ ] Add Sign Up page for beta testers
 - [ ] Double check and fix all mobile layout issues
 - [ ] Fix all a11y issues
