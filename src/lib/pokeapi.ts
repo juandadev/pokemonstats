@@ -6,8 +6,8 @@ const BASE = 'https://pokeapi.co/api/v2';
 
 interface CompletePokemonData {
   pokemonData: PokemonData;
-  evolutionsData: EvolutionChain;
   speciesData: Species;
+  evolutionsData: EvolutionChain;
 }
 
 export async function getPokemonDataBySlug(
@@ -15,9 +15,28 @@ export async function getPokemonDataBySlug(
 ): Promise<CompletePokemonData | Record<never, never>> {
   const name = slug.toLowerCase();
 
-  const res = await fetch(`${BASE}/pokemon/${name}`);
+  const pokemonResponse = await fetch(`${BASE}/pokemon/${name}`);
 
-  if (!res.ok) return { pokemonData: {}, evolutionsData: {}, speciesData: {} };
+  if (!pokemonResponse.ok)
+    return { pokemonData: {}, evolutionsData: {}, speciesData: {} };
 
-  return (await res.json()) as CompletePokemonData;
+  const pokemonData: PokemonData = await pokemonResponse.json();
+  const speciesResponse = await fetch(pokemonData.species.url);
+
+  if (!speciesResponse.ok)
+    return { pokemonData: {}, evolutionsData: {}, speciesData: {} };
+
+  const speciesData: Species = await speciesResponse.json();
+
+  if (!speciesData.evolution_chain)
+    return { pokemonData: {}, evolutionsData: {}, speciesData: {} };
+
+  const evolutionsResponse = await fetch(speciesData.evolution_chain.url);
+
+  if (!evolutionsResponse.ok)
+    return { pokemonData: {}, evolutionsData: {}, speciesData: {} };
+
+  const evolutionsData: EvolutionChain = await evolutionsResponse.json();
+
+  return { pokemonData, speciesData, evolutionsData };
 }
