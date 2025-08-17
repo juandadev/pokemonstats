@@ -44,3 +44,10 @@ export type EvolutionDetailDisplay = {
   generation?: string;
   gameVersion?: string;
 };
+
+export type EvolutionCardData = {
+  slug: string;
+  displayName: string;
+  spriteUrl: string | null;
+  evolutionDetails: EvolutionDetails[] | null;
+};
