@@ -28,6 +28,9 @@
 
 # Priority
 
+- [ ] Change evolution chain display. Separate by evo level to identify if there are more than one evos or if the chain
+  follows
+- [ ] Scrap mini sprites to show on searchbar along with the API name for dynamic routes
 - [ ] This is important for some features, fetch the Pokémon group that tells a bit more about belonging generation.
   This url is contained in the `forms` array from the main Pokémon data
 - [x] Supports selecting two types and merge weakness and strengths (UI reference in v0).

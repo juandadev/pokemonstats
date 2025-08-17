@@ -6,7 +6,6 @@ import { TYPE_LABELS } from '@/common/constants';
 import { buildEvolutionChain, getEvolutionDetails } from '@/lib/utils';
 import { InfoIcon } from 'lucide-react';
 import React, { useMemo, useState } from 'react';
-import usePokemonData from '@/hooks/usePokemonData';
 import Image from 'next/image';
 import {
   Sheet,
@@ -20,11 +19,21 @@ import {
 import { Button } from '@/components/ui/button';
 import EvolutionDetails from '@/components/EvolutionsCard/EvolutionDetails';
 import { EVOLUTION_DETAILS } from '@/common/constants/evolutions';
-import { EvolutionDetails as EvolutionDetail } from '@/types/evolutions.types';
+import {
+  EvolutionChain,
+  EvolutionDetails as EvolutionDetail,
+} from '@/types/evolutions.types';
+import { PokemonData } from '@/types/pokemon.types';
 
-export default function EvolutionsCard() {
-  const { evolutionsData, pokemonData } = usePokemonData();
+interface EvolutionsCardProps {
+  pokemonData: PokemonData;
+  evolutionsData: EvolutionChain;
+}
 
+export default function EvolutionsCard({
+  pokemonData,
+  evolutionsData,
+}: EvolutionsCardProps) {
   const [showEvolutionDetails, setShowEvolutionDetails] =
     useState<boolean>(false);
   const [selectedPokemon, setSelectedPokemon] = useState<string | null>(null);

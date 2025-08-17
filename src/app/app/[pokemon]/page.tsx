@@ -37,7 +37,10 @@ export default async function PokemonStats({ params }: PageProps) {
               pokemonData={data.pokemonData!}
               speciesData={data.speciesData!}
             />
-            {/*<EvolutionsCard />*/}
+            <EvolutionsCard
+              pokemonData={data.pokemonData!}
+              evolutionsData={data.evolutionsData!}
+            />
           </div>
           {/*<EffectivenessChart />*/}
         </div>
