@@ -25,6 +25,7 @@ import {
 import { PokemonData } from '@/types/pokemon.types';
 import { Separator } from '@/components/ui/separator';
 import PokemonImage from '@/components/PokemonImage/PokemonImage';
+import Link from 'next/link';
 
 interface EvolutionsCardProps {
   pokemonData: PokemonData;
@@ -90,7 +91,16 @@ export default function EvolutionsCard({
                   </div>
                   <div className="flex-1">
                     <div className="font-semibold capitalize">
-                      {evolution.displayName}
+                      {pokemonData.name === evolution.slug ? (
+                        evolution.displayName
+                      ) : (
+                        <Link
+                          href={`/app/${evolution.slug}`}
+                          className="underline"
+                        >
+                          {evolution.displayName}
+                        </Link>
+                      )}
                     </div>
                     <div className="text-sm text-gray-600">
                       {evolutionDetails[0].trigger?.name === 'level-up' &&
