@@ -1,9 +1,9 @@
 import React, { Fragment, useMemo } from 'react';
-import { EvolutionDetail } from '@/types/Pokemon.type';
 import Image from 'next/image';
 import { EVOLUTION_DETAILS } from '@/common/constants/evolutions';
 import { Separator } from '@/components/ui/separator';
 import { buildAdditionalDetailsList } from '@/lib/utils';
+import { EvolutionDetails as EvolutionDetail } from '@/types/evolutions.types';
 
 interface EvolutionDetailsProps {
   pokemonName: string;

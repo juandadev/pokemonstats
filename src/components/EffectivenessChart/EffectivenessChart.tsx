@@ -8,11 +8,10 @@ import {
   getEffectivenessList,
   getTypeIcon,
 } from '@/lib/utils';
-import { PokemonTypes } from '@/types/Pokemon.type';
+import { PokemonData, PokemonTypes } from '@/types/pokemon.types';
 import { ShieldIcon, SwordIcon, XIcon } from 'lucide-react';
 import clsx from 'clsx';
 import TypeBadge from '@/components/TypeBadge/TypeBadge';
-import usePokemonData from '@/hooks/usePokemonData';
 import SelectedTypesDisplay from '@/components/EffectivenessChart/SelectedTypesDisplay';
 import { Button } from '@/components/ui/button';
 import { EffectivenessMode } from '@/types';
@@ -22,9 +21,13 @@ export interface SelectedType {
   index: number;
 }
 
-export default function EffectivenessChart() {
-  const { pokemonData } = usePokemonData();
+interface EffectivenessChartProps {
+  pokemonData: PokemonData;
+}
 
+export default function EffectivenessChart({
+  pokemonData,
+}: EffectivenessChartProps) {
   const [selectedTypes, setSelectedTypes] = useState<SelectedType[]>([]);
   const [lastPokemonName, setLastPokemonName] = useState<string | null>(null);
   const [userHasInteracted, setUserHasInteracted] = useState(false);

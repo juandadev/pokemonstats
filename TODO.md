@@ -17,6 +17,24 @@
 - [x] Change Pokémon fetch implementation to pass the whole data and not in two parts
 - [x] Replace CTA for GitHub repo button with something like "Star this repo"
 - [x] Implement a waitlist form with rate limiter and bot detection
+- [x] Supports selecting two types and merge weakness and strengths (UI reference in v0).
+    - [x] Fix mobile view
+- [x] Divide the effectiveness chart into two sections (UI reference in v0).
+    - [x] One for attacks
+    - [x] One for defenses (https://pokemondb.net/type/fire)
+- [x] Parse Pokémon names with the ones in the suggestion list to avoid typos
+- [x] Include static images for all pokémon for searchbar and evolution chains
+- [x] Get a cool placeholder image when no pokémon image is available
+- [x] Consider removing search query property from context. It's not too necessary
+- [x] Cache query results for Pokémon data and evolutions
+- [x] Add an X icon to the search bar to clear the input
+- [x] Add a tab to Pokémon card to show base stats (UI reference in v0).
+- [x] Configure again function to select a Pokémon from the evolution chain list
+- [x] Add an expandable list to show evolution details for Pokémon that goes beyond leveling up or using an evolutive
+  stone (UI reference in v0).
+    - [x] Check if we can fetch more details when there are more than one item in the evolution details array, which
+    - means that it has variations depending on the game we are playing, so I would like to show those details as well.
+- [x] Add routes for each Pokémon
 
 # Bugs
 
@@ -24,18 +42,11 @@
   overflows the container.
 - [ ] Some suggestions are not shown completely on mobile devices.
 - [ ] Prevent searching the same Pokémon from the search bar
-- [ ] Parse Pokémon names with the ones in the suggestion list to avoid typos
 
 # Priority
 
 - [ ] This is important for some features, fetch the Pokémon group that tells a bit more about belonging generation.
   This url is contained in the `forms` array from the main Pokémon data
-- [x] Supports selecting two types and merge weakness and strengths (UI reference in v0).
-    - [x] Fix mobile view
-- [x] Divide the effectiveness chart into two sections (UI reference in v0).
-    - [x] One for attacks
-    - [x] One for defenses (https://pokemondb.net/type/fire)
-- [ ] Cache query results for Pokémon data and evolutions
 - [ ] Add support for special modifiers in the effectiveness chart (UI reference in v0).
     - [ ] Flying Press move for Hawlucha
     - [ ] Thousand Arrows move for Zygarde
@@ -70,13 +81,6 @@
         - [ ] Water Bubble
         - [ ] Well-Baked Body
         - [ ] Wonder Guard
-- [ ] Add an X icon to the search bar to clear the input
-- [ ] Add a tab to Pokémon card to show base stats (UI reference in v0).
-- [ ] Configure again function to select a Pokémon from the evolution chain list
-- [x] Add an expandable list to show evolution details for Pokémon that goes beyond leveling up or using an evolutive
-  stone (UI reference in v0).
-    - [x] Check if we can fetch more details when there are more than one item in the evolution details array, which
-    - means that it has variations depending on the game we are playing, so I would like to show those details as well.
 - [ ] Try to add on which games the evolution variations are effective. (Take Eevee as example)
 - [ ] Add loading states while fetching pokémon data
 - [ ] Add Analytics
@@ -98,6 +102,8 @@
 
 # Final touches
 
+- [ ] Generate metadata for each pokemon
+- [ ] Fix Login redirection
 - [ ] Add Sign Up page for beta testers
 - [ ] Double check and fix all mobile layout issues
 - [ ] Fix all a11y issues
@@ -107,7 +113,6 @@
     - [ ] Split components into smaller ones
     - [ ] Remove all unused code
     - [ ] Remove all unused dependencies
-- [ ] Consider removing search query property from context. It's not too necessary
 - [ ] Check the app against React scan https://github.com/aidenybai/react-scan#install and fix the performance issues
 - [ ] Protect GitHub branches
 
@@ -118,8 +123,6 @@
 - [ ] Add star count to the GitHub repo button on the Hero section
 - [ ] Bring back theme provider
     - [ ] Add light and dark mode
-- [ ] Include static images for all pokémon for searchbar and evolution chains
-- [ ] Get a cool placeholder image when no pokémon image is available
 - [ ] Support internationalization (i18n)
     - [ ] Use react-i18next
     - [ ] Add translations for Spanish

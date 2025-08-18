@@ -1,16 +1,21 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import usePokemonData from '@/hooks/usePokemonData';
 import TypeBadge from '@/components/TypeBadge/TypeBadge';
-import Image from 'next/image';
 import { clsx } from 'clsx';
 import { TYPE_LABELS } from '@/common/constants';
+import { PokemonData } from '@/types/pokemon.types';
+import PokemonImage from '@/components/PokemonImage/PokemonImage';
+import { Species } from '@/types/species.types';
+import { getPokemonDisplayName } from '@/lib/pokemonDisplayName';
 
-export default function Header() {
+interface HeroProps {
+  pokemonData: PokemonData;
+  speciesData: Species;
+}
+
+export default function Header({ pokemonData, speciesData }: HeroProps) {
   const [stickyHeaderVisible, setStickyHeaderVisible] = useState(false);
-
-  const { pokemonImage, pokemonData, pokemonImageFallback } = usePokemonData();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,9 +45,13 @@ export default function Header() {
                 ?.gradientBackgroundLight
             )}
           >
-            <Image
-              src={pokemonImage}
-              onError={pokemonImageFallback}
+            <PokemonImage
+              artUrl={
+                pokemonData.sprites?.other?.['official-artwork']
+                  ?.front_default ??
+                pokemonData.sprites?.front_default ??
+                null
+              }
               alt={pokemonData.name}
               width={40}
               height={40}
@@ -53,10 +62,10 @@ export default function Header() {
             <div className="grid grid-cols-[1fr_78px] grid-rows-1">
               <div className="w-48">
                 <h2 className="text-xl font-bold text-gray-900 capitalize whitespace-nowrap overflow-hidden text-ellipsis">
-                  {pokemonData.name}
+                  {getPokemonDisplayName(pokemonData.name)}
                 </h2>
                 <span className="text-sm font-medium text-gray-600">
-                  #{pokemonData.id.toString().padStart(3, '0')}
+                  #{speciesData.id.toString().padStart(4, '0')}
                 </span>
               </div>
               <div className="flex flex-col gap-1 items-end justify-center">

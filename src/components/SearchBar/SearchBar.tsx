@@ -1,27 +1,40 @@
 'use client';
 
-import React, { useState } from 'react';
-import { SearchIcon } from 'lucide-react';
+import React, { useRef, useState } from 'react';
+import { SearchIcon, XCircleIcon } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { POKEMON_LIST } from '@/common/constants';
 import NoSuggestion from '@/components/SearchBar/NoSuggestion';
-import usePokemonData from '@/hooks/usePokemonData';
+import { useRouter } from 'next/navigation';
+import POKEMON_INDEX from '@/data/pokemon-index.json';
+import { PokemonIndexItem } from '@/types/pokemon.types';
+import PokemonImage from '@/components/PokemonImage/PokemonImage';
+import { Button } from '@/components/ui/button';
 
-export default function SearchBar() {
-  const { setSearchQuery, updateSelectedPokemon } = usePokemonData();
+interface SearchBarProps {
+  initialValue?: string;
+}
 
-  const [searchTerm, setSearchTerm] = useState<string>('Totodile');
+export default function SearchBar({ initialValue = '' }: SearchBarProps) {
+  const [searchTerm, setSearchTerm] = useState<string>(initialValue);
   const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
   const [selectedSuggestionIndex, setSelectedSuggestionIndex] =
     useState<number>(-1);
 
-  const filteredSuggestions = POKEMON_LIST.filter((pokemon) =>
-    pokemon.toLowerCase().includes(searchTerm.toLowerCase())
-  ).slice(0, 5);
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  const suggestions = POKEMON_INDEX as PokemonIndexItem[];
+  const router = useRouter();
+
+  const filteredSuggestions = suggestions
+    .filter((pokemon) =>
+      pokemon.slug.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+    .slice(0, 5);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
+
     setSearchTerm(value);
     setShowSuggestions(value.length > 0);
     setSelectedSuggestionIndex(-1);
@@ -46,7 +59,7 @@ export default function SearchBar() {
       case 'Enter':
         e.preventDefault();
         if (selectedSuggestionIndex >= 0) {
-          selectSuggestion(filteredSuggestions[selectedSuggestionIndex]);
+          selectSuggestion(filteredSuggestions[selectedSuggestionIndex].slug);
         }
         break;
       case 'Escape':
@@ -61,8 +74,7 @@ export default function SearchBar() {
     setShowSuggestions(false);
     setSelectedSuggestionIndex(-1);
 
-    setSearchQuery(suggestion);
-    updateSelectedPokemon(suggestion);
+    router.push(`/app/${suggestion.toLowerCase()}#main`);
   };
 
   const handleInputBlur = () => {
@@ -72,12 +84,22 @@ export default function SearchBar() {
     }, 150);
   };
 
+  const handleInputClear: React.MouseEventHandler<HTMLButtonElement> = (
+    event
+  ) => {
+    event.preventDefault();
+
+    setSearchTerm('');
+    inputRef.current?.focus();
+  };
+
   return (
     <Card className="mb-8 shadow-lg border-0 bg-white/80 backdrop-blur-sm relative z-10">
       <CardContent className="p-6">
         <div className="relative">
           <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 z-10" />
           <Input
+            ref={inputRef}
             id="search-pokemon"
             name="search-pokemon"
             autoComplete={'off'}
@@ -87,12 +109,22 @@ export default function SearchBar() {
             onKeyDown={handleKeyDown}
             onBlur={handleInputBlur}
             onFocus={() => searchTerm.length > 0 && setShowSuggestions(true)}
-            className="pl-10 h-12 text-lg border-2 border-gray-200 focus:border-blue-500 rounded-xl"
+            className="px-10 h-12 text-lg border-2 border-gray-200 focus:border-blue-500 rounded-xl"
             aria-expanded={showSuggestions}
             aria-haspopup="listbox"
             aria-autocomplete="list"
             role="combobox"
           />
+          {searchTerm.length > 0 && (
+            <Button
+              variant="ghost"
+              size="icon"
+              className=" h-9 w-9 absolute right-1 top-1/2 transform -translate-y-1/2 text-gray-400 z-10"
+              onClick={handleInputClear}
+            >
+              <XCircleIcon className="h-5 w-5" />
+            </Button>
+          )}
           {showSuggestions && filteredSuggestions.length > 0 && (
             <div
               className="absolute top-full left-0 right-0 mt-2 bg-white border-2 border-gray-200 rounded-xl shadow-xl max-h-60 overflow-y-auto"
@@ -101,7 +133,7 @@ export default function SearchBar() {
             >
               {filteredSuggestions.map((suggestion, index) => (
                 <button
-                  key={suggestion}
+                  key={`search-${suggestion.slug}`}
                   className={`w-full px-4 py-3 text-left hover:bg-blue-50 focus:bg-blue-50 focus:outline-none transition-colors duration-150 flex items-center gap-3 ${
                     index === selectedSuggestionIndex
                       ? 'bg-blue-100 text-blue-900'
@@ -111,18 +143,28 @@ export default function SearchBar() {
                       ? 'rounded-b-xl'
                       : 'border-b border-gray-100'
                   }`}
-                  onClick={() => selectSuggestion(suggestion)}
+                  onClick={() => selectSuggestion(suggestion.slug)}
                   onMouseEnter={() => setSelectedSuggestionIndex(index)}
                   role="option"
                   aria-selected={index === selectedSuggestionIndex}
                   tabIndex={-1}
                 >
                   <div className="w-8 h-8 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-sm">🔍</span>
+                    {suggestion.sprite ? (
+                      <PokemonImage
+                        artUrl={suggestion.sprite}
+                        alt={`${suggestion.label} icon`}
+                        width={32}
+                        height={32}
+                        className="w-8 h-8 object-contain"
+                      />
+                    ) : (
+                      <span className="text-sm">🔍</span>
+                    )}
                   </div>
                   <div className="flex-1">
                     <div className="font-medium capitalize">
-                      {suggestion.split('').map((char, charIndex) => {
+                      {suggestion.label.split('').map((char, charIndex) => {
                         const isMatch = searchTerm
                           .toLowerCase()
                           .includes(char.toLowerCase());

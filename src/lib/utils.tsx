@@ -2,19 +2,19 @@ import React from 'react';
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import {
-  Chain,
-  EvolutionDetail,
-  EvolutionDetailDisplay,
   GenericPropertyDetails,
   Items,
-  PokemonEvolutionType,
   PokemonTypes,
-  Species,
-} from '@/types/Pokemon.type';
+} from '@/types/pokemon.types';
 import { TYPE_ICONS, TYPE_LABELS, WEAKNESS_CHART } from '@/common/constants';
 import { CircleIcon } from 'lucide-react';
 import { EffectivenessMode } from '@/types';
 import { EVOLUTION_DETAILS } from '@/common/constants/evolutions';
+import {
+  EvolutionDetailDisplay,
+  EvolutionDetails,
+} from '@/types/evolutions.types';
+import { Species } from '@/types/species.types';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -29,8 +29,8 @@ export function toPokeApiName(name: string) {
 }
 
 export const getEvolutionDetails = (
-  details?: EvolutionDetail[]
-): Partial<EvolutionDetail>[] => {
+  details?: EvolutionDetails[] | null
+): Partial<EvolutionDetails>[] => {
   if (!details || details.length === 0) {
     return [
       {
@@ -42,11 +42,11 @@ export const getEvolutionDetails = (
     ];
   }
 
-  const evolutionDetails: Partial<EvolutionDetail>[] = [];
+  const evolutionDetails: Partial<EvolutionDetails>[] = [];
 
   for (let i = 0; i < details.length; i++) {
     const evolutionEntries = Object.entries(details[i]);
-    const newEvolutionDetailsObject: Partial<EvolutionDetail> = {};
+    const newEvolutionDetailsObject: Partial<EvolutionDetails> = {};
 
     for (const [key, value] of evolutionEntries) {
       if ((key === 'relative_physical_stats' && value !== null) || value) {
@@ -62,7 +62,7 @@ export const getEvolutionDetails = (
 };
 
 export function buildAdditionalDetailsList(
-  detail: Partial<EvolutionDetail>
+  detail: Partial<EvolutionDetails>
 ): EvolutionDetailDisplay[] {
   const additionalDetailsList = [];
 
@@ -77,7 +77,7 @@ export function buildAdditionalDetailsList(
         | Species
         | GenericPropertyDetails
         | GenericPropertyDetails<Items>
-    )[key as keyof EvolutionDetail];
+    )[key as keyof EvolutionDetails];
     additionalDetailsList.push(detailInfo);
   }
 
@@ -239,28 +239,4 @@ export const getStatColor = (statName: string) => {
     speed: '#FA92B2',
   };
   return colorMap[statName] || '#94A3B8';
-};
-
-export const buildEvolutionChain = (
-  pokemonChain: Chain
-): PokemonEvolutionType[] => {
-  const evolutions: PokemonEvolutionType[] = [];
-
-  if (pokemonChain) {
-    const { species, evolves_to, evolution_details } = pokemonChain;
-
-    evolutions.push({
-      name: species.name,
-      evolutionDetails: evolution_details,
-    });
-
-    if (evolves_to.length) {
-      evolves_to.forEach((evolve) => {
-        const subEvolutions = buildEvolutionChain(evolve);
-        evolutions.push(...subEvolutions);
-      });
-    }
-  }
-
-  return evolutions;
 };

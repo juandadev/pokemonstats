@@ -14,6 +14,15 @@ const nextConfig: NextConfig = {
       { protocol: 'https', hostname: 'archives.bulbagarden.net' },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/app',
+        destination: '/app/totodile',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default withBotId(nextConfig);

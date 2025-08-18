@@ -120,7 +120,7 @@ const ROADMAP: Roadmap[] = [
   {
     title: 'Scroll to top button',
     description: 'Adding a button to quickly scroll back to the search bar',
-    status: 'Planned',
+    status: 'In Progress',
     category: 'UI/UX Improvements',
     phase: 3,
   },
@@ -144,14 +144,14 @@ const ROADMAP: Roadmap[] = [
     title: 'Support for special modifier in effectiveness calculations',
     description:
       'Adding special moves, passive abilities and other exceptions that changes the type effectiveness for a more accurate calculation',
-    status: 'Planned',
+    status: 'In Progress',
     category: 'Advanced Features',
     phase: 2,
   },
   {
     title: 'X button to clear search input',
     description: 'Adding a clear button to the search input for easier resets',
-    status: 'Planned',
+    status: 'Done',
     category: 'UI/UX Improvements',
     phase: 3,
   },
@@ -166,7 +166,7 @@ const ROADMAP: Roadmap[] = [
     title: 'Select a Pokemon from the evolution chain for a quick search',
     description:
       'Allowing users to click on any Pokémon in the evolution chain to search for it directly',
-    status: 'Planned',
+    status: 'Done',
     category: 'Advanced Features',
     phase: 2,
   },
