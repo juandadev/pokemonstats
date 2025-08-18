@@ -116,6 +116,7 @@ export interface Sprites {
   back_shiny_female?: string | null;
   front_female?: string | null;
   front_shiny_female?: string | null;
+  animated?: Sprites | null;
   other?: Other | null;
   versions?: Versions | null;
 }
@@ -224,4 +225,25 @@ export interface CompletePokemonData {
   pokemonData?: PokemonData;
   speciesData?: Species;
   evolutionsData?: EvolutionChain;
+}
+
+export type MegaVariant = 'x' | 'y';
+
+export type Region = 'alola' | 'galar' | 'hisui' | 'paldea';
+
+// Suggestion list
+export interface PokemonListItem {
+  name: string;
+  url: string;
+}
+
+export interface PokemonListResponse {
+  count: number;
+  results: PokemonListItem[];
+}
+
+export interface PokemonIndexItem {
+  label: string;
+  slug: string;
+  sprite: string | null;
 }

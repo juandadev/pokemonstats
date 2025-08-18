@@ -33,7 +33,7 @@ export default async function PokemonStats({ params }: PageProps) {
       {/*<Header />*/}
       <Hero />
       <main id="main" className={'mt-10'}>
-        {/*<SearchBar />*/}
+        <SearchBar />
         <div className="grid grid-cols-[100%] lg:grid-cols-2 gap-8 items-start">
           <div className="space-y-6 w-full max-w-lg mx-auto">
             <PokemonCard

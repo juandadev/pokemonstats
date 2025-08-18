@@ -1,5 +1,4 @@
-export type MegaVariant = 'x' | 'y';
-export type Region = 'alola' | 'galar' | 'hisui' | 'paldea';
+import { MegaVariant, Region } from '@/types/pokemon.types';
 
 export type ParsedForm =
   | {

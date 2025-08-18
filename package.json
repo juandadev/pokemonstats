@@ -9,7 +9,8 @@
     "build": "next build",
     "postinstall": "prisma generate",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "build:pokemon-index": "tsx scripts/build-pokemon-index.ts"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.10.0",
@@ -54,6 +55,7 @@
     "prettier": "^2.5.1",
     "prisma": "^6.13.0",
     "tailwindcss": "^4.1.11",
+    "tsx": "^4.20.4",
     "tw-animate-css": "^1.3.4",
     "typescript": "^5.4.2"
   },
