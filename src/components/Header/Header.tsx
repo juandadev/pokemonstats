@@ -2,15 +2,17 @@
 
 import React, { useEffect, useState } from 'react';
 import TypeBadge from '@/components/TypeBadge/TypeBadge';
-import Image from 'next/image';
 import { clsx } from 'clsx';
 import { TYPE_LABELS } from '@/common/constants';
-import { usePokemon } from '@/context';
+import { PokemonData } from '@/types/pokemon.types';
+import PokemonImage from '@/components/PokemonImage/PokemonImage';
 
-export default function Header() {
+interface HeroProps {
+  pokemonData: PokemonData;
+}
+
+export default function Header({ pokemonData }: HeroProps) {
   const [stickyHeaderVisible, setStickyHeaderVisible] = useState(false);
-
-  const { pokemon } = usePokemon();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,13 +38,17 @@ export default function Header() {
           <div
             className={clsx(
               'w-12 h-12 rounded-full flex items-center justify-center overflow-hidden flex-shrink-0',
-              TYPE_LABELS[pokemon!.pokemonData.types[0]?.type.name]
+              TYPE_LABELS[pokemonData.types[0]?.type.name]
                 ?.gradientBackgroundLight
             )}
           >
-            <Image
-              src={pokemonImage}
-              onError={pokemonImageFallback}
+            <PokemonImage
+              artUrl={
+                pokemonData.sprites?.other?.['official-artwork']
+                  ?.front_default ??
+                pokemonData.sprites?.front_default ??
+                null
+              }
               alt={pokemonData.name}
               width={40}
               height={40}

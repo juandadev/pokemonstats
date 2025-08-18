@@ -23,7 +23,6 @@ export default function PokemonImage({
   if (artUrl) {
     return (
       <Image
-        loading="eager"
         src={artUrl}
         alt={alt}
         width={width}
