@@ -30,7 +30,7 @@ export default async function PokemonStats({ params }: PageProps) {
 
   return (
     <>
-      <Header pokemonData={data.pokemonData!} />
+      <Header pokemonData={data.pokemonData!} speciesData={data.speciesData!} />
       <Hero />
       <main id="main" className={'mt-10'}>
         <SearchBar initialValue={pokemon} />

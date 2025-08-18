@@ -6,12 +6,15 @@ import { clsx } from 'clsx';
 import { TYPE_LABELS } from '@/common/constants';
 import { PokemonData } from '@/types/pokemon.types';
 import PokemonImage from '@/components/PokemonImage/PokemonImage';
+import { Species } from '@/types/species.types';
+import { getPokemonDisplayName } from '@/lib/pokemonDisplayName';
 
 interface HeroProps {
   pokemonData: PokemonData;
+  speciesData: Species;
 }
 
-export default function Header({ pokemonData }: HeroProps) {
+export default function Header({ pokemonData, speciesData }: HeroProps) {
   const [stickyHeaderVisible, setStickyHeaderVisible] = useState(false);
 
   useEffect(() => {
@@ -59,10 +62,10 @@ export default function Header({ pokemonData }: HeroProps) {
             <div className="grid grid-cols-[1fr_78px] grid-rows-1">
               <div className="w-48">
                 <h2 className="text-xl font-bold text-gray-900 capitalize whitespace-nowrap overflow-hidden text-ellipsis">
-                  {pokemonData.name}
+                  {getPokemonDisplayName(pokemonData.name)}
                 </h2>
                 <span className="text-sm font-medium text-gray-600">
-                  #{pokemonData.id.toString().padStart(3, '0')}
+                  #{speciesData.id.toString().padStart(4, '0')}
                 </span>
               </div>
               <div className="flex flex-col gap-1 items-end justify-center">
