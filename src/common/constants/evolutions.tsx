@@ -2,7 +2,6 @@ import {
   GenericPropertyDetails,
   Items,
   PokemonTypes,
-  Species,
 } from '@/types/pokemon.types';
 import {
   BackpackIcon,
@@ -32,6 +31,7 @@ import {
   EvolutionDetailDisplay,
   EvolutionDetails,
 } from '@/types/evolutions.types';
+import { Species } from '@/types/species.types';
 
 export const PARSED_EVOLUTION_TRIGGER: Record<
   string,

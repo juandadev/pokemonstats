@@ -4,7 +4,6 @@ import { twMerge } from 'tailwind-merge';
 import {
   GenericPropertyDetails,
   Items,
-  PokemonEvolutionType,
   PokemonTypes,
 } from '@/types/pokemon.types';
 import { TYPE_ICONS, TYPE_LABELS, WEAKNESS_CHART } from '@/common/constants';
@@ -12,7 +11,6 @@ import { CircleIcon } from 'lucide-react';
 import { EffectivenessMode } from '@/types';
 import { EVOLUTION_DETAILS } from '@/common/constants/evolutions';
 import {
-  Chain,
   EvolutionDetailDisplay,
   EvolutionDetails,
 } from '@/types/evolutions.types';
