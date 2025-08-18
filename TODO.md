@@ -28,9 +28,6 @@
 
 # Priority
 
-- [ ] Change evolution chain display. Separate by evo level to identify if there are more than one evos or if the chain
-  follows
-- [ ] Scrap mini sprites to show on searchbar along with the API name for dynamic routes
 - [ ] This is important for some features, fetch the Pokémon group that tells a bit more about belonging generation.
   This url is contained in the `forms` array from the main Pokémon data
 - [x] Supports selecting two types and merge weakness and strengths (UI reference in v0).
@@ -98,9 +95,11 @@
     - [ ] PokeAPI
     - [ ] [pkmn.help](https://github.com/wavebeem/pkmn.help?tab=readme-ov-file) to verify the effectiveness calculations
       and special modifiers
+- [ ] Add routes for each pokemon
 
 # Final touches
 
+- [ ] Generate metadata for each pokemon
 - [ ] Fix Login redirection
 - [ ] Add Sign Up page for beta testers
 - [ ] Double check and fix all mobile layout issues
@@ -117,7 +116,6 @@
 
 # Nice to have
 
-- [ ] Include mega evos and regional forms on evolution chain
 - [ ] If the user clicks on the sticky header, it should scroll to the search input
     - [ ] Add a floating button as well to scroll to the search input, placed in the bottom right corner of the screen.
 - [ ] Add star count to the GitHub repo button on the Hero section

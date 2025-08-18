@@ -8,7 +8,7 @@ import { getPokemonDisplayName } from '@/lib/pokemonDisplayName';
 import { writeFile } from 'node:fs/promises';
 
 const BASE = 'https://pokeapi.co/api/v2';
-const OUTPUT_FILE = 'data/pokemon-index.json';
+const OUTPUT_FILE = 'src/data/pokemon-index.json';
 const CONCURRENCY = Number(process.env.POKEAPI_CONCURRENCY ?? 3);
 const MS_PER_REQUEST = Number(process.env.POKEAPI_MS_PER_REQUEST ?? 300);
 const MAX_RETRIES = Number(process.env.POKEAPI_MAX_RETRIES ?? 3);
