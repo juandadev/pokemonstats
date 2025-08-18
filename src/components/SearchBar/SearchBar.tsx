@@ -10,8 +10,12 @@ import POKEMON_INDEX from '@/data/pokemon-index.json';
 import { PokemonIndexItem } from '@/types/pokemon.types';
 import PokemonImage from '@/components/PokemonImage/PokemonImage';
 
-export default function SearchBar() {
-  const [searchTerm, setSearchTerm] = useState<string>('Totodile');
+interface SearchBarProps {
+  initialValue?: string;
+}
+
+export default function SearchBar({ initialValue = '' }: SearchBarProps) {
+  const [searchTerm, setSearchTerm] = useState<string>(initialValue);
   const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
   const [selectedSuggestionIndex, setSelectedSuggestionIndex] =
     useState<number>(-1);

@@ -38,9 +38,9 @@ export default function PokemonImage({
     <span
       role="img"
       aria-label={`${alt} artwork missing, showing Ditto silhouette`}
-      style={{ width, height }}
+      style={{ width, height, maskImage: `url(${DITTO_FALLBACK})` }}
       className={clsx(
-        `bg-gray-500 mask-no-repeat mask-center mask-contain mask-[url(${DITTO_FALLBACK})]`,
+        `bg-gray-500 mask-no-repeat mask-center mask-contain`,
         className
       )}
     />
