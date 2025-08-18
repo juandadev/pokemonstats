@@ -1,16 +1,16 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import usePokemonData from '@/hooks/usePokemonData';
 import TypeBadge from '@/components/TypeBadge/TypeBadge';
 import Image from 'next/image';
 import { clsx } from 'clsx';
 import { TYPE_LABELS } from '@/common/constants';
+import { usePokemon } from '@/context';
 
 export default function Header() {
   const [stickyHeaderVisible, setStickyHeaderVisible] = useState(false);
 
-  const { pokemonImage, pokemonData, pokemonImageFallback } = usePokemonData();
+  const { pokemon } = usePokemon();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,7 +36,7 @@ export default function Header() {
           <div
             className={clsx(
               'w-12 h-12 rounded-full flex items-center justify-center overflow-hidden flex-shrink-0',
-              TYPE_LABELS[pokemonData.types[0]?.type.name]
+              TYPE_LABELS[pokemon!.pokemonData.types[0]?.type.name]
                 ?.gradientBackgroundLight
             )}
           >

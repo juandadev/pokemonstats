@@ -6,15 +6,15 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { POKEMON_LIST } from '@/common/constants';
 import NoSuggestion from '@/components/SearchBar/NoSuggestion';
-import usePokemonData from '@/hooks/usePokemonData';
+import { useRouter } from 'next/navigation';
 
 export default function SearchBar() {
-  const { setSearchQuery, updateSelectedPokemon } = usePokemonData();
-
   const [searchTerm, setSearchTerm] = useState<string>('Totodile');
   const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
   const [selectedSuggestionIndex, setSelectedSuggestionIndex] =
     useState<number>(-1);
+
+  const router = useRouter();
 
   const filteredSuggestions = POKEMON_LIST.filter((pokemon) =>
     pokemon.toLowerCase().includes(searchTerm.toLowerCase())
@@ -22,6 +22,7 @@ export default function SearchBar() {
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
+
     setSearchTerm(value);
     setShowSuggestions(value.length > 0);
     setSelectedSuggestionIndex(-1);
@@ -61,8 +62,8 @@ export default function SearchBar() {
     setShowSuggestions(false);
     setSelectedSuggestionIndex(-1);
 
-    setSearchQuery(suggestion);
-    updateSelectedPokemon(suggestion);
+    console.log(suggestion);
+    // router.push(`/app/${searchTerm.toLowerCase()}`);
   };
 
   const handleInputBlur = () => {

@@ -12,10 +12,10 @@ import { PokemonTypes } from '@/types/pokemon.types';
 import { ShieldIcon, SwordIcon, XIcon } from 'lucide-react';
 import clsx from 'clsx';
 import TypeBadge from '@/components/TypeBadge/TypeBadge';
-import usePokemonData from '@/hooks/usePokemonData';
 import SelectedTypesDisplay from '@/components/EffectivenessChart/SelectedTypesDisplay';
 import { Button } from '@/components/ui/button';
 import { EffectivenessMode } from '@/types';
+import { usePokemon } from '@/context';
 
 export interface SelectedType {
   type: PokemonTypes;
@@ -23,7 +23,7 @@ export interface SelectedType {
 }
 
 export default function EffectivenessChart() {
-  const { pokemonData } = usePokemonData();
+  const { pokemon: pokemonData } = usePokemon();
 
   const [selectedTypes, setSelectedTypes] = useState<SelectedType[]>([]);
   const [lastPokemonName, setLastPokemonName] = useState<string | null>(null);
