@@ -182,7 +182,7 @@ const ROADMAP: Roadmap[] = [
     title: 'Improve loading states and error handling',
     description:
       'Adding better loading indicators and error messages for a smoother user experience',
-    status: 'Planned',
+    status: 'Done',
     category: 'Performance & Technical',
     phase: 3,
   },

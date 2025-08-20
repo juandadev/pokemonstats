@@ -2,24 +2,39 @@ import { NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { NextAuthRequest } from 'next-auth';
 
-const protectedPaths = ['/app'];
-const redirectedRoutes = ['/auth/signin', '/auth/signup'];
+const PUBLIC_ROUTES = [
+  '/',
+  '/privacy',
+  '/terms',
+  '/auth/signin',
+  '/auth/signup',
+];
+
+const startsWith = (path: string, prefix: string) =>
+  path === prefix || path.startsWith(prefix + '/');
 
 function middleware(request: NextAuthRequest) {
-  const url = request.nextUrl.clone();
-  const isProtected =
-    protectedPaths.includes(request.nextUrl.pathname) && !request.auth?.user;
+  const { nextUrl } = request;
+  const { pathname } = nextUrl;
 
-  if (isProtected) {
-    url.pathname = '/';
+  const isAuthed = Boolean(request.auth?.user);
+  const isPublic = PUBLIC_ROUTES.includes(pathname);
+  const inAuthSection = startsWith(pathname, '/auth');
+
+  if (!isAuthed) {
+    if (isPublic) return NextResponse.next();
+
+    const url = nextUrl.clone();
+
+    url.pathname = '/auth/signin';
+    url.searchParams.set('callbackUrl', nextUrl.pathname + nextUrl.search);
 
     return NextResponse.redirect(url);
   }
 
-  const shouldRedirect =
-    redirectedRoutes.includes(request.nextUrl.pathname) && request.auth?.user;
+  if (isAuthed && inAuthSection) {
+    const url = nextUrl.clone();
 
-  if (shouldRedirect) {
     url.pathname = '/app';
 
     return NextResponse.redirect(url);
@@ -29,3 +44,9 @@ function middleware(request: NextAuthRequest) {
 }
 
 export default auth(middleware);
+
+export const config = {
+  matcher: [
+    '/((?!api|_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml).*)',
+  ],
+};
