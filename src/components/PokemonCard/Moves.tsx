@@ -25,7 +25,23 @@ interface MovesProps {
 }
 
 export default function Moves({ moves }: MovesProps) {
-  const [selectedGame, setSelectedGame] = useState<GameVersion>('');
+  const gameVersionList = useMemo(() => {
+    const set = new Set<GameVersion>();
+
+    for (const move of moves) {
+      for (const version of move.gameDetails) {
+        set.add(version.game);
+      }
+    }
+
+    const unique = Array.from(set);
+
+    return unique.sort((a, b) => GAME_LIST.indexOf(a) - GAME_LIST.indexOf(b));
+  }, [moves]);
+
+  const [selectedGame, setSelectedGame] = useState<GameVersion>(
+    gameVersionList[0]
+  );
 
   const renderMoveList = useMemo(() => {
     const filteredMovesByGame = moves.filter((move) =>
@@ -92,7 +108,7 @@ export default function Moves({ moves }: MovesProps) {
           <SelectValue placeholder="Game version" />
         </SelectTrigger>
         <SelectContent>
-          {GAME_LIST.map((game) => (
+          {gameVersionList.map((game) => (
             <SelectItem key={game} value={game} className="capitalize">
               {formatGameVersion(game)}
             </SelectItem>
