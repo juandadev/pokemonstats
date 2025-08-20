@@ -10,15 +10,18 @@ import { getPokemonDisplayName } from '@/lib/pokemonDisplayName';
 import Stats from '@/components/PokemonCard/Stats';
 import Overview from '@/components/PokemonCard/Overview';
 import Moves from '@/components/PokemonCard/Moves';
+import { MoveDisplayData } from '@/types/moves.types';
 
 interface PokemonCardProps {
   pokemonData: PokemonData;
   speciesData: Species;
+  moveList: MoveDisplayData[];
 }
 
 export default function PokemonCard({
   pokemonData,
   speciesData,
+  moveList,
 }: PokemonCardProps) {
   const displayName = getPokemonDisplayName(pokemonData.name);
 
@@ -65,7 +68,7 @@ export default function PokemonCard({
               <Stats stats={pokemonData.stats} />
             </TabsContent>
             <TabsContent value="moves">
-              <Moves moves={pokemonData.moves} />
+              <Moves moves={moveList} />
             </TabsContent>
           </Tabs>
         </div>

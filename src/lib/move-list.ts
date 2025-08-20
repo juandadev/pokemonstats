@@ -6,14 +6,19 @@ import {
 } from '@/types/moves.types';
 
 export async function buildMoveList(moves: Move[]): Promise<MoveDisplayData[]> {
+  const filteredMoves = moves.filter(
+    (item) => item.version_group_details[0].level_learned_at > 0
+  );
   const moveList: MoveDisplayData[] = [];
 
-  for (const move of moves) {
+  for (const move of filteredMoves) {
     const response = await fetch(move.move.url, {
       cache: 'force-cache',
     });
     const data = (await response.json()) as MoveApiData;
-    const moveEntry = moves.find((item) => item.move.name === data.name)!;
+    const moveEntry = filteredMoves.find(
+      (item) => item.move.name === data.name
+    )!;
 
     const mapMoveDetailsByGame: MoveGameDetails[] =
       moveEntry.version_group_details.map((item) => {

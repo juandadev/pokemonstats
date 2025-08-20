@@ -1,6 +1,6 @@
 'use client';
 
-import { GameVersion, Move } from '@/types/pokemon.types';
+import { GameVersion } from '@/types/pokemon.types';
 import React, { useMemo, useState } from 'react';
 import {
   Accordion,
@@ -17,78 +17,84 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { GAME_LIST } from '@/common/constants/games';
+import { MoveDisplayData } from '@/types/moves.types';
+import { formatGameVersion } from '@/lib/utils';
 
 interface MovesProps {
-  moves: Move[];
+  moves: MoveDisplayData[];
 }
 
 export default function Moves({ moves }: MovesProps) {
   const [selectedGame, setSelectedGame] = useState<GameVersion>('');
 
-  const renderMoveList = useMemo(
-    () =>
-      moves
-        .sort(
-          (a, b) =>
-            a.version_group_details[0].level_learned_at -
-            b.version_group_details[0].level_learned_at
-        )
-        .filter((item) => item.version_group_details[0].level_learned_at > 0)
-        .map((move, index) => {
-          const displayName = move.move.name.replace(/-/g, ' ');
-          const levelLearned = move.version_group_details[0].level_learned_at;
+  const renderMoveList = useMemo(() => {
+    const filteredMovesByGame = moves.filter((move) =>
+      move.gameDetails.find((item) => item.game === selectedGame)
+    );
 
-          return (
-            <AccordionItem
-              value={move.move.name}
-              key={`move-${move.move.name}-position-${index}`}
-              className="border border-gray-200 rounded-lg overflow-hidden"
-            >
-              <AccordionTrigger className="p-3 text-left hover:bg-gray-50 transition-colors duration-200 hover:no-underline">
-                <div className="flex items-center justify-between w-full">
-                  <div className="flex items-center gap-3 flex-1">
-                    <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-xs font-semibold text-gray-600">
-                        {levelLearned}
-                      </div>
-                      <div>
-                        <div className="font-medium text-gray-900 capitalize">
-                          {displayName}
-                        </div>
-                        <div className="flex items-center gap-2 mt-1">
-                          <TypeBadge type="normal" />
-                          <span className="text-xs text-gray-500">
-                            Power: 50
-                          </span>
+    return filteredMovesByGame.map((move, index) => {
+      const displayName = move.name.replace(/-/g, ' ');
+      const getDetailsByGame =
+        move.gameDetails.find(
+          (gameDetail) => gameDetail.game === selectedGame
+        ) || move.gameDetails[0];
 
-                          <span className="text-xs text-gray-500">PP: 10</span>
-                        </div>
-                      </div>
+      return (
+        <AccordionItem
+          value={move.name}
+          key={`move-${move.name}-position-${index}`}
+          className="border border-gray-200 rounded-lg overflow-hidden"
+        >
+          <AccordionTrigger className="p-3 text-left hover:bg-gray-50 transition-colors duration-200 hover:no-underline">
+            <div className="flex items-center justify-between w-full">
+              <div className="flex items-center gap-3 flex-1">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-xs font-semibold text-gray-600">
+                    {getDetailsByGame.level}
+                  </div>
+                  <div>
+                    <div className="font-medium text-gray-900 capitalize">
+                      {displayName}
+                    </div>
+                    <div className="flex items-center gap-2 mt-1">
+                      <TypeBadge type={move.type} />
+                      <span className="text-xs text-gray-500">
+                        Power: {move.power}
+                      </span>
+                      <span className="text-xs text-gray-500">
+                        PP: {move.pp}
+                      </span>
                     </div>
                   </div>
-                  {/* TODO: Move this to AccordionContent */}
-                  <span className="text-xs text-gray-500 hidden sm:block">
-                    100% accuracy
-                  </span>
                 </div>
-              </AccordionTrigger>
-              <AccordionContent></AccordionContent>
-            </AccordionItem>
-          );
-        }),
-    [moves]
-  );
+              </div>
+            </div>
+          </AccordionTrigger>
+          <AccordionContent className="px-3 pb-3 border-t border-gray-100 bg-gray-50">
+            <div className="pt-3">
+              <p className="text-sm text-gray-700 leading-relaxed">
+                {getDetailsByGame.description}
+              </p>
+              <div className="mt-2 flex flex-col gap-2 text-xs text-gray-500">
+                <span>{move.accuracy}% accuracy</span>
+              </div>
+            </div>
+          </AccordionContent>
+        </AccordionItem>
+      );
+    });
+  }, [moves, selectedGame]);
 
   return (
     <>
       <Select defaultValue={selectedGame} onValueChange={setSelectedGame}>
-        <SelectTrigger className="w-full">
+        <SelectTrigger className="w-full capitalize">
           <SelectValue placeholder="Game version" />
         </SelectTrigger>
         <SelectContent>
           {GAME_LIST.map((game) => (
-            <SelectItem key={game} value={game}>
-              {game}
+            <SelectItem key={game} value={game} className="capitalize">
+              {formatGameVersion(game)}
             </SelectItem>
           ))}
         </SelectContent>
