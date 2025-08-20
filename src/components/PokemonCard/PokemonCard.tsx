@@ -9,6 +9,7 @@ import { Species } from '@/types/species.types';
 import { getPokemonDisplayName } from '@/lib/pokemonDisplayName';
 import Stats from '@/components/PokemonCard/Stats';
 import Overview from '@/components/PokemonCard/Overview';
+import Moves from '@/components/PokemonCard/Moves';
 
 interface PokemonCardProps {
   pokemonData: PokemonData;
@@ -63,7 +64,9 @@ export default function PokemonCard({
             <TabsContent value="stats">
               <Stats stats={pokemonData.stats} />
             </TabsContent>
-            <TabsContent value="moves"></TabsContent>
+            <TabsContent value="moves">
+              <Moves moves={pokemonData.moves} />
+            </TabsContent>
           </Tabs>
         </div>
       </CardContent>

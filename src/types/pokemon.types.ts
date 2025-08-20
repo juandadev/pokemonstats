@@ -1,6 +1,7 @@
-import { POKEMON_LIST } from '@/common/constants';
 import { EvolutionChain, EvolutionDetails } from '@/types/evolutions.types';
 import { Species } from '@/types/species.types';
+import { GAME_LIST } from '@/common/constants/games';
+import { MoveData } from '@/types/moves.types';
 
 export type PokemonTypes =
   | 'normal'
@@ -22,12 +23,7 @@ export type PokemonTypes =
   | 'steel'
   | 'fairy';
 
-export type PokemonName = (typeof POKEMON_LIST)[number];
-
-export type PokemonExceptions = {
-  name: PokemonName;
-  id: number;
-};
+export type GameVersion = (typeof GAME_LIST)[number];
 
 export type PokemonTypeColors = {
   background: string;
@@ -225,6 +221,7 @@ export interface CompletePokemonData {
   pokemonData?: PokemonData;
   speciesData?: Species;
   evolutionsData?: EvolutionChain;
+  movesData?: MoveData[];
 }
 
 export type MegaVariant = 'x' | 'y';

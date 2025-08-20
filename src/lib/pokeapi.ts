@@ -1,4 +1,4 @@
-import { CompletePokemonData, PokemonData } from '@/types/pokemon.types';
+import { CompletePokemonData, Move, PokemonData } from '@/types/pokemon.types';
 import { Species } from '@/types/species.types';
 import { EvolutionChain } from '@/types/evolutions.types';
 
@@ -37,10 +37,14 @@ export async function getPokemonDataBySlug(
   return { pokemonData, speciesData, evolutionsData };
 }
 
-export async function getEvolutionDetails(name: string) {
+export async function getEvolutionDetails(
+  name: string
+): Promise<PokemonData | null> {
   const res = await fetch(`${BASE}/pokemon/${name}`, { cache: 'force-cache' });
 
   if (!res.ok) return null;
 
   return (await res.json()) as PokemonData;
 }
+
+export async function getPokemonMoves(moves: Move[]) {}
