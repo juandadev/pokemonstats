@@ -29,6 +29,7 @@ export default function PokemonImage({
         height={height}
         priority={priority}
         className={clsx('object-contain', className)}
+        unoptimized
       />
     );
   }

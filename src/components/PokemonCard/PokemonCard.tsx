@@ -4,11 +4,11 @@ import { TYPE_LABELS } from '@/common/constants';
 import { clsx } from 'clsx';
 import TypeBadge from '@/components/TypeBadge/TypeBadge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { formatStatName, getStatColor } from '@/lib/utils';
 import { PokemonData } from '@/types/pokemon.types';
 import { Species } from '@/types/species.types';
-import PokemonImage from '@/components/PokemonImage/PokemonImage';
 import { getPokemonDisplayName } from '@/lib/pokemonDisplayName';
+import Stats from '@/components/PokemonCard/Stats';
+import Overview from '@/components/PokemonCard/Overview';
 
 interface PokemonCardProps {
   pokemonData: PokemonData;
@@ -55,86 +55,15 @@ export default function PokemonCard({
             <TabsList className="w-full">
               <TabsTrigger value="overview">Overview</TabsTrigger>
               <TabsTrigger value="stats">Base Stats</TabsTrigger>
+              <TabsTrigger value="moves">Moves</TabsTrigger>
             </TabsList>
             <TabsContent value="overview">
-              <div className="relative mt-4 flex justify-center">
-                <div
-                  className={clsx(
-                    'w-48 h-48 rounded-full flex items-center justify-center shadow-inner',
-                    TYPE_LABELS[pokemonData.types[0]?.type.name]
-                      ?.gradientBackgroundLight
-                  )}
-                >
-                  <PokemonImage
-                    artUrl={
-                      pokemonData.sprites?.other?.['official-artwork']
-                        ?.front_default ??
-                      pokemonData.sprites?.front_default ??
-                      null
-                    }
-                    alt={pokemonData.name}
-                    width={160}
-                    height={160}
-                    className={'w-40 h-40 '}
-                    priority
-                  />
-                </div>
-              </div>
+              <Overview pokemonData={pokemonData} />
             </TabsContent>
             <TabsContent value="stats">
-              <div className="space-y-4">
-                {pokemonData.stats.map((statData, index) => {
-                  const statName = statData.stat.name;
-                  const baseStat = statData.base_stat;
-                  const maxStat = 255;
-                  const percentage = (baseStat / maxStat) * 100;
-
-                  return (
-                    <div key={index} className="flex items-center gap-4">
-                      <div className="w-20 text-sm font-medium text-gray-700 text-right">
-                        {formatStatName(statName)}
-                      </div>
-                      <div className="flex-1">
-                        <div className="flex items-center gap-3">
-                          <div className="flex-1 bg-gray-200 rounded-full h-2 overflow-hidden">
-                            <div
-                              className="h-full rounded-full transition-all duration-500 ease-out"
-                              style={{
-                                width: `${Math.min(percentage, 100)}%`,
-                                backgroundColor: getStatColor(statName),
-                              }}
-                            />
-                          </div>
-                          <div className="w-8 text-sm font-semibold text-gray-900 text-right">
-                            {baseStat}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-
-                {/* Total Stats */}
-                <div className="pt-4 border-t border-gray-200">
-                  <div className="flex items-center gap-4">
-                    <div className="w-20 text-sm font-semibold text-gray-900 text-right">
-                      Total
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex items-center gap-3">
-                        <div className="flex-1"></div>
-                        <div className="w-8 text-sm font-bold text-gray-900 text-right">
-                          {pokemonData.stats.reduce(
-                            (total, stat) => total + stat.base_stat,
-                            0
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <Stats stats={pokemonData.stats} />
             </TabsContent>
+            <TabsContent value="moves"></TabsContent>
           </Tabs>
         </div>
       </CardContent>

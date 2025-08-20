@@ -38,6 +38,8 @@
 
 # Bugs
 
+- [ ] Still having login issues, mostly with signup form
+    - [ ] In safari submitting to waitlist gets in an infinite loop
 - [ ] When navigating with the keyboard the suggestions items, it should scroll to the selected item for the items that
   overflows the container.
 - [ ] Some suggestions are not shown completely on mobile devices.
@@ -45,6 +47,10 @@
 
 # Priority
 
+- [ ] Add Pokémon history section (Up to 5)
+    - [ ] Keep in a persistent state the Pokémon search history list to quickly go back to a previous search
+    - [ ] Do not repeat Pokémon in the list
+    - [ ] Floating button on the screen
 - [ ] This is important for some features, fetch the Pokémon group that tells a bit more about belonging generation.
   This url is contained in the `forms` array from the main Pokémon data
 - [ ] Add support for special modifiers in the effectiveness chart (UI reference in v0).
