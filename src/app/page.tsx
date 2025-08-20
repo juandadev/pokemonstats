@@ -15,6 +15,7 @@ import Link from 'next/link';
 import WaitlistForm from '@/components/WaitlistForm/WaitlistForm';
 import Image from 'next/image';
 import ProjectProgress from '@/components/Landing/ProjectProgress/ProjectProgress';
+import SignInCard from '@/components/SignInCard/SignInCard';
 
 export default function WaitlistPage() {
   return (
@@ -45,21 +46,7 @@ export default function WaitlistPage() {
         </div>
 
         <div className="text-center mb-8">
-          <div className="inline-flex flex-col md:flex-row items-center gap-4 bg-white/80 backdrop-blur-sm px-6 py-4 rounded-2xl shadow-lg border border-gray-200">
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-              <span className="text-sm text-gray-600">
-                Already have an account?
-              </span>
-            </div>
-            <Link
-              href="/auth/signin"
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-700 hover:to-yellow-700 text-white px-4 py-2 rounded-xl font-medium transition-all duration-200 hover:scale-105 shadow-md hover:shadow-lg"
-            >
-              <MailIcon className="w-4 h-4" />
-              Sign In
-            </Link>
-          </div>
+          <SignInCard />
         </div>
 
         {/* Main Content */}

@@ -19,7 +19,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { getSession, signIn } from 'next-auth/react';
-import { router } from 'next/client';
+import { useRouter } from 'next/navigation';
 
 export default function SignInPage() {
   const [email, setEmail] = useState('');
@@ -30,10 +30,13 @@ export default function SignInPage() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
+  const router = useRouter();
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !password) {
       setError('Please fill in all fields');
+
       return;
     }
 
@@ -48,13 +51,15 @@ export default function SignInPage() {
         action: 'login',
         redirect: false,
       });
-      
-      if (result?.code) {
-        setError(result.code);
-      } else {
-        await getSession();
-        await router.push('/app');
+
+      if (result.error) {
+        setError(result.code || 'Unknown login error. Try again');
+
+        return;
       }
+
+      await getSession();
+      router.push('/app');
     } catch (error) {
       setError('An unexpected error occurred');
     } finally {
