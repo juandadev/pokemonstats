@@ -53,7 +53,7 @@ export default function SignInPage() {
       });
 
       if (result.error) {
-        setError(result.code || 'Unknown login error. Try again');
+        setError(result.code || 'Unknown sign-in error. Try again');
 
         return;
       }

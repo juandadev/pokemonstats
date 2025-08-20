@@ -91,11 +91,13 @@ export default function SignUpPage() {
         redirect: false,
       });
 
-      if (result?.code) {
-        setError(result.code);
-      } else {
-        await router.push('/app');
+      if (result.error) {
+        setError(result.code || 'Unknown sign-up error. Try again');
+
+        return;
       }
+
+      await router.push('/app');
     } catch (err) {
       setError('Failed to create account. Please try again.');
     } finally {
