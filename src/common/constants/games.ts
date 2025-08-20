@@ -12,7 +12,7 @@ export const GAME_LIST = [
   'black-white',
   'black-2-white-2',
   'colosseum',
-  'XD',
+  'xd',
   'x-y',
   'omega-ruby-alpha-sapphire',
   'sun-moon',

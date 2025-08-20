@@ -8,9 +8,9 @@ import { Name } from '@/types/species.types';
 export interface MoveDisplayData {
   name: string;
   type: PokemonTypes;
-  power: number;
+  power: number | null;
   pp: number;
-  accuracy: number;
+  accuracy: number | null;
   gameDetails: MoveGameDetails[];
 }
 

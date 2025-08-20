@@ -18,6 +18,7 @@ export async function generateStaticParams(): Promise<
 
 export const dynamicParams = true;
 export const revalidate = false;
+export const dynamic = 'force-static';
 
 type PageProps = { params: Promise<{ pokemon: string }> };
 

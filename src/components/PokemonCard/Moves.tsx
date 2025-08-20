@@ -44,9 +44,20 @@ export default function Moves({ moves }: MovesProps) {
   );
 
   const renderMoveList = useMemo(() => {
-    const filteredMovesByGame = moves.filter((move) =>
-      move.gameDetails.find((item) => item.game === selectedGame)
-    );
+    const filteredMovesByGame = moves
+      .filter((move) =>
+        move.gameDetails.find((item) => item.game === selectedGame)
+      )
+      .sort((a, b) => {
+        const firstEl = a.gameDetails.find(
+          (item) => item.game === selectedGame
+        )!;
+        const secondEl = b.gameDetails.find(
+          (item) => item.game === selectedGame
+        )!;
+
+        return firstEl.level - secondEl.level;
+      });
 
     return filteredMovesByGame.map((move, index) => {
       const displayName = move.name.replace(/-/g, ' ');
@@ -74,9 +85,11 @@ export default function Moves({ moves }: MovesProps) {
                     </div>
                     <div className="flex items-center gap-2 mt-1">
                       <TypeBadge type={move.type} />
-                      <span className="text-xs text-gray-500">
-                        Power: {move.power}
-                      </span>
+                      {move.power && (
+                        <span className="text-xs text-gray-500">
+                          Power: {move.power}
+                        </span>
+                      )}
                       <span className="text-xs text-gray-500">
                         PP: {move.pp}
                       </span>
@@ -92,7 +105,7 @@ export default function Moves({ moves }: MovesProps) {
                 {getDetailsByGame.description}
               </p>
               <div className="mt-2 flex flex-col gap-2 text-xs text-gray-500">
-                <span>{move.accuracy}% accuracy</span>
+                {move.accuracy && <span>{move.accuracy}% accuracy</span>}
               </div>
             </div>
           </AccordionContent>
