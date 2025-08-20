@@ -102,6 +102,10 @@
 
 # Final touches
 
+- [ ] Persis state between pages
+    - [ ] tabs selected in Pokémon Card (overview, base stats)
+    - [ ] Effectiveness Chart tabs (attacker, defender)
+    - [ ] Info messages (dual type analysis dialog should remain closed if the user already closed it)
 - [ ] Generate metadata for each pokemon
 - [ ] Fix Login redirection
 - [ ] Add Sign Up page for beta testers
