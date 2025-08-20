@@ -1,7 +1,26 @@
-import { GenericPropertyDetails, PokemonTypes } from '@/types/pokemon.types';
-import { FlavorTextEntry, Name } from '@/types/species.types';
+import {
+  GameVersion,
+  GenericPropertyDetails,
+  PokemonTypes,
+} from '@/types/pokemon.types';
+import { Name } from '@/types/species.types';
 
-export interface MoveData {
+export interface MoveDisplayData {
+  name: string;
+  type: PokemonTypes;
+  power: number;
+  pp: number;
+  accuracy: number;
+  gameDetails: MoveGameDetails[];
+}
+
+export interface MoveGameDetails {
+  level: number;
+  description: string;
+  game: GameVersion;
+}
+
+export interface MoveApiData {
   accuracy: number;
   contest_combos: ContestCombos;
   contest_effect: Pick<GenericPropertyDetails, 'url'>;
@@ -57,4 +76,10 @@ export interface Meta {
   min_hits: null;
   min_turns: null;
   stat_chance: number;
+}
+
+export interface FlavorTextEntry {
+  flavor_text: string;
+  language: GenericPropertyDetails;
+  version_group: GenericPropertyDetails<GameVersion>;
 }

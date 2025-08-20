@@ -1,7 +1,7 @@
 import { EvolutionChain, EvolutionDetails } from '@/types/evolutions.types';
 import { Species } from '@/types/species.types';
 import { GAME_LIST } from '@/common/constants/games';
-import { MoveData } from '@/types/moves.types';
+import { MoveApiData } from '@/types/moves.types';
 
 export type PokemonTypes =
   | 'normal'
@@ -88,7 +88,8 @@ export interface Move {
 export interface VersionGroupDetail {
   level_learned_at: number;
   move_learn_method: GenericPropertyDetails;
-  version_group: GenericPropertyDetails;
+  order: number;
+  version_group: GenericPropertyDetails<GameVersion>;
 }
 
 export interface Stat {
@@ -221,7 +222,7 @@ export interface CompletePokemonData {
   pokemonData?: PokemonData;
   speciesData?: Species;
   evolutionsData?: EvolutionChain;
-  movesData?: MoveData[];
+  movesData?: MoveApiData[];
 }
 
 export type MegaVariant = 'x' | 'y';
