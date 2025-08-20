@@ -8,7 +8,6 @@ import {
   AlertCircle,
   StarIcon,
   HeartIcon,
-  MailIcon,
 } from 'lucide-react';
 import TwitterIcon from '@/icons/TwitterIcon';
 import Link from 'next/link';
