@@ -2,6 +2,7 @@ import React from 'react';
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import {
+  GameVersion,
   GenericPropertyDetails,
   Items,
   PokemonTypes,
@@ -240,3 +241,24 @@ export const getStatColor = (statName: string) => {
   };
   return colorMap[statName] || '#94A3B8';
 };
+
+const CUSTOM_GAME_NAMES: Partial<Record<GameVersion, string>> = {
+  'black-2-white-2': 'Black 2 & White 2',
+  'omega-ruby-alpha-sapphire': 'Omega Ruby & Alpha Sapphire',
+  'ultra-sun-ultra-moon': 'Ultra Sun & Ultra Moon',
+  'brilliant-diamond-and-shining-pearl': 'Brilliant Diamond & Shining Pearl',
+  'lets-go-pikachu-lets-go-eevee': "Let's Go Pikachu & Let's Go Eevee",
+  'legends-arceus': 'Legends: Arceus',
+};
+
+export function formatGameVersion(version: GameVersion): string {
+  if (CUSTOM_GAME_NAMES[version]) return CUSTOM_GAME_NAMES[version];
+
+  let formatted = version.replace(/-/g, ' ');
+
+  if (/(\b\w+\b) (\b\w+\b)/.test(formatted)) {
+    formatted = formatted.replace(/\s/g, ' & ');
+  }
+
+  return formatted;
+}

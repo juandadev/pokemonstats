@@ -8,6 +8,7 @@ import PokemonCard from '@/components/PokemonCard/PokemonCard';
 import EvolutionsCard from '@/components/EvolutionsCard/EvolutionsCard';
 import EffectivenessChart from '@/components/EffectivenessChart/EffectivenessChart';
 import { buildEvolutionStageList } from '@/lib/evolution-stages';
+import { buildMoveList } from '@/lib/move-list';
 
 export async function generateStaticParams(): Promise<
   Array<{ pokemon: string }>
@@ -17,6 +18,7 @@ export async function generateStaticParams(): Promise<
 
 export const dynamicParams = true;
 export const revalidate = false;
+export const dynamic = 'force-static';
 
 type PageProps = { params: Promise<{ pokemon: string }> };
 
@@ -27,6 +29,7 @@ export default async function PokemonStats({ params }: PageProps) {
   if (!data || Object.keys(data.pokemonData || {}).length === 0) notFound();
 
   const evolutionStages = await buildEvolutionStageList(data.evolutionsData!);
+  const moveList = await buildMoveList(data.pokemonData!.moves);
 
   return (
     <>
@@ -39,6 +42,7 @@ export default async function PokemonStats({ params }: PageProps) {
             <PokemonCard
               pokemonData={data.pokemonData!}
               speciesData={data.speciesData!}
+              moveList={moveList}
             />
             <EvolutionsCard
               pokemonData={data.pokemonData!}

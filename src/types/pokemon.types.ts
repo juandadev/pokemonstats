@@ -1,6 +1,7 @@
-import { POKEMON_LIST } from '@/common/constants';
 import { EvolutionChain, EvolutionDetails } from '@/types/evolutions.types';
 import { Species } from '@/types/species.types';
+import { GAME_LIST } from '@/common/constants/games';
+import { MoveApiData } from '@/types/moves.types';
 
 export type PokemonTypes =
   | 'normal'
@@ -22,12 +23,7 @@ export type PokemonTypes =
   | 'steel'
   | 'fairy';
 
-export type PokemonName = (typeof POKEMON_LIST)[number];
-
-export type PokemonExceptions = {
-  name: PokemonName;
-  id: number;
-};
+export type GameVersion = (typeof GAME_LIST)[number];
 
 export type PokemonTypeColors = {
   background: string;
@@ -92,7 +88,8 @@ export interface Move {
 export interface VersionGroupDetail {
   level_learned_at: number;
   move_learn_method: GenericPropertyDetails;
-  version_group: GenericPropertyDetails;
+  order: number;
+  version_group: GenericPropertyDetails<GameVersion>;
 }
 
 export interface Stat {
@@ -225,6 +222,7 @@ export interface CompletePokemonData {
   pokemonData?: PokemonData;
   speciesData?: Species;
   evolutionsData?: EvolutionChain;
+  movesData?: MoveApiData[];
 }
 
 export type MegaVariant = 'x' | 'y';

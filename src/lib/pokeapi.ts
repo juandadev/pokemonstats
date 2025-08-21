@@ -37,10 +37,14 @@ export async function getPokemonDataBySlug(
   return { pokemonData, speciesData, evolutionsData };
 }
 
-export async function getEvolutionDetails(name: string) {
-  const res = await fetch(`${BASE}/pokemon/${name}`, { cache: 'force-cache' });
+export async function getEvolutionDetails(
+  name: string
+): Promise<PokemonData | null> {
+  const response = await fetch(`${BASE}/pokemon/${name}`, {
+    cache: 'force-cache',
+  });
 
-  if (!res.ok) return null;
+  if (!response.ok) return null;
 
-  return (await res.json()) as PokemonData;
+  return (await response.json()) as PokemonData;
 }
