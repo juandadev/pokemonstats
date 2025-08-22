@@ -14,5 +14,5 @@ export interface Preferences {
   pkmnTab: PokemonCardTabs;
   chartMode: EffectivenessMode;
   msgClosed: boolean;
-  game: GameVersion;
+  game?: GameVersion;
 }
