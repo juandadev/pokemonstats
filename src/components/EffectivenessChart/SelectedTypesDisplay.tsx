@@ -33,6 +33,7 @@ export default function SelectedTypesDisplay({
 
   const clearSelectedTypes = () => {
     setSelectedTypes([]);
+    setIsExpanded(false);
   };
 
   useEffect(() => {
