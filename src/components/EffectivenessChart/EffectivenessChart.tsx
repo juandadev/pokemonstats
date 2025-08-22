@@ -35,7 +35,7 @@ export default function EffectivenessChart({
   const [lastPokemonName, setLastPokemonName] = useState<string | null>(null);
   const [userHasInteracted, setUserHasInteracted] = useState(false);
   const [isInformationMessageClosed, setIsInformationMessageClosed] =
-    useState<boolean>(false);
+    useState<boolean>(preferences.msgClosed);
   const [effectivenessMode, setEffectivenessMode] = useState<EffectivenessMode>(
     preferences.chartMode
   );
@@ -75,6 +75,11 @@ export default function EffectivenessChart({
   const handleTabChange = (value: EffectivenessMode) => {
     setEffectivenessMode(value);
     setPreferences({ chartMode: value });
+  };
+
+  const handleMessageClose = () => {
+    setIsInformationMessageClosed(true);
+    setPreferences({ msgClosed: true });
   };
 
   useEffect(() => {
@@ -270,7 +275,7 @@ export default function EffectivenessChart({
                       : `Showing what types are effective against ${selectedTypes[0].type}/${selectedTypes[1].type} Pokémon`}
                   </p>
                   <Button
-                    onClick={() => setIsInformationMessageClosed(true)}
+                    onClick={handleMessageClose}
                     variant="ghost"
                     size="icon"
                     className="size-6 md:size-7"
