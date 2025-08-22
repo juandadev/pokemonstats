@@ -4,6 +4,7 @@ const defaultOptions: Preferences = {
   pkmnTab: 'overview',
   chartMode: 'offensive',
   msgClosed: false,
+  game: '',
 };
 
 export function getPreferences(): Preferences {
@@ -18,7 +19,7 @@ export function getPreferences(): Preferences {
     : defaultOptions;
 }
 
-export function setPreferences(preferences: Preferences): void {
+export function setPreferences(preferences: Partial<Preferences>): void {
   const preferencesObject = localStorage.getItem('preferences');
   let newPreferences: Preferences;
 

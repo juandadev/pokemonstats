@@ -1,4 +1,5 @@
 import React from 'react';
+import { GameVersion } from '@/types/pokemon.types';
 
 export interface IconProps extends React.ComponentProps<'svg'> {
   size?: number;
@@ -13,4 +14,5 @@ export interface Preferences {
   pkmnTab: PokemonCardTabs;
   chartMode: EffectivenessMode;
   msgClosed: boolean;
+  game: GameVersion;
 }
