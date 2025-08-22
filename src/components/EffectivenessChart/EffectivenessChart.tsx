@@ -15,6 +15,7 @@ import TypeBadge from '@/components/TypeBadge/TypeBadge';
 import SelectedTypesDisplay from '@/components/EffectivenessChart/SelectedTypesDisplay';
 import { Button } from '@/components/ui/button';
 import { EffectivenessMode } from '@/types';
+import { getPreferences, setPreferences } from '@/lib/preferences';
 
 export interface SelectedType {
   type: PokemonTypes;
@@ -28,13 +29,16 @@ interface EffectivenessChartProps {
 export default function EffectivenessChart({
   pokemonData,
 }: EffectivenessChartProps) {
+  const preferences = getPreferences();
+
   const [selectedTypes, setSelectedTypes] = useState<SelectedType[]>([]);
   const [lastPokemonName, setLastPokemonName] = useState<string | null>(null);
   const [userHasInteracted, setUserHasInteracted] = useState(false);
   const [isInformationMessageClosed, setIsInformationMessageClosed] =
     useState<boolean>(false);
-  const [effectivenessMode, setEffectivenessMode] =
-    useState<EffectivenessMode>('offensive');
+  const [effectivenessMode, setEffectivenessMode] = useState<EffectivenessMode>(
+    preferences.chartMode
+  );
 
   const typesContainerRef = useRef<HTMLDivElement>(null);
   const typeButtonsRef = useRef<Record<string, HTMLButtonElement | null>>({});
@@ -66,6 +70,11 @@ export default function EffectivenessChart({
       // Replace first type if 2 already selected
       setSelectedTypes([selectedTypes[1], type]);
     }
+  };
+
+  const handleTabChange = (value: EffectivenessMode) => {
+    setEffectivenessMode(value);
+    setPreferences({ chartMode: value });
   };
 
   useEffect(() => {
@@ -127,7 +136,7 @@ export default function EffectivenessChart({
           <div className="mb-6">
             <div className="flex gap-1 bg-gray-100 p-1 rounded-lg max-w-md mx-auto">
               <button
-                onClick={() => setEffectivenessMode('offensive')}
+                onClick={() => handleTabChange('offensive')}
                 className={clsx(
                   `flex-1 px-4 py-3 text-sm font-medium rounded-md transition-all duration-200 cursor-pointer`,
                   effectivenessMode === 'offensive'
@@ -144,7 +153,7 @@ export default function EffectivenessChart({
                 </div>
               </button>
               <button
-                onClick={() => setEffectivenessMode('defensive')}
+                onClick={() => handleTabChange('defensive')}
                 className={clsx(
                   `flex-1 px-4 py-3 text-sm font-medium rounded-md transition-all duration-200 cursor-pointer`,
                   effectivenessMode === 'defensive'
