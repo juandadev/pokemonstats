@@ -271,7 +271,7 @@ const ROADMAP: Roadmap[] = [
 
 const itemsOrder = { Done: 1, 'In Progress': 2, Planned: 3, Skipped: 4 };
 
-export default function ProjectProgress() {
+export default function ProjectRoadmap() {
   const completedItemsLength = ROADMAP.filter(
     (item) => item.status === 'Done'
   ).length;
