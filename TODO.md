@@ -46,6 +46,8 @@
     - [x] Split components into smaller ones
     - [x] Remove all unused code
     - [x] Remove all unused dependencies
+- [x] Add a "More" page to show the roadmap, contributors, special thanks and other information about the future of the
+  project
 
 # Bugs
 
@@ -101,8 +103,6 @@
     - [ ] Track page views
     - [ ] Track search queries
     - [ ] Heat maps
-- [ ] Add a "More" page to show the roadmap, contributors, special thanks and other information about the future of the
-  project
 - [ ] Add an element or page to give special thanks to:
     - [ ] All the people that are contributing to the project (check if I can get this list somewhere to display it
       dynamically)
