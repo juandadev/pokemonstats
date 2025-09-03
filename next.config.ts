@@ -17,8 +17,8 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        source: '/app',
-        destination: '/app/totodile',
+        source: '/',
+        destination: '/totodile',
         permanent: true,
       },
     ];

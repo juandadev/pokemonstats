@@ -95,7 +95,7 @@ export default function EvolutionsCard({
                         evolution.displayName
                       ) : (
                         <Link
-                          href={`/app/${evolution.slug}#main`}
+                          href={`/${evolution.slug}#main`}
                           className="underline"
                         >
                           {evolution.displayName}
