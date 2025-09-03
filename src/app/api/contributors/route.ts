@@ -35,7 +35,7 @@ export async function GET() {
         headers: {
           'User-Agent': 'pokemonstats-app',
           Accept: 'application/vnd.github+json',
-          Authorization: `Bearer ${token}`,
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
         },
       }
     );

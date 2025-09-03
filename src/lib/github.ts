@@ -7,7 +7,7 @@ export async function fetchStarCount(): Promise<number> {
       headers: {
         'User-Agent': 'pokemonstats-app',
         Accept: 'application/vnd.github+json',
-        Authorization: `Bearer ${token}`,
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
       },
       next: { revalidate: 84600 },
     }
