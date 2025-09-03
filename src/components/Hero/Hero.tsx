@@ -1,8 +1,11 @@
 import { Button } from '@/components/ui/button';
 import { HeartIcon, StarIcon } from 'lucide-react';
 import Image from 'next/image';
+import { fetchStarCount } from '@/lib/github';
 
-export default function Hero() {
+export default async function Hero() {
+  const starCount = await fetchStarCount();
+
   return (
     <div
       id={'hero'}
@@ -36,6 +39,7 @@ export default function Hero() {
             >
               <StarIcon className="w-5 h-5 text-yellow-500" />
               Star on GitHub
+              <span className="border-l pl-2">{starCount}</span>
             </a>
           </Button>
           <Button variant={'outline'} asChild>
