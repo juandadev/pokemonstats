@@ -4,6 +4,7 @@ import {
   ClockIcon,
   SparklesIcon,
   StarIcon,
+  XIcon,
   ZapIcon,
 } from 'lucide-react';
 import { clsx } from 'clsx';
@@ -14,7 +15,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 
-type RoadmapStatus = 'Done' | 'In Progress' | 'Planned';
+type RoadmapStatus = 'Done' | 'In Progress' | 'Planned' | 'Skipped';
 
 type RoadmapCategory =
   | 'Core Features'
@@ -144,7 +145,7 @@ const ROADMAP: Roadmap[] = [
     title: 'Support for special modifier in effectiveness calculations',
     description:
       'Adding special moves, passive abilities and other exceptions that changes the type effectiveness for a more accurate calculation',
-    status: 'In Progress',
+    status: 'Skipped',
     category: 'Advanced Features',
     phase: 2,
   },
@@ -190,7 +191,7 @@ const ROADMAP: Roadmap[] = [
     title: 'Analytics integration',
     description:
       'Adding analytics tools to track user interactions for search queries, page views, and heatmaps to improve the user experience',
-    status: 'Planned',
+    status: 'Skipped',
     category: 'Performance & Technical',
     phase: 3,
   },
@@ -206,7 +207,7 @@ const ROADMAP: Roadmap[] = [
     title: 'A11y improvements',
     description:
       'Improving accessibility features for better usability by keyboard and screen readers',
-    status: 'Planned',
+    status: 'Skipped',
     category: 'Core Features',
     phase: 1,
   },
@@ -214,7 +215,7 @@ const ROADMAP: Roadmap[] = [
     title: 'Refactor codebase for better maintainability',
     description:
       'Improving code structure, organization, and documentation for easier future development and contributions',
-    status: 'In Progress',
+    status: 'Done',
     category: 'Performance & Technical',
     phase: 3,
   },
@@ -222,7 +223,7 @@ const ROADMAP: Roadmap[] = [
     title: 'Performance optimizations',
     description:
       'Implementing various performance improvements such as code splitting, lazy loading, and optimizing images for faster load times',
-    status: 'In Progress',
+    status: 'Done',
     category: 'Performance & Technical',
     phase: 3,
   },
@@ -230,7 +231,7 @@ const ROADMAP: Roadmap[] = [
     title: 'Dark mode support',
     description:
       'Adding a dark mode toggle for better user experience in low-light environments',
-    status: 'Planned',
+    status: 'Skipped',
     category: 'UI/UX Improvements',
     phase: 3,
   },
@@ -238,7 +239,7 @@ const ROADMAP: Roadmap[] = [
     title: 'Scrape Pokemon data',
     description:
       'Gather all available data from APIs and other sources to have static data for faster loading and offline support',
-    status: 'Planned',
+    status: 'Skipped',
     category: 'Performance & Technical',
     phase: 3,
   },
@@ -246,7 +247,7 @@ const ROADMAP: Roadmap[] = [
     title: 'PWA support',
     description:
       'Implementing Progressive Web App features for offline support and app-like experience',
-    status: 'Planned',
+    status: 'Skipped',
     category: 'Performance & Technical',
     phase: 3,
   },
@@ -254,7 +255,7 @@ const ROADMAP: Roadmap[] = [
     title: 'I18n support',
     description:
       'Adding internationalization support to make the app accessible in Spanish',
-    status: 'Planned',
+    status: 'Skipped',
     category: 'Core Features',
     phase: 1,
   },
@@ -268,7 +269,7 @@ const ROADMAP: Roadmap[] = [
   },
 ];
 
-const itemsOrder = { Done: 1, 'In Progress': 2, Planned: 3 };
+const itemsOrder = { Done: 1, 'In Progress': 2, Planned: 3, Skipped: 4 };
 
 export default function ProjectProgress() {
   const completedItemsLength = ROADMAP.filter(
@@ -294,17 +295,23 @@ export default function ProjectProgress() {
     (item) => item.category === 'Performance & Technical'
   ).sort((a, b) => itemsOrder[a.status] - itemsOrder[b.status]);
 
-  const phase1Items = ROADMAP.filter((item) => item.phase === 1);
+  const phase1Items = ROADMAP.filter(
+    (item) => item.phase === 1 && item.status !== 'Skipped'
+  );
   const completedPhase1Items = phase1Items.filter(
     (item) => item.status === 'Done'
   );
 
-  const phase2Items = ROADMAP.filter((item) => item.phase === 2);
+  const phase2Items = ROADMAP.filter(
+    (item) => item.phase === 2 && item.status !== 'Skipped'
+  );
   const completedPhase2Items = phase2Items.filter(
     (item) => item.status === 'Done'
   );
 
-  const phase3Items = ROADMAP.filter((item) => item.phase === 3);
+  const phase3Items = ROADMAP.filter(
+    (item) => item.phase === 3 && item.status !== 'Skipped'
+  );
   const completedPhase3Items = phase3Items.filter(
     (item) => item.status === 'Done'
   );
@@ -346,6 +353,19 @@ export default function ProjectProgress() {
       Label: () => (
         <div className="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded-full font-medium">
           Planned
+        </div>
+      ),
+    },
+    Skipped: {
+      containerClassName: 'bg-red-50 border-red-200',
+      Icon: () => (
+        <div className="size-6 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0">
+          <XIcon className="w-4 h-4 text-white" />
+        </div>
+      ),
+      Label: () => (
+        <div className="text-xs bg-red-100 text-red-800 px-2 py-1 rounded-full font-medium">
+          Skipped
         </div>
       ),
     },
