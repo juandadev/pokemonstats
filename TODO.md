@@ -48,6 +48,15 @@
     - [x] Remove all unused dependencies
 - [x] Add a "More" page to show the roadmap, contributors, special thanks and other information about the future of the
   project
+- [x] Add an element or page to give special thanks to:
+    - [x] All the people that are contributing to the project (check if I can get this list somewhere to display it
+      dynamically)
+    - [x] All the people that are supporting the project with a coffee
+    - [x] [Pokemon Palette](https://github.com/yassenshopov/pokemonpalette-nextjs) for the inspiration and UI
+      reference
+    - [x] PokeAPI
+    - [x] [pkmn.help](https://github.com/wavebeem/pkmn.help?tab=readme-ov-file) to verify the effectiveness calculations
+      and special modifiers
 
 # Bugs
 
@@ -103,15 +112,6 @@
     - [ ] Track page views
     - [ ] Track search queries
     - [ ] Heat maps
-- [ ] Add an element or page to give special thanks to:
-    - [ ] All the people that are contributing to the project (check if I can get this list somewhere to display it
-      dynamically)
-    - [ ] All the people that are supporting the project with a coffee
-    - [ ] [Pokemon Palette](https://github.com/yassenshopov/pokemonpalette-nextjs) for the inspiration and UI
-      reference
-    - [ ] PokeAPI
-    - [ ] [pkmn.help](https://github.com/wavebeem/pkmn.help?tab=readme-ov-file) to verify the effectiveness calculations
-      and special modifiers
 
 # Final touches
 
