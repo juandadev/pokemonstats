@@ -1,11 +1,11 @@
 import {
   ArrowLeft,
-  Heart,
   Coffee,
-  Github,
   ExternalLink,
-  Palette,
+  Github,
+  Heart,
   Lightbulb,
+  Palette,
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -13,96 +13,88 @@ import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import CoffeeSupporters from '@/components/CoffeeSupporters/CoffeeSupporters';
 import GithubContributors from '@/components/GithubContributors/GithubContributors';
+import { INSPIRATIONS, SITE_URL, TOOLS } from '@/common/constants';
+import { Metadata } from 'next';
 
-const inspirations = [
-  {
-    name: 'PokéAPI',
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  title: 'Thanks & Credits | Pokémon Stats',
+  description:
+    'A heartfelt thanks to our supporters, contributors, and the amazing tools and projects that inspired Pokémon Stats. View Buy Me a Coffee supporters, GitHub contributors, and credits to PokéAPI, Pokémon Palette, and more.',
+  alternates: {
+    canonical: `${SITE_URL}/thanks`,
+  },
+  openGraph: {
+    type: 'website',
+    url: `${SITE_URL}/thanks`,
+    siteName: 'Pokémon Stats',
+    title: 'Thanks & Credits | Pokémon Stats',
     description:
-      'The comprehensive Pokémon data API that powers our application',
-    url: 'https://pokeapi.co/',
-    category: 'Data Source',
-    icon: '🔗',
+      'Supporters, contributors, and the tools that power Pokémon Stats: from PokéAPI to Pokémon Palette. Huge thanks to everyone who makes this project possible.',
+    // TODO: Uncomment below to enable OG image generation
+    // images: [
+    //   {
+    //     url: `${SITE_URL}/api/og?route=thanks`,
+    //     width: 1200,
+    //     height: 630,
+    //     alt: 'Thanks & Credits – Pokémon Stats',
+    //   },
+    // ],
   },
-  {
-    name: 'Pokémon Palette',
-    description: 'Inspiration for our color scheme and design aesthetic',
-    url: 'https://www.pokemonpalette.com/',
-    category: 'Design Inspiration',
-    icon: '🎨',
-  },
-  {
-    name: 'Pokémon Type Calculator',
-    description: 'The type effectiveness calculator that inspired our tool',
-    url: 'https://www.pkmn.help/defense/',
-    category: 'Reference',
-    icon: '🛡️',
-  },
-];
-
-const tools = [
-  {
-    name: 'Next.js 15',
-    description: 'React framework we use for fast, and static Pokémon pages',
-    url: 'https://nextjs.org/',
-    category: 'Framework',
-    icon: '▲',
-  },
-  {
-    name: 'React 19',
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Thanks & Credits | Pokémon Stats',
     description:
-      'Modern React with the latest features powering the whole experience',
-    url: 'https://react.dev/',
-    category: 'Library',
-    icon: '⚛️',
+      'Buy Me a Coffee supporters, GitHub contributors, and credits to PokéAPI, Pokémon Palette, and more.',
+    // images: [`${SITE_URL}/api/og?route=thanks`],
   },
-  {
-    name: 'Tailwind CSS v4',
-    description:
-      'Utility-first CSS framework to style everything quickly and consistently',
-    url: 'https://tailwindcss.com/',
-    category: 'Styling',
-    icon: '🎨',
+  robots: {
+    index: true,
+    follow: true,
+    'max-snippet': -1,
+    'max-image-preview': 'large',
   },
-  {
-    name: 'shadcn/ui',
-    description:
-      'Accessible, customizable React components that fit perfectly with Tailwind',
-    url: 'https://ui.shadcn.com/',
-    category: 'UI Components',
-    icon: '🧩',
+  keywords: [
+    'pokemon stats thanks',
+    'pokemon stats credits',
+    'pokemon stats contributors',
+    'buy me a coffee supporters',
+    'pokemon stats tech stack',
+    'pokemon stats acknowledgments',
+  ],
+  other: {
+    'script:ld+json': JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'AboutPage',
+      name: 'Thanks & Credits | Pokémon Stats',
+      url: `${SITE_URL}/thanks`,
+      description:
+        'Acknowledgments for Pokémon Stats: supporters, contributors, and projects that inspired this app.',
+      about: [
+        {
+          '@type': 'WebSite',
+          name: 'PokéAPI',
+          url: 'https://pokeapi.co/',
+        },
+        {
+          '@type': 'WebSite',
+          name: 'Pokémon Palette',
+          url: 'https://pokemonpalette.com',
+        },
+        {
+          '@type': 'WebSite',
+          name: 'PKMN.help',
+          url: 'https://www.pkmn.help/defense/',
+        },
+      ],
+      isPartOf: {
+        '@type': 'WebSite',
+        name: 'Pokémon Stats',
+        url: SITE_URL,
+      },
+    }),
   },
-  {
-    name: 'Lucide React',
-    description: 'Clean, consistent icons across the app',
-    url: 'https://lucide.dev/',
-    category: 'Icons',
-    icon: '🌀',
-  },
-  {
-    name: 'PokéAPI',
-    description:
-      'The open-source Pokémon API that powers all the data in the app',
-    url: 'https://pokeapi.co/',
-    category: 'Data Source',
-    icon: '🔗',
-  },
-  {
-    name: 'Vercel',
-    description:
-      'Deployment platform that makes Pokémon Stats blazing fast worldwide',
-    url: 'https://vercel.com/',
-    category: 'Deployment',
-    icon: '🚀',
-  },
-  {
-    name: 'DataBuddy',
-    description:
-      'Privacy-first analytics to understand usage and improve features',
-    url: 'https://www.databuddy.cc/',
-    category: 'Analytics',
-    icon: '📊',
-  },
-];
+};
 
 export default function ThanksPage() {
   return (
@@ -149,7 +141,7 @@ export default function ThanksPage() {
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {inspirations.map((inspiration, index) => (
+              {INSPIRATIONS.map((inspiration, index) => (
                 <a
                   key={index}
                   href={inspiration.url}
@@ -191,7 +183,7 @@ export default function ThanksPage() {
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {tools.map((tool, index) => (
+              {TOOLS.map((tool, index) => (
                 <a
                   key={index}
                   href={tool.url}

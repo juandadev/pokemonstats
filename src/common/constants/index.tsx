@@ -126,3 +126,92 @@ export const ROADMAP: Roadmap[] = [
 
 export const SITE_URL =
   process.env.NEXT_PUBLIC_BASE_URL ?? 'https://pokemonstats.com';
+export const INSPIRATIONS = [
+  {
+    name: 'PokéAPI',
+    description:
+      'The comprehensive Pokémon data API that powers our application',
+    url: 'https://pokeapi.co/',
+    category: 'Data Source',
+    icon: '🔗',
+  },
+  {
+    name: 'Pokémon Palette',
+    description: 'Inspiration for our color scheme and design aesthetic',
+    url: 'https://www.pokemonpalette.com/',
+    category: 'Design Inspiration',
+    icon: '🎨',
+  },
+  {
+    name: 'Pokémon Type Calculator',
+    description: 'The type effectiveness calculator that inspired our tool',
+    url: 'https://www.pkmn.help/defense/',
+    category: 'Reference',
+    icon: '🛡️',
+  },
+];
+
+export const TOOLS = [
+  {
+    name: 'Next.js 15',
+    description: 'React framework we use for fast, and static Pokémon pages',
+    url: 'https://nextjs.org/',
+    category: 'Framework',
+    icon: '▲',
+  },
+  {
+    name: 'React 19',
+    description:
+      'Modern React with the latest features powering the whole experience',
+    url: 'https://react.dev/',
+    category: 'Library',
+    icon: '⚛️',
+  },
+  {
+    name: 'Tailwind CSS v4',
+    description:
+      'Utility-first CSS framework to style everything quickly and consistently',
+    url: 'https://tailwindcss.com/',
+    category: 'Styling',
+    icon: '🎨',
+  },
+  {
+    name: 'shadcn/ui',
+    description:
+      'Accessible, customizable React components that fit perfectly with Tailwind',
+    url: 'https://ui.shadcn.com/',
+    category: 'UI Components',
+    icon: '🧩',
+  },
+  {
+    name: 'Lucide React',
+    description: 'Clean, consistent icons across the app',
+    url: 'https://lucide.dev/',
+    category: 'Icons',
+    icon: '🌀',
+  },
+  {
+    name: 'PokéAPI',
+    description:
+      'The open-source Pokémon API that powers all the data in the app',
+    url: 'https://pokeapi.co/',
+    category: 'Data Source',
+    icon: '🔗',
+  },
+  {
+    name: 'Vercel',
+    description:
+      'Deployment platform that makes Pokémon Stats blazing fast worldwide',
+    url: 'https://vercel.com/',
+    category: 'Deployment',
+    icon: '🚀',
+  },
+  {
+    name: 'DataBuddy',
+    description:
+      'Privacy-first analytics to understand usage and improve features',
+    url: 'https://www.databuddy.cc/',
+    category: 'Analytics',
+    icon: '📊',
+  },
+];
