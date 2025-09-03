@@ -19,12 +19,14 @@ import {
 import { GAME_LIST } from '@/common/constants/games';
 import { MoveDisplayData } from '@/types/moves.types';
 import { formatGameVersion } from '@/lib/utils';
+import { getPreferences, setPreferences } from '@/lib/preferences';
 
 interface MovesProps {
   moves: MoveDisplayData[];
 }
 
 export default function Moves({ moves }: MovesProps) {
+  const preferences = getPreferences();
   const gameVersionList = useMemo(() => {
     const set = new Set<GameVersion>();
 
@@ -38,10 +40,18 @@ export default function Moves({ moves }: MovesProps) {
 
     return unique.sort((a, b) => GAME_LIST.indexOf(a) - GAME_LIST.indexOf(b));
   }, [moves]);
+  const isGameInList = gameVersionList.some(
+    (version) => version === preferences.game
+  );
 
   const [selectedGame, setSelectedGame] = useState<GameVersion>(
-    gameVersionList[0]
+    isGameInList ? preferences.game || gameVersionList[0] : gameVersionList[0]
   );
+
+  const handleGameSelect = (value: string) => {
+    setSelectedGame(value as GameVersion);
+    setPreferences({ game: value as GameVersion });
+  };
 
   const renderMoveList = useMemo(() => {
     const filteredMovesByGame = moves
@@ -116,7 +126,7 @@ export default function Moves({ moves }: MovesProps) {
 
   return (
     <>
-      <Select defaultValue={selectedGame} onValueChange={setSelectedGame}>
+      <Select value={selectedGame} onValueChange={handleGameSelect}>
         <SelectTrigger className="w-full capitalize">
           <SelectValue placeholder="Game version" />
         </SelectTrigger>

@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { TYPE_LABELS } from '@/common/constants';
 import { clsx } from 'clsx';
@@ -11,6 +13,8 @@ import Stats from '@/components/PokemonCard/Stats';
 import Overview from '@/components/PokemonCard/Overview';
 import Moves from '@/components/PokemonCard/Moves';
 import { MoveDisplayData } from '@/types/moves.types';
+import { getPreferences, setPreferences } from '@/lib/preferences';
+import { PokemonCardTabs } from '@/types';
 
 interface PokemonCardProps {
   pokemonData: PokemonData;
@@ -23,7 +27,17 @@ export default function PokemonCard({
   speciesData,
   moveList,
 }: PokemonCardProps) {
+  const preferences = getPreferences();
+  const [activeTab, setActiveTab] = useState<PokemonCardTabs>(
+    preferences.pkmnTab
+  );
+
   const displayName = getPokemonDisplayName(pokemonData.name);
+
+  const handleTabChange = (value: string) => {
+    setActiveTab(value as PokemonCardTabs);
+    setPreferences({ pkmnTab: value as PokemonCardTabs });
+  };
 
   return (
     <Card className="shadow-xl border-0 bg-white/90 backdrop-blur-sm overflow-hidden pt-0">
@@ -55,7 +69,11 @@ export default function PokemonCard({
       </div>
       <CardContent className="px-6">
         <div className="flex justify-center">
-          <Tabs defaultValue="overview" className="w-full">
+          <Tabs
+            value={activeTab}
+            onValueChange={handleTabChange}
+            className="w-full"
+          >
             <TabsList className="w-full">
               <TabsTrigger value="overview">Overview</TabsTrigger>
               <TabsTrigger value="stats">Base Stats</TabsTrigger>
