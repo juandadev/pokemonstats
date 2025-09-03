@@ -23,12 +23,8 @@ async function getContributors(): Promise<Contributor[]> {
 export default async function GithubContributors() {
   const contributors = await getContributors();
 
-  if (!contributors.length) {
-    return (
-      <p className="text-sm opacity-70">
-        No contributors yet (or API limit hit).
-      </p>
-    );
+  if (!contributors) {
+    return null;
   }
 
   return (
@@ -48,6 +44,11 @@ export default async function GithubContributors() {
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {contributors.length === 0 && (
+            <p className="text-sm opacity-70">
+              No contributors yet (or API limit hit).
+            </p>
+          )}
           {contributors.map((contributor) => (
             <Slot
               key={contributor.id}

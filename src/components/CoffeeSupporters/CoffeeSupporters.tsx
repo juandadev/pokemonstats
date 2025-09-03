@@ -26,6 +26,10 @@ export default async function CoffeeSupporters() {
     0
   );
 
+  if (!supporters) {
+    return null;
+  }
+
   return (
     <Card className="mb-12 shadow-xl border-0 bg-white/90 backdrop-blur-sm">
       <CardHeader>
