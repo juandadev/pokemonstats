@@ -2,9 +2,12 @@ import {
   AlertTriangleIcon,
   ExternalLinkIcon,
   GithubIcon,
+  HandshakeIcon,
   HeartIcon,
   InfoIcon,
+  TrendingUpIcon,
 } from 'lucide-react';
+import Link from 'next/link';
 
 const currentYear = new Date().getFullYear();
 
@@ -31,6 +34,22 @@ export default function Footer() {
       </div>
       {/* Links Section */}
       <div className="flex flex-col md:flex-row gap-6 items-center justify-center">
+        <Link
+          href="/roadmap"
+          className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors duration-200 group"
+        >
+          <TrendingUpIcon className="size-4 group-hover:scale-110 transition-transform duration-200" />
+          <span className="text-sm font-medium">Project Roadmap</span>
+          <ExternalLinkIcon className="w-3 h-3 opacity-50" />
+        </Link>
+        <Link
+          href="/thanks"
+          className="flex items-center gap-2 text-gray-600 hover:text-yellow-600 transition-colors duration-200 group"
+        >
+          <HandshakeIcon className="size-4 group-hover:scale-110 transition-transform duration-200" />
+          <span className="text-sm font-medium">Special Thanks</span>
+          <ExternalLinkIcon className="w-3 h-3 opacity-50" />
+        </Link>
         <a
           href="https://github.com/juandadev/pokemonstats"
           target="_blank"
