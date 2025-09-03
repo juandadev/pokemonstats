@@ -7,7 +7,6 @@ import {
   Items,
   PokemonTypes,
 } from '@/types/pokemon.types';
-import { TYPE_ICONS, TYPE_LABELS, WEAKNESS_CHART } from '@/common/constants';
 import { CircleIcon } from 'lucide-react';
 import { EffectivenessMode } from '@/types';
 import { EVOLUTION_DETAILS } from '@/common/constants/evolutions';
@@ -16,6 +15,8 @@ import {
   EvolutionDetails,
 } from '@/types/evolutions.types';
 import { Species } from '@/types/species.types';
+import { TYPE_ICONS, TYPE_LABELS } from '@/common/constants/pokemonTypes';
+import { WEAKNESS_CHART } from '@/common/constants/charts';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -261,4 +262,50 @@ export function formatGameVersion(version: GameVersion): string {
   }
 
   return formatted;
+}
+
+export function keywordsForPokemon(
+  name: string,
+  types: PokemonTypes[],
+  id?: number
+): string[] {
+  const base: string[] = [
+    name,
+    `${name} weaknesses`,
+    `${name} type`,
+    `${name} evolution`,
+    `${name} counters`,
+    'pokemon weaknesses',
+    'pokemon type chart',
+    'pokemon evolutions',
+    'pokemon',
+    'stats',
+    'type chart',
+    'type matchup',
+    'weaknesses',
+    'evolutions',
+    'evolution chain',
+    'moves',
+    'abilities',
+    'pokedex',
+  ];
+
+  const typeKw = types.flatMap((t) => [
+    `${name} ${t} type`,
+    `${t} type weaknesses`,
+    `${t} type effectiveness`,
+  ]);
+
+  const dexKw =
+    typeof id === 'number' ? [`pokedex ${id}`, `${name} pokedex ${id}`] : [];
+
+  return [...new Set([...base, ...typeKw, ...dexKw])];
+}
+
+export function titleCase(input: string): string {
+  return input
+    .replace(/[-_]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .replace(/\b\w/g, (m) => m.toUpperCase());
 }

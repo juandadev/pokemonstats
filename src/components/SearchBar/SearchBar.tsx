@@ -62,7 +62,7 @@ export default function SearchBar({ initialValue = '' }: SearchBarProps) {
         e.preventDefault();
         if (selectedSuggestionIndex >= 0) {
           router.push(
-            `/app/${filteredSuggestions[selectedSuggestionIndex].slug}#main`
+            `/${filteredSuggestions[selectedSuggestionIndex].slug}#main`
           );
         }
         break;
@@ -144,7 +144,7 @@ export default function SearchBar({ initialValue = '' }: SearchBarProps) {
                   aria-selected={index === selectedSuggestionIndex}
                   tabIndex={-1}
                 >
-                  <Link href={`/app/${suggestion.slug}#main`}>
+                  <Link href={`/${suggestion.slug}#main`}>
                     <div className="w-8 h-8 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
                       {suggestion.sprite ? (
                         <PokemonImage

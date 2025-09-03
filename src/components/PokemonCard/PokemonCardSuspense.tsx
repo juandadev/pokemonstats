@@ -1,10 +1,10 @@
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
-import { TYPE_LABELS } from '@/common/constants';
 import { clsx } from 'clsx';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import PokemonImage from '@/components/PokemonImage/PokemonImage';
 import { Skeleton } from '@/components/ui/skeleton';
+import { TYPE_LABELS } from '@/common/constants/pokemonTypes';
 
 export default function PokemonCardSuspense() {
   return (

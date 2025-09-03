@@ -1,8 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import clsx from 'clsx';
 import { ShieldIcon, SwordIcon } from 'lucide-react';
-import { TYPE_LABELS, TYPES_LIST } from '@/common/constants';
 import { getTypeIcon } from '@/lib/utils';
+import { TYPE_LABELS, TYPES_LIST } from '@/common/constants/pokemonTypes';
 
 export default function EffectivenessChartSuspense() {
   return (

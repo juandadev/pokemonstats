@@ -1,8 +1,8 @@
 import { clsx } from 'clsx';
-import { TYPE_LABELS } from '@/common/constants';
 import PokemonImage from '@/components/PokemonImage/PokemonImage';
 import React from 'react';
 import { PokemonData } from '@/types/pokemon.types';
+import { TYPE_LABELS } from '@/common/constants/pokemonTypes';
 
 interface OverviewProps {
   pokemonData: PokemonData;

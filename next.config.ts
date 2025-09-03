@@ -1,5 +1,4 @@
 import type { NextConfig } from 'next';
-import { withBotId } from 'botid/next/config';
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -17,12 +16,12 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        source: '/app',
-        destination: '/app/totodile',
+        source: '/',
+        destination: '/totodile',
         permanent: true,
       },
     ];
   },
 };
 
-export default withBotId(nextConfig);
+export default nextConfig;

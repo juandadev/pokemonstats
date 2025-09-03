@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { TYPE_LABELS, TYPES_LIST } from '@/common/constants';
 import {
   EffectivenessList,
   getEffectivenessList,
@@ -16,6 +15,7 @@ import SelectedTypesDisplay from '@/components/EffectivenessChart/SelectedTypesD
 import { Button } from '@/components/ui/button';
 import { EffectivenessMode } from '@/types';
 import { getPreferences, setPreferences } from '@/lib/preferences';
+import { TYPE_LABELS, TYPES_LIST } from '@/common/constants/pokemonTypes';
 
 export interface SelectedType {
   type: PokemonTypes;
