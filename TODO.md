@@ -57,6 +57,7 @@
     - [x] PokeAPI
     - [x] [pkmn.help](https://github.com/wavebeem/pkmn.help?tab=readme-ov-file) to verify the effectiveness calculations
       and special modifiers
+- [x] Generate metadata for each pokemon
 
 # Bugs
 
@@ -115,7 +116,6 @@
 
 # Final touches
 
-- [ ] Generate metadata for each pokemon
 - [ ] Protect GitHub branches
 
 # Nice to have
