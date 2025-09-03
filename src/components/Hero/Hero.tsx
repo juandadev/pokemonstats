@@ -18,7 +18,7 @@ export default function Hero() {
         </div>
         <h1 className="text-5xl md:text-7xl font-bold text-gray-900 leading-tight">
           Pokémon{' '}
-          <span className="bg-gradient-to-r from-yellow-500 to-yellow-700 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent">
             Stats
           </span>
         </h1>
