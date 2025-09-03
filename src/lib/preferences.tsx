@@ -8,6 +8,8 @@ const defaultOptions: Preferences = {
 };
 
 export function getPreferences(): Preferences {
+  if (typeof window === 'undefined') return defaultOptions;
+
   const preferences = localStorage.getItem('preferences');
 
   if (!preferences) {
@@ -20,6 +22,8 @@ export function getPreferences(): Preferences {
 }
 
 export function setPreferences(preferences: Partial<Preferences>): void {
+  if (typeof window === 'undefined') return;
+
   const preferencesObject = localStorage.getItem('preferences');
   let newPreferences: Preferences;
 
