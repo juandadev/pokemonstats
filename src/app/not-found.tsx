@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Home, Search, Github, Sparkles, AlertTriangle } from 'lucide-react';
+import { Home, Search, Github, AlertTriangle } from 'lucide-react';
 import Link from 'next/link';
 import TwitterIcon from '@/icons/TwitterIcon';
 import Image from 'next/image';
@@ -15,25 +15,17 @@ export default function NotFound() {
             <AlertTriangle className="w-4 h-4" />
             404 - Page Not Found
           </div>
-
           <h1 className="text-6xl md:text-8xl font-bold text-gray-900 mb-6 leading-tight">
             <span className="bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
               404
             </span>
           </h1>
-
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Oops! This Pokémon escaped! 🏃‍♂️💨
           </h2>
-
           <p className="text-xl text-gray-600 mb-4 max-w-2xl mx-auto leading-relaxed">
             The page you&apos;re looking for seems to have wandered off into the
             tall grass.
-          </p>
-
-          <p className="text-lg text-gray-500 max-w-xl mx-auto">
-            Don&apos;t worry though - even the best trainers sometimes take a
-            wrong turn!
           </p>
         </div>
 
@@ -60,7 +52,6 @@ export default function NotFound() {
                   <AlertTriangle className="w-4 h-4 text-white" />
                 </div>
               </div>
-
               <div className="absolute bottom-20 -left-6 animate-pulse">
                 <div className="w-10 h-10 bg-orange-400 rounded-full flex items-center justify-center shadow-lg">
                   <Search className="w-5 h-5 text-white" />
@@ -101,7 +92,6 @@ export default function NotFound() {
                     Let&apos;s get you back on track!
                   </h3>
                 </div>
-
                 <div className="space-y-4">
                   <Button
                     className="w-full h-12 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white font-semibold rounded-xl transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-xl"
@@ -112,7 +102,6 @@ export default function NotFound() {
                       Go to Homepage
                     </Link>
                   </Button>
-
                   <div className="pt-4 border-t border-gray-200">
                     <p className="text-sm text-gray-600 text-center mb-4">
                       Or follow our development progress:
@@ -178,7 +167,6 @@ export default function NotFound() {
                   electricity) and &quot;chu&quot; (the sound a mouse makes)!
                 </p>
               </div>
-
               <div className="text-center p-6 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200">
                 <div className="text-4xl mb-4">🌊</div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
@@ -189,7 +177,6 @@ export default function NotFound() {
                   been used in official Pokémon games!
                 </p>
               </div>
-
               <div className="text-center p-6 rounded-xl bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200">
                 <div className="text-4xl mb-4">🎮</div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
@@ -200,53 +187,6 @@ export default function NotFound() {
                   the franchise over 25 years old!
                 </p>
               </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Site Status Section */}
-        <Card className="mb-16 shadow-xl bg-gradient-to-br from-orange-50 to-red-50 backdrop-blur-sm border border-orange-200">
-          <CardContent>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Sparkles className="w-8 h-8 text-white" />
-              </div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Pokemon Stats is Getting an Upgrade!
-              </h2>
-              <p className="text-lg text-gray-600 mb-6 max-w-2xl mx-auto">
-                We&apos;re currently rebuilding the entire app with better
-                features, improved design, and enhanced performance. The old
-                version had some issues, so we took it offline temporarily.
-              </p>
-
-              <div className="grid md:grid-cols-2 gap-4 mb-8 max-w-2xl mx-auto">
-                <div className="bg-white/80 backdrop-blur-sm rounded-lg p-4 border border-orange-200">
-                  <div className="text-2xl mb-2">🚀</div>
-                  <div className="text-sm font-semibold text-gray-900">
-                    What&apos;s Coming
-                  </div>
-                  <div className="text-xs text-gray-600">
-                    Dual-type analysis, better UI, mobile optimization
-                  </div>
-                </div>
-                <div className="bg-white/80 backdrop-blur-sm rounded-lg p-4 border border-blue-200">
-                  <div className="text-2xl mb-2">📱</div>
-                  <div className="text-sm font-semibold text-gray-900">
-                    Follow Progress
-                  </div>
-                  <div className="text-xs text-gray-600">
-                    Daily updates on Twitter about development
-                  </div>
-                </div>
-              </div>
-
-              {/*<Link href="/waitlist">*/}
-              {/*  <Button className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-200 hover:scale-105 shadow-lg hover:shadow-xl">*/}
-              {/*    <Mail className="w-6 h-6 mr-3" />*/}
-              {/*    Join the Waitlist*/}
-              {/*  </Button>*/}
-              {/*</Link>*/}
             </div>
           </CardContent>
         </Card>
