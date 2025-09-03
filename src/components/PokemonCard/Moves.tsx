@@ -40,9 +40,12 @@ export default function Moves({ moves }: MovesProps) {
 
     return unique.sort((a, b) => GAME_LIST.indexOf(a) - GAME_LIST.indexOf(b));
   }, [moves]);
+  const isGameInList = gameVersionList.some(
+    (version) => version === preferences.game
+  );
 
   const [selectedGame, setSelectedGame] = useState<GameVersion>(
-    preferences.game || gameVersionList[0]
+    isGameInList ? preferences.game || gameVersionList[0] : gameVersionList[0]
   );
 
   const handleGameSelect = (value: string) => {
