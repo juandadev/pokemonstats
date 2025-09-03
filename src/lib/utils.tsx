@@ -262,3 +262,49 @@ export function formatGameVersion(version: GameVersion): string {
 
   return formatted;
 }
+
+export function keywordsForPokemon(
+  name: string,
+  types: PokemonTypes[],
+  id?: number
+): string[] {
+  const base: string[] = [
+    name,
+    `${name} weaknesses`,
+    `${name} type`,
+    `${name} evolution`,
+    `${name} counters`,
+    'pokemon weaknesses',
+    'pokemon type chart',
+    'pokemon evolutions',
+    'pokemon',
+    'stats',
+    'type chart',
+    'type matchup',
+    'weaknesses',
+    'evolutions',
+    'evolution chain',
+    'moves',
+    'abilities',
+    'pokedex',
+  ];
+
+  const typeKw = types.flatMap((t) => [
+    `${name} ${t} type`,
+    `${t} type weaknesses`,
+    `${t} type effectiveness`,
+  ]);
+
+  const dexKw =
+    typeof id === 'number' ? [`pokedex ${id}`, `${name} pokedex ${id}`] : [];
+
+  return [...new Set([...base, ...typeKw, ...dexKw])];
+}
+
+export function titleCase(input: string): string {
+  return input
+    .replace(/[-_]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .replace(/\b\w/g, (m) => m.toUpperCase());
+}
