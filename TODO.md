@@ -35,15 +35,23 @@
     - [x] Check if we can fetch more details when there are more than one item in the evolution details array, which
     - means that it has variations depending on the game we are playing, so I would like to show those details as well.
 - [x] Add routes for each Pokémon
+- [x] Persist state between pages
+    - [x] tabs selected in Pokémon Card (overview, base stats)
+    - [x] Effectiveness Chart tabs (attacker, defender)
+    - [x] Info messages (dual type analysis dialog should remain closed if the user already closed it)
+- [x] Double check and fix all mobile layout issues
+- [x] Refactor all shitty code
+    - [x] Better use of hooks
+    - [x] Better use of context
+    - [x] Split components into smaller ones
+    - [x] Remove all unused code
+    - [x] Remove all unused dependencies
 
 # Bugs
 
-- [ ] Still having login issues, mostly with signup form
-    - [ ] In safari submitting to waitlist gets in an infinite loop
 - [ ] When navigating with the keyboard the suggestions items, it should scroll to the selected item for the items that
   overflows the container.
 - [ ] Some suggestions are not shown completely on mobile devices.
-- [ ] Prevent searching the same Pokémon from the search bar
 
 # Priority
 
@@ -88,9 +96,8 @@
         - [ ] Well-Baked Body
         - [ ] Wonder Guard
 - [ ] Try to add on which games the evolution variations are effective. (Take Eevee as example)
-- [ ] Add loading states while fetching pokémon data
 - [ ] Add Analytics
-    - [ ] Use Google Analytics
+    - [ ] Use Data Buddy
     - [ ] Track page views
     - [ ] Track search queries
     - [ ] Heat maps
@@ -108,22 +115,7 @@
 
 # Final touches
 
-- [ ] Persis state between pages
-    - [ ] tabs selected in Pokémon Card (overview, base stats)
-    - [ ] Effectiveness Chart tabs (attacker, defender)
-    - [ ] Info messages (dual type analysis dialog should remain closed if the user already closed it)
 - [ ] Generate metadata for each pokemon
-- [ ] Fix Login redirection
-- [ ] Add Sign Up page for beta testers
-- [ ] Double check and fix all mobile layout issues
-- [ ] Fix all a11y issues
-- [ ] Refactor all shitty code
-    - [ ] Better use of hooks
-    - [ ] Better use of context
-    - [ ] Split components into smaller ones
-    - [ ] Remove all unused code
-    - [ ] Remove all unused dependencies
-- [ ] Check the app against React scan https://github.com/aidenybai/react-scan#install and fix the performance issues
 - [ ] Protect GitHub branches
 
 # Nice to have
@@ -131,14 +123,16 @@
 - [ ] If the user clicks on the sticky header, it should scroll to the search input
     - [ ] Add a floating button as well to scroll to the search input, placed in the bottom right corner of the screen.
 - [ ] Add star count to the GitHub repo button on the Hero section
+
+# Roadmap
+
 - [ ] Bring back theme provider
     - [ ] Add light and dark mode
 - [ ] Support internationalization (i18n)
     - [ ] Use react-i18next
     - [ ] Add translations for Spanish
-
-# Roadmap
-
+- [ ] Check the app against React scan https://github.com/aidenybai/react-scan#install and fix the performance issues
+- [ ] Full a11y support
 - [ ] Support for all generations
     - [ ] Add a page to show all generations
     - [ ] Add a page to show all regions
