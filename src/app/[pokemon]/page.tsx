@@ -11,6 +11,7 @@ import { buildEvolutionStageList } from '@/lib/evolution-stages';
 import { buildMoveList } from '@/lib/move-list';
 import { getPokemonDisplayName } from '@/lib/pokemonDisplayName';
 import { keywordsForPokemon, titleCase } from '@/lib/utils';
+import { SITE_URL } from '@/common/constants';
 
 export async function generateStaticParams(): Promise<
   Array<{ pokemon: string }>
@@ -24,7 +25,6 @@ export const dynamic = 'force-static';
 
 type PageProps = { params: Promise<{ pokemon: string }> };
 
-const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://pokemonstats.com';
 const TWITTER_HANDLE = '@juandadotdev';
 
 export async function generateMetadata({ params }: PageProps) {

@@ -14,7 +14,8 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { RoadmapStatus } from '@/types/roadmap.types';
-import { ROADMAP } from '@/common/constants';
+import { ROADMAP, SITE_URL } from '@/common/constants';
+import { Metadata } from 'next';
 
 const itemsOrder: Record<RoadmapStatus, number> = {
   completed: 1,
@@ -26,6 +27,60 @@ const itemsOrder: Record<RoadmapStatus, number> = {
 const sortedList = ROADMAP.sort(
   (a, b) => itemsOrder[a.status] - itemsOrder[b.status]
 );
+
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  title: 'Roadmap & Changelog | Pokémon Stats',
+  description:
+    'See what’s shipped and what’s coming next for Pokémon Stats: new features, UI updates, performance work, and PokéAPI improvements—all in one place.',
+  alternates: {
+    canonical: `${SITE_URL}/roadmap`,
+  },
+  openGraph: {
+    type: 'website',
+    url: `${SITE_URL}/roadmap`,
+    siteName: 'Pokémon Stats',
+    title: 'Roadmap & Changelog',
+    description:
+      'What we shipped and what’s next for Pokémon Stats—features, UI, and performance updates.',
+    // TODO: uncomment below when OG image generation is done
+    // images: [
+    //   {
+    //     url: `${SITE_URL}/api/og?route=roadmap`,
+    //     width: 1200,
+    //     height: 630,
+    //     alt: 'Pokémon Stats Roadmap',
+    //   },
+    // ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Roadmap & Changelog | Pokémon Stats',
+    description: 'Track features, fixes, and upcoming work for Pokémon Stats.',
+    // images: [`${SITE_URL}/api/og?route=roadmap`],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    'max-snippet': -1,
+    'max-image-preview': 'large',
+  },
+  keywords: [
+    'pokemon stats roadmap',
+    'pokemon stats changelog',
+    'release notes',
+    'product updates',
+  ],
+  other: {
+    'script:ld+json': JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: 'Roadmap & Changelog | Pokémon Stats',
+      url: `${SITE_URL}/roadmap`,
+      about: 'Product updates and plans for Pokémon Stats.',
+    }),
+  },
+};
 
 export default function RoadmapPage() {
   const getStatusColor = (status: string) => {
