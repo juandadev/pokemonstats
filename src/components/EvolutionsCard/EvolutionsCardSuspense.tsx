@@ -1,9 +1,9 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { clsx } from 'clsx';
-import { TYPE_LABELS } from '@/common/constants';
 import React from 'react';
 import PokemonImage from '@/components/PokemonImage/PokemonImage';
 import { Skeleton } from '@/components/ui/skeleton';
+import { TYPE_LABELS } from '@/common/constants/pokemonTypes';
 
 export default function EvolutionsCardSuspense() {
   return (

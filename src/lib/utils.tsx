@@ -7,7 +7,6 @@ import {
   Items,
   PokemonTypes,
 } from '@/types/pokemon.types';
-import { TYPE_ICONS, TYPE_LABELS, WEAKNESS_CHART } from '@/common/constants';
 import { CircleIcon } from 'lucide-react';
 import { EffectivenessMode } from '@/types';
 import { EVOLUTION_DETAILS } from '@/common/constants/evolutions';
@@ -16,6 +15,8 @@ import {
   EvolutionDetails,
 } from '@/types/evolutions.types';
 import { Species } from '@/types/species.types';
+import { TYPE_ICONS, TYPE_LABELS } from '@/common/constants/pokemonTypes';
+import { WEAKNESS_CHART } from '@/common/constants/charts';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));

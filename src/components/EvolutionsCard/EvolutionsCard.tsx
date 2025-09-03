@@ -2,7 +2,6 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { clsx } from 'clsx';
-import { TYPE_LABELS } from '@/common/constants';
 import { getEvolutionDetails } from '@/lib/utils';
 import { InfoIcon } from 'lucide-react';
 import React, { Fragment, useMemo, useState } from 'react';
@@ -26,6 +25,7 @@ import { PokemonData } from '@/types/pokemon.types';
 import { Separator } from '@/components/ui/separator';
 import PokemonImage from '@/components/PokemonImage/PokemonImage';
 import Link from 'next/link';
+import { TYPE_LABELS } from '@/common/constants/pokemonTypes';
 
 interface EvolutionsCardProps {
   pokemonData: PokemonData;

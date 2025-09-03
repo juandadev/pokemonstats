@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
-import { TYPE_LABELS } from '@/common/constants';
 import { clsx } from 'clsx';
 import TypeBadge from '@/components/TypeBadge/TypeBadge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -15,6 +14,7 @@ import Moves from '@/components/PokemonCard/Moves';
 import { MoveDisplayData } from '@/types/moves.types';
 import { getPreferences, setPreferences } from '@/lib/preferences';
 import { PokemonCardTabs } from '@/types';
+import { TYPE_LABELS } from '@/common/constants/pokemonTypes';
 
 interface PokemonCardProps {
   pokemonData: PokemonData;

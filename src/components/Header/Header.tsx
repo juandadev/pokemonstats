@@ -3,11 +3,11 @@
 import React, { useEffect, useState } from 'react';
 import TypeBadge from '@/components/TypeBadge/TypeBadge';
 import { clsx } from 'clsx';
-import { TYPE_LABELS } from '@/common/constants';
 import { PokemonData } from '@/types/pokemon.types';
 import PokemonImage from '@/components/PokemonImage/PokemonImage';
 import { Species } from '@/types/species.types';
 import { getPokemonDisplayName } from '@/lib/pokemonDisplayName';
+import { TYPE_LABELS } from '@/common/constants/pokemonTypes';
 
 interface HeroProps {
   pokemonData: PokemonData;

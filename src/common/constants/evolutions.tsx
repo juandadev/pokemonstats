@@ -24,7 +24,6 @@ import {
   VenusIcon,
 } from 'lucide-react';
 import React from 'react';
-import { ITEMS_DATA, TYPE_COLORS } from '@/common/constants/index';
 import { clsx } from 'clsx';
 import TypeBadge from '@/components/TypeBadge/TypeBadge';
 import {
@@ -32,6 +31,8 @@ import {
   EvolutionDetails,
 } from '@/types/evolutions.types';
 import { Species } from '@/types/species.types';
+import { TYPE_COLORS } from '@/common/constants/pokemonTypes';
+import { ITEMS_DATA } from '@/common/constants/items';
 
 export const PARSED_EVOLUTION_TRIGGER: Record<
   string,

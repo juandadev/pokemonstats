@@ -1,9 +1,9 @@
 import { getTypeIcon } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
 import { clsx } from 'clsx';
-import { TYPE_LABELS } from '@/common/constants';
 import React from 'react';
 import { PokemonTypes } from '@/types/pokemon.types';
+import { TYPE_LABELS } from '@/common/constants/pokemonTypes';
 
 interface TypeBadgeProps {
   type: PokemonTypes;
