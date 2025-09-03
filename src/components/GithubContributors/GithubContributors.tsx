@@ -1,78 +1,35 @@
-'use client';
-
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Code, Github, Users } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import Image from 'next/image';
+import { Contributor } from '@/app/api/contributors/route';
+import { Slot } from '@radix-ui/react-slot';
 
-export default function GithubContributors() {
-  const [loading, setLoading] = useState(true);
-  const [contributors, setContributors] = useState<any[]>([]);
+async function getContributors(): Promise<Contributor[]> {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/contributors`,
+    {
+      next: { revalidate: 3600 },
+    }
+  );
 
-  // Fetch donations and contributors on component mount
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // Simulate API calls - in real implementation, these would be:
-        // const donationsResponse = await fetch('/api/donations')
-        // const contributorsResponse = await fetch('https://api.github.com/repos/username/pokemon-stats/contributors')
+  if (!res.ok) return [];
 
-        await new Promise((resolve) => setTimeout(resolve, 1500));
+  return res.json();
+}
 
-        // Mock contributors data
-        setContributors([
-          {
-            id: 1,
-            login: 'juandaniel-dev',
-            name: 'Juan Daniel Martínez',
-            contributions: 247,
-            avatar_url: '/placeholder.svg?height=60&width=60&text=JD',
-            role: 'Creator & Lead Developer',
-          },
-          {
-            id: 2,
-            login: 'pokemon-enthusiast',
-            name: 'Alex Thompson',
-            contributions: 23,
-            avatar_url: '/placeholder.svg?height=60&width=60&text=AT',
-            role: 'UI/UX Contributor',
-          },
-          {
-            id: 3,
-            login: 'data-wizard',
-            name: 'Maria Garcia',
-            contributions: 18,
-            avatar_url: '/placeholder.svg?height=60&width=60&text=MG',
-            role: 'Data Validation',
-          },
-          {
-            id: 4,
-            login: 'type-master',
-            name: 'Chris Lee',
-            contributions: 12,
-            avatar_url: '/placeholder.svg?height=60&width=60&text=CL',
-            role: 'Type System Expert',
-          },
-          {
-            id: 5,
-            login: 'mobile-dev',
-            name: 'Lisa Wang',
-            contributions: 8,
-            avatar_url: '/placeholder.svg?height=60&width=60&text=LW',
-            role: 'Mobile Optimization',
-          },
-        ]);
+export default async function GithubContributors() {
+  const contributors = await getContributors();
 
-        setLoading(false);
-      } catch (error) {
-        console.error('Failed to fetch data:', error);
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
+  if (!contributors.length) {
+    return (
+      <p className="text-sm opacity-70">
+        No contributors yet (or API limit hit).
+      </p>
+    );
+  }
 
   return (
     <Card className="mb-12 shadow-xl border-0 bg-white/90 backdrop-blur-sm">
@@ -90,38 +47,29 @@ export default function GithubContributors() {
         </p>
       </CardHeader>
       <CardContent>
-        {loading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {[...Array(6)].map((_, i) => (
-              <div key={i} className="animate-pulse">
-                <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg">
-                  <div className="w-12 h-12 bg-gray-200 rounded-full"></div>
-                  <div className="flex-1">
-                    <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
-                    <div className="h-3 bg-gray-200 rounded w-1/2"></div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {contributors.map((contributor) => (
-              <div
-                key={contributor.id}
-                className="flex items-center gap-3 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg border border-blue-200 hover:shadow-md transition-shadow duration-200"
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {contributors.map((contributor) => (
+            <Slot
+              key={contributor.id}
+              className="flex items-center gap-3 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg border border-blue-200 hover:shadow-md transition-shadow duration-200"
+            >
+              <a
+                href={contributor.html_url}
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <img
+                <Image
                   src={contributor.avatar_url || '/placeholder.svg'}
-                  alt={contributor.name}
-                  className="w-12 h-12 rounded-full bg-blue-200"
+                  alt={contributor.login}
+                  className="size-12 rounded-full bg-blue-200"
+                  unoptimized
+                  width={48}
+                  height={48}
+                  priority={false}
                 />
                 <div className="flex-1 min-w-0">
                   <div className="font-semibold text-gray-900 truncate">
-                    {contributor.name}
-                  </div>
-                  <div className="text-xs text-gray-600 truncate">
-                    {contributor.role}
+                    {contributor.login}
                   </div>
                   <div className="flex items-center gap-1 mt-1">
                     <Code className="w-3 h-3 text-green-500" />
@@ -130,10 +78,10 @@ export default function GithubContributors() {
                     </span>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        )}
+              </a>
+            </Slot>
+          ))}
+        </div>
 
         <div className="text-center pt-6">
           <Button
