@@ -1,16 +1,10 @@
-'use client';
-
 import {
   ArrowLeft,
   Shield,
-  Eye,
   Database,
-  Trash2,
-  Clock,
   Mail,
   Lock,
   Users,
-  AlertTriangle,
   HandHelpingIcon,
   ChartSplineIcon,
   HatGlassesIcon,
