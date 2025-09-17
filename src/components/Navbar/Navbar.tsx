@@ -1,9 +1,16 @@
 'use client';
 
 import { useState } from 'react';
-import { Menu, X, Home, TrendingUp, Heart, Shield } from 'lucide-react';
+import { Menu, Home, TrendingUp, Heart, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -34,7 +41,6 @@ export default function Navbar() {
                 width={20}
                 height={20}
                 className="object-contain"
-                priority
               />
             </div>
           </Link>
@@ -53,7 +59,6 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* TODO: Fix mobile navigation */}
           {/* Mobile Navigation */}
           <div className="md:hidden flex items-center gap-3">
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -66,26 +71,30 @@ export default function Navbar() {
                 side="right"
                 className="w-80 bg-white/95 backdrop-blur-md"
               >
-                <div className="flex items-center justify-between mb-8">
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
-                      <span className="text-white font-bold text-sm">⚡</span>
+                <SheetHeader>
+                  <SheetTitle className="flex items-center gap-2">
+                    <div className="w-8 h-8 bg-gradient-to-br from-amber-50 to-amber-100 rounded-lg flex items-center justify-center">
+                      <Image
+                        src="/master-ball.webp"
+                        alt="Master ball"
+                        width={20}
+                        height={20}
+                        className="object-contain"
+                      />
                     </div>
-                    <span className="font-bold text-lg bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                      Pokemon Stats
+                    <span className="font-bold text-lg">
+                      Pokémon{' '}
+                      <span className="bg-gradient-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent">
+                        Stats
+                      </span>
                     </span>
-                  </div>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => setIsOpen(false)}
-                    className="p-2"
-                  >
-                    <X className="w-5 h-5" />
-                  </Button>
-                </div>
+                  </SheetTitle>
+                  <SheetDescription className="sr-only">
+                    Collapsible navigation menu
+                  </SheetDescription>
+                </SheetHeader>
 
-                <div className="space-y-2">
+                <div className="space-y-2 px-4">
                   <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
                     Navigation
                   </div>

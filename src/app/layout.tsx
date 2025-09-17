@@ -25,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" data-scroll-behavior="smooth">
       <body
         className={`${geist_sans.variable} bg-gradient-to-br from-blue-50 via-white to-purple-50`}
       >
