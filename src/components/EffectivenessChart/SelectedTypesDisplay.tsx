@@ -60,7 +60,7 @@ export default function SelectedTypesDisplay({
   return (
     <div
       className={clsx(
-        'fixed bottom-4 right-4 z-10 bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 grid grid-cols-[auto_auto_1fr] grid-rows-1 items-start',
+        'fixed bottom-4 right-4 z-10 bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 grid grid-cols-[auto_auto_1fr] grid-rows-1 items-start shadow-lg',
         isExpanded ? 'p-4 rounded-xl' : 'p-2 rounded-lg'
       )}
     >
