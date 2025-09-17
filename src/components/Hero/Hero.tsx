@@ -19,7 +19,7 @@ export default async function Hero() {
           <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
           Live Pokédex Data
         </div>
-        <h1 className="text-5xl md:text-7xl font-bold text-gray-900 leading-tight">
+        <h1 className="text-5xl md:text-7xl font-bold text-gray-900">
           Pokémon{' '}
           <span className="bg-gradient-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent">
             Stats
@@ -37,9 +37,11 @@ export default async function Hero() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <StarIcon className="w-5 h-5 text-yellow-500" />
+              <div className="flex items-center gap-1 py-1 px-2 bg-white/20 rounded-full">
+                <StarIcon className="w-3 h-3 fill-current" />
+                <span className="text-xs font-semibold">{starCount}</span>
+              </div>
               Star on GitHub
-              <span className="border-l pl-2">{starCount}</span>
             </a>
           </Button>
           <Button variant={'outline'} asChild>

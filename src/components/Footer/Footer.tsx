@@ -104,9 +104,18 @@ export default function Footer() {
             Juan Daniel Martínez
           </a>
         </p>
-        <p className="text-sm text-gray-500 text-center md:text-left">
-          © 2021-{currentYear} Pokemon Stats. All rights reserved.
-        </p>
+        <div className="flex gap-2 flex-wrap justify-center">
+          <Link
+            href="/privacy"
+            className="text-sm text-gray-500 text-center md:text-left underline"
+          >
+            Privacy Policy
+          </Link>
+          ・
+          <p className="text-sm text-gray-500 text-center md:text-left">
+            © 2021-{currentYear} Pokemon Stats. All rights reserved.
+          </p>
+        </div>
       </div>
     </footer>
   );

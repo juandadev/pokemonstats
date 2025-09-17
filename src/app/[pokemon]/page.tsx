@@ -166,7 +166,7 @@ export default async function PokemonStats({ params }: PageProps) {
       <main id="main" className={'mt-10'}>
         <SearchBar initialValue={pokemon} />
         <div className="grid grid-cols-[100%] lg:grid-cols-2 gap-8 items-start">
-          <div className="space-y-6 w-full max-w-lg mx-auto">
+          <div className="space-y-6 w-full mx-auto">
             <PokemonCard
               pokemonData={data.pokemonData!}
               speciesData={data.speciesData!}
