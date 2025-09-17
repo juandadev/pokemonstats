@@ -6,7 +6,7 @@ export const ROADMAP: Roadmap[] = [
     title: 'Analytics & Insights',
     description:
       'Understand how the app is used to improve features and experience.',
-    status: 'in-progress',
+    status: 'completed',
     priority: 'high',
     category: 'Quality & Insights',
     estimatedCompletion: 'Q3 2025',
@@ -20,7 +20,7 @@ export const ROADMAP: Roadmap[] = [
     status: 'planned',
     priority: 'high',
     category: 'Core Features',
-    estimatedCompletion: 'Q4 2025',
+    estimatedCompletion: 'Q1 2026',
     features: [
       'Persistent search history',
       'No repeated Pokémon in the list',
@@ -51,7 +51,7 @@ export const ROADMAP: Roadmap[] = [
     status: 'planned',
     priority: 'medium',
     category: 'Core Features',
-    estimatedCompletion: 'Q1 - Q2 2026',
+    estimatedCompletion: 'Q2 2026',
     features: ['Version-specific evolution rules', 'Examples with Eevee'],
   },
   {
@@ -62,7 +62,7 @@ export const ROADMAP: Roadmap[] = [
     status: 'planned',
     priority: 'medium',
     category: 'Pokémon Data',
-    estimatedCompletion: 'Q2 2026',
+    estimatedCompletion: 'Q3 2026',
     features: [
       'Generations overview',
       'Regional Pokédex pages',
@@ -74,10 +74,10 @@ export const ROADMAP: Roadmap[] = [
     title: 'Multilingual Support',
     description:
       'Use Pokémon Stats in multiple languages, starting with Spanish.',
-    status: 'planned',
-    priority: 'medium',
+    status: 'in-progress',
+    priority: 'high',
     category: 'Accessibility',
-    estimatedCompletion: 'Q3 2026',
+    estimatedCompletion: 'Q4 2025',
     features: ['Spanish translation', 'Internationalization framework'],
   },
   {
@@ -86,7 +86,7 @@ export const ROADMAP: Roadmap[] = [
     description:
       'Making the app usable for everyone with screen readers and keyboard navigation.',
     status: 'planned',
-    priority: 'medium',
+    priority: 'low',
     category: 'Accessibility',
     estimatedCompletion: 'Q4 2026',
     features: ['Screen reader support', 'Keyboard-friendly navigation'],
