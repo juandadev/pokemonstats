@@ -5,6 +5,7 @@ import Footer from '@/components/Footer/Footer';
 import { Toaster } from '@/components/ui/sonner';
 
 import './globals.css';
+import { Databuddy } from '@databuddy/sdk/react';
 
 const geist_sans = Geist({
   variable: '--font-geist-sans',
@@ -35,6 +36,14 @@ export default function RootLayout({
           {children}
           <Footer />
           <Toaster richColors />
+          <Databuddy
+            clientId="Fx9rcznt4D8a0TNC6iXQl"
+            trackOutgoingLinks={true}
+            trackInteractions={true}
+            trackEngagement={true}
+            trackBounceRate={true}
+            enableBatching={true}
+          />
         </div>
       </body>
     </html>
