@@ -8,7 +8,7 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "build:pokemon-index": "tsx scripts/build-pokemon-index.ts"
   },
   "dependencies": {
@@ -33,6 +33,7 @@
     "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
     "@tailwindcss/postcss": "^4.1.11",
     "@types/node": "20.11.26",
     "@types/react": "19.1.12",
