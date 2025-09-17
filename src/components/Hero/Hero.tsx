@@ -19,7 +19,7 @@ export default async function Hero() {
           <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
           Live Pokédex Data
         </div>
-        <h1 className="text-5xl md:text-7xl font-bold text-gray-900 leading-tight">
+        <h1 className="text-5xl md:text-7xl font-bold text-gray-900">
           Pokémon{' '}
           <span className="bg-gradient-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent">
             Stats

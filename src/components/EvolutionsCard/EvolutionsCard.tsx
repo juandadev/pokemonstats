@@ -137,7 +137,7 @@ export default function EvolutionsCard({
   return (
     <Card className="shadow-xl border-0 bg-white/90 backdrop-blur-sm">
       <CardHeader>
-        <CardTitle className="flex items-center gap-2 text-2xl">
+        <CardTitle className="flex items-center gap-2 text-2xl heading">
           Evolution Chain
         </CardTitle>
       </CardHeader>

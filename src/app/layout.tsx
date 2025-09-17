@@ -1,15 +1,22 @@
 import React from 'react';
 import { Metadata } from 'next';
-import { Geist } from 'next/font/google';
+import { Open_Sans, Montserrat } from 'next/font/google';
 import Footer from '@/components/Footer/Footer';
 import { Toaster } from '@/components/ui/sonner';
 
 import './globals.css';
 import { Databuddy } from '@databuddy/sdk/react';
 import Navbar from '@/components/Navbar/Navbar';
+import { clsx } from 'clsx';
 
-const geist_sans = Geist({
-  variable: '--font-geist-sans',
+const openSans = Open_Sans({
+  variable: '--font-open-sans',
+  subsets: ['latin'],
+  display: 'swap',
+});
+
+const montserrat = Montserrat({
+  variable: '--font-montserrat',
   subsets: ['latin'],
   display: 'swap',
 });
@@ -27,7 +34,11 @@ export default function RootLayout({
   return (
     <html lang="en" data-scroll-behavior="smooth">
       <body
-        className={`${geist_sans.variable} bg-gradient-to-br from-blue-50 via-white to-purple-50`}
+        className={clsx(
+          'bg-gradient-to-br from-blue-50 via-white to-purple-50',
+          openSans.variable,
+          montserrat.variable
+        )}
       >
         <Navbar />
         <div

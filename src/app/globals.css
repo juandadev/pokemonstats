@@ -242,6 +242,13 @@
     background: linear-gradient(135deg, #ffdaf0, #fdbbe0);
     @apply bg-clip-text text-transparent;
   }
+
+  /* Fonts */
+  /*noinspection CssUnresolvedCustomProperty*/
+  .heading {
+    font-family: var(--font-montserrat), Arial, Helvetica, sans-serif;
+    @apply leading-tight tracking-tight;
+  }
 }
 
 @theme inline {
@@ -300,9 +307,6 @@
   --color-dark: #775444;
   --color-steel: #b7b7c5;
   --color-fairy: #f1a8f0;
-
-  /*noinspection CssUnresolvedCustomProperty*/
-  --font-geist: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
 
 :root {
@@ -397,9 +401,20 @@
   /*noinspection CssUnresolvedCustomProperty*/
   * {
     @apply border-border outline-ring/50;
-    font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+    font-family: var(--font-open-sans), Arial, Helvetica, sans-serif;
     scroll-behavior: smooth;
     box-sizing: border-box;
+  }
+
+  /*noinspection CssUnresolvedCustomProperty*/
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-montserrat), Arial, Helvetica, sans-serif;
+    @apply leading-tight tracking-tight;
   }
 
   body {
