@@ -1,4 +1,6 @@
 import { Roadmap } from '@/types/roadmap.types';
+import { Contributor } from '@/app/api/contributors/route';
+import { BrushIcon } from 'lucide-react';
 
 export const ROADMAP: Roadmap[] = [
   {
@@ -213,5 +215,17 @@ export const TOOLS = [
     url: 'https://www.databuddy.cc/',
     category: 'Analytics',
     icon: '📊',
+  },
+];
+
+export const CONTRIBUTORS: Contributor[] = [
+  {
+    login: 'Altarichiru',
+    id: 202509172328,
+    avatar_url: '/hero-art-contributor.webp',
+    html_url: 'https://www.tumblr.com/altarichiru',
+    contributions: 0,
+    custom_contribution: 'Art & Illustration',
+    category: <BrushIcon className="size-3 text-green-500" />,
   },
 ];

@@ -57,7 +57,7 @@ export default async function Hero() {
         </div>
       </div>
       {/* Illustration */}
-      <div className="flex justify-center relative">
+      <div className="flex flex-col items-center relative mb-8">
         {/* Main illustration */}
         <div className="relative transform hover:scale-105 transition-transform duration-300">
           <Image
@@ -70,10 +70,21 @@ export default async function Hero() {
             priority
           />
         </div>
+        <p className="text-gray-400 text-xs">
+          Illustration by{' '}
+          <a
+            href="https://www.tumblr.com/altarichiru"
+            className="underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Altarichiru
+          </a>
+        </p>
       </div>
       {/* Scroll indicator */}
       <a
-        href={'#main'}
+        href="#main"
         className="absolute bottom-2 left-1/2 transform -translate-x-1/2"
       >
         <div className="w-10 h-10 border-2 border-gray-400 rounded-full flex items-center justify-center animate-bounce">

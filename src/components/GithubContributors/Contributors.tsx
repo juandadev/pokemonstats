@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import { Contributor } from '@/app/api/contributors/route';
 import { Slot } from '@radix-ui/react-slot';
+import { CONTRIBUTORS } from '@/common/constants';
 
 async function getContributors(): Promise<Contributor[]> {
   const res = await fetch(
@@ -20,8 +21,9 @@ async function getContributors(): Promise<Contributor[]> {
   return res.json();
 }
 
-export default async function GithubContributors() {
-  const contributors = await getContributors();
+export default async function Contributors() {
+  const githubContributors = await getContributors();
+  const contributors = [...githubContributors, ...CONTRIBUTORS];
 
   if (!contributors) {
     return null;
@@ -32,14 +34,14 @@ export default async function GithubContributors() {
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Users className="h-5 w-5 text-blue-500" />
-          GitHub Contributors
+          Contributors
           <Badge className="bg-blue-100 text-blue-800 ml-2">
             {contributors.length} contributors
           </Badge>
         </CardTitle>
         <p className="text-gray-600">
-          Amazing developers who have contributed code, documentation, and
-          improvements to Pokemon Stats.
+          Amazing developers, artists and designers who have contributed code,
+          design, documentation, and improvements to Pokémon Stats.
         </p>
       </CardHeader>
       <CardContent>
@@ -73,9 +75,12 @@ export default async function GithubContributors() {
                     {contributor.login}
                   </div>
                   <div className="flex items-center gap-1 mt-1">
-                    <Code className="w-3 h-3 text-green-500" />
+                    {contributor.category ?? (
+                      <Code className="w-3 h-3 text-green-500" />
+                    )}
                     <span className="text-xs text-gray-500">
-                      {contributor.contributions} commits
+                      {contributor.custom_contribution ??
+                        `${contributor.contributions} commits`}
                     </span>
                   </div>
                 </div>
