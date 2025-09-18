@@ -12,7 +12,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import CoffeeSupporters from '@/components/CoffeeSupporters/CoffeeSupporters';
-import GithubContributors from '@/components/GithubContributors/GithubContributors';
+import Contributors from '@/components/GithubContributors/Contributors';
 import { INSPIRATIONS, SITE_URL, TOOLS } from '@/common/constants';
 import { Metadata } from 'next';
 
@@ -126,7 +126,7 @@ export default function ThanksPage() {
           </p>
         </div>
         <CoffeeSupporters />
-        <GithubContributors />
+        <Contributors />
         {/* Inspirations Section */}
         <Card className="mb-12 shadow-xl border-0 bg-white/90 backdrop-blur-sm">
           <CardHeader>
