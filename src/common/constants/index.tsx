@@ -209,7 +209,7 @@ export const TOOLS = [
     icon: '🚀',
   },
   {
-    name: 'DataBuddy',
+    name: 'Databuddy',
     description:
       'Privacy-first analytics to understand usage and improve features',
     url: 'https://www.databuddy.cc/',
