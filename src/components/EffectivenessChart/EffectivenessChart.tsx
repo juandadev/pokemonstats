@@ -223,7 +223,7 @@ export default function EffectivenessChart({
                         TYPE_LABELS[type.name]?.gradientBackground
                       )}
                     >
-                      <IconComponent className="w-6 h-6" />
+                      <IconComponent className="size-6 text-white" />
                     </div>
                     {/* Type Name */}
                     <span
