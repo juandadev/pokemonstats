@@ -1,25 +1,23 @@
 import { PokemonTypeColors, PokemonTypes } from '@/types/pokemon.types';
 import React from 'react';
-import {
-  BadgeIcon,
-  BirdIcon,
-  BrainIcon,
-  BugIcon,
-  CircleIcon,
-  CogIcon,
-  DropletIcon,
-  EyeIcon,
-  FlameIcon,
-  GhostIcon,
-  GrabIcon,
-  LeafIcon,
-  MountainIcon,
-  SkullIcon,
-  SnowflakeIcon,
-  StarIcon,
-  WindIcon,
-  ZapIcon,
-} from 'lucide-react';
+import NormalTypeIcon from '@/icons/NormalTypeIcon';
+import PoisonTypeIcon from '@/icons/PoisonTypeIcon';
+import PsychicTypeIcon from '@/icons/PsychicTypeIcon';
+import RockTypeIcon from '@/icons/RockTypeIcon';
+import SteelTypeIcon from '@/icons/SteelTypeIcon';
+import WaterTypeIcon from '@/icons/WaterTypeIcon';
+import FireTypeIcon from '@/icons/FireTypeIcon';
+import FlyingTypeIcon from '@/icons/FlyingTypeIcon';
+import GhostTypeIcon from '@/icons/GhostTypeIcon';
+import GrassTypeIcon from '@/icons/GrassTypeIcon';
+import IceTypeIcon from '@/icons/IceTypeIcon';
+import BugTypeIcon from '@/icons/BugTypeIcon';
+import DarkTypeIcon from '@/icons/DarkTypeIcon';
+import DragonTypeIcon from '@/icons/DragonTypeIcon';
+import ElectricTypeIcon from '@/icons/ElectricTypeIcon';
+import FairyTypeIcon from '@/icons/FairyTypeIcon';
+import FightingTypeIcon from '@/icons/FightingTypeIcon';
+import GroundTypeIcon from '@/icons/GroundTypeIcon';
 
 export const TYPE_LABELS: Record<PokemonTypes, PokemonTypeColors> = {
   normal: {
@@ -156,24 +154,24 @@ export const TYPES_LIST = Object.keys(TYPE_LABELS).map((type, index) => ({
 }));
 
 export const TYPE_ICONS: Record<PokemonTypes, React.ElementType> = {
-  normal: CircleIcon,
-  fire: FlameIcon,
-  water: DropletIcon,
-  electric: ZapIcon,
-  grass: LeafIcon,
-  ice: SnowflakeIcon,
-  fighting: GrabIcon,
-  poison: SkullIcon,
-  ground: MountainIcon,
-  flying: WindIcon,
-  psychic: BrainIcon,
-  bug: BugIcon,
-  rock: BadgeIcon,
-  ghost: GhostIcon,
-  dragon: BirdIcon,
-  dark: EyeIcon,
-  steel: CogIcon,
-  fairy: StarIcon,
+  normal: NormalTypeIcon,
+  fire: FireTypeIcon,
+  water: WaterTypeIcon,
+  electric: ElectricTypeIcon,
+  grass: GrassTypeIcon,
+  ice: IceTypeIcon,
+  fighting: FightingTypeIcon,
+  poison: PoisonTypeIcon,
+  ground: GroundTypeIcon,
+  flying: FlyingTypeIcon,
+  psychic: PsychicTypeIcon,
+  bug: BugTypeIcon,
+  rock: RockTypeIcon,
+  ghost: GhostTypeIcon,
+  dragon: DragonTypeIcon,
+  dark: DarkTypeIcon,
+  steel: SteelTypeIcon,
+  fairy: FairyTypeIcon,
 };
 
 export const TYPE_COLORS: Record<PokemonTypes, string> = {
