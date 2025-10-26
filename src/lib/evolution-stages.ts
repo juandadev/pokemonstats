@@ -91,10 +91,9 @@ export async function buildEvolutionStageList(
     unique.map((s, i) => [s, fetched[i]])
   );
 
-  return stages.map((stage) =>
+  const stageList = stages.map((stage) =>
     stage.map(({ slug, evolutionDetails }) => {
       const mini = bySlug.get(slug) ?? null;
-
       return {
         slug,
         displayName: getPokemonDisplayName(slug),
@@ -103,4 +102,53 @@ export async function buildEvolutionStageList(
       };
     })
   );
+
+  const lastStage = stageList[stageList.length - 1];
+  const megaForms: EvolutionCardData[] = [];
+
+  for (const { slug } of lastStage) {
+    const possibleMegas = [`${slug}-mega`, `${slug}-mega-x`, `${slug}-mega-y`];
+
+    for (const megaSlug of possibleMegas) {
+      const megaData = await getEvolutionDetails(megaSlug);
+      if (megaData) {
+        megaForms.push({
+          slug: megaSlug,
+          displayName: getPokemonDisplayName(megaSlug),
+          spriteUrl: pickSprite(megaData.sprites),
+          evolutionDetails: [
+            {
+              trigger: {
+                name: 'mega-evolution',
+                url: '',
+              },
+              item: { name: 'Mega Stone', url: '' },
+              gender: null,
+              held_item: null,
+              known_move: null,
+              known_move_type: null,
+              location: null,
+              min_affection: null,
+              min_beauty: null,
+              min_happiness: null,
+              min_level: null,
+              needs_overworld_rain: false,
+              party_species: null,
+              party_type: null,
+              relative_physical_stats: null,
+              time_of_day: '',
+              trade_species: null,
+              turn_upside_down: false,
+            },
+          ],
+        });
+      }
+    }
+  }
+
+  if (megaForms.length > 0) {
+    stageList.push(megaForms);
+  }
+
+  return stageList;
 }

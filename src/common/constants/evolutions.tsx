@@ -77,7 +77,7 @@ export const EVOLUTION_DETAILS = (
 ): Record<keyof EvolutionDetails, EvolutionDetailDisplay> => ({
   trigger: {
     type: 'trigger',
-    label: PARSED_EVOLUTION_TRIGGER[detail as string]?.label || 'Check details',
+    label: PARSED_EVOLUTION_TRIGGER[detail as string]?.label || 'Missing info',
     image: undefined,
     icon: PARSED_EVOLUTION_TRIGGER[detail as string]?.icon || (
       <div className="w-1 h-1 bg-gray-400 rounded-full" />
@@ -110,7 +110,8 @@ export const EVOLUTION_DETAILS = (
       <span>
         While holding:{' '}
         <strong>
-          {ITEMS_DATA[(detail as GenericPropertyDetails<Items>).name]?.label}
+          {ITEMS_DATA[(detail as GenericPropertyDetails<Items>).name]?.label ||
+            'Missing info'}
         </strong>
       </span>
     ),
@@ -126,7 +127,8 @@ export const EVOLUTION_DETAILS = (
       <span>
         Required item:{' '}
         <strong>
-          {ITEMS_DATA[(detail as GenericPropertyDetails<Items>).name]?.label}
+          {ITEMS_DATA[(detail as GenericPropertyDetails<Items>).name]?.label ||
+            'Missing info'}
         </strong>
       </span>
     ),
@@ -181,7 +183,8 @@ export const EVOLUTION_DETAILS = (
       <span>
         Location:{' '}
         <strong className="capitalize">
-          {(detail as GenericPropertyDetails).name?.replaceAll('-', ' ')}
+          {(detail as GenericPropertyDetails).name?.replaceAll('-', ' ') ||
+            'Missing info'}
         </strong>
       </span>
     ),
