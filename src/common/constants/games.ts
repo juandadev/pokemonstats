@@ -22,4 +22,5 @@ export const GAME_LIST = [
   'brilliant-diamond-and-shining-pearl',
   'legends-arceus',
   'scarlet-violet',
+  'legends-za',
 ];
