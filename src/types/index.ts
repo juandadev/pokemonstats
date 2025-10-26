@@ -28,3 +28,10 @@ export interface FlavorTextEntry {
   language: GenericPropertyDetails;
   version_group: GenericPropertyDetails<GameVersion>;
 }
+
+export interface PaginatedResults {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: GenericPropertyDetails[];
+}
