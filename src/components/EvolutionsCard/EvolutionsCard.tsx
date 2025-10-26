@@ -26,6 +26,7 @@ import { Separator } from '@/components/ui/separator';
 import PokemonImage from '@/components/PokemonImage/PokemonImage';
 import Link from 'next/link';
 import { TYPE_LABELS } from '@/common/constants/pokemonTypes';
+import MegaEvolutionIcon from '@/icons/MegaEvolutionIcon';
 
 interface EvolutionsCardProps {
   pokemonData: PokemonData;
@@ -102,13 +103,21 @@ export default function EvolutionsCard({
                         </Link>
                       )}
                     </div>
-                    <div className="text-sm text-gray-600">
-                      {evolutionDetails[0].trigger?.name === 'level-up' &&
-                      evolutionDetails[0].min_level
-                        ? `Level ${evolution.evolutionDetails?.[0].min_level}`
-                        : EVOLUTION_DETAILS(
-                            evolutionDetails[0].trigger?.name || 'default'
-                          ).trigger.label}
+                    <div className="flex gap-2">
+                      {evolutionDetails[0].trigger?.name ===
+                        'mega-evolution' && (
+                        <div className="rainbow-gradient rounded-full p-0.5">
+                          <MegaEvolutionIcon className="w-4 h-4 text-black shrink-0" />
+                        </div>
+                      )}
+                      <div className="text-sm text-gray-600">
+                        {evolutionDetails[0].trigger?.name === 'level-up' &&
+                        evolutionDetails[0].min_level
+                          ? `Level ${evolution.evolutionDetails?.[0].min_level}`
+                          : EVOLUTION_DETAILS(
+                              evolutionDetails[0].trigger?.name || 'default'
+                            ).trigger.label}
+                      </div>
                     </div>
                   </div>
                   {shouldDisplayDetails && (

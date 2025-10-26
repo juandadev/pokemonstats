@@ -243,6 +243,19 @@
     @apply bg-clip-text text-transparent;
   }
 
+  .rainbow-gradient {
+    background: linear-gradient(
+      180deg,
+      var(--color-orange-300),
+      var(--color-pink-300),
+      var(--color-purple-300),
+      var(--color-blue-300),
+      var(--color-cyan-300),
+      var(--color-green-300),
+      var(--color-yellow-300)
+    );
+  }
+
   /* Fonts */
   /*noinspection CssUnresolvedCustomProperty*/
   .heading {

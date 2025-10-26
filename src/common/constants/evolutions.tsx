@@ -35,6 +35,7 @@ import { TYPE_COLORS } from '@/common/constants/pokemonTypes';
 import ITEMS from '@/data/items-index.json';
 import { ItemData } from '@/types/items.types';
 import { titleCase } from '@/lib/utils';
+import MegaEvolutionIcon from '@/icons/MegaEvolutionIcon';
 
 export const PARSED_EVOLUTION_TRIGGER: Record<
   string,
@@ -61,8 +62,12 @@ export const PARSED_EVOLUTION_TRIGGER: Record<
     icon: <SparklesIcon className="w-4 h-4 text-yellow-600 shrink-0" />,
   },
   'mega-evolution': {
-    label: 'Mega Stone',
-    icon: <CandyIcon className="w-4 h-4 text-yellow-600 shrink-0" />,
+    label: 'Mega Evolution',
+    icon: (
+      <div className="rainbow-gradient rounded-full p-0.5">
+        <MegaEvolutionIcon className="w-4 h-4 text-black shrink-0" />
+      </div>
+    ),
   },
   default: {
     label: 'Unknown',
