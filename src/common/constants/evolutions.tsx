@@ -32,7 +32,9 @@ import {
 } from '@/types/evolutions.types';
 import { Species } from '@/types/species.types';
 import { TYPE_COLORS } from '@/common/constants/pokemonTypes';
-import { ITEMS_DATA } from '@/common/constants/items';
+import ITEMS from '@/data/items-index.json';
+import { ItemData } from '@/types/items.types';
+import { titleCase } from '@/lib/utils';
 
 export const PARSED_EVOLUTION_TRIGGER: Record<
   string,
@@ -68,6 +70,12 @@ export const PARSED_EVOLUTION_TRIGGER: Record<
       <BadgeQuestionMarkIcon className="w-4 h-4 text-yellow-600 shrink-0" />
     ),
   },
+};
+
+const ITEMS_DATA = ITEMS as ItemData[];
+
+const getItemData = (itemName: string): ItemData | undefined => {
+  return ITEMS_DATA.find((item) => item.name === itemName);
 };
 
 export const EVOLUTION_DETAILS = (
@@ -114,12 +122,15 @@ export const EVOLUTION_DETAILS = (
       <span>
         While holding:{' '}
         <strong>
-          {ITEMS_DATA[(detail as GenericPropertyDetails<Items>).name]?.label ||
-            'Missing info'}
+          {titleCase(
+            getItemData((detail as GenericPropertyDetails).name)?.name || ''
+          ) || 'Missing info'}
         </strong>
       </span>
     ),
-    image: ITEMS_DATA[(detail as GenericPropertyDetails<Items>).name]?.image,
+    image:
+      getItemData((detail as GenericPropertyDetails).name)?.sprites.default ||
+      '',
     icon: undefined,
     details: undefined,
     generation: undefined,
@@ -131,12 +142,15 @@ export const EVOLUTION_DETAILS = (
       <span>
         Required item:{' '}
         <strong>
-          {ITEMS_DATA[(detail as GenericPropertyDetails<Items>).name]?.label ||
-            'Missing info'}
+          {titleCase(
+            getItemData((detail as GenericPropertyDetails).name)?.name || ''
+          ) || 'Missing info'}
         </strong>
       </span>
     ),
-    image: ITEMS_DATA[(detail as GenericPropertyDetails<Items>).name]?.image,
+    image:
+      getItemData((detail as GenericPropertyDetails).name)?.sprites.default ||
+      '',
     icon: undefined,
     details: undefined,
     generation: undefined,

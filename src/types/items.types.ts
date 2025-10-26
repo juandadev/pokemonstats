@@ -18,7 +18,7 @@ export interface ItemData {
   name: string;
   names: ItemNames[];
   sprites: {
-    default: string;
+    default: string | null;
   };
 }
 

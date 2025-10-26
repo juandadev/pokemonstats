@@ -7,6 +7,11 @@ import {
 import { getEvolutionDetails } from '@/lib/pokeapi';
 import { PokemonData, Sprites } from '@/types/pokemon.types';
 import { getPokemonDisplayName } from '@/lib/pokemonDisplayName';
+import ITEMS from '@/data/items-index.json';
+import { ItemData } from '@/types/items.types';
+import { matchesInitialChars } from '@/lib/utils';
+
+const ITEMS_DATA = ITEMS as ItemData[];
 
 export type EvolutionEntry = {
   slug: string;
@@ -108,10 +113,29 @@ export async function buildEvolutionStageList(
 
   for (const { slug } of lastStage) {
     const possibleMegas = [`${slug}-mega`, `${slug}-mega-x`, `${slug}-mega-y`];
+    const megaExceptions = [
+      'mewtwo-mega-x',
+      'mewtwo-mega-y',
+      'charizard-mega-x',
+      'charizard-mega-y',
+    ];
 
     for (const megaSlug of possibleMegas) {
       const megaData = await getEvolutionDetails(megaSlug);
+
       if (megaData) {
+        const megaStone = ITEMS_DATA.find((item) => {
+          const isMatch = matchesInitialChars(item.name, megaData.name, 5);
+
+          if (megaExceptions.includes(megaSlug) && isMatch) {
+            return item.name.includes('-x')
+              ? megaSlug.endsWith('-x')
+              : megaSlug.endsWith('-y');
+          }
+
+          return isMatch;
+        });
+
         megaForms.push({
           slug: megaSlug,
           displayName: getPokemonDisplayName(megaSlug),
@@ -124,7 +148,12 @@ export async function buildEvolutionStageList(
               },
               item: null,
               gender: null,
-              held_item: { name: 'Mega Stone', url: '' },
+              held_item: megaStone
+                ? {
+                    name: megaStone.name,
+                    url: megaStone.sprites.default || '',
+                  }
+                : null,
               known_move: null,
               known_move_type: null,
               location: null,

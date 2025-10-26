@@ -13,7 +13,7 @@ import { ItemData } from '@/types/items.types';
 import { PaginatedResults } from '@/types';
 
 const API_BASE = 'https://pokeapi.co/api/v2';
-const OUTPUT_FILE = 'src/data/items.json';
+const OUTPUT_FILE = 'src/data/items-index.json';
 
 const DELAY_MS = 500; // delay between requests
 const RETRY_LIMIT = 3;
