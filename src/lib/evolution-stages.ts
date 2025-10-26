@@ -125,7 +125,9 @@ export async function buildEvolutionStageList(
 
       if (megaData) {
         const megaStone = ITEMS_DATA.find((item) => {
-          const isMatch = matchesInitialChars(item.name, megaData.name, 5);
+          const isMatch =
+            matchesInitialChars(item.name, megaData.name, 4) &&
+            item.name.includes('ite');
 
           if (megaExceptions.includes(megaSlug) && isMatch) {
             return item.name.includes('-x')
