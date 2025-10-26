@@ -1,5 +1,5 @@
 import React from 'react';
-import { GameVersion } from '@/types/pokemon.types';
+import { GameVersion, GenericPropertyDetails } from '@/types/pokemon.types';
 
 export interface IconProps extends React.ComponentProps<'svg'> {
   size?: number;
@@ -15,4 +15,16 @@ export interface Preferences {
   chartMode: EffectivenessMode;
   msgClosed: boolean;
   game?: GameVersion;
+}
+
+export interface EffectEntry {
+  effect: string;
+  language: GenericPropertyDetails;
+  short_effect: string;
+}
+
+export interface FlavorTextEntry {
+  flavor_text: string;
+  language: GenericPropertyDetails;
+  version_group: GenericPropertyDetails<GameVersion>;
 }

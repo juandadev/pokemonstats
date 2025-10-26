@@ -1,4 +1,5 @@
 import { GenericPropertyDetails } from '@/types/pokemon.types';
+import { FlavorTextEntry } from '@/types/index';
 
 export interface Species {
   base_happiness: number;
@@ -28,12 +29,6 @@ export interface Species {
   pokedex_numbers: PokedexNumber[];
   shape: GenericPropertyDetails;
   varieties: Variety[];
-}
-
-export interface FlavorTextEntry {
-  flavor_text: string;
-  language: GenericPropertyDetails;
-  version: GenericPropertyDetails;
 }
 
 export interface FormDescriptions {

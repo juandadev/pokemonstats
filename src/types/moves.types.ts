@@ -4,6 +4,7 @@ import {
   PokemonTypes,
 } from '@/types/pokemon.types';
 import { Name } from '@/types/species.types';
+import { EffectEntry, FlavorTextEntry } from '@/types/index';
 
 export interface MoveDisplayData {
   name: string;
@@ -57,12 +58,6 @@ export interface ContestComboType {
   use_before: GenericPropertyDetails[] | null;
 }
 
-export interface EffectEntry {
-  effect: string;
-  language: GenericPropertyDetails;
-  short_effect: string;
-}
-
 export interface Meta {
   ailment: GenericPropertyDetails;
   ailment_chance: number;
@@ -76,10 +71,4 @@ export interface Meta {
   min_hits: null;
   min_turns: null;
   stat_chance: number;
-}
-
-export interface FlavorTextEntry {
-  flavor_text: string;
-  language: GenericPropertyDetails;
-  version_group: GenericPropertyDetails<GameVersion>;
 }
