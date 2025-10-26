@@ -58,6 +58,10 @@ export const PARSED_EVOLUTION_TRIGGER: Record<
     label: 'Land three critical hits in a battle',
     icon: <SparklesIcon className="w-4 h-4 text-yellow-600 shrink-0" />,
   },
+  'mega-evolution': {
+    label: 'Mega Stone',
+    icon: <CandyIcon className="w-4 h-4 text-yellow-600 shrink-0" />,
+  },
   default: {
     label: 'Unknown',
     icon: (

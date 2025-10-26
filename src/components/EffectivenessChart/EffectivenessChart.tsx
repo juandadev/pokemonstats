@@ -10,7 +10,6 @@ import {
 import { PokemonData, PokemonTypes } from '@/types/pokemon.types';
 import {
   CircleDotIcon,
-  CircleIcon,
   ShieldIcon,
   SwordIcon,
   TriangleIcon,
