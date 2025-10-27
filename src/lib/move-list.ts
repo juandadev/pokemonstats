@@ -23,11 +23,9 @@ export async function buildMoveList(moves: Move[]): Promise<MoveDisplayData[]> {
     const mapMoveDetailsByGame: MoveGameDetails[] =
       moveEntry.version_group_details.map((item) => {
         const getDescriptionByGame =
-          data.flavor_text_entries.find(
-            (description) =>
-              description.version_group.name === item.version_group.name &&
-              description.language.name === 'en'
-          )?.flavor_text || data.flavor_text_entries[0].flavor_text;
+          data.effect_entries.find(
+            (description) => description.language.name === 'en'
+          )?.effect || 'Missing description';
 
         return {
           level: item.level_learned_at,
@@ -43,6 +41,7 @@ export async function buildMoveList(moves: Move[]): Promise<MoveDisplayData[]> {
       power: data.power,
       pp: data.pp,
       type: data.type.name,
+      damageClass: data.damage_class.name,
     });
   }
 

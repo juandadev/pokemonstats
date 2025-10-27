@@ -20,6 +20,9 @@ import { GAME_LIST } from '@/common/constants/games';
 import { MoveDisplayData } from '@/types/moves.types';
 import { formatGameVersion } from '@/lib/utils';
 import { getPreferences, setPreferences } from '@/lib/preferences';
+import PhysicalDmgIcon from '@/icons/PhysicalDmgIcon';
+import SpecialDmgIcon from '@/icons/SpecialDmgIcon';
+import StatusEffectIcon from '@/icons/StatusEffectIcon';
 
 interface MovesProps {
   moves: MoveDisplayData[];
@@ -90,13 +93,31 @@ export default function Moves({ moves }: MovesProps) {
                     {getDetailsByGame.level}
                   </div>
                   <div>
-                    <div className="font-medium text-gray-900 capitalize">
+                    <div className="font-medium text-gray-900 capitalize flex gap-2 items-center">
+                      {move.damageClass === 'physical' && (
+                        <PhysicalDmgIcon
+                          size={15}
+                          className="text-muted-foreground"
+                        />
+                      )}
+                      {move.damageClass === 'special' && (
+                        <SpecialDmgIcon
+                          size={13}
+                          className="text-muted-foreground"
+                        />
+                      )}
+                      {move.damageClass === 'status' && (
+                        <StatusEffectIcon
+                          size={13}
+                          className="text-muted-foreground"
+                        />
+                      )}
                       {displayName}
                     </div>
                     <div className="flex items-center gap-2 mt-1">
                       <TypeBadge type={move.type} />
                       {move.power && (
-                        <span className="text-xs text-gray-500">
+                        <span className="text-xs text-gray-500 font-bold">
                           Power: {move.power}
                         </span>
                       )}

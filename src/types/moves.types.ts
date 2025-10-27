@@ -6,6 +6,8 @@ import {
 import { Name } from '@/types/species.types';
 import { EffectEntry, FlavorTextEntry } from '@/types/index';
 
+export type DamageType = 'physical' | 'special' | 'status';
+
 export interface MoveDisplayData {
   name: string;
   type: PokemonTypes;
@@ -13,6 +15,7 @@ export interface MoveDisplayData {
   pp: number;
   accuracy: number | null;
   gameDetails: MoveGameDetails[];
+  damageClass: DamageType;
 }
 
 export interface MoveGameDetails {
@@ -26,7 +29,7 @@ export interface MoveApiData {
   contest_combos: ContestCombos;
   contest_effect: Pick<GenericPropertyDetails, 'url'>;
   contest_type: GenericPropertyDetails;
-  damage_class: GenericPropertyDetails;
+  damage_class: GenericPropertyDetails<DamageType>;
   effect_chance: null;
   effect_changes: null;
   effect_entries: EffectEntry[];
