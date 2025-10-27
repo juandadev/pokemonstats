@@ -1,0 +1,172 @@
+{
+  "alcremie": {
+    "label": "Alcremie (Gigantamax)",
+    "slug": "alcremie-gmax",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/869-gmax.png"
+  },
+  "appletun": {
+    "label": "Appletun (Gigantamax)",
+    "slug": "appletun-gmax",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10217.png"
+  },
+  "blastoise": {
+    "label": "Blastoise (Gigantamax)",
+    "slug": "blastoise-gmax",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/9-gmax.png"
+  },
+  "butterfree": {
+    "label": "Butterfree (Gigantamax)",
+    "slug": "butterfree-gmax",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/12-gmax.png"
+  },
+  "centiskorch": {
+    "label": "Centiskorch (Gigantamax)",
+    "slug": "centiskorch-gmax",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/851-gmax.png"
+  },
+  "charizard": {
+    "label": "Charizard (Gigantamax)",
+    "slug": "charizard-gmax",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/6-gmax.png"
+  },
+  "cinderace": {
+    "label": "Cinderace (Gigantamax)",
+    "slug": "cinderace-gmax",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/815-gmax.png"
+  },
+  "coalossal": {
+    "label": "Coalossal (Gigantamax)",
+    "slug": "coalossal-gmax",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/839-gmax.png"
+  },
+  "copperajah": {
+    "label": "Copperajah (Gigantamax)",
+    "slug": "copperajah-gmax",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/879-gmax.png"
+  },
+  "corviknight": {
+    "label": "Corviknight (Gigantamax)",
+    "slug": "corviknight-gmax",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/823-gmax.png"
+  },
+  "drednaw": {
+    "label": "Drednaw (Gigantamax)",
+    "slug": "drednaw-gmax",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/834-gmax.png"
+  },
+  "duraludon": {
+    "label": "Duraludon (Gigantamax)",
+    "slug": "duraludon-gmax",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/884-gmax.png"
+  },
+  "eevee": {
+    "label": "Eevee (Gigantamax)",
+    "slug": "eevee-gmax",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/133-gmax.png"
+  },
+  "flapple": {
+    "label": "Flapple (Gigantamax)",
+    "slug": "flapple-gmax",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/841-gmax.png"
+  },
+  "garbodor": {
+    "label": "Garbodor (Gigantamax)",
+    "slug": "garbodor-gmax",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/569-gmax.png"
+  },
+  "gengar": {
+    "label": "Gengar (Gigantamax)",
+    "slug": "gengar-gmax",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/94-gmax.png"
+  },
+  "grimmsnarl": {
+    "label": "Grimmsnarl (Gigantamax)",
+    "slug": "grimmsnarl-gmax",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/861-gmax.png"
+  },
+  "hatterene": {
+    "label": "Hatterene (Gigantamax)",
+    "slug": "hatterene-gmax",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/858-gmax.png"
+  },
+  "inteleon": {
+    "label": "Inteleon (Gigantamax)",
+    "slug": "inteleon-gmax",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/818-gmax.png"
+  },
+  "kingler": {
+    "label": "Kingler (Gigantamax)",
+    "slug": "kingler-gmax",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/99-gmax.png"
+  },
+  "lapras": {
+    "label": "Lapras (Gigantamax)",
+    "slug": "lapras-gmax",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/131-gmax.png"
+  },
+  "machamp": {
+    "label": "Machamp (Gigantamax)",
+    "slug": "machamp-gmax",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/68-gmax.png"
+  },
+  "melmetal": {
+    "label": "Melmetal (Gigantamax)",
+    "slug": "melmetal-gmax",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/809-gmax.png"
+  },
+  "meowth": {
+    "label": "Meowth (Gigantamax)",
+    "slug": "meowth-gmax",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/52-gmax.png"
+  },
+  "orbeetle": {
+    "label": "Orbeetle (Gigantamax)",
+    "slug": "orbeetle-gmax",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/826-gmax.png"
+  },
+  "pikachu": {
+    "label": "Pikachu (Gigantamax)",
+    "slug": "pikachu-gmax",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/25-gmax.png"
+  },
+  "rillaboom": {
+    "label": "Rillaboom (Gigantamax)",
+    "slug": "rillaboom-gmax",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/812-gmax.png"
+  },
+  "sandaconda": {
+    "label": "Sandaconda (Gigantamax)",
+    "slug": "sandaconda-gmax",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/844-gmax.png"
+  },
+  "snorlax": {
+    "label": "Snorlax (Gigantamax)",
+    "slug": "snorlax-gmax",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/143-gmax.png"
+  },
+  "toxtricity-amped": {
+    "label": "Toxtricity (Amped Gigantamax)",
+    "slug": "toxtricity-amped-gmax",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10219.png"
+  },
+  "toxtricity-low-key": {
+    "label": "Toxtricity (Low Key Gigantamax)",
+    "slug": "toxtricity-low-key-gmax",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10228.png"
+  },
+  "urshifu-rapid-strike": {
+    "label": "Urshifu (Rapid Strike Gigantamax)",
+    "slug": "urshifu-rapid-strike-gmax",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/892-rapid-strike-gmax.png"
+  },
+  "urshifu-single-strike": {
+    "label": "Urshifu (Single Strike Gigantamax)",
+    "slug": "urshifu-single-strike-gmax",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10226.png"
+  },
+  "venusaur": {
+    "label": "Venusaur (Gigantamax)",
+    "slug": "venusaur-gmax",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/3-gmax.png"
+  }
+}

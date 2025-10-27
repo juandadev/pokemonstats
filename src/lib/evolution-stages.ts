@@ -8,7 +8,7 @@ import { getEvolutionDetails } from '@/lib/pokeapi';
 import { PokemonData, Sprites } from '@/types/pokemon.types';
 import { getPokemonDisplayName } from '@/lib/pokemonDisplayName';
 import { matchesInitialChars } from '@/lib/utils';
-import { ITEMS_LIST, MEGA_EVOS_LIST, POKEMON_LIST } from '@/common/constants';
+import { GMAX_LIST, ITEMS_LIST, MEGA_EVOS_LIST } from '@/common/constants';
 
 export type EvolutionEntry = {
   slug: string;
@@ -81,30 +81,35 @@ export function pickSprite(sprites: Sprites): string | null {
   );
 }
 
-export async function buildEvolutionStageList(
-  evolution: EvolutionChain
-): Promise<EvolutionCardData[][]> {
-  const stages: EvolutionEntry[][] = buildEvolutionStages(evolution.chain);
-  const unique = Array.from(new Set(stages.flat().map((e) => e.slug)));
-  const fetched = await Promise.all(
-    unique.map((name) => getEvolutionDetails(name))
-  );
-  const bySlug = new Map<string, PokemonData | null>(
-    unique.map((s, i) => [s, fetched[i]])
-  );
+const emptyEvoDetailObj: EvolutionCardData = {
+  slug: '',
+  displayName: '',
+  spriteUrl: null,
+  evolutionDetails: [
+    {
+      gender: null,
+      held_item: null,
+      item: null,
+      known_move: null,
+      known_move_type: null,
+      location: null,
+      min_affection: null,
+      min_beauty: null,
+      min_happiness: null,
+      min_level: null,
+      needs_overworld_rain: false,
+      party_species: null,
+      party_type: null,
+      relative_physical_stats: null,
+      time_of_day: '',
+      trade_species: null,
+      trigger: null,
+      turn_upside_down: false,
+    },
+  ],
+};
 
-  const stageList = stages.map((stage) =>
-    stage.map(({ slug, evolutionDetails }) => {
-      const mini = bySlug.get(slug) ?? null;
-      return {
-        slug,
-        displayName: getPokemonDisplayName(slug),
-        spriteUrl: mini ? pickSprite(mini.sprites) : null,
-        evolutionDetails,
-      };
-    })
-  );
-
+async function insertMegaEvolution(stageList: EvolutionCardData[][]) {
   const lastStage: EvolutionCardData[] = stageList[stageList.length - 1];
   const megaForms: EvolutionCardData[] = [];
 
@@ -138,37 +143,23 @@ export async function buildEvolutionStageList(
       });
 
       megaForms.push({
+        ...emptyEvoDetailObj,
         slug: megaSlug,
         displayName: getPokemonDisplayName(megaSlug),
         spriteUrl: pickSprite(megaData.sprites),
         evolutionDetails: [
           {
+            ...emptyEvoDetailObj.evolutionDetails![0],
             trigger: {
               name: 'mega-evolution',
               url: '',
             },
-            item: null,
-            gender: null,
             held_item: megaStone
               ? {
                   name: megaStone.name,
                   url: megaStone.sprites.default || '',
                 }
               : null,
-            known_move: null,
-            known_move_type: null,
-            location: null,
-            min_affection: null,
-            min_beauty: null,
-            min_happiness: null,
-            min_level: null,
-            needs_overworld_rain: false,
-            party_species: null,
-            party_type: null,
-            relative_physical_stats: null,
-            time_of_day: '',
-            trade_species: null,
-            turn_upside_down: false,
           },
         ],
       });
@@ -178,6 +169,68 @@ export async function buildEvolutionStageList(
   if (megaForms.length > 0) {
     stageList.push(megaForms);
   }
+}
+
+async function insertGmaxEvolution(stageList: EvolutionCardData[][]) {
+  const lastStage: EvolutionCardData = stageList[stageList.length - 1][0];
+  const isGmax = GMAX_LIST.has(lastStage.slug);
+
+  if (isGmax) {
+    const gmaxSlug = GMAX_LIST.get(lastStage.slug)!.slug;
+    const gmaxData = await getEvolutionDetails(gmaxSlug);
+
+    if (!gmaxData) return;
+
+    stageList.push([
+      {
+        ...emptyEvoDetailObj,
+        slug: gmaxSlug,
+        displayName: getPokemonDisplayName(gmaxSlug),
+        spriteUrl: pickSprite(gmaxData.sprites),
+        evolutionDetails: [
+          {
+            ...emptyEvoDetailObj.evolutionDetails![0],
+            trigger: {
+              name: 'gmax',
+              url: '',
+            },
+            item: {
+              name: ITEMS_LIST[1089].name,
+              url: ITEMS_LIST[1089].sprites.default || '',
+            },
+          },
+        ],
+      },
+    ]);
+  }
+}
+
+export async function buildEvolutionStageList(
+  evolution: EvolutionChain
+): Promise<EvolutionCardData[][]> {
+  const stages: EvolutionEntry[][] = buildEvolutionStages(evolution.chain);
+  const unique = Array.from(new Set(stages.flat().map((e) => e.slug)));
+  const fetched = await Promise.all(
+    unique.map((name) => getEvolutionDetails(name))
+  );
+  const bySlug = new Map<string, PokemonData | null>(
+    unique.map((s, i) => [s, fetched[i]])
+  );
+
+  const stageList: EvolutionCardData[][] = stages.map((stage) =>
+    stage.map(({ slug, evolutionDetails }) => {
+      const mini = bySlug.get(slug) ?? null;
+      return {
+        slug,
+        displayName: getPokemonDisplayName(slug),
+        spriteUrl: mini ? pickSprite(mini.sprites) : null,
+        evolutionDetails,
+      };
+    })
+  );
+
+  await insertMegaEvolution(stageList);
+  await insertGmaxEvolution(stageList);
 
   return stageList;
 }

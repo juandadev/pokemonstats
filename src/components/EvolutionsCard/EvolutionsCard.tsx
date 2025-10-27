@@ -27,6 +27,7 @@ import PokemonImage from '@/components/PokemonImage/PokemonImage';
 import Link from 'next/link';
 import { TYPE_LABELS } from '@/common/constants/pokemonTypes';
 import MegaEvolutionIcon from '@/icons/MegaEvolutionIcon';
+import GMaxIcon from '@/icons/GMaxIcon';
 
 interface EvolutionsCardProps {
   pokemonData: PokemonData;
@@ -103,12 +104,15 @@ export default function EvolutionsCard({
                         </Link>
                       )}
                     </div>
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 items-center">
                       {evolutionDetails[0].trigger?.name ===
                         'mega-evolution' && (
                         <div className="rainbow-gradient rounded-full p-0.5">
                           <MegaEvolutionIcon className="w-4 h-4 text-black shrink-0" />
                         </div>
+                      )}
+                      {evolutionDetails[0].trigger?.name === 'gmax' && (
+                        <GMaxIcon className="size-4 text-[#E60040] shrink-0" />
                       )}
                       <div className="text-sm text-gray-600">
                         {evolutionDetails[0].trigger?.name === 'level-up' &&

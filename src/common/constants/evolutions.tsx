@@ -36,6 +36,7 @@ import { ItemData } from '@/types/items.types';
 import { titleCase } from '@/lib/utils';
 import MegaEvolutionIcon from '@/icons/MegaEvolutionIcon';
 import { ITEMS_LIST } from '@/common/constants/index';
+import GMaxIcon from '@/icons/GMaxIcon';
 
 export const PARSED_EVOLUTION_TRIGGER: Record<
   string,
@@ -68,6 +69,10 @@ export const PARSED_EVOLUTION_TRIGGER: Record<
         <MegaEvolutionIcon className="w-4 h-4 text-black shrink-0" />
       </div>
     ),
+  },
+  gmax: {
+    label: 'Gigantamax',
+    icon: <GMaxIcon className="w-4 h-4 text-[#E60040] shrink-0" />,
   },
   default: {
     label: 'Unknown',

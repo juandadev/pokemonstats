@@ -8,6 +8,7 @@ import EVOLUTION_OVERRIDES from '@/data/custom-evolution-overrides.json';
 import ITEMS_INDEX from '@/data/items-index.json';
 import POKEMON_INDEX from '@/data/pokemon-index.json';
 import MEGA_EVOS_INDEX from '@/data/meva-evos-index.json';
+import GMAX_INDEX from '@/data/gmax-index.json';
 
 export const ROADMAP: Roadmap[] = [
   {
@@ -248,4 +249,8 @@ export const ITEMS_LIST = ITEMS_INDEX as ItemData[];
 
 export const MEGA_EVOS_LIST = new Map<string, PokemonIndexItem>(
   Object.entries(MEGA_EVOS_INDEX)
+);
+
+export const GMAX_LIST = new Map<string, PokemonIndexItem>(
+  Object.entries(GMAX_INDEX)
 );
