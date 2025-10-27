@@ -8,6 +8,8 @@ import { EffectEntry, FlavorTextEntry } from '@/types/index';
 
 export type DamageType = 'physical' | 'special' | 'status';
 
+export type LearnMethodType = 'level-up' | 'machine';
+
 export interface MoveDisplayData {
   name: string;
   type: PokemonTypes;
@@ -22,6 +24,7 @@ export interface MoveGameDetails {
   level: number;
   description: string;
   game: GameVersion;
+  learnMethod: LearnMethodType;
 }
 
 export interface MoveApiData {
