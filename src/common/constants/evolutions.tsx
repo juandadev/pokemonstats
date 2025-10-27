@@ -32,10 +32,10 @@ import {
 } from '@/types/evolutions.types';
 import { Species } from '@/types/species.types';
 import { TYPE_COLORS } from '@/common/constants/pokemonTypes';
-import ITEMS from '@/data/items-index.json';
 import { ItemData } from '@/types/items.types';
 import { titleCase } from '@/lib/utils';
 import MegaEvolutionIcon from '@/icons/MegaEvolutionIcon';
+import { ITEMS_LIST } from '@/common/constants/index';
 
 export const PARSED_EVOLUTION_TRIGGER: Record<
   string,
@@ -77,10 +77,8 @@ export const PARSED_EVOLUTION_TRIGGER: Record<
   },
 };
 
-const ITEMS_DATA = ITEMS as ItemData[];
-
 const getItemData = (itemName: string): ItemData | undefined => {
-  return ITEMS_DATA.find((item) => item.name === itemName);
+  return ITEMS_LIST.find((item) => item.name === itemName);
 };
 
 export const EVOLUTION_DETAILS = (

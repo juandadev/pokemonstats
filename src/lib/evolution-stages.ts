@@ -7,11 +7,8 @@ import {
 import { getEvolutionDetails } from '@/lib/pokeapi';
 import { PokemonData, Sprites } from '@/types/pokemon.types';
 import { getPokemonDisplayName } from '@/lib/pokemonDisplayName';
-import ITEMS from '@/data/items-index.json';
-import { ItemData } from '@/types/items.types';
 import { matchesInitialChars } from '@/lib/utils';
-
-const ITEMS_DATA = ITEMS as ItemData[];
+import { ITEMS_LIST } from '@/common/constants';
 
 export type EvolutionEntry = {
   slug: string;
@@ -120,11 +117,13 @@ export async function buildEvolutionStageList(
       'charizard-mega-y',
     ];
 
+    console.log();
+
     for (const megaSlug of possibleMegas) {
       const megaData = await getEvolutionDetails(megaSlug);
 
       if (megaData) {
-        const megaStone = ITEMS_DATA.find((item) => {
+        const megaStone = ITEMS_LIST.find((item) => {
           const isMatch =
             matchesInitialChars(item.name, megaData.name, 4) &&
             item.name.includes('ite');

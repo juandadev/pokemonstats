@@ -2,7 +2,11 @@ import { Roadmap } from '@/types/roadmap.types';
 import { Contributor } from '@/app/api/contributors/route';
 import { BrushIcon } from 'lucide-react';
 import EVOLUTION_OVERRIDES from '@/data/custom-evolution-overrides.json';
+import ITEMS_INDEX from '@/data/items-index.json';
+import POKEMON_INDEX from '@/data/pokemon-index.json';
 import { EvolutionChain } from '@/types/evolutions.types';
+import { PokemonIndexItem } from '@/types/pokemon.types';
+import { ItemData } from '@/types/items.types';
 
 export const ROADMAP: Roadmap[] = [
   {
@@ -236,3 +240,7 @@ export const CUSTOM_EVOLUTION_CHAINS = EVOLUTION_OVERRIDES as Record<
   string,
   EvolutionChain
 >;
+
+export const POKEMON_LIST = POKEMON_INDEX as PokemonIndexItem[];
+
+export const ITEMS_LIST = ITEMS_INDEX as ItemData[];
