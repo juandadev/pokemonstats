@@ -1,12 +1,13 @@
 import { Roadmap } from '@/types/roadmap.types';
 import { Contributor } from '@/app/api/contributors/route';
 import { BrushIcon } from 'lucide-react';
-import EVOLUTION_OVERRIDES from '@/data/custom-evolution-overrides.json';
-import ITEMS_INDEX from '@/data/items-index.json';
-import POKEMON_INDEX from '@/data/pokemon-index.json';
 import { EvolutionChain } from '@/types/evolutions.types';
 import { PokemonIndexItem } from '@/types/pokemon.types';
 import { ItemData } from '@/types/items.types';
+import EVOLUTION_OVERRIDES from '@/data/custom-evolution-overrides.json';
+import ITEMS_INDEX from '@/data/items-index.json';
+import POKEMON_INDEX from '@/data/pokemon-index.json';
+import MEGA_EVOS_INDEX from '@/data/meva-evos-index.json';
 
 export const ROADMAP: Roadmap[] = [
   {
@@ -244,3 +245,7 @@ export const CUSTOM_EVOLUTION_CHAINS = EVOLUTION_OVERRIDES as Record<
 export const POKEMON_LIST = POKEMON_INDEX as PokemonIndexItem[];
 
 export const ITEMS_LIST = ITEMS_INDEX as ItemData[];
+
+export const MEGA_EVOS_LIST = new Map<string, PokemonIndexItem>(
+  Object.entries(MEGA_EVOS_INDEX)
+);

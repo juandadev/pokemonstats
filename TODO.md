@@ -65,6 +65,10 @@
   overflows the container.
 - [ ] Some suggestions are not shown completely on mobile devices.
 
+# Performance Improvements
+
+- [ ] Swap scrapped data with name indexes and create a Map[] to avoid using `array.find` and get quicker searches
+
 # Priority
 
 - [ ] Add Pokémon history section (Up to 5)

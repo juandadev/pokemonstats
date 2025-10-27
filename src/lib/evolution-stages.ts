@@ -8,7 +8,7 @@ import { getEvolutionDetails } from '@/lib/pokeapi';
 import { PokemonData, Sprites } from '@/types/pokemon.types';
 import { getPokemonDisplayName } from '@/lib/pokemonDisplayName';
 import { matchesInitialChars } from '@/lib/utils';
-import { ITEMS_LIST } from '@/common/constants';
+import { ITEMS_LIST, MEGA_EVOS_LIST, POKEMON_LIST } from '@/common/constants';
 
 export type EvolutionEntry = {
   slug: string;
@@ -105,74 +105,73 @@ export async function buildEvolutionStageList(
     })
   );
 
-  const lastStage = stageList[stageList.length - 1];
+  const lastStage: EvolutionCardData[] = stageList[stageList.length - 1];
   const megaForms: EvolutionCardData[] = [];
 
   for (const { slug } of lastStage) {
-    const possibleMegas = [`${slug}-mega`, `${slug}-mega-x`, `${slug}-mega-y`];
     const megaExceptions = [
       'mewtwo-mega-x',
       'mewtwo-mega-y',
       'charizard-mega-x',
       'charizard-mega-y',
     ];
+    const isMegaEvolution = MEGA_EVOS_LIST.has(slug);
 
-    console.log();
-
-    for (const megaSlug of possibleMegas) {
+    if (isMegaEvolution) {
+      const megaSlug = MEGA_EVOS_LIST.get(slug)!.slug;
       const megaData = await getEvolutionDetails(megaSlug);
 
-      if (megaData) {
-        const megaStone = ITEMS_LIST.find((item) => {
-          const isMatch =
-            matchesInitialChars(item.name, megaData.name, 4) &&
-            item.name.includes('ite');
+      if (!megaData) continue;
 
-          if (megaExceptions.includes(megaSlug) && isMatch) {
-            return item.name.includes('-x')
-              ? megaSlug.endsWith('-x')
-              : megaSlug.endsWith('-y');
-          }
+      const megaStone = ITEMS_LIST.find((item) => {
+        const isMatch =
+          matchesInitialChars(item.name, megaData.name, 4) &&
+          item.name.includes('ite');
 
-          return isMatch;
-        });
+        if (megaExceptions.includes(slug) && isMatch) {
+          return item.name.includes('-x')
+            ? slug.endsWith('-x')
+            : slug.endsWith('-y');
+        }
 
-        megaForms.push({
-          slug: megaSlug,
-          displayName: getPokemonDisplayName(megaSlug),
-          spriteUrl: pickSprite(megaData.sprites),
-          evolutionDetails: [
-            {
-              trigger: {
-                name: 'mega-evolution',
-                url: '',
-              },
-              item: null,
-              gender: null,
-              held_item: megaStone
-                ? {
-                    name: megaStone.name,
-                    url: megaStone.sprites.default || '',
-                  }
-                : null,
-              known_move: null,
-              known_move_type: null,
-              location: null,
-              min_affection: null,
-              min_beauty: null,
-              min_happiness: null,
-              min_level: null,
-              needs_overworld_rain: false,
-              party_species: null,
-              party_type: null,
-              relative_physical_stats: null,
-              time_of_day: '',
-              trade_species: null,
-              turn_upside_down: false,
+        return isMatch;
+      });
+
+      megaForms.push({
+        slug: megaSlug,
+        displayName: getPokemonDisplayName(megaSlug),
+        spriteUrl: pickSprite(megaData.sprites),
+        evolutionDetails: [
+          {
+            trigger: {
+              name: 'mega-evolution',
+              url: '',
             },
-          ],
-        });
-      }
+            item: null,
+            gender: null,
+            held_item: megaStone
+              ? {
+                  name: megaStone.name,
+                  url: megaStone.sprites.default || '',
+                }
+              : null,
+            known_move: null,
+            known_move_type: null,
+            location: null,
+            min_affection: null,
+            min_beauty: null,
+            min_happiness: null,
+            min_level: null,
+            needs_overworld_rain: false,
+            party_species: null,
+            party_type: null,
+            relative_physical_stats: null,
+            time_of_day: '',
+            trade_species: null,
+            turn_upside_down: false,
+          },
+        ],
+      });
     }
   }
 
