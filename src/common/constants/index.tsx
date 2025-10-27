@@ -1,6 +1,8 @@
 import { Roadmap } from '@/types/roadmap.types';
 import { Contributor } from '@/app/api/contributors/route';
 import { BrushIcon } from 'lucide-react';
+import EVOLUTION_OVERRIDES from '@/data/custom-evolution-overrides.json';
+import { EvolutionChain } from '@/types/evolutions.types';
 
 export const ROADMAP: Roadmap[] = [
   {
@@ -229,3 +231,8 @@ export const CONTRIBUTORS: Contributor[] = [
     category: <BrushIcon className="size-3 text-green-500" />,
   },
 ];
+
+export const CUSTOM_EVOLUTION_CHAINS = EVOLUTION_OVERRIDES as Record<
+  string,
+  EvolutionChain
+>;

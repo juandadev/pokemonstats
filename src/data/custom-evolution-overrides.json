@@ -1,0 +1,34 @@
+{
+  "zygarde": {
+    "baby_trigger_item": null,
+    "chain": {
+      "evolution_details": [],
+      "evolves_to": [
+        {
+          "evolution_details": [],
+          "evolves_to": [],
+          "is_baby": false,
+          "species": {
+            "name": "zygarde-50",
+            "url": "https://pokeapi.co/api/v2/pokemon-species/718/"
+          }
+        },
+        {
+          "evolution_details": [],
+          "evolves_to": [],
+          "is_baby": false,
+          "species": {
+            "name": "zygarde-complete",
+            "url": "https://pokeapi.co/api/v2/pokemon-species/718/"
+          }
+        }
+      ],
+      "is_baby": false,
+      "species": {
+        "name": "zygarde-10",
+        "url": "https://pokeapi.co/api/v2/pokemon-species/718/"
+      }
+    },
+    "id": 370
+  }
+}

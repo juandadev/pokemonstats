@@ -1,6 +1,7 @@
 import { CompletePokemonData, PokemonData } from '@/types/pokemon.types';
 import { Species } from '@/types/species.types';
 import { EvolutionChain } from '@/types/evolutions.types';
+import { CUSTOM_EVOLUTION_CHAINS } from '@/common/constants';
 
 const BASE = 'https://pokeapi.co/api/v2';
 
@@ -26,13 +27,19 @@ export async function getPokemonDataBySlug(
 
   if (!speciesData.evolution_chain) return {};
 
-  const evolutionsResponse = await fetch(speciesData.evolution_chain.url, {
-    cache: 'force-cache',
-  });
+  let evolutionsData: EvolutionChain;
 
-  if (!evolutionsResponse.ok) return {};
+  if (CUSTOM_EVOLUTION_CHAINS[speciesData.name]) {
+    evolutionsData = CUSTOM_EVOLUTION_CHAINS[speciesData.name];
+  } else {
+    const evolutionsResponse = await fetch(speciesData.evolution_chain.url, {
+      cache: 'force-cache',
+    });
 
-  const evolutionsData: EvolutionChain = await evolutionsResponse.json();
+    if (!evolutionsResponse.ok) return {};
+
+    evolutionsData = await evolutionsResponse.json();
+  }
 
   return { pokemonData, speciesData, evolutionsData };
 }
