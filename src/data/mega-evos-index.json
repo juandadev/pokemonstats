@@ -1,0 +1,516 @@
+{
+  "abomasnow": [
+    {
+      "label": "Abomasnow (Mega)",
+      "slug": "abomasnow-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10060.png"
+    }
+  ],
+  "absol": [
+    {
+      "label": "Absol (Mega)",
+      "slug": "absol-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10057.png"
+    }
+  ],
+  "aerodactyl": [
+    {
+      "label": "Aerodactyl (Mega)",
+      "slug": "aerodactyl-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10042.png"
+    }
+  ],
+  "aggron": [
+    {
+      "label": "Aggron (Mega)",
+      "slug": "aggron-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10053.png"
+    }
+  ],
+  "alakazam": [
+    {
+      "label": "Alakazam (Mega)",
+      "slug": "alakazam-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10037.png"
+    }
+  ],
+  "altaria": [
+    {
+      "label": "Altaria (Mega)",
+      "slug": "altaria-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10067.png"
+    }
+  ],
+  "ampharos": [
+    {
+      "label": "Ampharos (Mega)",
+      "slug": "ampharos-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10045.png"
+    }
+  ],
+  "audino": [
+    {
+      "label": "Audino (Mega)",
+      "slug": "audino-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10069.png"
+    }
+  ],
+  "banette": [
+    {
+      "label": "Banette (Mega)",
+      "slug": "banette-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10056.png"
+    }
+  ],
+  "barbaracle": [
+    {
+      "label": "Barbaracle (Mega)",
+      "slug": "barbaracle-mega",
+      "sprite": null
+    }
+  ],
+  "beedrill": [
+    {
+      "label": "Beedrill (Mega)",
+      "slug": "beedrill-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10090.png"
+    }
+  ],
+  "blastoise": [
+    {
+      "label": "Blastoise (Mega)",
+      "slug": "blastoise-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10036.png"
+    }
+  ],
+  "blaziken": [
+    {
+      "label": "Blaziken (Mega)",
+      "slug": "blaziken-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10050.png"
+    }
+  ],
+  "camerupt": [
+    {
+      "label": "Camerupt (Mega)",
+      "slug": "camerupt-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10087.png"
+    }
+  ],
+  "chandelure": [
+    {
+      "label": "Chandelure (Mega)",
+      "slug": "chandelure-mega",
+      "sprite": null
+    }
+  ],
+  "charizard": [
+    {
+      "label": "Charizard (Mega X)",
+      "slug": "charizard-mega-x",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10034.png"
+    },
+    {
+      "label": "Charizard (Mega Y)",
+      "slug": "charizard-mega-y",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10035.png"
+    }
+  ],
+  "chesnaught": [
+    {
+      "label": "Chesnaught (Mega)",
+      "slug": "chesnaught-mega",
+      "sprite": null
+    }
+  ],
+  "clefable": [
+    {
+      "label": "Clefable (Mega)",
+      "slug": "clefable-mega",
+      "sprite": null
+    }
+  ],
+  "delphox": [
+    {
+      "label": "Delphox (Mega)",
+      "slug": "delphox-mega",
+      "sprite": null
+    }
+  ],
+  "diancie": [
+    {
+      "label": "Diancie (Mega)",
+      "slug": "diancie-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10075.png"
+    }
+  ],
+  "dragalge": [
+    {
+      "label": "Dragalge (Mega)",
+      "slug": "dragalge-mega",
+      "sprite": null
+    }
+  ],
+  "dragonite": [
+    {
+      "label": "Dragonite (Mega)",
+      "slug": "dragonite-mega",
+      "sprite": null
+    }
+  ],
+  "drampa": [
+    {
+      "label": "Drampa (Mega)",
+      "slug": "drampa-mega",
+      "sprite": null
+    }
+  ],
+  "eelektross": [
+    {
+      "label": "Eelektross (Mega)",
+      "slug": "eelektross-mega",
+      "sprite": null
+    }
+  ],
+  "emboar": [
+    {
+      "label": "Emboar (Mega)",
+      "slug": "emboar-mega",
+      "sprite": null
+    }
+  ],
+  "excadrill": [
+    {
+      "label": "Excadrill (Mega)",
+      "slug": "excadrill-mega",
+      "sprite": null
+    }
+  ],
+  "falinks": [
+    {
+      "label": "Falinks (Mega)",
+      "slug": "falinks-mega",
+      "sprite": null
+    }
+  ],
+  "feraligatr": [
+    {
+      "label": "Feraligatr (Mega)",
+      "slug": "feraligatr-mega",
+      "sprite": null
+    }
+  ],
+  "floette": [
+    {
+      "label": "Floette (Mega)",
+      "slug": "floette-mega",
+      "sprite": null
+    }
+  ],
+  "froslass": [
+    {
+      "label": "Froslass (Mega)",
+      "slug": "froslass-mega",
+      "sprite": null
+    }
+  ],
+  "gallade": [
+    {
+      "label": "Gallade (Mega)",
+      "slug": "gallade-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10068.png"
+    }
+  ],
+  "garchomp": [
+    {
+      "label": "Garchomp (Mega)",
+      "slug": "garchomp-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10058.png"
+    }
+  ],
+  "gardevoir": [
+    {
+      "label": "Gardevoir (Mega)",
+      "slug": "gardevoir-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10051.png"
+    }
+  ],
+  "gengar": [
+    {
+      "label": "Gengar (Mega)",
+      "slug": "gengar-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10038.png"
+    }
+  ],
+  "glalie": [
+    {
+      "label": "Glalie (Mega)",
+      "slug": "glalie-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10074.png"
+    }
+  ],
+  "greninja": [
+    {
+      "label": "Greninja (Mega)",
+      "slug": "greninja-mega",
+      "sprite": null
+    }
+  ],
+  "gyarados": [
+    {
+      "label": "Gyarados (Mega)",
+      "slug": "gyarados-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10041.png"
+    }
+  ],
+  "hawlucha": [
+    {
+      "label": "Hawlucha (Mega)",
+      "slug": "hawlucha-mega",
+      "sprite": null
+    }
+  ],
+  "heracross": [
+    {
+      "label": "Heracross (Mega)",
+      "slug": "heracross-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10047.png"
+    }
+  ],
+  "houndoom": [
+    {
+      "label": "Houndoom (Mega)",
+      "slug": "houndoom-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10048.png"
+    }
+  ],
+  "kangaskhan": [
+    {
+      "label": "Kangaskhan (Mega)",
+      "slug": "kangaskhan-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10039.png"
+    }
+  ],
+  "latias": [
+    {
+      "label": "Latias (Mega)",
+      "slug": "latias-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10062.png"
+    }
+  ],
+  "latios": [
+    {
+      "label": "Latios (Mega)",
+      "slug": "latios-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10063.png"
+    }
+  ],
+  "lopunny": [
+    {
+      "label": "Lopunny (Mega)",
+      "slug": "lopunny-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10088.png"
+    }
+  ],
+  "lucario": [
+    {
+      "label": "Lucario (Mega)",
+      "slug": "lucario-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10059.png"
+    }
+  ],
+  "malamar": [
+    {
+      "label": "Malamar (Mega)",
+      "slug": "malamar-mega",
+      "sprite": null
+    }
+  ],
+  "manectric": [
+    {
+      "label": "Manectric (Mega)",
+      "slug": "manectric-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10055.png"
+    }
+  ],
+  "mawile": [
+    {
+      "label": "Mawile (Mega)",
+      "slug": "mawile-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10052.png"
+    }
+  ],
+  "medicham": [
+    {
+      "label": "Medicham (Mega)",
+      "slug": "medicham-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10054.png"
+    }
+  ],
+  "meganium": [
+    {
+      "label": "Meganium (Mega)",
+      "slug": "meganium-mega",
+      "sprite": null
+    }
+  ],
+  "metagross": [
+    {
+      "label": "Metagross (Mega)",
+      "slug": "metagross-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10076.png"
+    }
+  ],
+  "mewtwo": [
+    {
+      "label": "Mewtwo (Mega X)",
+      "slug": "mewtwo-mega-x",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10043.png"
+    },
+    {
+      "label": "Mewtwo (Mega Y)",
+      "slug": "mewtwo-mega-y",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10044.png"
+    }
+  ],
+  "pidgeot": [
+    {
+      "label": "Pidgeot (Mega)",
+      "slug": "pidgeot-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10073.png"
+    }
+  ],
+  "pinsir": [
+    {
+      "label": "Pinsir (Mega)",
+      "slug": "pinsir-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10040.png"
+    }
+  ],
+  "pyroar": [
+    {
+      "label": "Pyroar (Mega)",
+      "slug": "pyroar-mega",
+      "sprite": null
+    }
+  ],
+  "rayquaza": [
+    {
+      "label": "Rayquaza (Mega)",
+      "slug": "rayquaza-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10079.png"
+    }
+  ],
+  "sableye": [
+    {
+      "label": "Sableye (Mega)",
+      "slug": "sableye-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10066.png"
+    }
+  ],
+  "salamence": [
+    {
+      "label": "Salamence (Mega)",
+      "slug": "salamence-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10089.png"
+    }
+  ],
+  "sceptile": [
+    {
+      "label": "Sceptile (Mega)",
+      "slug": "sceptile-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10065.png"
+    }
+  ],
+  "scizor": [
+    {
+      "label": "Scizor (Mega)",
+      "slug": "scizor-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10046.png"
+    }
+  ],
+  "scolipede": [
+    {
+      "label": "Scolipede (Mega)",
+      "slug": "scolipede-mega",
+      "sprite": null
+    }
+  ],
+  "scrafty": [
+    {
+      "label": "Scrafty (Mega)",
+      "slug": "scrafty-mega",
+      "sprite": null
+    }
+  ],
+  "sharpedo": [
+    {
+      "label": "Sharpedo (Mega)",
+      "slug": "sharpedo-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10070.png"
+    }
+  ],
+  "skarmory": [
+    {
+      "label": "Skarmory (Mega)",
+      "slug": "skarmory-mega",
+      "sprite": null
+    }
+  ],
+  "slowbro": [
+    {
+      "label": "Slowbro (Mega)",
+      "slug": "slowbro-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10071.png"
+    }
+  ],
+  "starmie": [
+    {
+      "label": "Starmie (Mega)",
+      "slug": "starmie-mega",
+      "sprite": null
+    }
+  ],
+  "steelix": [
+    {
+      "label": "Steelix (Mega)",
+      "slug": "steelix-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10072.png"
+    }
+  ],
+  "swampert": [
+    {
+      "label": "Swampert (Mega)",
+      "slug": "swampert-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10064.png"
+    }
+  ],
+  "tyranitar": [
+    {
+      "label": "Tyranitar (Mega)",
+      "slug": "tyranitar-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10049.png"
+    }
+  ],
+  "venusaur": [
+    {
+      "label": "Venusaur (Mega)",
+      "slug": "venusaur-mega",
+      "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10033.png"
+    }
+  ],
+  "victreebel": [
+    {
+      "label": "Victreebel (Mega)",
+      "slug": "victreebel-mega",
+      "sprite": null
+    }
+  ],
+  "zygarde-complete": [
+    {
+      "label": "Zygarde (Mega)",
+      "slug": "zygarde-mega",
+      "sprite": null
+    }
+  ]
+}

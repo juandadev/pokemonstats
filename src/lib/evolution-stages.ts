@@ -109,21 +109,21 @@ const emptyEvoDetailObj: EvolutionCardData = {
   ],
 };
 
-async function insertMegaEvolution(stageList: EvolutionCardData[][]) {
+async function insertMegaEvolution(
+  stageList: EvolutionCardData[][]
+): Promise<boolean> {
   const lastStage: EvolutionCardData[] = stageList[stageList.length - 1];
   const megaForms: EvolutionCardData[] = [];
 
   for (const { slug } of lastStage) {
-    const megaExceptions = [
-      'mewtwo-mega-x',
-      'mewtwo-mega-y',
-      'charizard-mega-x',
-      'charizard-mega-y',
-    ];
     const isMegaEvolution = MEGA_EVOS_LIST.has(slug);
 
-    if (isMegaEvolution) {
-      const megaSlug = MEGA_EVOS_LIST.get(slug)!.slug;
+    if (!isMegaEvolution) {
+      continue;
+    }
+
+    for (const megaEvo of MEGA_EVOS_LIST.get(slug)!) {
+      const megaSlug = megaEvo.slug;
       const megaData = await getEvolutionDetails(megaSlug);
 
       if (!megaData) continue;
@@ -133,10 +133,10 @@ async function insertMegaEvolution(stageList: EvolutionCardData[][]) {
           matchesInitialChars(item.name, megaData.name, 4) &&
           item.name.includes('ite');
 
-        if (megaExceptions.includes(slug) && isMatch) {
+        if ((megaSlug.includes('-x') || megaSlug.includes('-y')) && isMatch) {
           return item.name.includes('-x')
-            ? slug.endsWith('-x')
-            : slug.endsWith('-y');
+            ? megaSlug.endsWith('-x')
+            : megaSlug.endsWith('-y');
         }
 
         return isMatch;
@@ -169,10 +169,16 @@ async function insertMegaEvolution(stageList: EvolutionCardData[][]) {
   if (megaForms.length > 0) {
     stageList.push(megaForms);
   }
+
+  return megaForms.length > 0;
 }
 
-async function insertGmaxEvolution(stageList: EvolutionCardData[][]) {
-  const lastStage: EvolutionCardData = stageList[stageList.length - 1][0];
+async function insertGmaxEvolution(
+  stageList: EvolutionCardData[][],
+  hasMega: boolean
+) {
+  const lastStage: EvolutionCardData =
+    stageList[stageList.length - (hasMega ? 2 : 1)][0];
   const isGmax = GMAX_LIST.has(lastStage.slug);
 
   if (isGmax) {
@@ -229,8 +235,8 @@ export async function buildEvolutionStageList(
     })
   );
 
-  await insertMegaEvolution(stageList);
-  await insertGmaxEvolution(stageList);
+  const hasMega = await insertMegaEvolution(stageList);
+  await insertGmaxEvolution(stageList, hasMega);
 
   return stageList;
 }
