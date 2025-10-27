@@ -77,7 +77,9 @@ export default function PokemonCard({
             <TabsList className="w-full">
               <TabsTrigger value="overview">Overview</TabsTrigger>
               <TabsTrigger value="stats">Base Stats</TabsTrigger>
-              <TabsTrigger value="moves">Moves</TabsTrigger>
+              {moveList.length > 0 && (
+                <TabsTrigger value="moves">Moves</TabsTrigger>
+              )}
             </TabsList>
             <TabsContent value="overview">
               <Overview pokemonData={pokemonData} />
@@ -85,9 +87,11 @@ export default function PokemonCard({
             <TabsContent value="stats">
               <Stats stats={pokemonData.stats} />
             </TabsContent>
-            <TabsContent value="moves">
-              <Moves moves={moveList} />
-            </TabsContent>
+            {moveList.length > 0 && (
+              <TabsContent value="moves">
+                <Moves moves={moveList} />
+              </TabsContent>
+            )}
           </Tabs>
         </div>
       </CardContent>
