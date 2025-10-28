@@ -9,6 +9,7 @@ import ITEMS_INDEX from '@/data/items-index.json';
 import POKEMON_INDEX from '@/data/pokemon-index.json';
 import MEGA_EVOS_INDEX from '@/data/mega-evos-index.json';
 import GMAX_INDEX from '@/data/gmax-index.json';
+import MISSING_SPRITES_INDEX from '@/data/missing-pokemon-sprites.json';
 
 export const ROADMAP: Roadmap[] = [
   {
@@ -253,4 +254,8 @@ export const MEGA_EVOS_LIST = new Map<string, PokemonIndexItem[]>(
 
 export const GMAX_LIST = new Map<string, PokemonIndexItem>(
   Object.entries(GMAX_INDEX)
+);
+
+export const MISSING_SPRITE_LIST = new Map<string, string>(
+  Object.entries(MISSING_SPRITES_INDEX)
 );

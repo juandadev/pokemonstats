@@ -1,7 +1,10 @@
 import { CompletePokemonData, PokemonData } from '@/types/pokemon.types';
 import { Species } from '@/types/species.types';
 import { EvolutionChain } from '@/types/evolutions.types';
-import { CUSTOM_EVOLUTION_CHAINS } from '@/common/constants';
+import {
+  CUSTOM_EVOLUTION_CHAINS,
+  MISSING_SPRITE_LIST,
+} from '@/common/constants';
 
 const BASE = 'https://pokeapi.co/api/v2';
 
@@ -16,7 +19,17 @@ export async function getPokemonDataBySlug(
 
   if (!pokemonResponse.ok) return {};
 
-  const pokemonData: PokemonData = await pokemonResponse.json();
+  let pokemonData: PokemonData = await pokemonResponse.json();
+  if (MISSING_SPRITE_LIST.has(pokemonData.name)) {
+    pokemonData = {
+      ...pokemonData,
+      sprites: {
+        front_default: MISSING_SPRITE_LIST.get(pokemonData.name)!,
+        front_shiny: '',
+      },
+    };
+  }
+
   const speciesResponse = await fetch(pokemonData.species.url, {
     cache: 'force-cache',
   });
@@ -53,5 +66,16 @@ export async function getEvolutionDetails(
 
   if (!response.ok) return null;
 
-  return (await response.json()) as PokemonData;
+  let pokemonData: PokemonData = await response.json();
+  if (MISSING_SPRITE_LIST.has(pokemonData.name)) {
+    pokemonData = {
+      ...pokemonData,
+      sprites: {
+        front_default: MISSING_SPRITE_LIST.get(pokemonData.name)!,
+        front_shiny: '',
+      },
+    };
+  }
+
+  return pokemonData;
 }
