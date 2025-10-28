@@ -32,7 +32,11 @@ import {
 } from '@/types/evolutions.types';
 import { Species } from '@/types/species.types';
 import { TYPE_COLORS } from '@/common/constants/pokemonTypes';
-import { ITEMS_DATA } from '@/common/constants/items';
+import { ItemData } from '@/types/items.types';
+import { titleCase } from '@/lib/utils';
+import MegaEvolutionIcon from '@/icons/MegaEvolutionIcon';
+import { ITEMS_LIST } from '@/common/constants/index';
+import GMaxIcon from '@/icons/GMaxIcon';
 
 export const PARSED_EVOLUTION_TRIGGER: Record<
   string,
@@ -58,12 +62,28 @@ export const PARSED_EVOLUTION_TRIGGER: Record<
     label: 'Land three critical hits in a battle',
     icon: <SparklesIcon className="w-4 h-4 text-yellow-600 shrink-0" />,
   },
+  'mega-evolution': {
+    label: 'Mega Evolution',
+    icon: (
+      <div className="rainbow-gradient rounded-full p-0.5">
+        <MegaEvolutionIcon className="w-4 h-4 text-black shrink-0" />
+      </div>
+    ),
+  },
+  gmax: {
+    label: 'Gigantamax',
+    icon: <GMaxIcon className="w-4 h-4 text-[#E60040] shrink-0" />,
+  },
   default: {
     label: 'Unknown',
     icon: (
       <BadgeQuestionMarkIcon className="w-4 h-4 text-yellow-600 shrink-0" />
     ),
   },
+};
+
+const getItemData = (itemName: string): ItemData | undefined => {
+  return ITEMS_LIST.find((item) => item.name === itemName);
 };
 
 export const EVOLUTION_DETAILS = (
@@ -77,7 +97,7 @@ export const EVOLUTION_DETAILS = (
 ): Record<keyof EvolutionDetails, EvolutionDetailDisplay> => ({
   trigger: {
     type: 'trigger',
-    label: PARSED_EVOLUTION_TRIGGER[detail as string]?.label || 'Check details',
+    label: PARSED_EVOLUTION_TRIGGER[detail as string]?.label || 'Missing info',
     image: undefined,
     icon: PARSED_EVOLUTION_TRIGGER[detail as string]?.icon || (
       <div className="w-1 h-1 bg-gray-400 rounded-full" />
@@ -110,11 +130,15 @@ export const EVOLUTION_DETAILS = (
       <span>
         While holding:{' '}
         <strong>
-          {ITEMS_DATA[(detail as GenericPropertyDetails<Items>).name]?.label}
+          {titleCase(
+            getItemData((detail as GenericPropertyDetails).name)?.name || ''
+          ) || 'Missing info'}
         </strong>
       </span>
     ),
-    image: ITEMS_DATA[(detail as GenericPropertyDetails<Items>).name]?.image,
+    image:
+      getItemData((detail as GenericPropertyDetails).name)?.sprites.default ||
+      '',
     icon: undefined,
     details: undefined,
     generation: undefined,
@@ -126,11 +150,15 @@ export const EVOLUTION_DETAILS = (
       <span>
         Required item:{' '}
         <strong>
-          {ITEMS_DATA[(detail as GenericPropertyDetails<Items>).name]?.label}
+          {titleCase(
+            getItemData((detail as GenericPropertyDetails).name)?.name || ''
+          ) || 'Missing info'}
         </strong>
       </span>
     ),
-    image: ITEMS_DATA[(detail as GenericPropertyDetails<Items>).name]?.image,
+    image:
+      getItemData((detail as GenericPropertyDetails).name)?.sprites.default ||
+      '',
     icon: undefined,
     details: undefined,
     generation: undefined,
@@ -181,7 +209,8 @@ export const EVOLUTION_DETAILS = (
       <span>
         Location:{' '}
         <strong className="capitalize">
-          {(detail as GenericPropertyDetails).name?.replaceAll('-', ' ')}
+          {(detail as GenericPropertyDetails).name?.replaceAll('-', ' ') ||
+            'Missing info'}
         </strong>
       </span>
     ),

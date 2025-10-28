@@ -1,7 +1,7 @@
 import { EvolutionChain, EvolutionDetails } from '@/types/evolutions.types';
 import { Species } from '@/types/species.types';
 import { GAME_LIST } from '@/common/constants/games';
-import { MoveApiData } from '@/types/moves.types';
+import { LearnMethodType, MoveApiData } from '@/types/moves.types';
 
 export type PokemonTypes =
   | 'normal'
@@ -87,7 +87,7 @@ export interface Move {
 
 export interface VersionGroupDetail {
   level_learned_at: number;
-  move_learn_method: GenericPropertyDetails;
+  move_learn_method: GenericPropertyDetails<LearnMethodType>;
   order: number;
   version_group: GenericPropertyDetails<GameVersion>;
 }

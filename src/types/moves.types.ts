@@ -4,6 +4,11 @@ import {
   PokemonTypes,
 } from '@/types/pokemon.types';
 import { Name } from '@/types/species.types';
+import { EffectEntry, FlavorTextEntry } from '@/types/index';
+
+export type DamageType = 'physical' | 'special' | 'status';
+
+export type LearnMethodType = 'level-up' | 'machine';
 
 export interface MoveDisplayData {
   name: string;
@@ -12,12 +17,14 @@ export interface MoveDisplayData {
   pp: number;
   accuracy: number | null;
   gameDetails: MoveGameDetails[];
+  damageClass: DamageType;
 }
 
 export interface MoveGameDetails {
   level: number;
   description: string;
   game: GameVersion;
+  learnMethod: LearnMethodType;
 }
 
 export interface MoveApiData {
@@ -25,7 +32,7 @@ export interface MoveApiData {
   contest_combos: ContestCombos;
   contest_effect: Pick<GenericPropertyDetails, 'url'>;
   contest_type: GenericPropertyDetails;
-  damage_class: GenericPropertyDetails;
+  damage_class: GenericPropertyDetails<DamageType>;
   effect_chance: null;
   effect_changes: null;
   effect_entries: EffectEntry[];
@@ -57,12 +64,6 @@ export interface ContestComboType {
   use_before: GenericPropertyDetails[] | null;
 }
 
-export interface EffectEntry {
-  effect: string;
-  language: GenericPropertyDetails;
-  short_effect: string;
-}
-
 export interface Meta {
   ailment: GenericPropertyDetails;
   ailment_chance: number;
@@ -76,10 +77,4 @@ export interface Meta {
   min_hits: null;
   min_turns: null;
   stat_chance: number;
-}
-
-export interface FlavorTextEntry {
-  flavor_text: string;
-  language: GenericPropertyDetails;
-  version_group: GenericPropertyDetails<GameVersion>;
 }

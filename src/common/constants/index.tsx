@@ -1,6 +1,15 @@
 import { Roadmap } from '@/types/roadmap.types';
 import { Contributor } from '@/app/api/contributors/route';
 import { BrushIcon } from 'lucide-react';
+import { EvolutionChain } from '@/types/evolutions.types';
+import { PokemonIndexItem } from '@/types/pokemon.types';
+import { ItemData } from '@/types/items.types';
+import EVOLUTION_OVERRIDES from '@/data/custom-evolution-overrides.json';
+import ITEMS_INDEX from '@/data/items-index.json';
+import POKEMON_INDEX from '@/data/pokemon-index.json';
+import MEGA_EVOS_INDEX from '@/data/mega-evos-index.json';
+import GMAX_INDEX from '@/data/gmax-index.json';
+import MISSING_SPRITES_INDEX from '@/data/missing-pokemon-sprites.json';
 
 export const ROADMAP: Roadmap[] = [
   {
@@ -229,3 +238,24 @@ export const CONTRIBUTORS: Contributor[] = [
     category: <BrushIcon className="size-3 text-green-500" />,
   },
 ];
+
+export const CUSTOM_EVOLUTION_CHAINS = EVOLUTION_OVERRIDES as Record<
+  string,
+  EvolutionChain
+>;
+
+export const POKEMON_LIST = POKEMON_INDEX as PokemonIndexItem[];
+
+export const ITEMS_LIST = ITEMS_INDEX as ItemData[];
+
+export const MEGA_EVOS_LIST = new Map<string, PokemonIndexItem[]>(
+  Object.entries(MEGA_EVOS_INDEX)
+);
+
+export const GMAX_LIST = new Map<string, PokemonIndexItem>(
+  Object.entries(GMAX_INDEX)
+);
+
+export const MISSING_SPRITE_LIST = new Map<string, string>(
+  Object.entries(MISSING_SPRITES_INDEX)
+);

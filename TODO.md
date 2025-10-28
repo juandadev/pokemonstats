@@ -65,6 +65,10 @@
   overflows the container.
 - [ ] Some suggestions are not shown completely on mobile devices.
 
+# Performance Improvements
+
+- [ ] Swap scrapped data with name indexes and create a Map[] to avoid using `array.find` and get quicker searches
+
 # Priority
 
 - [ ] Add Pokémon history section (Up to 5)
@@ -108,21 +112,19 @@
         - [ ] Well-Baked Body
         - [ ] Wonder Guard
 - [ ] Try to add on which games the evolution variations are effective. (Take Eevee as example)
-- [ ] Add Analytics
-    - [ ] Use Data Buddy
-    - [ ] Track page views
-    - [ ] Track search queries
-    - [ ] Heat maps
+- [x] Add Analytics
+    - [x] Use Data Buddy
+    - [x] Track page views
 
 # Final touches
 
-- [ ] Protect GitHub branches
+- [x] Protect GitHub branches
 
 # Nice to have
 
 - [ ] If the user clicks on the sticky header, it should scroll to the search input
     - [ ] Add a floating button as well to scroll to the search input, placed in the bottom right corner of the screen.
-- [ ] Add star count to the GitHub repo button on the Hero section
+- [x] Add star count to the GitHub repo button on the Hero section
 
 # Roadmap
 

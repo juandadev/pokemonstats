@@ -22,14 +22,6 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function toPokeApiName(name: string) {
-  if (!name.startsWith('Mega ')) return name.toLowerCase().replace(/\s+/g, '-');
-
-  const parts = name.split(' ');
-  const base = parts.slice(1).join('-').toLowerCase(); // everything after "Mega"
-  return `${base}-mega`;
-}
-
 export const getEvolutionDetails = (
   details?: EvolutionDetails[] | null
 ): Partial<EvolutionDetails>[] => {
@@ -203,22 +195,6 @@ export const createNeutralRow = (): number[] => {
   return new Array(typeCount).fill(1);
 };
 
-export function formatDisplayCount(count: number): string {
-  if (count < 10_000) {
-    return count.toLocaleString(); // adds commas: 1,234
-  }
-
-  if (count >= 1_000_000_000) {
-    return `${(count / 1_000_000_000).toFixed(1).replace(/\.0$/, '')}B`;
-  }
-
-  if (count >= 1_000_000) {
-    return `${(count / 1_000_000).toFixed(1).replace(/\.0$/, '')}M`;
-  }
-
-  return `${(count / 1_000).toFixed(1).replace(/\.0$/, '')}k`;
-}
-
 export const formatStatName = (statName: string) => {
   const statMap: { [key: string]: string } = {
     hp: 'HP',
@@ -308,4 +284,26 @@ export function titleCase(input: string): string {
     .replace(/\s+/g, ' ')
     .trim()
     .replace(/\b\w/g, (m) => m.toUpperCase());
+}
+
+/**
+ * Check if a string matches the first X characters of another string.
+ *
+ * @param target - The string to check against (the full string)
+ * @param candidate - The string to test (the partial match)
+ * @param length - Number of initial characters to compare
+ * @returns true if the candidate matches the first X characters of the target
+ */
+export function matchesInitialChars(
+  target: string,
+  candidate: string,
+  length: number
+): boolean {
+  if (length <= 0) return false;
+  if (candidate.length < length || target.length < length) return false;
+
+  return (
+    target.slice(0, length).toLowerCase() ===
+    candidate.slice(0, length).toLowerCase()
+  );
 }

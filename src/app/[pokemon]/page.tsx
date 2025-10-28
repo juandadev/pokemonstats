@@ -11,15 +11,19 @@ import { buildEvolutionStageList } from '@/lib/evolution-stages';
 import { buildMoveList } from '@/lib/move-list';
 import { getPokemonDisplayName } from '@/lib/pokemonDisplayName';
 import { keywordsForPokemon, titleCase } from '@/lib/utils';
-import { SITE_URL } from '@/common/constants';
+import { POKEMON_LIST, SITE_URL } from '@/common/constants';
 
 export async function generateStaticParams(): Promise<
   Array<{ pokemon: string }>
 > {
-  return [{ pokemon: 'totodile' }];
+  const pokemonSlugs = POKEMON_LIST.map((pokemon) => ({
+    pokemon: pokemon.slug,
+  }));
+
+  return process.env.LOCAL_BUILD ? [{ pokemon: 'totodile' }] : pokemonSlugs;
 }
 
-export const dynamicParams = true;
+export const dynamicParams = false;
 export const revalidate = false;
 export const dynamic = 'force-static';
 

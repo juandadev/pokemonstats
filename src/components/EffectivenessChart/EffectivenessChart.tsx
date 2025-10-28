@@ -8,7 +8,13 @@ import {
   getTypeIcon,
 } from '@/lib/utils';
 import { PokemonData, PokemonTypes } from '@/types/pokemon.types';
-import { ShieldIcon, SwordIcon, XIcon } from 'lucide-react';
+import {
+  CircleDotIcon,
+  ShieldIcon,
+  SwordIcon,
+  TriangleIcon,
+  XIcon,
+} from 'lucide-react';
 import clsx from 'clsx';
 import TypeBadge from '@/components/TypeBadge/TypeBadge';
 import SelectedTypesDisplay from '@/components/EffectivenessChart/SelectedTypesDisplay';
@@ -287,7 +293,7 @@ export default function EffectivenessChart({
               {/* Super Effective */}
               <div>
                 <h3 className="text-lg font-semibold text-green-700 mb-3 flex items-center gap-2">
-                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                  <CircleDotIcon />
                   {effectivenessMode === 'offensive'
                     ? 'Super Effective Against (2x)'
                     : 'Weak To (4x - 2x)'}
@@ -322,7 +328,7 @@ export default function EffectivenessChart({
               {/* Not Very Effective */}
               <div>
                 <h3 className="text-lg font-semibold text-orange-700 mb-3 flex items-center gap-2">
-                  <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
+                  <TriangleIcon />
                   {effectivenessMode === 'offensive'
                     ? 'Not Very Effective Against (0.5x)'
                     : 'Resistant To (0.5 - 0.25×)'}
@@ -357,7 +363,7 @@ export default function EffectivenessChart({
               {/* No Effect */}
               <div>
                 <h3 className="text-lg font-semibold text-gray-700 mb-3 flex items-center gap-2">
-                  <div className="w-3 h-3 bg-gray-500 rounded-full"></div>
+                  <XIcon />
                   {effectivenessMode === 'offensive'
                     ? 'No Effect (0x)'
                     : 'Immune To (0×)'}

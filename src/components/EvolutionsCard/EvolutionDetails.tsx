@@ -75,7 +75,7 @@ export default function EvolutionDetails({
   if (details.length === 0) return null;
 
   return (
-    <div className="mx-3 bg-white border border-gray-200 rounded-lg shadow-sm overflow-y-scroll">
+    <div className="mx-3 bg-white border border-gray-200 rounded-lg shadow-sm overflow-y-auto">
       <div className="divide-y divide-gray-100">
         <div className="p-4 space-y-2">{renderDetailsList}</div>
       </div>

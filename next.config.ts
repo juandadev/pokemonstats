@@ -5,11 +5,12 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: 'raw.githubusercontent.com' },
+      { protocol: 'https', hostname: 'bulbapedia.bulbagarden.net' },
       { protocol: 'https', hostname: 'projectpokemon.org' },
       { protocol: 'https', hostname: 'i.ebayimg.com' },
       { protocol: 'https', hostname: 'assets.pokemon.com' },
       { protocol: 'https', hostname: 'www.pokencyclopedia.info' },
-      { protocol: 'https', hostname: 'serebii.net' },
+      { protocol: 'https', hostname: 'www.serebii.net' },
       { protocol: 'https', hostname: 'archives.bulbagarden.net' },
     ],
   },

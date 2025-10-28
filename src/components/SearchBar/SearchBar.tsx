@@ -5,13 +5,12 @@ import { SearchIcon, XCircleIcon } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import NoSuggestion from '@/components/SearchBar/NoSuggestion';
-import POKEMON_INDEX from '@/data/pokemon-index.json';
-import { PokemonIndexItem } from '@/types/pokemon.types';
 import PokemonImage from '@/components/PokemonImage/PokemonImage';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Slot } from '@radix-ui/react-slot';
 import { useRouter } from 'next/navigation';
+import { POKEMON_LIST } from '@/common/constants';
 
 interface SearchBarProps {
   initialValue?: string;
@@ -24,11 +23,9 @@ export default function SearchBar({ initialValue = '' }: SearchBarProps) {
     useState<number>(-1);
 
   const inputRef = useRef<HTMLInputElement | null>(null);
-
-  const suggestions = POKEMON_INDEX as PokemonIndexItem[];
   const router = useRouter();
 
-  const filteredSuggestions = suggestions
+  const filteredSuggestions = POKEMON_LIST
     .filter((pokemon) =>
       pokemon.slug.toLowerCase().includes(searchTerm.toLowerCase())
     )
@@ -145,7 +142,8 @@ export default function SearchBar({ initialValue = '' }: SearchBarProps) {
                   tabIndex={-1}
                 >
                   <Link href={`/${suggestion.slug}#main`}>
-                    <div className="w-8 h-8 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <div
+                      className="w-8 h-8 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
                       {suggestion.sprite ? (
                         <PokemonImage
                           artUrl={suggestion.sprite}

@@ -1,7 +1,7 @@
 'use client';
 
 import { GameVersion } from '@/types/pokemon.types';
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import {
   Accordion,
   AccordionContent,
@@ -17,9 +17,13 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { GAME_LIST } from '@/common/constants/games';
-import { MoveDisplayData } from '@/types/moves.types';
+import { LearnMethodType, MoveDisplayData } from '@/types/moves.types';
 import { formatGameVersion } from '@/lib/utils';
 import { getPreferences, setPreferences } from '@/lib/preferences';
+import PhysicalDmgIcon from '@/icons/PhysicalDmgIcon';
+import SpecialDmgIcon from '@/icons/SpecialDmgIcon';
+import StatusEffectIcon from '@/icons/StatusEffectIcon';
+import Image from 'next/image';
 
 interface MovesProps {
   moves: MoveDisplayData[];
@@ -53,76 +57,108 @@ export default function Moves({ moves }: MovesProps) {
     setPreferences({ game: value as GameVersion });
   };
 
-  const renderMoveList = useMemo(() => {
-    const filteredMovesByGame = moves
-      .filter((move) =>
-        move.gameDetails.find((item) => item.game === selectedGame)
-      )
-      .sort((a, b) => {
-        const firstEl = a.gameDetails.find(
-          (item) => item.game === selectedGame
-        )!;
-        const secondEl = b.gameDetails.find(
-          (item) => item.game === selectedGame
-        )!;
+  const renderMoveList = useCallback(
+    (type: LearnMethodType) => {
+      const filteredMovesByGame = moves
+        .filter((move) =>
+          move.gameDetails.find(
+            (item) => item.game === selectedGame && item.learnMethod === type
+          )
+        )
+        .sort((a, b) => {
+          const firstEl = a.gameDetails.find(
+            (item) => item.game === selectedGame
+          )!;
+          const secondEl = b.gameDetails.find(
+            (item) => item.game === selectedGame
+          )!;
 
-        return firstEl.level - secondEl.level;
-      });
+          return firstEl.level - secondEl.level;
+        });
 
-    return filteredMovesByGame.map((move, index) => {
-      const displayName = move.name.replace(/-/g, ' ');
-      const getDetailsByGame =
-        move.gameDetails.find(
-          (gameDetail) => gameDetail.game === selectedGame
-        ) || move.gameDetails[0];
+      return filteredMovesByGame.map((move, index) => {
+        const displayName = move.name.replace(/-/g, ' ');
+        const getDetailsByGame =
+          move.gameDetails.find(
+            (item) => item.game === selectedGame && item.learnMethod === type
+          ) || move.gameDetails[0];
 
-      return (
-        <AccordionItem
-          value={move.name}
-          key={`move-${move.name}-position-${index}`}
-          className="border border-gray-200 rounded-lg overflow-hidden"
-        >
-          <AccordionTrigger className="p-3 text-left hover:bg-gray-50 transition-colors duration-200 hover:no-underline">
-            <div className="flex items-center justify-between w-full">
-              <div className="flex items-center gap-3 flex-1">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-xs font-semibold text-gray-600">
-                    {getDetailsByGame.level}
-                  </div>
-                  <div>
-                    <div className="font-medium text-gray-900 capitalize">
-                      {displayName}
-                    </div>
-                    <div className="flex items-center gap-2 mt-1">
-                      <TypeBadge type={move.type} />
-                      {move.power && (
+        return (
+          <AccordionItem
+            value={move.name}
+            key={`move-${move.name}-position-${index}`}
+            className="border border-gray-200 rounded-lg overflow-hidden"
+          >
+            <AccordionTrigger className="p-3 text-left hover:bg-gray-50 transition-colors duration-200 hover:no-underline">
+              <div className="flex items-center justify-between w-full">
+                <div className="flex items-center gap-3 flex-1">
+                  <div className="flex items-center gap-2">
+                    {getDetailsByGame.learnMethod === 'machine' ? (
+                      <Image
+                        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-${move.type}.png`}
+                        alt={`${move.type} TM sprite`}
+                        width={30}
+                        height={30}
+                      />
+                    ) : (
+                      <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-xs font-semibold text-gray-600">
+                        {getDetailsByGame.level}
+                      </div>
+                    )}
+                    <div>
+                      <div className="font-medium text-gray-900 capitalize flex gap-2 items-center">
+                        {move.damageClass === 'physical' && (
+                          <PhysicalDmgIcon
+                            size={15}
+                            className="text-muted-foreground"
+                          />
+                        )}
+                        {move.damageClass === 'special' && (
+                          <SpecialDmgIcon
+                            size={13}
+                            className="text-muted-foreground"
+                          />
+                        )}
+                        {move.damageClass === 'status' && (
+                          <StatusEffectIcon
+                            size={13}
+                            className="text-muted-foreground"
+                          />
+                        )}
+                        {displayName}
+                      </div>
+                      <div className="flex items-center gap-2 mt-1">
+                        <TypeBadge type={move.type} />
+                        {move.power && (
+                          <span className="text-xs text-gray-500 font-bold">
+                            Power: {move.power}
+                          </span>
+                        )}
                         <span className="text-xs text-gray-500">
-                          Power: {move.power}
+                          PP: {move.pp}
                         </span>
-                      )}
-                      <span className="text-xs text-gray-500">
-                        PP: {move.pp}
-                      </span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </AccordionTrigger>
-          <AccordionContent className="px-3 pb-3 border-t border-gray-100 bg-gray-50">
-            <div className="pt-3">
-              <p className="text-sm text-gray-700 leading-relaxed">
-                {getDetailsByGame.description}
-              </p>
-              <div className="mt-2 flex flex-col gap-2 text-xs text-gray-500">
-                {move.accuracy && <span>{move.accuracy}% accuracy</span>}
+            </AccordionTrigger>
+            <AccordionContent className="px-3 pb-3 border-t border-gray-100 bg-gray-50">
+              <div className="pt-3">
+                <p className="text-sm text-gray-700 leading-relaxed">
+                  {getDetailsByGame.description}
+                </p>
+                <div className="mt-2 flex flex-col gap-2 text-xs text-gray-500">
+                  {move.accuracy && <span>{move.accuracy}% accuracy</span>}
+                </div>
               </div>
-            </div>
-          </AccordionContent>
-        </AccordionItem>
-      );
-    });
-  }, [moves, selectedGame]);
+            </AccordionContent>
+          </AccordionItem>
+        );
+      });
+    },
+    [moves, selectedGame]
+  );
 
   return (
     <>
@@ -140,8 +176,28 @@ export default function Moves({ moves }: MovesProps) {
       </Select>
       {selectedGame ? (
         <div className="h-96 overflow-y-auto mt-3">
-          <Accordion type="single" collapsible className="space-y-2 pr-2">
-            {renderMoveList}
+          <Accordion
+            type="single"
+            collapsible
+            defaultValue="lvl-up"
+            className="space-y-2 pr-3"
+          >
+            <AccordionItem value="machine">
+              <AccordionTrigger>Machines</AccordionTrigger>
+              <AccordionContent>
+                <Accordion type="single" collapsible className="space-y-2">
+                  {renderMoveList('machine')}
+                </Accordion>
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="lvl-up">
+              <AccordionTrigger>Level Up</AccordionTrigger>
+              <AccordionContent>
+                <Accordion type="single" collapsible className="space-y-2">
+                  {renderMoveList('level-up')}
+                </Accordion>
+              </AccordionContent>
+            </AccordionItem>
           </Accordion>
         </div>
       ) : (

@@ -1,6 +1,10 @@
 import { CompletePokemonData, PokemonData } from '@/types/pokemon.types';
 import { Species } from '@/types/species.types';
 import { EvolutionChain } from '@/types/evolutions.types';
+import {
+  CUSTOM_EVOLUTION_CHAINS,
+  MISSING_SPRITE_LIST,
+} from '@/common/constants';
 
 const BASE = 'https://pokeapi.co/api/v2';
 
@@ -15,7 +19,17 @@ export async function getPokemonDataBySlug(
 
   if (!pokemonResponse.ok) return {};
 
-  const pokemonData: PokemonData = await pokemonResponse.json();
+  let pokemonData: PokemonData = await pokemonResponse.json();
+  if (MISSING_SPRITE_LIST.has(pokemonData.name)) {
+    pokemonData = {
+      ...pokemonData,
+      sprites: {
+        front_default: MISSING_SPRITE_LIST.get(pokemonData.name)!,
+        front_shiny: '',
+      },
+    };
+  }
+
   const speciesResponse = await fetch(pokemonData.species.url, {
     cache: 'force-cache',
   });
@@ -26,13 +40,19 @@ export async function getPokemonDataBySlug(
 
   if (!speciesData.evolution_chain) return {};
 
-  const evolutionsResponse = await fetch(speciesData.evolution_chain.url, {
-    cache: 'force-cache',
-  });
+  let evolutionsData: EvolutionChain;
 
-  if (!evolutionsResponse.ok) return {};
+  if (CUSTOM_EVOLUTION_CHAINS[speciesData.name]) {
+    evolutionsData = CUSTOM_EVOLUTION_CHAINS[speciesData.name];
+  } else {
+    const evolutionsResponse = await fetch(speciesData.evolution_chain.url, {
+      cache: 'force-cache',
+    });
 
-  const evolutionsData: EvolutionChain = await evolutionsResponse.json();
+    if (!evolutionsResponse.ok) return {};
+
+    evolutionsData = await evolutionsResponse.json();
+  }
 
   return { pokemonData, speciesData, evolutionsData };
 }
@@ -46,5 +66,16 @@ export async function getEvolutionDetails(
 
   if (!response.ok) return null;
 
-  return (await response.json()) as PokemonData;
+  let pokemonData: PokemonData = await response.json();
+  if (MISSING_SPRITE_LIST.has(pokemonData.name)) {
+    pokemonData = {
+      ...pokemonData,
+      sprites: {
+        front_default: MISSING_SPRITE_LIST.get(pokemonData.name)!,
+        front_shiny: '',
+      },
+    };
+  }
+
+  return pokemonData;
 }
