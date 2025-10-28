@@ -30,5 +30,727 @@
       }
     },
     "id": 370
+  },
+  "espurr": {
+    "baby_trigger_item": null,
+    "chain": {
+      "evolution_details": [],
+      "evolves_to": [
+        {
+          "evolution_details": [
+            {
+              "base_form_id": null,
+              "gender": 2,
+              "held_item": null,
+              "item": null,
+              "known_move": null,
+              "known_move_type": null,
+              "location": null,
+              "min_affection": null,
+              "min_beauty": null,
+              "min_happiness": null,
+              "min_level": 25,
+              "needs_overworld_rain": false,
+              "party_species": null,
+              "party_type": null,
+              "region_id": null,
+              "relative_physical_stats": null,
+              "time_of_day": "",
+              "trade_species": null,
+              "trigger": {
+                "name": "level-up",
+                "url": "https://pokeapi.co/api/v2/evolution-trigger/1/"
+              },
+              "turn_upside_down": false
+            }
+          ],
+          "evolves_to": [],
+          "is_baby": false,
+          "species": {
+            "name": "meowstic-male",
+            "url": "https://pokeapi.co/api/v2/pokemon-species/678/"
+          }
+        },
+        {
+          "evolution_details": [
+            {
+              "base_form_id": null,
+              "gender": 1,
+              "held_item": null,
+              "item": null,
+              "known_move": null,
+              "known_move_type": null,
+              "location": null,
+              "min_affection": null,
+              "min_beauty": null,
+              "min_happiness": null,
+              "min_level": 25,
+              "needs_overworld_rain": false,
+              "party_species": null,
+              "party_type": null,
+              "region_id": null,
+              "relative_physical_stats": null,
+              "time_of_day": "",
+              "trade_species": null,
+              "trigger": {
+                "name": "level-up",
+                "url": "https://pokeapi.co/api/v2/evolution-trigger/1/"
+              },
+              "turn_upside_down": false
+            }
+          ],
+          "evolves_to": [],
+          "is_baby": false,
+          "species": {
+            "name": "meowstic-female",
+            "url": "https://pokeapi.co/api/v2/pokemon-species/678/"
+          }
+        }
+      ],
+      "is_baby": false,
+      "species": {
+        "name": "espurr",
+        "url": "https://pokeapi.co/api/v2/pokemon-species/677/"
+      }
+    },
+    "id": 370
+  },
+  "meowstic": {
+    "baby_trigger_item": null,
+    "chain": {
+      "evolution_details": [],
+      "evolves_to": [
+        {
+          "evolution_details": [
+            {
+              "base_form_id": null,
+              "gender": 2,
+              "held_item": null,
+              "item": null,
+              "known_move": null,
+              "known_move_type": null,
+              "location": null,
+              "min_affection": null,
+              "min_beauty": null,
+              "min_happiness": null,
+              "min_level": 25,
+              "needs_overworld_rain": false,
+              "party_species": null,
+              "party_type": null,
+              "region_id": null,
+              "relative_physical_stats": null,
+              "time_of_day": "",
+              "trade_species": null,
+              "trigger": {
+                "name": "level-up",
+                "url": "https://pokeapi.co/api/v2/evolution-trigger/1/"
+              },
+              "turn_upside_down": false
+            }
+          ],
+          "evolves_to": [],
+          "is_baby": false,
+          "species": {
+            "name": "meowstic-male",
+            "url": "https://pokeapi.co/api/v2/pokemon-species/678/"
+          }
+        },
+        {
+          "evolution_details": [
+            {
+              "base_form_id": null,
+              "gender": 1,
+              "held_item": null,
+              "item": null,
+              "known_move": null,
+              "known_move_type": null,
+              "location": null,
+              "min_affection": null,
+              "min_beauty": null,
+              "min_happiness": null,
+              "min_level": 25,
+              "needs_overworld_rain": false,
+              "party_species": null,
+              "party_type": null,
+              "region_id": null,
+              "relative_physical_stats": null,
+              "time_of_day": "",
+              "trade_species": null,
+              "trigger": {
+                "name": "level-up",
+                "url": "https://pokeapi.co/api/v2/evolution-trigger/1/"
+              },
+              "turn_upside_down": false
+            }
+          ],
+          "evolves_to": [],
+          "is_baby": false,
+          "species": {
+            "name": "meowstic-female",
+            "url": "https://pokeapi.co/api/v2/pokemon-species/678/"
+          }
+        }
+      ],
+      "is_baby": false,
+      "species": {
+        "name": "espurr",
+        "url": "https://pokeapi.co/api/v2/pokemon-species/677/"
+      }
+    },
+    "id": 370
+  },
+  "honedge": {
+    "baby_trigger_item": null,
+    "chain": {
+      "evolution_details": [
+        {
+          "base_form_id": null,
+          "gender": null,
+          "held_item": null,
+          "item": null,
+          "known_move": null,
+          "known_move_type": null,
+          "location": null,
+          "min_affection": null,
+          "min_beauty": null,
+          "min_happiness": null,
+          "min_level": 35,
+          "needs_overworld_rain": false,
+          "party_species": null,
+          "party_type": null,
+          "region_id": null,
+          "relative_physical_stats": null,
+          "time_of_day": "",
+          "trade_species": null,
+          "trigger": {
+            "name": "level-up",
+            "url": "https://pokeapi.co/api/v2/evolution-trigger/1/"
+          },
+          "turn_upside_down": false
+        }
+      ],
+      "evolves_to": [
+        {
+          "evolution_details": [
+            {
+              "base_form_id": null,
+              "gender": 1,
+              "held_item": null,
+              "item": null,
+              "known_move": null,
+              "known_move_type": null,
+              "location": null,
+              "min_affection": null,
+              "min_beauty": null,
+              "min_happiness": null,
+              "min_level": 25,
+              "needs_overworld_rain": false,
+              "party_species": null,
+              "party_type": null,
+              "region_id": null,
+              "relative_physical_stats": null,
+              "time_of_day": "",
+              "trade_species": null,
+              "trigger": {
+                "name": "level-up",
+                "url": "https://pokeapi.co/api/v2/evolution-trigger/1/"
+              },
+              "turn_upside_down": false
+            }
+          ],
+          "evolves_to": [
+            {
+              "evolution_details": [
+                {
+                  "base_form_id": null,
+                  "gender": null,
+                  "held_item": null,
+                  "item": {
+                    "name": "dusk-stone",
+                    "url": "https://pokeapi.co/api/v2/item/108/"
+                  },
+                  "known_move": null,
+                  "known_move_type": null,
+                  "location": null,
+                  "min_affection": null,
+                  "min_beauty": null,
+                  "min_happiness": null,
+                  "min_level": null,
+                  "needs_overworld_rain": false,
+                  "party_species": null,
+                  "party_type": null,
+                  "region_id": null,
+                  "relative_physical_stats": null,
+                  "time_of_day": "",
+                  "trade_species": null,
+                  "trigger": {
+                    "name": "use-item",
+                    "url": "https://pokeapi.co/api/v2/evolution-trigger/3/"
+                  },
+                  "turn_upside_down": false
+                }
+              ],
+              "evolves_to": [],
+              "is_baby": false,
+              "species": {
+                "name": "aegislash-blade",
+                "url": "https://pokeapi.co/api/v2/pokemon-species/681/"
+              }
+            },
+            {
+              "evolution_details": [
+                {
+                  "base_form_id": null,
+                  "gender": null,
+                  "held_item": null,
+                  "item": {
+                    "name": "dusk-stone",
+                    "url": "https://pokeapi.co/api/v2/item/108/"
+                  },
+                  "known_move": null,
+                  "known_move_type": null,
+                  "location": null,
+                  "min_affection": null,
+                  "min_beauty": null,
+                  "min_happiness": null,
+                  "min_level": null,
+                  "needs_overworld_rain": false,
+                  "party_species": null,
+                  "party_type": null,
+                  "region_id": null,
+                  "relative_physical_stats": null,
+                  "time_of_day": "",
+                  "trade_species": null,
+                  "trigger": {
+                    "name": "use-item",
+                    "url": "https://pokeapi.co/api/v2/evolution-trigger/3/"
+                  },
+                  "turn_upside_down": false
+                }
+              ],
+              "evolves_to": [],
+              "is_baby": false,
+              "species": {
+                "name": "aegislash-shield",
+                "url": "https://pokeapi.co/api/v2/pokemon-species/681/"
+              }
+            }
+          ],
+          "is_baby": false,
+          "species": {
+            "name": "doublade",
+            "url": "https://pokeapi.co/api/v2/pokemon-species/680/"
+          }
+        }
+      ],
+      "is_baby": false,
+      "species": {
+        "name": "honedge",
+        "url": "https://pokeapi.co/api/v2/pokemon-species/679/"
+      }
+    },
+    "id": 370
+  },
+  "doublade": {
+    "baby_trigger_item": null,
+    "chain": {
+      "evolution_details": [
+        {
+          "base_form_id": null,
+          "gender": null,
+          "held_item": null,
+          "item": null,
+          "known_move": null,
+          "known_move_type": null,
+          "location": null,
+          "min_affection": null,
+          "min_beauty": null,
+          "min_happiness": null,
+          "min_level": 35,
+          "needs_overworld_rain": false,
+          "party_species": null,
+          "party_type": null,
+          "region_id": null,
+          "relative_physical_stats": null,
+          "time_of_day": "",
+          "trade_species": null,
+          "trigger": {
+            "name": "level-up",
+            "url": "https://pokeapi.co/api/v2/evolution-trigger/1/"
+          },
+          "turn_upside_down": false
+        }
+      ],
+      "evolves_to": [
+        {
+          "evolution_details": [
+            {
+              "base_form_id": null,
+              "gender": 1,
+              "held_item": null,
+              "item": null,
+              "known_move": null,
+              "known_move_type": null,
+              "location": null,
+              "min_affection": null,
+              "min_beauty": null,
+              "min_happiness": null,
+              "min_level": 25,
+              "needs_overworld_rain": false,
+              "party_species": null,
+              "party_type": null,
+              "region_id": null,
+              "relative_physical_stats": null,
+              "time_of_day": "",
+              "trade_species": null,
+              "trigger": {
+                "name": "level-up",
+                "url": "https://pokeapi.co/api/v2/evolution-trigger/1/"
+              },
+              "turn_upside_down": false
+            }
+          ],
+          "evolves_to": [
+            {
+              "evolution_details": [
+                {
+                  "base_form_id": null,
+                  "gender": null,
+                  "held_item": null,
+                  "item": {
+                    "name": "dusk-stone",
+                    "url": "https://pokeapi.co/api/v2/item/108/"
+                  },
+                  "known_move": null,
+                  "known_move_type": null,
+                  "location": null,
+                  "min_affection": null,
+                  "min_beauty": null,
+                  "min_happiness": null,
+                  "min_level": null,
+                  "needs_overworld_rain": false,
+                  "party_species": null,
+                  "party_type": null,
+                  "region_id": null,
+                  "relative_physical_stats": null,
+                  "time_of_day": "",
+                  "trade_species": null,
+                  "trigger": {
+                    "name": "use-item",
+                    "url": "https://pokeapi.co/api/v2/evolution-trigger/3/"
+                  },
+                  "turn_upside_down": false
+                }
+              ],
+              "evolves_to": [],
+              "is_baby": false,
+              "species": {
+                "name": "aegislash-blade",
+                "url": "https://pokeapi.co/api/v2/pokemon-species/681/"
+              }
+            },
+            {
+              "evolution_details": [
+                {
+                  "base_form_id": null,
+                  "gender": null,
+                  "held_item": null,
+                  "item": {
+                    "name": "dusk-stone",
+                    "url": "https://pokeapi.co/api/v2/item/108/"
+                  },
+                  "known_move": null,
+                  "known_move_type": null,
+                  "location": null,
+                  "min_affection": null,
+                  "min_beauty": null,
+                  "min_happiness": null,
+                  "min_level": null,
+                  "needs_overworld_rain": false,
+                  "party_species": null,
+                  "party_type": null,
+                  "region_id": null,
+                  "relative_physical_stats": null,
+                  "time_of_day": "",
+                  "trade_species": null,
+                  "trigger": {
+                    "name": "use-item",
+                    "url": "https://pokeapi.co/api/v2/evolution-trigger/3/"
+                  },
+                  "turn_upside_down": false
+                }
+              ],
+              "evolves_to": [],
+              "is_baby": false,
+              "species": {
+                "name": "aegislash-shield",
+                "url": "https://pokeapi.co/api/v2/pokemon-species/681/"
+              }
+            }
+          ],
+          "is_baby": false,
+          "species": {
+            "name": "doublade",
+            "url": "https://pokeapi.co/api/v2/pokemon-species/680/"
+          }
+        }
+      ],
+      "is_baby": false,
+      "species": {
+        "name": "honedge",
+        "url": "https://pokeapi.co/api/v2/pokemon-species/679/"
+      }
+    },
+    "id": 370
+  },
+  "aegislash": {
+    "baby_trigger_item": null,
+    "chain": {
+      "evolution_details": [
+        {
+          "base_form_id": null,
+          "gender": null,
+          "held_item": null,
+          "item": null,
+          "known_move": null,
+          "known_move_type": null,
+          "location": null,
+          "min_affection": null,
+          "min_beauty": null,
+          "min_happiness": null,
+          "min_level": 35,
+          "needs_overworld_rain": false,
+          "party_species": null,
+          "party_type": null,
+          "region_id": null,
+          "relative_physical_stats": null,
+          "time_of_day": "",
+          "trade_species": null,
+          "trigger": {
+            "name": "level-up",
+            "url": "https://pokeapi.co/api/v2/evolution-trigger/1/"
+          },
+          "turn_upside_down": false
+        }
+      ],
+      "evolves_to": [
+        {
+          "evolution_details": [
+            {
+              "base_form_id": null,
+              "gender": 1,
+              "held_item": null,
+              "item": null,
+              "known_move": null,
+              "known_move_type": null,
+              "location": null,
+              "min_affection": null,
+              "min_beauty": null,
+              "min_happiness": null,
+              "min_level": 25,
+              "needs_overworld_rain": false,
+              "party_species": null,
+              "party_type": null,
+              "region_id": null,
+              "relative_physical_stats": null,
+              "time_of_day": "",
+              "trade_species": null,
+              "trigger": {
+                "name": "level-up",
+                "url": "https://pokeapi.co/api/v2/evolution-trigger/1/"
+              },
+              "turn_upside_down": false
+            }
+          ],
+          "evolves_to": [
+            {
+              "evolution_details": [
+                {
+                  "base_form_id": null,
+                  "gender": null,
+                  "held_item": null,
+                  "item": {
+                    "name": "dusk-stone",
+                    "url": "https://pokeapi.co/api/v2/item/108/"
+                  },
+                  "known_move": null,
+                  "known_move_type": null,
+                  "location": null,
+                  "min_affection": null,
+                  "min_beauty": null,
+                  "min_happiness": null,
+                  "min_level": null,
+                  "needs_overworld_rain": false,
+                  "party_species": null,
+                  "party_type": null,
+                  "region_id": null,
+                  "relative_physical_stats": null,
+                  "time_of_day": "",
+                  "trade_species": null,
+                  "trigger": {
+                    "name": "use-item",
+                    "url": "https://pokeapi.co/api/v2/evolution-trigger/3/"
+                  },
+                  "turn_upside_down": false
+                }
+              ],
+              "evolves_to": [],
+              "is_baby": false,
+              "species": {
+                "name": "aegislash-blade",
+                "url": "https://pokeapi.co/api/v2/pokemon-species/681/"
+              }
+            },
+            {
+              "evolution_details": [
+                {
+                  "base_form_id": null,
+                  "gender": null,
+                  "held_item": null,
+                  "item": {
+                    "name": "dusk-stone",
+                    "url": "https://pokeapi.co/api/v2/item/108/"
+                  },
+                  "known_move": null,
+                  "known_move_type": null,
+                  "location": null,
+                  "min_affection": null,
+                  "min_beauty": null,
+                  "min_happiness": null,
+                  "min_level": null,
+                  "needs_overworld_rain": false,
+                  "party_species": null,
+                  "party_type": null,
+                  "region_id": null,
+                  "relative_physical_stats": null,
+                  "time_of_day": "",
+                  "trade_species": null,
+                  "trigger": {
+                    "name": "use-item",
+                    "url": "https://pokeapi.co/api/v2/evolution-trigger/3/"
+                  },
+                  "turn_upside_down": false
+                }
+              ],
+              "evolves_to": [],
+              "is_baby": false,
+              "species": {
+                "name": "aegislash-shield",
+                "url": "https://pokeapi.co/api/v2/pokemon-species/681/"
+              }
+            }
+          ],
+          "is_baby": false,
+          "species": {
+            "name": "doublade",
+            "url": "https://pokeapi.co/api/v2/pokemon-species/680/"
+          }
+        }
+      ],
+      "is_baby": false,
+      "species": {
+        "name": "honedge",
+        "url": "https://pokeapi.co/api/v2/pokemon-species/679/"
+      }
+    },
+    "id": 370
+  },
+  "pumpkaboo": {
+    "baby_trigger_item": null,
+    "chain": {
+      "evolution_details": [],
+      "evolves_to": [
+        {
+          "evolution_details": [
+            {
+              "base_form_id": null,
+              "gender": null,
+              "held_item": null,
+              "item": null,
+              "known_move": null,
+              "known_move_type": null,
+              "location": null,
+              "min_affection": null,
+              "min_beauty": null,
+              "min_happiness": null,
+              "min_level": null,
+              "needs_overworld_rain": false,
+              "party_species": null,
+              "party_type": null,
+              "region_id": null,
+              "relative_physical_stats": null,
+              "time_of_day": "",
+              "trade_species": null,
+              "trigger": {
+                "name": "trade",
+                "url": "https://pokeapi.co/api/v2/evolution-trigger/2/"
+              },
+              "turn_upside_down": false
+            }
+          ],
+          "evolves_to": [],
+          "is_baby": false,
+          "species": {
+            "name": "gourgeist-average",
+            "url": "https://pokeapi.co/api/v2/pokemon-species/711/"
+          }
+        }
+      ],
+      "is_baby": false,
+      "species": {
+        "name": "pumpkaboo-average",
+        "url": "https://pokeapi.co/api/v2/pokemon-species/710/"
+      }
+    },
+    "id": 365
+  },
+  "gourgeist": {
+    "baby_trigger_item": null,
+    "chain": {
+      "evolution_details": [],
+      "evolves_to": [
+        {
+          "evolution_details": [
+            {
+              "base_form_id": null,
+              "gender": null,
+              "held_item": null,
+              "item": null,
+              "known_move": null,
+              "known_move_type": null,
+              "location": null,
+              "min_affection": null,
+              "min_beauty": null,
+              "min_happiness": null,
+              "min_level": null,
+              "needs_overworld_rain": false,
+              "party_species": null,
+              "party_type": null,
+              "region_id": null,
+              "relative_physical_stats": null,
+              "time_of_day": "",
+              "trade_species": null,
+              "trigger": {
+                "name": "trade",
+                "url": "https://pokeapi.co/api/v2/evolution-trigger/2/"
+              },
+              "turn_upside_down": false
+            }
+          ],
+          "evolves_to": [],
+          "is_baby": false,
+          "species": {
+            "name": "gourgeist-average",
+            "url": "https://pokeapi.co/api/v2/pokemon-species/711/"
+          }
+        }
+      ],
+      "is_baby": false,
+      "species": {
+        "name": "pumpkaboo-average",
+        "url": "https://pokeapi.co/api/v2/pokemon-species/710/"
+      }
+    },
+    "id": 365
   }
 }
