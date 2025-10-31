@@ -18,7 +18,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/',
-        destination: '/totodile',
+        destination: '/gengar',
         permanent: true,
       },
     ];
