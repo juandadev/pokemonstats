@@ -19,7 +19,7 @@ const nextConfig: NextConfig = {
       {
         source: '/',
         destination: '/gengar',
-        permanent: true,
+        permanent: false,
       },
     ];
   },
