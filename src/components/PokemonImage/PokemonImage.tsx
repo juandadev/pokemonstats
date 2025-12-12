@@ -9,6 +9,7 @@ type PokemonImageProps = {
   width?: number;
   height?: number;
   priority?: boolean;
+  unoptimized?: boolean;
   className?: string;
 };
 
@@ -19,6 +20,7 @@ export default function PokemonImage({
   height = 160,
   priority = false,
   className = '',
+  unoptimized = false,
   ...props
 }: PokemonImageProps) {
   if (artUrl) {
@@ -30,6 +32,7 @@ export default function PokemonImage({
         height={height}
         priority={priority}
         className={clsx('object-contain', className)}
+        unoptimized={unoptimized}
         {...props}
       />
     );

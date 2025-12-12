@@ -56,6 +56,7 @@ export default function Header({ pokemonData, speciesData }: HeroProps) {
               width={40}
               height={40}
               className="w-10 h-10 object-contain"
+              unoptimized
             />
           </div>
           <div className="flex-1">

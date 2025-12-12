@@ -25,11 +25,9 @@ export default function SearchBar({ initialValue = '' }: SearchBarProps) {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const router = useRouter();
 
-  const filteredSuggestions = POKEMON_LIST
-    .filter((pokemon) =>
-      pokemon.slug.toLowerCase().includes(searchTerm.toLowerCase())
-    )
-    .slice(0, 5);
+  const filteredSuggestions = POKEMON_LIST.filter((pokemon) =>
+    pokemon.slug.toLowerCase().includes(searchTerm.toLowerCase())
+  ).slice(0, 5);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -142,8 +140,7 @@ export default function SearchBar({ initialValue = '' }: SearchBarProps) {
                   tabIndex={-1}
                 >
                   <Link href={`/${suggestion.slug}#main`}>
-                    <div
-                      className="w-8 h-8 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <div className="w-8 h-8 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
                       {suggestion.sprite ? (
                         <PokemonImage
                           artUrl={suggestion.sprite}
@@ -151,6 +148,7 @@ export default function SearchBar({ initialValue = '' }: SearchBarProps) {
                           width={32}
                           height={32}
                           className="w-8 h-8 object-contain"
+                          unoptimized
                         />
                       ) : (
                         <span className="text-sm">🔍</span>
