@@ -11,6 +11,11 @@
       "label": "Absol (Mega)",
       "slug": "absol-mega",
       "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10057.png"
+    },
+    {
+      "label": "Absol (Mega Z)",
+      "slug": "absol-mega-z",
+      "sprite": null
     }
   ],
   "aerodactyl": [
@@ -226,6 +231,11 @@
       "label": "Garchomp (Mega)",
       "slug": "garchomp-mega",
       "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10058.png"
+    },
+    {
+      "label": "Garchomp (Mega Z)",
+      "slug": "garchomp-mega-z",
+      "sprite": null
     }
   ],
   "gardevoir": [
@@ -317,6 +327,11 @@
       "label": "Lucario (Mega)",
       "slug": "lucario-mega",
       "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10059.png"
+    },
+    {
+      "label": "Lucario (Mega Z)",
+      "slug": "lucario-mega-z",
+      "sprite": null
     }
   ],
   "malamar": [
@@ -510,6 +525,116 @@
     {
       "label": "Zygarde (Mega)",
       "slug": "zygarde-mega",
+      "sprite": null
+    }
+  ],
+  "raichu":  [
+    {
+      "label": "Raichu (Mega X)",
+      "slug": "raichu-mega-x",
+      "sprite": null
+    },
+    {
+      "label": "Raichu (Mega Y)",
+      "slug": "raichu-mega-y",
+      "sprite": null
+    }
+  ],
+  "chimecho": [
+    {
+      "label": "Chimecho (Mega)",
+      "slug": "chimecho-mega",
+      "sprite": null
+    }
+  ],
+  "staraptor": [
+    {
+      "label": "Staraptor (Mega)",
+      "slug": "staraptor-mega",
+      "sprite": null
+    }
+  ],
+  "heatran": [
+    {
+      "label": "Heatran (Mega)",
+      "slug": "heatran-mega",
+      "sprite": null
+    }
+  ],
+  "darkrai": [
+    {
+      "label": "Darkrai (Mega)",
+      "slug": "darkrai-mega",
+      "sprite": null
+    }
+  ],
+  "golurk": [
+    {
+      "label": "Golurk (Mega)",
+      "slug": "golurk-mega",
+      "sprite": null
+    }
+  ],
+  "meowstic-male": [
+    {
+      "label": "Meowstic (Mega)",
+      "slug": "meowstic-mega",
+      "sprite": null
+    }
+  ],
+  "crabominable": [
+    {
+      "label": "Crabominable (Mega)",
+      "slug": "crabominable-mega",
+      "sprite": null
+    }
+  ],
+  "golisopod": [
+    {
+      "label": "Golisopod (Mega)",
+      "slug": "golisopod-mega",
+      "sprite": null
+    }
+  ],
+  "magearna": [
+    {
+      "label": "Magearna (Mega)",
+      "slug": "magearna-mega",
+      "sprite": null
+    }
+  ],
+  "zeraora": [
+    {
+      "label": "Zeraora (Mega)",
+      "slug": "zeraora-mega",
+      "sprite": null
+    }
+  ],
+  "scovillain": [
+    {
+      "label": "Scovillain (Mega)",
+      "slug": "scovillain-mega",
+      "sprite": null
+    }
+  ],
+  "glimmora": [
+    {
+      "label": "Glimmora (Mega)",
+      "slug": "glimmora-mega",
+      "sprite": null
+    }
+  ],
+  "tatsugiri": [
+    {
+      "label": "Tatsugiri (Mega)",
+      "slug": "tatsugiri-curly-mega",
+      "sprite": null
+    }
+  ],
+  "baxcalibur": [
+    {
+      "label": "Baxcalibur (Mega)",
+      "slug": "baxcalibur-mega",
       "sprite": null
     }
   ]

@@ -20,6 +20,11 @@
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/359.png"
   },
   {
+    "label": "Absol (Mega Z)",
+    "slug": "absol-mega-z",
+    "sprite": null
+  },
+  {
     "label": "Absol (Mega)",
     "slug": "absol-mega",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10057.png"
@@ -373,6 +378,11 @@
     "label": "Baxcalibur",
     "slug": "baxcalibur",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/998.png"
+  },
+  {
+    "label": "Baxcalibur (Mega)",
+    "slug": "baxcalibur-mega",
+    "sprite": null
   },
   {
     "label": "Bayleef",
@@ -875,6 +885,11 @@
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/358.png"
   },
   {
+    "label": "Chimecho (Mega)",
+    "slug": "chimecho-mega",
+    "sprite": null
+  },
+  {
     "label": "Chinchou",
     "slug": "chinchou",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/170.png"
@@ -1055,6 +1070,11 @@
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/740.png"
   },
   {
+    "label": "Crabominable (Mega)",
+    "slug": "crabominable-mega",
+    "sprite": null
+  },
+  {
     "label": "Crabrawler",
     "slug": "crabrawler",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/739.png"
@@ -1168,6 +1188,11 @@
     "label": "Darkrai",
     "slug": "darkrai",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/491.png"
+  },
+  {
+    "label": "Darkrai (Mega)",
+    "slug": "darkrai-mega",
+    "sprite": null
   },
   {
     "label": "Darmanitan (Galarian – Standard)",
@@ -1407,7 +1432,7 @@
   {
     "label": "Dragonite (Mega)",
     "slug": "dragonite-mega",
-    "sprite": null
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10281.png"
   },
   {
     "label": "Drakloak",
@@ -2010,6 +2035,11 @@
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/445.png"
   },
   {
+    "label": "Garchomp (Mega Z)",
+    "slug": "garchomp-mega-z",
+    "sprite": null
+  },
+  {
     "label": "Garchomp (Mega)",
     "slug": "garchomp-mega",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10058.png"
@@ -2150,6 +2180,11 @@
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/970.png"
   },
   {
+    "label": "Glimmora (Mega)",
+    "slug": "glimmora-mega",
+    "sprite": null
+  },
+  {
     "label": "Gliscor",
     "slug": "gliscor",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/472.png"
@@ -2200,9 +2235,19 @@
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/768.png"
   },
   {
+    "label": "Golisopod (Mega)",
+    "slug": "golisopod-mega",
+    "sprite": null
+  },
+  {
     "label": "Golurk",
     "slug": "golurk",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/623.png"
+  },
+  {
+    "label": "Golurk (Mega)",
+    "slug": "golurk-mega",
+    "sprite": null
   },
   {
     "label": "Goodra",
@@ -2493,6 +2538,11 @@
     "label": "Heatran",
     "slug": "heatran",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/485.png"
+  },
+  {
+    "label": "Heatran (Mega)",
+    "slug": "heatran-mega",
+    "sprite": null
   },
   {
     "label": "Heliolisk",
@@ -3170,6 +3220,11 @@
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/448.png"
   },
   {
+    "label": "Lucario (Mega Z)",
+    "slug": "lucario-mega-z",
+    "sprite": null
+  },
+  {
     "label": "Lucario (Mega)",
     "slug": "lucario-mega",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/10059.png"
@@ -3280,9 +3335,19 @@
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/801.png"
   },
   {
+    "label": "Magearna (Mega)",
+    "slug": "magearna-mega",
+    "sprite": null
+  },
+  {
     "label": "Magearna (Original)",
     "slug": "magearna-original",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/801-original.png"
+  },
+  {
+    "label": "Magearna Original (Mega)",
+    "slug": "magearna-original-mega",
+    "sprite": null
   },
   {
     "label": "Magikarp",
@@ -3508,6 +3573,11 @@
     "label": "Meowstic (Male)",
     "slug": "meowstic-male",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/678.png"
+  },
+  {
+    "label": "Meowstic (Mega)",
+    "slug": "meowstic-mega",
+    "sprite": null
   },
   {
     "label": "Meowth",
@@ -4620,6 +4690,16 @@
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/26-alola.png"
   },
   {
+    "label": "Raichu (Mega X)",
+    "slug": "raichu-mega-x",
+    "sprite": null
+  },
+  {
+    "label": "Raichu (Mega Y)",
+    "slug": "raichu-mega-y",
+    "sprite": null
+  },
+  {
     "label": "Raikou",
     "slug": "raikou",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/243.png"
@@ -5008,6 +5088,11 @@
     "label": "Scovillain",
     "slug": "scovillain",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/952.png"
+  },
+  {
+    "label": "Scovillain (Mega)",
+    "slug": "scovillain-mega",
+    "sprite": null
   },
   {
     "label": "Scrafty",
@@ -5530,6 +5615,11 @@
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/398.png"
   },
   {
+    "label": "Staraptor (Mega)",
+    "slug": "staraptor-mega",
+    "sprite": null
+  },
+  {
     "label": "Staravia",
     "slug": "staravia",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/397.png"
@@ -5748,6 +5838,21 @@
     "label": "Tatsugiri (Stretchy)",
     "slug": "tatsugiri-stretchy",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10259.png"
+  },
+  {
+    "label": "Tatsugiri Curly (Mega)",
+    "slug": "tatsugiri-curly-mega",
+    "sprite": null
+  },
+  {
+    "label": "Tatsugiri Droopy (Mega)",
+    "slug": "tatsugiri-droopy-mega",
+    "sprite": null
+  },
+  {
+    "label": "Tatsugiri Stretchy (Mega)",
+    "slug": "tatsugiri-stretchy-mega",
+    "sprite": null
   },
   {
     "label": "Tauros",
@@ -6212,7 +6317,7 @@
   {
     "label": "Victreebel (Mega)",
     "slug": "victreebel-mega",
-    "sprite": null
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10279.png"
   },
   {
     "label": "Vigoroth",
@@ -6568,6 +6673,11 @@
     "label": "Zeraora",
     "slug": "zeraora",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/807.png"
+  },
+  {
+    "label": "Zeraora (Mega)",
+    "slug": "zeraora-mega",
+    "sprite": null
   },
   {
     "label": "Zigzagoon",

@@ -9,7 +9,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "build:pokemon-index": "tsx scripts/build-pokemon-index.ts"
+    "build:pokemon-index": "tsx scripts/build-pokemon-index.ts",
+    "build:item-index": "tsx scripts/build-item-index.ts"
   },
   "dependencies": {
     "@databuddy/sdk": "^2.1.0",
@@ -25,7 +26,7 @@
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "lucide-react": "^0.528.0",
-    "next": "15.5.8",
+    "next": "15.5.9",
     "next-themes": "^0.4.6",
     "react": "19.2.2",
     "react-dom": "19.2.2",
