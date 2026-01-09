@@ -255,3 +255,47 @@ type PokemonUpdate = Partial<Pokemon>;
 type PokemonCreate = Omit<Pokemon, 'id'>;
 type PokemonPatch = Partial<Omit<Pokemon, 'id'>>;
 ```
+
+### IMPORTANT: Avoid Unnecessary Comments
+
+**Only add comments for function/method documentation** (purpose, parameters, return values). All other comments are noise - code should be self-documenting through clear naming and structure.
+
+**When Comments ARE Appropriate:**
+
+```tsx
+// ✅ GOOD: Document function purpose, params, and return
+/**
+ * Calculates type effectiveness multiplier for attacking type vs defending types.
+ * @param attackType - The attacking Pokemon's move type
+ * @param defenseTypes - Array of the defending Pokemon's types
+ * @returns Multiplier (0, 0.25, 0.5, 1, 2, or 4)
+ */
+function calculateEffectiveness(attackType: PokemonType, defenseTypes: PokemonType[]): number {
+  // ...
+}
+```
+
+**When Comments Are NOT Appropriate:**
+
+```tsx
+// ❌ BAD: Obvious from the code
+// Set the name
+setName(value);
+
+// ❌ BAD: Explaining what code does instead of why
+// Loop through all pokemon
+for (const pokemon of pokemonList) {
+
+// ❌ BAD: Commented-out code
+// const oldValue = calculateOld();
+
+// ❌ BAD: Redundant with good naming
+// Check if pokemon is legendary
+const isLegendary = pokemon.isLegendary;
+```
+
+**Principles:**
+- If you need a comment to explain *what* code does, refactor for clarity instead
+- Comments explaining *why* (business logic, edge cases) are acceptable but rare
+- Delete commented-out code - use git history instead
+- Well-named functions, variables, and types eliminate most comment needs
