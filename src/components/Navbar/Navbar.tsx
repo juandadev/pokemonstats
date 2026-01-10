@@ -13,23 +13,38 @@ import {
 } from '@/components/ui/sheet';
 import Link from 'next/link';
 import Image from 'next/image';
-
-const navigationItems = [
-  { name: 'Home', href: '/', icon: Home },
-  { name: 'Roadmap', href: '/roadmap', icon: TrendingUp },
-  { name: 'Special Thanks', href: '/thanks', icon: Heart },
-];
-
-const legalItems = [{ name: 'Privacy Policy', href: '/privacy', icon: Shield }];
+import { useTranslation } from '@/i18n';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useTranslation();
+
+  const navigationItems = [
+    { name: t('navigation.home', 'Home'), href: '/', icon: Home },
+    {
+      name: t('navigation.roadmap', 'Roadmap'),
+      href: '/roadmap',
+      icon: TrendingUp,
+    },
+    {
+      name: t('navigation.specialThanks', 'Special Thanks'),
+      href: '/thanks',
+      icon: Heart,
+    },
+  ];
+
+  const legalItems = [
+    {
+      name: t('pages.privacy.title', 'Privacy Policy'),
+      href: '/privacy',
+      icon: Shield,
+    },
+  ];
 
   return (
     <nav className="bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
       <div className="container max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
           <Link
             href="/"
             className="flex items-center gap-2 hover:opacity-80 transition-opacity"
@@ -44,12 +59,10 @@ export default function Navbar() {
               />
             </div>
           </Link>
-
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-6">
             {navigationItems.map((item) => (
               <Link
-                key={item.name}
+                key={item.href}
                 href={item.href}
                 className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200"
               >
@@ -58,8 +71,6 @@ export default function Navbar() {
               </Link>
             ))}
           </div>
-
-          {/* Mobile Navigation */}
           <div className="md:hidden flex items-center gap-3">
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
@@ -90,17 +101,20 @@ export default function Navbar() {
                     </span>
                   </SheetTitle>
                   <SheetDescription className="sr-only">
-                    Collapsible navigation menu
+                    {t(
+                      'navigation.accessibility.menu',
+                      'Collapsible navigation menu'
+                    )}
                   </SheetDescription>
                 </SheetHeader>
 
                 <div className="space-y-2 px-4">
                   <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
-                    Navigation
+                    {t('navigation.sections.navigation', 'Navigation')}
                   </div>
                   {navigationItems.map((item) => (
                     <Link
-                      key={item.name}
+                      key={item.href}
                       href={item.href}
                       onClick={() => setIsOpen(false)}
                       className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 w-full"
@@ -112,11 +126,11 @@ export default function Navbar() {
 
                   <div className="pt-4 mt-4 border-t border-gray-200">
                     <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
-                      Legal
+                      {t('navigation.sections.legal', 'Legal')}
                     </div>
                     {legalItems.map((item) => (
                       <Link
-                        key={item.name}
+                        key={item.href}
                         href={item.href}
                         onClick={() => setIsOpen(false)}
                         className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 w-full"
