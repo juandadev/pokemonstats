@@ -25,13 +25,14 @@ import SpecialDmgIcon from '@/icons/SpecialDmgIcon';
 import StatusEffectIcon from '@/icons/StatusEffectIcon';
 import Image from 'next/image';
 import { useTranslation } from '@/i18n';
+import { findByLanguage } from '@/i18n/utils';
 
 interface MovesProps {
   moves: MoveDisplayData[];
 }
 
 export default function Moves({ moves }: MovesProps) {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
   const preferences = getPreferences();
   const gameVersionList = useMemo(() => {
     const set = new Set<GameVersion>();
@@ -79,11 +80,16 @@ export default function Moves({ moves }: MovesProps) {
         });
 
       return filteredMovesByGame.map((move, index) => {
-        const displayName = move.name.replace(/-/g, ' ');
+        const localizedName =
+          findByLanguage(move.names, locale)?.name ||
+          move.name.replace(/-/g, ' ');
         const getDetailsByGame =
           move.gameDetails.find(
             (item) => item.game === selectedGame && item.learnMethod === type
           ) || move.gameDetails[0];
+        const localizedDescription =
+          findByLanguage(move.effectEntries, locale)?.effect ||
+          getDetailsByGame.description;
 
         return (
           <AccordionItem
@@ -127,7 +133,7 @@ export default function Moves({ moves }: MovesProps) {
                             className="text-muted-foreground"
                           />
                         )}
-                        {displayName}
+                        {localizedName}
                       </div>
                       <div className="flex items-center gap-2 mt-1">
                         <TypeBadge type={move.type} />
@@ -148,7 +154,7 @@ export default function Moves({ moves }: MovesProps) {
             <AccordionContent className="px-3 pb-3 border-t border-gray-100 bg-gray-50">
               <div className="pt-3">
                 <p className="text-sm text-gray-700 leading-relaxed">
-                  {getDetailsByGame.description}
+                  {localizedDescription}
                 </p>
                 <div className="mt-2 flex flex-col gap-2 text-xs text-gray-500">
                   {move.accuracy && (
@@ -163,7 +169,7 @@ export default function Moves({ moves }: MovesProps) {
         );
       });
     },
-    [moves, selectedGame, t]
+    [moves, selectedGame, t, locale]
   );
 
   return (
