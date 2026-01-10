@@ -22,6 +22,7 @@ import { Button } from '@/components/ui/button';
 import { EffectivenessMode } from '@/types';
 import { getPreferences, setPreferences } from '@/lib/preferences';
 import { TYPE_LABELS, TYPES_LIST } from '@/common/constants/pokemonTypes';
+import { useTranslation } from '@/i18n';
 
 export interface SelectedType {
   type: PokemonTypes;
@@ -35,6 +36,7 @@ interface EffectivenessChartProps {
 export default function EffectivenessChart({
   pokemonData,
 }: EffectivenessChartProps) {
+  const { t } = useTranslation();
   const preferences = getPreferences();
 
   const [selectedTypes, setSelectedTypes] = useState<SelectedType[]>([]);
@@ -67,13 +69,10 @@ export default function EffectivenessChart({
     setUserHasInteracted(true);
 
     if (selectedTypesNames.includes(type.type)) {
-      // Remove type if already selected
       setSelectedTypes(selectedTypes.filter((t) => t.type !== type.type));
     } else if (selectedTypes.length < 2) {
-      // Add type if less than 2 selected
       setSelectedTypes([...selectedTypes, type]);
     } else {
-      // Replace first type if 2 already selected
       setSelectedTypes([selectedTypes[1], type]);
     }
   };
@@ -135,15 +134,21 @@ export default function EffectivenessChart({
       <Card className="shadow-xl border-0 bg-white/90 backdrop-blur-sm">
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-2xl heading">
-            Type Effectiveness Chart
+            {t('effectiveness.title', 'Type Effectiveness Chart')}
           </CardTitle>
           <p className="text-sm text-gray-600">
-            Select up to 2 types to see effectiveness{' '}
-            {selectedTypes.length > 1 ? '(dual-type)' : '(single-type)'}
+            {selectedTypes.length > 1
+              ? t(
+                  'effectiveness.subtitle.dual',
+                  'Select up to 2 types to see effectiveness (dual-type)'
+                )
+              : t(
+                  'effectiveness.subtitle.single',
+                  'Select up to 2 types to see effectiveness (single-type)'
+                )}
           </p>
         </CardHeader>
         <CardContent>
-          {/* Mode Toggle */}
           <div className="mb-6">
             <div className="flex gap-1 bg-gray-100 p-1 rounded-lg max-w-md mx-auto">
               <button
@@ -157,10 +162,15 @@ export default function EffectivenessChart({
               >
                 <div className="flex items-center justify-center gap-2">
                   <SwordIcon className="w-4 h-4" />
-                  <span>Attacker</span>
+                  <span>
+                    {t('effectiveness.modes.offensive.title', 'Attacker')}
+                  </span>
                 </div>
                 <div className="text-xs text-gray-500 mt-1">
-                  What can I hit?
+                  {t(
+                    'effectiveness.modes.offensive.description',
+                    'What can I hit?'
+                  )}
                 </div>
               </button>
               <button
@@ -174,14 +184,19 @@ export default function EffectivenessChart({
               >
                 <div className="flex items-center justify-center gap-2">
                   <ShieldIcon className="w-4 h-4" />
-                  <span>Defender</span>
+                  <span>
+                    {t('effectiveness.modes.defensive.title', 'Defender')}
+                  </span>
                 </div>
-                <div className="text-xs text-gray-500 mt-1">What hits me?</div>
+                <div className="text-xs text-gray-500 mt-1">
+                  {t(
+                    'effectiveness.modes.defensive.description',
+                    'What hits me?'
+                  )}
+                </div>
               </button>
             </div>
           </div>
-
-          {/* Types Grid */}
           <div ref={typesContainerRef} className={'overflow-x-auto mb-3 p-1'}>
             <div className="grid grid-rows-2 grid-cols-9 lg:grid-rows-2 lg:grid-cols-6 gap-3 w-max pb-5 pt-2">
               {TYPES_LIST.map((type) => {
@@ -211,7 +226,6 @@ export default function EffectivenessChart({
                       handleTypeClick({ index: type.index, type: type.name })
                     }
                   >
-                    {/* Selection number mark */}
                     {isSelected && (
                       <div
                         className={clsx(
@@ -222,7 +236,6 @@ export default function EffectivenessChart({
                         {selectedTypesNames.indexOf(type.name) + 1}
                       </div>
                     )}
-                    {/* Type Icon Circle */}
                     <div
                       className={clsx(
                         'w-12 h-12 rounded-full flex items-center justify-center text-white shadow-md transition-transform duration-300 group-hover:scale-110',
@@ -231,7 +244,6 @@ export default function EffectivenessChart({
                     >
                       <IconComponent className="size-6 text-white" />
                     </div>
-                    {/* Type Name */}
                     <span
                       className={clsx(
                         'text-xs font-semibold capitalize transition-colors duration-300',
@@ -245,8 +257,6 @@ export default function EffectivenessChart({
               })}
             </div>
           </div>
-
-          {/* Instructions */}
           <div className="flex justify-center mt-2 mb-3">
             <div className="text-xs text-gray-500 text-center">
               <div className="flex items-center justify-center gap-1 mb-1">
@@ -263,22 +273,23 @@ export default function EffectivenessChart({
                     d="M17 8l4 4m0 0l-4 4m4-4H3"
                   />
                 </svg>
-                Scroll horizontally • Tap to select up to 2 types
+                {t(
+                  'effectiveness.instructions',
+                  'Scroll horizontally • Tap to select up to 2 types'
+                )}
               </div>
             </div>
           </div>
-
-          {/* Effectiveness Display */}
           {selectedTypes[0]?.type && (
             <div className="space-y-6">
               {isDualType && !isInformationMessageClosed && (
                 <div className="p-3 bg-purple-50 border border-purple-200 rounded-lg grid grid-cols-[1fr_auto] grid-rows-1">
                   <p className="text-sm text-purple-800 font-medium">
-                    🔥 Dual-Type Analysis:{' '}
-                    {effectivenessMode === 'offensive'
-                      ? `Showing combined effectiveness of ${selectedTypes[0].type} + ${selectedTypes[1].type} moves.
-                    Actual damage will depend on the specific move type used.`
-                      : `Showing what types are effective against ${selectedTypes[0].type}/${selectedTypes[1].type} Pokémon`}
+                    {t(
+                      'effectiveness.dualTypeAnalysis',
+                      '🔥 Dual-Type Analysis: Showing combined effectiveness of'
+                    )}{' '}
+                    {selectedTypes[0].type} + {selectedTypes[1].type}
                   </p>
                   <Button
                     onClick={handleMessageClose}
@@ -290,13 +301,15 @@ export default function EffectivenessChart({
                   </Button>
                 </div>
               )}
-              {/* Super Effective */}
               <div>
                 <h3 className="text-lg font-semibold text-green-700 mb-3 flex items-center gap-2">
                   <CircleDotIcon />
                   {effectivenessMode === 'offensive'
-                    ? 'Super Effective Against (2x)'
-                    : 'Weak To (4x - 2x)'}
+                    ? t(
+                        'effectiveness.categories.superEffective',
+                        'Super Effective Against (2×)'
+                      )
+                    : t('effectiveness.categories.weakTo', 'Weak To (4× - 2×)')}
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {effectivenessList['4x'].length > 0 &&
@@ -321,17 +334,24 @@ export default function EffectivenessChart({
                     ))}
                   {effectivenessList['4x'].length === 0 &&
                     effectivenessList['2x'].length === 0 && (
-                      <span className="text-gray-500 italic">None</span>
+                      <span className="text-gray-500 italic">
+                        {t('common.labels.none', 'None')}
+                      </span>
                     )}
                 </div>
               </div>
-              {/* Not Very Effective */}
               <div>
                 <h3 className="text-lg font-semibold text-orange-700 mb-3 flex items-center gap-2">
                   <TriangleIcon />
                   {effectivenessMode === 'offensive'
-                    ? 'Not Very Effective Against (0.5x)'
-                    : 'Resistant To (0.5 - 0.25×)'}
+                    ? t(
+                        'effectiveness.categories.notVeryEffective',
+                        'Not Very Effective Against (0.5×)'
+                      )
+                    : t(
+                        'effectiveness.categories.resistantTo',
+                        'Resistant To (0.5 - 0.25×)'
+                      )}
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {effectivenessList['0.5'].length > 0 &&
@@ -356,17 +376,18 @@ export default function EffectivenessChart({
                     ))}
                   {effectivenessList['0.5'].length === 0 &&
                     effectivenessList['0.25'].length === 0 && (
-                      <span className="text-gray-500 italic">None</span>
+                      <span className="text-gray-500 italic">
+                        {t('common.labels.none', 'None')}
+                      </span>
                     )}
                 </div>
               </div>
-              {/* No Effect */}
               <div>
                 <h3 className="text-lg font-semibold text-gray-700 mb-3 flex items-center gap-2">
                   <XIcon />
                   {effectivenessMode === 'offensive'
-                    ? 'No Effect (0x)'
-                    : 'Immune To (0×)'}
+                    ? t('effectiveness.categories.noEffect', 'No Effect (0×)')
+                    : t('effectiveness.categories.immuneTo', 'Immune To (0×)')}
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {effectivenessList['0'].length > 0 ? (
@@ -374,21 +395,28 @@ export default function EffectivenessChart({
                       <TypeBadge key={type} type={type as PokemonTypes} />
                     ))
                   ) : (
-                    <span className="text-gray-500 italic">None</span>
+                    <span className="text-gray-500 italic">
+                      {t('common.labels.none', 'None')}
+                    </span>
                   )}
                 </div>
               </div>
             </div>
           )}
-          {/* Initial state message */}
           {!selectedTypes[0]?.type && (
             <div className="text-center py-8 text-gray-500">
               <ShieldIcon className="w-12 h-12 mx-auto mb-3 opacity-50" />
               <p className="text-lg font-medium">
-                Select types above to see effectiveness
+                {t(
+                  'effectiveness.initial.title',
+                  'Select types above to see effectiveness'
+                )}
               </p>
               <p className="text-sm">
-                Choose 1 type for single-type or 2 types for dual-type analysis
+                {t(
+                  'effectiveness.initial.description',
+                  'Choose 1 type for single-type or 2 types for dual-type analysis'
+                )}
               </p>
             </div>
           )}

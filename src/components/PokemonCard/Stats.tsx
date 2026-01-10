@@ -1,12 +1,40 @@
-import { formatStatName, getStatColor } from '@/lib/utils';
-import React from 'react';
+'use client';
+
+import { getStatColor } from '@/lib/utils';
 import { Stat } from '@/types/pokemon.types';
+import { useTranslation } from '@/i18n';
 
 interface StatsProps {
   stats: Stat[];
 }
 
+const STAT_KEYS: Record<string, string> = {
+  hp: 'stats.names.hp',
+  attack: 'stats.names.attack',
+  defense: 'stats.names.defense',
+  'special-attack': 'stats.names.specialAttack',
+  'special-defense': 'stats.names.specialDefense',
+  speed: 'stats.names.speed',
+};
+
+const STAT_DEFAULTS: Record<string, string> = {
+  hp: 'HP',
+  attack: 'Attack',
+  defense: 'Defense',
+  'special-attack': 'Sp. Attack',
+  'special-defense': 'Sp. Defense',
+  speed: 'Speed',
+};
+
 export default function Stats({ stats }: StatsProps) {
+  const { t } = useTranslation();
+
+  const formatStatName = (statName: string): string => {
+    const key = STAT_KEYS[statName];
+    const defaultValue = STAT_DEFAULTS[statName] || statName;
+    return key ? t(key, defaultValue) : defaultValue;
+  };
+
   return (
     <div className="space-y-4">
       {stats.map((statData, index) => {
@@ -39,12 +67,10 @@ export default function Stats({ stats }: StatsProps) {
           </div>
         );
       })}
-
-      {/* Total Stats */}
       <div className="pt-4 border-t border-gray-200">
         <div className="flex items-center gap-4">
           <div className="w-20 text-sm font-semibold text-gray-900 text-right">
-            Total
+            {t('stats.names.total', 'Total')}
           </div>
           <div className="flex-1">
             <div className="flex items-center gap-3">

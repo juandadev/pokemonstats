@@ -1,64 +1,3 @@
-# Done
-
-- [x] Remove Bootstrap and React Bootstrap
-- [x] Replace Bootstrap with Tailwind CSS and shadcn/ui
-- [x] Remove all custom CSS and SASS support
-- [x] Remove prop types
-- [x] Replace axios with fetch
-- [x] Hero section
-    - [x] Add a link to buy me a coffee
-- [x] Fix empty species or evolution chains in pokémon results
-- [x] Fix pokémon card type colors
-- [x] Fix all any and unknown types
-- [x] Fix Evolution details
-- [x] Fix Hero alignment
-- [x] When searching for a pokémon, select the type in the effectiveness chart
-- [x] Add sticky pokémon header for mobile devices
-- [x] Change Pokémon fetch implementation to pass the whole data and not in two parts
-- [x] Replace CTA for GitHub repo button with something like "Star this repo"
-- [x] Implement a waitlist form with rate limiter and bot detection
-- [x] Supports selecting two types and merge weakness and strengths (UI reference in v0).
-    - [x] Fix mobile view
-- [x] Divide the effectiveness chart into two sections (UI reference in v0).
-    - [x] One for attacks
-    - [x] One for defenses (https://pokemondb.net/type/fire)
-- [x] Parse Pokémon names with the ones in the suggestion list to avoid typos
-- [x] Include static images for all pokémon for searchbar and evolution chains
-- [x] Get a cool placeholder image when no pokémon image is available
-- [x] Consider removing search query property from context. It's not too necessary
-- [x] Cache query results for Pokémon data and evolutions
-- [x] Add an X icon to the search bar to clear the input
-- [x] Add a tab to Pokémon card to show base stats (UI reference in v0).
-- [x] Configure again function to select a Pokémon from the evolution chain list
-- [x] Add an expandable list to show evolution details for Pokémon that goes beyond leveling up or using an evolutive
-  stone (UI reference in v0).
-    - [x] Check if we can fetch more details when there are more than one item in the evolution details array, which
-    - means that it has variations depending on the game we are playing, so I would like to show those details as well.
-- [x] Add routes for each Pokémon
-- [x] Persist state between pages
-    - [x] tabs selected in Pokémon Card (overview, base stats)
-    - [x] Effectiveness Chart tabs (attacker, defender)
-    - [x] Info messages (dual type analysis dialog should remain closed if the user already closed it)
-- [x] Double check and fix all mobile layout issues
-- [x] Refactor all shitty code
-    - [x] Better use of hooks
-    - [x] Better use of context
-    - [x] Split components into smaller ones
-    - [x] Remove all unused code
-    - [x] Remove all unused dependencies
-- [x] Add a "More" page to show the roadmap, contributors, special thanks and other information about the future of the
-  project
-- [x] Add an element or page to give special thanks to:
-    - [x] All the people that are contributing to the project (check if I can get this list somewhere to display it
-      dynamically)
-    - [x] All the people that are supporting the project with a coffee
-    - [x] [Pokemon Palette](https://github.com/yassenshopov/pokemonpalette-nextjs) for the inspiration and UI
-      reference
-    - [x] PokeAPI
-    - [x] [pkmn.help](https://github.com/wavebeem/pkmn.help?tab=readme-ov-file) to verify the effectiveness calculations
-      and special modifiers
-- [x] Generate metadata for each pokemon
-
 # Bugs
 
 - [ ] When navigating with the keyboard the suggestions items, it should scroll to the selected item for the items that
@@ -68,6 +7,10 @@
 # Performance Improvements
 
 - [ ] Swap scrapped data with name indexes and create a Map[] to avoid using `array.find` and get quicker searches
+
+# Refactors
+
+- [ ] Split EffectivenessChart.tsx component into smaller pieces for readability
 
 # Priority
 
@@ -115,10 +58,6 @@
 - [x] Add Analytics
     - [x] Use Data Buddy
     - [x] Track page views
-
-# Final touches
-
-- [x] Protect GitHub branches
 
 # Nice to have
 

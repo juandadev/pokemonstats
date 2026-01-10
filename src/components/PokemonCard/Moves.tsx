@@ -24,12 +24,14 @@ import PhysicalDmgIcon from '@/icons/PhysicalDmgIcon';
 import SpecialDmgIcon from '@/icons/SpecialDmgIcon';
 import StatusEffectIcon from '@/icons/StatusEffectIcon';
 import Image from 'next/image';
+import { useTranslation } from '@/i18n';
 
 interface MovesProps {
   moves: MoveDisplayData[];
 }
 
 export default function Moves({ moves }: MovesProps) {
+  const { t } = useTranslation();
   const preferences = getPreferences();
   const gameVersionList = useMemo(() => {
     const set = new Set<GameVersion>();
@@ -131,11 +133,11 @@ export default function Moves({ moves }: MovesProps) {
                         <TypeBadge type={move.type} />
                         {move.power && (
                           <span className="text-xs text-gray-500 font-bold">
-                            Power: {move.power}
+                            {t('moves.labels.power', 'Power')}: {move.power}
                           </span>
                         )}
                         <span className="text-xs text-gray-500">
-                          PP: {move.pp}
+                          {t('moves.labels.pp', 'PP')}: {move.pp}
                         </span>
                       </div>
                     </div>
@@ -149,7 +151,11 @@ export default function Moves({ moves }: MovesProps) {
                   {getDetailsByGame.description}
                 </p>
                 <div className="mt-2 flex flex-col gap-2 text-xs text-gray-500">
-                  {move.accuracy && <span>{move.accuracy}% accuracy</span>}
+                  {move.accuracy && (
+                    <span>
+                      {move.accuracy}% {t('moves.labels.accuracy', 'accuracy')}
+                    </span>
+                  )}
                 </div>
               </div>
             </AccordionContent>
@@ -157,7 +163,7 @@ export default function Moves({ moves }: MovesProps) {
         );
       });
     },
-    [moves, selectedGame]
+    [moves, selectedGame, t]
   );
 
   return (
@@ -183,7 +189,9 @@ export default function Moves({ moves }: MovesProps) {
             className="space-y-2 pr-3"
           >
             <AccordionItem value="machine">
-              <AccordionTrigger>Machines</AccordionTrigger>
+              <AccordionTrigger>
+                {t('moves.sections.machines', 'Machines')}
+              </AccordionTrigger>
               <AccordionContent>
                 <Accordion type="single" collapsible className="space-y-2">
                   {renderMoveList('machine')}
@@ -191,7 +199,9 @@ export default function Moves({ moves }: MovesProps) {
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="lvl-up">
-              <AccordionTrigger>Level Up</AccordionTrigger>
+              <AccordionTrigger>
+                {t('moves.sections.levelUp', 'Level Up')}
+              </AccordionTrigger>
               <AccordionContent>
                 <Accordion type="single" collapsible className="space-y-2">
                   {renderMoveList('level-up')}
@@ -203,7 +213,12 @@ export default function Moves({ moves }: MovesProps) {
       ) : (
         <div className="px-4 py-3">
           <div className="flex items-center justify-center text-xs text-gray-500">
-            <span>Select a game version to display the move list</span>
+            <span>
+              {t(
+                'moves.instruction',
+                'Select a game version to display the move list'
+              )}
+            </span>
           </div>
         </div>
       )}
