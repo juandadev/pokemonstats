@@ -19,7 +19,7 @@ export const GAME_LIST = [
   'ultra-sun-ultra-moon',
   'lets-go-pikachu-lets-go-eevee',
   'sword-shield',
-  'brilliant-diamond-and-shining-pearl',
+  'brilliant-diamond-shining-pearl',
   'legends-arceus',
   'scarlet-violet',
   'legends-za',

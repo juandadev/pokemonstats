@@ -240,7 +240,7 @@ const CUSTOM_GAME_NAMES: Partial<Record<GameVersion, string>> = {
   'black-2-white-2': 'Black 2 & White 2',
   'omega-ruby-alpha-sapphire': 'Omega Ruby & Alpha Sapphire',
   'ultra-sun-ultra-moon': 'Ultra Sun & Ultra Moon',
-  'brilliant-diamond-and-shining-pearl': 'Brilliant Diamond & Shining Pearl',
+  'brilliant-diamond-shining-pearl': 'Brilliant Diamond & Shining Pearl',
   'lets-go-pikachu-lets-go-eevee': "Let's Go Pikachu & Let's Go Eevee",
   'legends-arceus': 'Legends: Arceus',
 };

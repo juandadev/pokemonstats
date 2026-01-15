@@ -145,7 +145,7 @@ const translations: Translations = {
       'ultra-sun-ultra-moon': 'Ultra Sol & Ultra Luna',
       'lets-go-pikachu-lets-go-eevee': "Let's Go Pikachu & Let's Go Eevee",
       'sword-shield': 'Espada & Escudo',
-      'brilliant-diamond-and-shining-pearl':
+      'brilliant-diamond-shining-pearl':
         'Diamante Brillante & Perla Reluciente',
       'legends-arceus': 'Leyendas: Arceus',
       'scarlet-violet': 'Escarlata & Púrpura',

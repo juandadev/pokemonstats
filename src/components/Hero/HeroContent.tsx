@@ -25,7 +25,10 @@ export default function HeroContent({ starCount }: HeroContentProps) {
           {t('hero.badge', 'Live Pokédex Data')}
         </div>
         <h1 className="text-5xl md:text-7xl font-bold text-gray-900">
-          {t('hero.title', 'Pokémon Stats')}
+          Pokémon{' '}
+          <span className="bg-gradient-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent">
+            Stats
+          </span>
         </h1>
         <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-lg">
           {t(
