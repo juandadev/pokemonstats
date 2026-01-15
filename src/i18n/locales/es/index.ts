@@ -178,7 +178,7 @@ const translations: Translations = {
       'base-form': 'Forma Base',
       'level-up': 'Subir de Nivel',
       'use-item': 'Usar Objeto',
-      trade: 'Intercambio o Cordón Unión',
+      trade: 'Intercambio',
       'three-critical-hits': 'Aterrizar tres golpes críticos en una batalla',
       'mega-evolution': 'Mega Evolución',
       gmax: 'Gigamax',

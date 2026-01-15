@@ -60,7 +60,8 @@ export const getEvolutionDetails = (
 
 export function buildAdditionalDetailsList(
   detail: Partial<EvolutionDetails>,
-  t?: (key: string, fallback: string) => string
+  t?: (key: string, fallback: string) => string,
+  locale: 'en' | 'es' = 'en'
 ): EvolutionDetailDisplay[] {
   const additionalDetailsList = [];
 
@@ -76,7 +77,8 @@ export function buildAdditionalDetailsList(
             | Species
             | GenericPropertyDetails
             | GenericPropertyDetails<Items>,
-          t
+          t,
+          locale
         )[key as keyof EvolutionDetails]
       : EVOLUTION_DETAILS(
           value as

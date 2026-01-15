@@ -37,6 +37,25 @@ import { titleCase } from '@/lib/utils';
 import MegaEvolutionIcon from '@/icons/MegaEvolutionIcon';
 import { ITEMS_LIST } from '@/common/constants/index';
 import GMaxIcon from '@/icons/GMaxIcon';
+import { Locale } from '@/i18n/types';
+
+const getLocalizedItemName = (
+  itemData: ItemData | undefined,
+  locale: Locale
+): string => {
+  if (!itemData) return '';
+
+  if (locale === 'es') {
+    const spanishName = itemData.names.find(
+      (nameEntry) => nameEntry.language.name === 'es'
+    );
+    if (spanishName) {
+      return spanishName.name;
+    }
+  }
+
+  return itemData.name;
+};
 
 // Legacy constant for backward compatibility
 export const PARSED_EVOLUTION_TRIGGER: Record<
@@ -440,7 +459,8 @@ export const getLocalizedEvolutionDetails = (
     | Species
     | GenericPropertyDetails
     | GenericPropertyDetails<Items>,
-  t: (key: string, fallback: string) => string
+  t: (key: string, fallback: string) => string,
+  locale: Locale = 'en'
 ): Record<keyof EvolutionDetails, EvolutionDetailDisplay> => ({
   trigger: {
     type: 'trigger',
@@ -481,7 +501,10 @@ export const getLocalizedEvolutionDetails = (
         {t('evolutions.details.heldItem', 'While holding')}:{' '}
         <strong>
           {titleCase(
-            getItemData((detail as GenericPropertyDetails).name)?.name || ''
+            getLocalizedItemName(
+              getItemData((detail as GenericPropertyDetails).name),
+              locale
+            )
           ) || 'Missing info'}
         </strong>
       </span>
@@ -501,7 +524,10 @@ export const getLocalizedEvolutionDetails = (
         {t('evolutions.details.requiredItem', 'Required item')}:{' '}
         <strong>
           {titleCase(
-            getItemData((detail as GenericPropertyDetails).name)?.name || ''
+            getLocalizedItemName(
+              getItemData((detail as GenericPropertyDetails).name),
+              locale
+            )
           ) || 'Missing info'}
         </strong>
       </span>

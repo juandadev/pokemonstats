@@ -17,7 +17,7 @@ export default function EvolutionDetails({
   pokemonName,
   details,
 }: EvolutionDetailsProps) {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
 
   const renderDetailsList = useMemo(
     () =>
@@ -26,7 +26,7 @@ export default function EvolutionDetails({
           detail.trigger?.name || 'default',
           t
         );
-        const additionalDetailsList = buildAdditionalDetailsList(detail, t);
+        const additionalDetailsList = buildAdditionalDetailsList(detail, t, locale);
 
         return (
           <Fragment key={`${pokemonName}-evolution-detail-${index}`}>
@@ -74,7 +74,7 @@ export default function EvolutionDetails({
           </Fragment>
         );
       }),
-    [details, pokemonName, t]
+    [details, pokemonName, t, locale]
   );
 
   if (details.length === 0) return null;

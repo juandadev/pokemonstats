@@ -16,7 +16,7 @@ import {
 } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import EvolutionDetails from '@/components/EvolutionsCard/EvolutionDetails';
-import { EVOLUTION_DETAILS } from '@/common/constants/evolutions';
+import { getParsedEvolutionTrigger } from '@/common/constants/evolutions';
 import {
   EvolutionCardData,
   EvolutionDetails as EvolutionDetail,
@@ -120,10 +120,11 @@ export default function EvolutionsCard({
                       <div className="text-sm text-gray-600">
                         {evolutionDetails[0].trigger?.name === 'level-up' &&
                         evolutionDetails[0].min_level
-                          ? `Level ${evolution.evolutionDetails?.[0].min_level}`
-                          : EVOLUTION_DETAILS(
-                              evolutionDetails[0].trigger?.name || 'default'
-                            ).trigger.label}
+                          ? `${t('evolutions.details.minLevel', 'Minimum level')}: ${evolution.evolutionDetails?.[0].min_level}`
+                          : getParsedEvolutionTrigger(
+                              evolutionDetails[0].trigger?.name || 'default',
+                              t
+                            ).label}
                       </div>
                     </div>
                   </div>
