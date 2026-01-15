@@ -167,6 +167,11 @@ const translations: Translations = {
       description:
         'Elige 1 tipo para análisis de tipo único o 2 tipos para análisis de tipo dual',
     },
+    selectedTypes: {
+      title: 'Tipos Seleccionados',
+      dualType: '(Tipo Dual)',
+      noTypesSelected: 'No hay tipos seleccionados',
+    },
   },
   evolutions: {
     title: 'Cadena Evolutiva',

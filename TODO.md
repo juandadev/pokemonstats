@@ -66,11 +66,6 @@
 
 - [ ] Bring back theme provider
     - [ ] Add light and dark mode
-- [ ] Support internationalization (i18n)
-    - [ ] Add translations for Spanish
-        - [x] Translate games list to Spanish
-        - [x] Translate moves description
-        - [ ] Translate evolution details
 - [ ] Check the app against React scan https://github.com/aidenybai/react-scan#install and fix the performance issues
 - [ ] Full a11y support
 - [ ] Support for all generations

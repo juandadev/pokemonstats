@@ -148,6 +148,11 @@ export interface Translations {
       title: string;
       description: string;
     };
+    selectedTypes: {
+      title: string;
+      dualType: string;
+      noTypesSelected: string;
+    };
   };
   evolutions: {
     title: string;
