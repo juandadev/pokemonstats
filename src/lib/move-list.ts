@@ -37,6 +37,9 @@ export async function buildMoveList(moves: Move[]): Promise<MoveDisplayData[]> {
       pp: data.pp,
       type: data.type.name,
       damageClass: data.damage_class.name,
+      effectEntries: data.effect_entries,
+      flavorTextEntries: data.flavor_text_entries,
+      names: data.names,
     });
   }
 

@@ -18,6 +18,9 @@ export interface MoveDisplayData {
   accuracy: number | null;
   gameDetails: MoveGameDetails[];
   damageClass: DamageType;
+  effectEntries: EffectEntry[];
+  flavorTextEntries: FlavorTextEntry[];
+  names: Name[];
 }
 
 export interface MoveGameDetails {

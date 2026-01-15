@@ -16,7 +16,7 @@ import {
 } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import EvolutionDetails from '@/components/EvolutionsCard/EvolutionDetails';
-import { EVOLUTION_DETAILS } from '@/common/constants/evolutions';
+import { getParsedEvolutionTrigger } from '@/common/constants/evolutions';
 import {
   EvolutionCardData,
   EvolutionDetails as EvolutionDetail,
@@ -28,6 +28,7 @@ import Link from 'next/link';
 import { TYPE_LABELS } from '@/common/constants/pokemonTypes';
 import MegaEvolutionIcon from '@/icons/MegaEvolutionIcon';
 import GMaxIcon from '@/icons/GMaxIcon';
+import { useTranslation } from '@/i18n';
 
 interface EvolutionsCardProps {
   pokemonData: PokemonData;
@@ -38,6 +39,7 @@ export default function EvolutionsCard({
   pokemonData,
   evolutionsData,
 }: EvolutionsCardProps) {
+  const { t } = useTranslation();
   const [showEvolutionDetails, setShowEvolutionDetails] =
     useState<boolean>(false);
   const [selectedPokemon, setSelectedPokemon] = useState<{
@@ -118,10 +120,11 @@ export default function EvolutionsCard({
                       <div className="text-sm text-gray-600">
                         {evolutionDetails[0].trigger?.name === 'level-up' &&
                         evolutionDetails[0].min_level
-                          ? `Level ${evolution.evolutionDetails?.[0].min_level}`
-                          : EVOLUTION_DETAILS(
-                              evolutionDetails[0].trigger?.name || 'default'
-                            ).trigger.label}
+                          ? `${t('evolutions.details.minLevel', 'Minimum level')}: ${evolution.evolutionDetails?.[0].min_level}`
+                          : getParsedEvolutionTrigger(
+                              evolutionDetails[0].trigger?.name || 'default',
+                              t
+                            ).label}
                       </div>
                     </div>
                   </div>
@@ -133,7 +136,9 @@ export default function EvolutionsCard({
                       }
                     >
                       <InfoIcon className="w-3 h-3" />
-                      <span className="inline">Details</span>
+                      <span className="inline">
+                        {t('common.buttons.details', 'Details')}
+                      </span>
                     </button>
                   )}
                 </div>
@@ -143,7 +148,7 @@ export default function EvolutionsCard({
           </Fragment>
         );
       }),
-    [evolutionsData, pokemonData.name, pokemonData.types]
+    [evolutionsData, pokemonData.name, pokemonData.types, t]
   );
 
   if (Object.keys(evolutionsData).length === 0) return null;
@@ -152,7 +157,7 @@ export default function EvolutionsCard({
     <Card className="shadow-xl border-0 bg-white/90 backdrop-blur-sm">
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-2xl heading">
-          Evolution Chain
+          {t('evolutions.title', 'Evolution Chain')}
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -181,11 +186,15 @@ export default function EvolutionsCard({
                   />
                 </div>
                 <SheetTitle className="capitalize">
-                  How to evolve into {selectedPokemon.displayName}
+                  {t('evolutions.modalTitle', 'How to evolve into')}{' '}
+                  {selectedPokemon.displayName}
                 </SheetTitle>
               </div>
               <SheetDescription>
-                Different methods available across games
+                {t(
+                  'evolutions.modalDescription',
+                  'Different methods available across games'
+                )}
               </SheetDescription>
             </SheetHeader>
             <EvolutionDetails
@@ -194,19 +203,29 @@ export default function EvolutionsCard({
             />
             <SheetFooter>
               <p className="text-sm text-gray-500">
-                Found something wrong, outdated, or missing?{' '}
+                {
+                  t(
+                    'evolutions.footer',
+                    'Found something wrong, outdated, or missing? Report an issue here so we can keep this info accurate for everyone 🙌'
+                  ).split('Report an issue here')[0]
+                }
                 <a
                   href="https://github.com/juandadev/pokemonstats/issues"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="underline hover:opacity-70"
                 >
-                  Report an issue here
-                </a>{' '}
-                so we can keep this info accurate for everyone 🙌
+                  {t('footer.links.issues', 'Report an issue here')}
+                </a>
+                {t(
+                  'evolutions.footer',
+                  'Found something wrong, outdated, or missing? Report an issue here so we can keep this info accurate for everyone 🙌'
+                ).split('Report an issue here')[1] || ''}
               </p>
               <SheetClose asChild>
-                <Button variant="outline">Close</Button>
+                <Button variant="outline">
+                  {t('common.buttons.close', 'Close')}
+                </Button>
               </SheetClose>
             </SheetFooter>
           </SheetContent>

@@ -1,10 +1,21 @@
+'use client';
+
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import clsx from 'clsx';
 import { ShieldIcon, SwordIcon } from 'lucide-react';
 import { getTypeIcon } from '@/lib/utils';
 import { TYPE_LABELS, TYPES_LIST } from '@/common/constants/pokemonTypes';
+import { useTranslation } from '@/i18n';
+import { PokemonTypes } from '@/types/pokemon.types';
 
 export default function EffectivenessChartSuspense() {
+  const { t } = useTranslation();
+
+  const getTypeLabel = (type: PokemonTypes) => {
+    const capitalize = (str: string) =>
+      str.charAt(0).toUpperCase() + str.slice(1);
+    return t(`stats.types.${type}`, capitalize(type));
+  };
   return (
     <Card className="shadow-xl border-0 bg-white/90 backdrop-blur-sm">
       <CardHeader>
@@ -53,8 +64,8 @@ export default function EffectivenessChartSuspense() {
                   >
                     <IconComponent className="w-6 h-6" />
                   </div>
-                  <span className="text-xs font-semibold capitalize transition-colors duration-300 text-gray-600">
-                    {type.name}
+                  <span className="text-xs font-semibold transition-colors duration-300 text-gray-600">
+                    {getTypeLabel(type.name)}
                   </span>
                 </button>
               );

@@ -11,12 +11,14 @@ import Link from 'next/link';
 import { Slot } from '@radix-ui/react-slot';
 import { useRouter } from 'next/navigation';
 import { POKEMON_LIST } from '@/common/constants';
+import { useTranslation } from '@/i18n';
 
 interface SearchBarProps {
   initialValue?: string;
 }
 
 export default function SearchBar({ initialValue = '' }: SearchBarProps) {
+  const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState<string>(initialValue);
   const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
   const [selectedSuggestionIndex, setSelectedSuggestionIndex] =
@@ -94,7 +96,7 @@ export default function SearchBar({ initialValue = '' }: SearchBarProps) {
             id="search-pokemon"
             name="search-pokemon"
             autoComplete={'off'}
-            placeholder="Search Pokémon..."
+            placeholder={t('search.placeholder', 'Search Pokémon...')}
             value={searchTerm}
             onChange={handleSearchChange}
             onKeyDown={handleKeyDown}
@@ -172,7 +174,9 @@ export default function SearchBar({ initialValue = '' }: SearchBarProps) {
                           );
                         })}
                       </div>
-                      <div className="text-xs text-gray-500">Pokémon</div>
+                      <div className="text-xs text-gray-500">
+                        {t('search.label', 'Pokémon')}
+                      </div>
                     </div>
                     {index === selectedSuggestionIndex && (
                       <div className="text-blue-500">
@@ -196,8 +200,12 @@ export default function SearchBar({ initialValue = '' }: SearchBarProps) {
               ))}
               <div className="px-4 py-2 bg-gray-50 border-t border-gray-100 rounded-b-xl">
                 <div className="flex items-center justify-between text-xs text-gray-500">
-                  <span>Use ↑↓ to navigate</span>
-                  <span>Press Enter to select</span>
+                  <span>
+                    {t('search.instructions.navigate', 'Use ↑↓ to navigate')}
+                  </span>
+                  <span>
+                    {t('search.instructions.select', 'Press Enter to select')}
+                  </span>
                 </div>
               </div>
             </div>

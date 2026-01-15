@@ -15,6 +15,7 @@ import { MoveDisplayData } from '@/types/moves.types';
 import { getPreferences, setPreferences } from '@/lib/preferences';
 import { PokemonCardTabs } from '@/types';
 import { TYPE_LABELS } from '@/common/constants/pokemonTypes';
+import { useTranslation } from '@/i18n';
 
 interface PokemonCardProps {
   pokemonData: PokemonData;
@@ -27,6 +28,7 @@ export default function PokemonCard({
   speciesData,
   moveList,
 }: PokemonCardProps) {
+  const { t } = useTranslation();
   const preferences = getPreferences();
   const [activeTab, setActiveTab] = useState<PokemonCardTabs>(
     preferences.pkmnTab
@@ -75,10 +77,16 @@ export default function PokemonCard({
             className="w-full"
           >
             <TabsList className="w-full">
-              <TabsTrigger value="overview">Overview</TabsTrigger>
-              <TabsTrigger value="stats">Base Stats</TabsTrigger>
+              <TabsTrigger value="overview">
+                {t('pokemonCard.tabs.overview', 'Overview')}
+              </TabsTrigger>
+              <TabsTrigger value="stats">
+                {t('pokemonCard.tabs.baseStats', 'Base Stats')}
+              </TabsTrigger>
               {moveList.length > 0 && (
-                <TabsTrigger value="moves">Moves</TabsTrigger>
+                <TabsTrigger value="moves">
+                  {t('pokemonCard.tabs.moves', 'Moves')}
+                </TabsTrigger>
               )}
             </TabsList>
             <TabsContent value="overview">

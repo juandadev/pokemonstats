@@ -12,6 +12,7 @@ import { clsx } from 'clsx';
 import { Button } from '@/components/ui/button';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { EffectivenessMode } from '@/types';
+import { useTranslation } from '@/i18n';
 
 interface SelectedTypesDisplayProps {
   selectedTypes: SelectedType[];
@@ -24,6 +25,7 @@ export default function SelectedTypesDisplay({
   setSelectedTypes,
   effectivenessMode = 'offensive',
 }: SelectedTypesDisplayProps) {
+  const { t } = useTranslation();
   const [displaySelectedTypes, setDisplaySelectedTypes] =
     useState<boolean>(false);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
@@ -87,9 +89,11 @@ export default function SelectedTypesDisplay({
         {isExpanded && (
           <div className="flex items-center justify-between mb-3">
             <h3 className="text-sm font-semibold text-gray-900">
-              Selected Types{' '}
+              {t('effectiveness.selectedTypes.title', 'Selected Types')}{' '}
               {isDualType && (
-                <span className="text-yellow-600">(Dual-Type)</span>
+                <span className="text-yellow-600">
+                  {t('effectiveness.selectedTypes.dualType', '(Dual-Type)')}
+                </span>
               )}
             </h3>
             <button
@@ -97,13 +101,15 @@ export default function SelectedTypesDisplay({
               className="ml-2 text-xs text-gray-500 hover:text-red-600 transition-colors duration-200 flex items-center gap-1 cursor-pointer"
             >
               <XIcon className="w-3 h-3" />
-              Clear
+              {t('common.buttons.clear', 'Clear')}
             </button>
           </div>
         )}
         <div className="flex items-center gap-2">
           {selectedTypes.length === 0 && (
-            <p className="text-sm text-gray-500">No types selected</p>
+            <p className="text-sm text-gray-500">
+              {t('effectiveness.selectedTypes.noTypesSelected', 'No types selected')}
+            </p>
           )}
           {selectedTypes.map((type) => (
             <TypeBadge

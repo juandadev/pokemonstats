@@ -54,9 +54,10 @@ export async function GET() {
   );
 
   if (!response.ok) {
+    console.log(response);
     return NextResponse.json(
       { error: 'Failed to load supporters' },
-      { status: 502 }
+      { status: response.status || 502 }
     );
   }
 

@@ -1,9 +1,12 @@
+'use client';
+
 import React, { Fragment, useMemo } from 'react';
 import Image from 'next/image';
-import { EVOLUTION_DETAILS } from '@/common/constants/evolutions';
+import { getParsedEvolutionTrigger } from '@/common/constants/evolutions';
 import { Separator } from '@/components/ui/separator';
 import { buildAdditionalDetailsList } from '@/lib/utils';
 import { EvolutionDetails as EvolutionDetail } from '@/types/evolutions.types';
+import { useTranslation } from '@/i18n';
 
 interface EvolutionDetailsProps {
   pokemonName: string;
@@ -14,13 +17,16 @@ export default function EvolutionDetails({
   pokemonName,
   details,
 }: EvolutionDetailsProps) {
+  const { t, locale } = useTranslation();
+
   const renderDetailsList = useMemo(
     () =>
       details.map((detail, index) => {
-        const triggerInfo = EVOLUTION_DETAILS(
-          detail.trigger?.name || 'default'
-        ).trigger;
-        const additionalDetailsList = buildAdditionalDetailsList(detail);
+        const triggerInfo = getParsedEvolutionTrigger(
+          detail.trigger?.name || 'default',
+          t
+        );
+        const additionalDetailsList = buildAdditionalDetailsList(detail, t, locale);
 
         return (
           <Fragment key={`${pokemonName}-evolution-detail-${index}`}>
@@ -31,7 +37,6 @@ export default function EvolutionDetails({
                 </span>
               </div>
               <div className="flex-1 space-y-2">
-                {/* Trigger Method */}
                 <div className="flex items-center gap-2">
                   {triggerInfo.icon}
                   <span className="text-sm font-medium text-gray-900">
@@ -69,7 +74,7 @@ export default function EvolutionDetails({
           </Fragment>
         );
       }),
-    [details, pokemonName]
+    [details, pokemonName, t, locale]
   );
 
   if (details.length === 0) return null;
