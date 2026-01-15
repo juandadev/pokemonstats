@@ -115,6 +115,7 @@ export interface Translations {
       accuracy: string;
     };
     instruction: string;
+    games: Record<string, string>;
   };
   effectiveness: {
     title: string;

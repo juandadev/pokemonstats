@@ -34,6 +34,18 @@ interface MovesProps {
 export default function Moves({ moves }: MovesProps) {
   const { t, locale } = useTranslation();
   const preferences = getPreferences();
+
+  const getLocalizedGameName = (game: GameVersion): string => {
+    if (locale === 'es') {
+      const translationKey = `moves.games.${game}`;
+      const translated = t(translationKey, '');
+      if (translated && translated !== translationKey) {
+        return translated;
+      }
+    }
+    return formatGameVersion(game);
+  };
+
   const gameVersionList = useMemo(() => {
     const set = new Set<GameVersion>();
 
@@ -175,13 +187,13 @@ export default function Moves({ moves }: MovesProps) {
   return (
     <>
       <Select value={selectedGame} onValueChange={handleGameSelect}>
-        <SelectTrigger className="w-full capitalize">
+        <SelectTrigger className="w-full">
           <SelectValue placeholder="Game version" />
         </SelectTrigger>
         <SelectContent>
           {gameVersionList.map((game) => (
-            <SelectItem key={game} value={game} className="capitalize">
-              {formatGameVersion(game)}
+            <SelectItem key={game} value={game}>
+              {getLocalizedGameName(game)}
             </SelectItem>
           ))}
         </SelectContent>

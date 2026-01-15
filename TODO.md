@@ -55,9 +55,6 @@
         - [ ] Well-Baked Body
         - [ ] Wonder Guard
 - [ ] Try to add on which games the evolution variations are effective. (Take Eevee as example)
-- [x] Add Analytics
-    - [x] Use Data Buddy
-    - [x] Track page views
 
 # Nice to have
 
@@ -70,7 +67,6 @@
 - [ ] Bring back theme provider
     - [ ] Add light and dark mode
 - [ ] Support internationalization (i18n)
-    - [ ] Use react-i18next
     - [ ] Add translations for Spanish
         - [ ] Translate games list to Spanish
         - [ ] Translate moves description
