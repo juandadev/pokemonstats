@@ -154,6 +154,51 @@ export interface Translations {
     modalTitle: string;
     modalDescription: string;
     footer: string;
+    triggers: {
+      'base-form': string;
+      'level-up': string;
+      'use-item': string;
+      trade: string;
+      'three-critical-hits': string;
+      'mega-evolution': string;
+      gmax: string;
+      default: string;
+    };
+    details: {
+      gender: {
+        female: string;
+        male: string;
+      };
+      heldItem: string;
+      requiredItem: string;
+      knownMove: string;
+      knownMoveType: string;
+      location: string;
+      minAffection: string;
+      minBeauty: string;
+      minHappiness: string;
+      minLevel: string;
+      needsOverworldRain: string;
+      needsOverworldRainValue: string;
+      needsOverworldRainNote: string;
+      partySpecies: string;
+      partyType: string;
+      relativePhysicalStats: string;
+      relativePhysicalStatsValues: {
+        attackGreater: string;
+        attackLess: string;
+        attackEqual: string;
+      };
+      timeOfDay: string;
+      timeOfDayValues: {
+        day: string;
+        night: string;
+      };
+      tradeSpecies: string;
+      turnUpsideDown: string;
+      turnUpsideDownValue: string;
+      weather: string;
+    };
   };
   pages: {
     notFound: {

@@ -9,7 +9,10 @@ import {
 } from '@/types/pokemon.types';
 import { CircleIcon } from 'lucide-react';
 import { EffectivenessMode } from '@/types';
-import { EVOLUTION_DETAILS } from '@/common/constants/evolutions';
+import {
+  EVOLUTION_DETAILS,
+  getLocalizedEvolutionDetails,
+} from '@/common/constants/evolutions';
 import {
   EvolutionDetailDisplay,
   EvolutionDetails,
@@ -56,22 +59,34 @@ export const getEvolutionDetails = (
 };
 
 export function buildAdditionalDetailsList(
-  detail: Partial<EvolutionDetails>
+  detail: Partial<EvolutionDetails>,
+  t?: (key: string, fallback: string) => string
 ): EvolutionDetailDisplay[] {
   const additionalDetailsList = [];
 
   for (const [key, value] of Object.entries(detail)) {
     if (key === 'trigger') continue;
 
-    const detailInfo = EVOLUTION_DETAILS(
-      value as
-        | string
-        | number
-        | boolean
-        | Species
-        | GenericPropertyDetails
-        | GenericPropertyDetails<Items>
-    )[key as keyof EvolutionDetails];
+    const detailInfo = t
+      ? getLocalizedEvolutionDetails(
+          value as
+            | string
+            | number
+            | boolean
+            | Species
+            | GenericPropertyDetails
+            | GenericPropertyDetails<Items>,
+          t
+        )[key as keyof EvolutionDetails]
+      : EVOLUTION_DETAILS(
+          value as
+            | string
+            | number
+            | boolean
+            | Species
+            | GenericPropertyDetails
+            | GenericPropertyDetails<Items>
+        )[key as keyof EvolutionDetails];
     additionalDetailsList.push(detailInfo);
   }
 

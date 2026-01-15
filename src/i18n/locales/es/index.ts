@@ -174,6 +174,52 @@ const translations: Translations = {
     modalDescription: 'Diferentes métodos disponibles en todos los juegos',
     footer:
       '¿Encontraste algo incorrecto, desactualizado o faltante? Reporta un problema aquí para que podamos mantener esta información precisa para todos 🙌',
+    triggers: {
+      'base-form': 'Forma Base',
+      'level-up': 'Subir de Nivel',
+      'use-item': 'Usar Objeto',
+      trade: 'Intercambio o Cordón Unión',
+      'three-critical-hits': 'Aterrizar tres golpes críticos en una batalla',
+      'mega-evolution': 'Mega Evolución',
+      gmax: 'Gigamax',
+      default: 'Desconocido',
+    },
+    details: {
+      gender: {
+        female: 'Género: Femenino',
+        male: 'Género: Masculino',
+      },
+      heldItem: 'Mientras sostiene',
+      requiredItem: 'Objeto requerido',
+      knownMove: 'Conoce movimiento',
+      knownMoveType: 'Conoce algún movimiento de tipo',
+      location: 'Ubicación',
+      minAffection: 'Afecto mínimo',
+      minBeauty: 'Belleza mínima',
+      minHappiness: 'Felicidad mínima',
+      minLevel: 'Nivel mínimo',
+      needsOverworldRain: 'Clima',
+      needsOverworldRainValue: 'Lluvia',
+      needsOverworldRainNote:
+        '(no durante batalla y no por movimientos como Danza Lluvia)',
+      partySpecies: 'Ten en tu equipo',
+      partyType: 'Ten en tu equipo algún Pokémon de tipo',
+      relativePhysicalStats: 'Estadísticas físicas',
+      relativePhysicalStatsValues: {
+        attackGreater: 'Ataque > Defensa',
+        attackLess: 'Ataque < Defensa',
+        attackEqual: 'Ataque = Defensa',
+      },
+      timeOfDay: 'Hora',
+      timeOfDayValues: {
+        day: 'Día',
+        night: 'Noche',
+      },
+      tradeSpecies: 'Intercambia por',
+      turnUpsideDown: 'Mientras el dispositivo está',
+      turnUpsideDownValue: 'volteado al revés',
+      weather: 'Clima',
+    },
   },
   pages: {
     notFound: {
