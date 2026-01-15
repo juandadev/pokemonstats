@@ -39,6 +39,12 @@ export default function EffectivenessChart({
   const { t } = useTranslation();
   const preferences = getPreferences();
 
+  const getTypeLabel = (type: PokemonTypes) => {
+    const capitalize = (str: string) =>
+      str.charAt(0).toUpperCase() + str.slice(1);
+    return t(`stats.types.${type}`, capitalize(type));
+  };
+
   const [selectedTypes, setSelectedTypes] = useState<SelectedType[]>([]);
   const [lastPokemonName, setLastPokemonName] = useState<string | null>(null);
   const [userHasInteracted, setUserHasInteracted] = useState(false);
@@ -246,11 +252,11 @@ export default function EffectivenessChart({
                     </div>
                     <span
                       className={clsx(
-                        'text-xs font-semibold capitalize transition-colors duration-300',
+                        'text-xs font-semibold transition-colors duration-300',
                         isSelected ? 'text-gray-900' : 'text-gray-600'
                       )}
                     >
-                      {type.name}
+                      {getTypeLabel(type.name)}
                     </span>
                   </button>
                 );
@@ -289,7 +295,8 @@ export default function EffectivenessChart({
                       'effectiveness.dualTypeAnalysis',
                       '🔥 Dual-Type Analysis: Showing combined effectiveness of'
                     )}{' '}
-                    {selectedTypes[0].type} + {selectedTypes[1].type}
+                    {getTypeLabel(selectedTypes[0].type)} +{' '}
+                    {getTypeLabel(selectedTypes[1].type)}
                   </p>
                   <Button
                     onClick={handleMessageClose}
