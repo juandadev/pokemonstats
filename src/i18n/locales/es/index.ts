@@ -1,6 +1,26 @@
 import { Translations } from '@/i18n';
 
 const translations: Translations = {
+  components: {
+    coffeeSupporters: {
+      title: 'Patrocinadores Recientes',
+      raised: 'recaudados',
+      description:
+        '¡Gracias a todos los que han apoyado el proyecto! Sus contribuciones ayudan a mantener Pokémon Stats gratis y sin anuncios.',
+      donation: 'donación',
+      supportButton: 'Apoyar el Proyecto',
+    },
+    contributors: {
+      title: 'Contribuidores',
+      count: 'contribuidores',
+      description:
+        'Increíbles desarrolladores, artistas y diseñadores que han contribuido código, diseño, documentación y mejoras a Pokémon Stats.',
+      noContributors:
+        'Aún no hay contribuidores (o se alcanzó el límite de la API).',
+      commits: 'commits',
+      viewAllButton: 'Ver Todos los Contribuidores',
+    },
+  },
   common: {
     buttons: {
       close: 'Cerrar',
@@ -168,9 +188,9 @@ const translations: Translations = {
         'Elige 1 tipo para análisis de tipo único o 2 tipos para análisis de tipo dual',
     },
     selectedTypes: {
-      title: 'Tipos Seleccionados',
-      dualType: '(Tipo Dual)',
-      noTypesSelected: 'No hay tipos seleccionados',
+      title: 'Selección',
+      dualType: '(Dual)',
+      noTypesSelected: 'Sin selección',
     },
   },
   evolutions: {

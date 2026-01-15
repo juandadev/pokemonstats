@@ -15,6 +15,23 @@ export interface BounceRate {
 }
 
 export interface Translations {
+  components: {
+    coffeeSupporters: {
+      title: string;
+      raised: string;
+      description: string;
+      donation: string;
+      supportButton: string;
+    };
+    contributors: {
+      title: string;
+      count: string;
+      description: string;
+      noContributors: string;
+      commits: string;
+      viewAllButton: string;
+    };
+  };
   common: {
     buttons: {
       close: string;
