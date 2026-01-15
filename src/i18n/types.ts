@@ -9,6 +9,11 @@ export interface LocaleConfig {
   pokeAPICode: PokeAPILanguage;
 }
 
+export interface BounceRate {
+  label: string;
+  description: string;
+}
+
 export interface Translations {
   common: {
     buttons: {
@@ -157,6 +162,11 @@ export interface Translations {
       description: string;
       action: string;
       followProgress: string;
+      actionCard: {
+        title: string;
+        goHome: string;
+        followProgress: string;
+      };
       socialButtons: {
         twitter: string;
         github: string;
@@ -184,13 +194,88 @@ export interface Translations {
       badge: string;
       title: string;
       description: string;
-      backLink: string;
+      backButton: string;
       stats: {
         completed: string;
         inProgress: string;
         planned: string;
       };
+      status: {
+        completed: string;
+        inProgress: string;
+        planned: string;
+        skipped: string;
+      };
+      priority: {
+        high: string;
+        medium: string;
+        low: string;
+      };
+      categories: {
+        qualityInsights: string;
+        coreFeatures: string;
+        effectivenessChart: string;
+        pokemonData: string;
+        accessibility: string;
+        competitive: string;
+      };
       keyFeatures: string;
+      items: {
+        analyticsInsights: {
+          title: string;
+          description: string;
+          estimatedCompletion: string;
+          features: string[];
+        };
+        searchHistory: {
+          title: string;
+          description: string;
+          estimatedCompletion: string;
+          features: string[];
+        };
+        advancedBattleModifiers: {
+          title: string;
+          description: string;
+          estimatedCompletion: string;
+          features: string[];
+        };
+        evolutionDetailsByGame: {
+          title: string;
+          description: string;
+          estimatedCompletion: string;
+          features: string[];
+        };
+        generationsRegions: {
+          title: string;
+          description: string;
+          estimatedCompletion: string;
+          features: string[];
+        };
+        multilingualSupport: {
+          title: string;
+          description: string;
+          estimatedCompletion: string;
+          features: string[];
+        };
+        fullAccessibility: {
+          title: string;
+          description: string;
+          estimatedCompletion: string;
+          features: string[];
+        };
+        competitiveBattlingHub: {
+          title: string;
+          description: string;
+          estimatedCompletion: string;
+          features: string[];
+        };
+        teamBuilder: {
+          title: string;
+          description: string;
+          estimatedCompletion: string;
+          features: string[];
+        };
+      };
       contribute: {
         title: string;
         description: string;
@@ -214,7 +299,8 @@ export interface Translations {
         };
       };
       footer: {
-        viewThanks: string;
+        backButton: string;
+        thanksButton: string;
       };
     };
     thanks: {
@@ -261,53 +347,48 @@ export interface Translations {
     privacy: {
       badge: string;
       title: string;
-      backLink: string;
+      backButton: string;
       lastUpdated: string;
       effective: string;
-      email: string;
-      sections: {
-        infoCollect: {
-          title: string;
-          intro: string;
-          metrics: {
-            pageViews: string;
-            session: string;
-            interactions: string;
-            outboundLinks: string;
-            engagement: string;
-            performance: string;
-            bounceRate: string;
-          };
+      intro: string;
+      databuddyIntro: string;
+      collect: {
+        title: string;
+        subtitle: string;
+        items: {
+          pageViews: BounceRate;
+          session: BounceRate;
+          interactions: BounceRate;
+          outboundLinks: BounceRate;
+          engagement: BounceRate;
+          performance: BounceRate;
+          bounceRate: BounceRate;
         };
-        dataUse: {
-          title: string;
-          items: {
-            design: string;
-            painPoints: string;
-            features: string;
-            performance: string;
-          };
+        helpsTitle: string;
+        helps: {
+          design: string;
+          painPoints: string;
+          features: string;
+          performance: string;
         };
-        privacy: {
-          title: string;
-          description: string;
+        footer: string;
+      };
+      security: {
+        title: string;
+        items: {
+          noPersonalData: string;
+          aggregated: string;
+          notIdentified: string;
         };
-        security: {
-          title: string;
-          items: {
-            noPersonalData: string;
-            aggregated: string;
-            anonymous: string;
-          };
+      };
+      contact: {
+        title: string;
+        description: string;
+        cards: {
+          email: { title: string };
+          updates: { title: string; description: string };
         };
-        questions: {
-          title: string;
-          emailButton: string;
-        };
-        updates: {
-          title: string;
-          contactButton: string;
-        };
+        button: string;
       };
     };
   };

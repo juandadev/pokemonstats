@@ -18,11 +18,7 @@ export default function Footer() {
   const { t } = useTranslation();
 
   return (
-    <footer
-      className={
-        'flex flex-col gap-8 mt-10 md:px-8 md:py-12 px-4 py-6 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-200'
-      }
-    >
+    <footer className="flex flex-col gap-8 mt-10 md:px-8 md:py-12 px-4 py-6 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-200">
       <div className="flex items-start gap-3 p-4 bg-yellow-50 border border-yellow-200 rounded-xl">
         <AlertTriangleIcon className="w-5 h-5 text-yellow-600 mt-0.5 flex-shrink-0" />
         <div className="text-sm text-yellow-800">
@@ -109,7 +105,15 @@ export default function Footer() {
       </div>
       <div className="pt-6 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-4">
         <p className="text-sm text-gray-600">
-          {t('footer.madeBy', 'Made with 💚 by Juan Daniel Martínez')}
+          {t('footer.madeBy', 'Made with 💚 by ')}
+          <a
+            className="underline"
+            href="https://juanda.dev"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Juan Daniel Martínez
+          </a>
         </p>
         <div className="flex gap-2 flex-wrap justify-center">
           <Link
@@ -122,7 +126,7 @@ export default function Footer() {
           <p className="text-sm text-gray-500 text-center md:text-left">
             {t(
               'footer.copyright',
-              '© 2021-{year} Pokemon Stats. All rights reserved.'
+              '© 2021-{year} Pokémon Stats. All rights reserved.'
             ).replace('{year}', String(currentYear))}
           </p>
         </div>
