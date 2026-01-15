@@ -348,23 +348,22 @@ const translations: Translations = {
       badge: 'Agradecimientos Especiales',
       title: '¡Gracias!',
       description:
-        'Pokémon Stats no sería posible sin estos increíbles recursos y personas...',
-      backLink: 'Volver a Pokémon Stats',
-      sections: {
-        inspirations: {
-          title: 'Inspiraciones y Referencias',
-          description:
-            'Proyectos y recursos increíbles que inspiraron este trabajo...',
-        },
-        tools: {
-          title: 'Herramientas y Tecnologías',
-          description:
-            'Herramientas y tecnologías increíbles que hicieron posible este proyecto...',
-        },
+        'Pokémon Stats no sería posible sin la increíble comunidad, los contribuidores, y las increíbles herramientas y recursos que nos inspiran cada día.',
+      backButton: 'Volver a Pokémon Stats',
+      inspirations: {
+        title: 'Inspiraciones y Referencias',
+        description:
+          'Proyectos y recursos increíbles que inspiraron Pokémon Stats y ayudaron a dar forma a nuestra visión.',
       },
-      contribute: {
+      tools: {
+        title: 'Herramientas y Tecnologías',
+        description:
+          'Increíbles herramientas y tecnologías que hacen posible Pokémon Stats. ¡Gracias a todos los mantenedores de código abierto!',
+      },
+      cta: {
         title: '¿Quieres Ser Destacado Aquí?',
-        description: 'Hay muchas maneras de apoyar Pokémon Stats...',
+        description:
+          'Hay muchas maneras de apoyar Pokémon Stats y unirte a nuestra increíble comunidad de contribuidores y patrocinadores.',
         cards: {
           code: {
             title: 'Contribuir Código',
@@ -385,7 +384,8 @@ const translations: Translations = {
         },
       },
       footer: {
-        viewRoadmap: 'Ver Hoja de Ruta del Proyecto',
+        backButton: 'Volver a Pokémon Stats',
+        roadmapButton: 'Ver Hoja de Ruta del Proyecto',
       },
     },
     privacy: {

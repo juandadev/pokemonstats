@@ -307,18 +307,16 @@ export interface Translations {
       badge: string;
       title: string;
       description: string;
-      backLink: string;
-      sections: {
-        inspirations: {
-          title: string;
-          description: string;
-        };
-        tools: {
-          title: string;
-          description: string;
-        };
+      backButton: string;
+      inspirations: {
+        title: string;
+        description: string;
       };
-      contribute: {
+      tools: {
+        title: string;
+        description: string;
+      };
+      cta: {
         title: string;
         description: string;
         cards: {
@@ -341,7 +339,8 @@ export interface Translations {
         };
       };
       footer: {
-        viewRoadmap: string;
+        backButton: string;
+        roadmapButton: string;
       };
     };
     privacy: {
