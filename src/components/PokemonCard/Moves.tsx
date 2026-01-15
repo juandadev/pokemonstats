@@ -46,6 +46,24 @@ export default function Moves({ moves }: MovesProps) {
     return formatGameVersion(game);
   };
 
+  const getLocalizedDescription = useCallback(
+    (move: MoveDisplayData): string => {
+      if (locale === 'es') {
+        const spanishFlavorText = findByLanguage(
+          move.flavorTextEntries,
+          locale
+        )?.flavor_text;
+        if (spanishFlavorText) {
+          return spanishFlavorText;
+        }
+      }
+
+      const englishEffect = findByLanguage(move.effectEntries, 'en')?.effect;
+      return englishEffect || 'Missing description';
+    },
+    [locale]
+  );
+
   const gameVersionList = useMemo(() => {
     const set = new Set<GameVersion>();
 
@@ -99,9 +117,7 @@ export default function Moves({ moves }: MovesProps) {
           move.gameDetails.find(
             (item) => item.game === selectedGame && item.learnMethod === type
           ) || move.gameDetails[0];
-        const localizedDescription =
-          findByLanguage(move.effectEntries, locale)?.effect ||
-          getDetailsByGame.description;
+        const localizedDescription = getLocalizedDescription(move);
 
         return (
           <AccordionItem
@@ -181,7 +197,7 @@ export default function Moves({ moves }: MovesProps) {
         );
       });
     },
-    [moves, selectedGame, t, locale]
+    [moves, selectedGame, t, locale, getLocalizedDescription]
   );
 
   return (

@@ -19,6 +19,7 @@ export interface MoveDisplayData {
   gameDetails: MoveGameDetails[];
   damageClass: DamageType;
   effectEntries: EffectEntry[];
+  flavorTextEntries: FlavorTextEntry[];
   names: Name[];
 }
 
