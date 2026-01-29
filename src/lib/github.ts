@@ -9,7 +9,7 @@ export async function fetchStarCount(): Promise<number> {
         Accept: 'application/vnd.github+json',
         ...(token ? { Authorization: `Bearer ${token}` } : {}),
       },
-      next: { revalidate: 84600 },
+      next: { revalidate: 604800 },
     }
   );
 
