@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import { Supporter } from '@/app/api/supporters/route';
 import { useTranslation } from '@/i18n';
 import { enUS, es } from 'date-fns/locale';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -9,6 +8,7 @@ import { CoffeeIcon } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { formatDistanceToNow } from 'date-fns/formatDistanceToNow';
 import { Button } from '@/components/ui/button';
+import { Supporter } from '@/components/CoffeeSupporters/CoffeeSupporters';
 
 interface CoffeeSupportersContentProps {
   supporters: Supporter[];

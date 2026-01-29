@@ -1,5 +1,4 @@
 import { Roadmap } from '@/types/roadmap.types';
-import { Contributor } from '@/app/api/contributors/route';
 import { BrushIcon } from 'lucide-react';
 import { EvolutionChain } from '@/types/evolutions.types';
 import { PokemonIndexItem } from '@/types/pokemon.types';
@@ -10,6 +9,7 @@ import POKEMON_INDEX from '@/data/pokemon-index.json';
 import MEGA_EVOS_INDEX from '@/data/mega-evos-index.json';
 import GMAX_INDEX from '@/data/gmax-index.json';
 import MISSING_SPRITES_INDEX from '@/data/missing-pokemon-sprites.json';
+import { Contributor } from '@/components/GithubContributors/Contributors';
 
 export const ROADMAP: Roadmap[] = [
   {

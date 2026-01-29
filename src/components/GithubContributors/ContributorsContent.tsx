@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import { Contributor } from '@/app/api/contributors/route';
 import { useTranslation } from '@/i18n';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Code, Github, Users } from 'lucide-react';
@@ -9,6 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { Slot } from '@radix-ui/react-slot';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
+import { Contributor } from '@/components/GithubContributors/Contributors';
 
 interface ContributorsContentProps {
   contributors: Contributor[];
