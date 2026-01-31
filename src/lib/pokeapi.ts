@@ -20,7 +20,10 @@ export async function getPokemonDataBySlug(
   if (!pokemonResponse.ok) return {};
 
   let pokemonData: PokemonData = await pokemonResponse.json();
-  if (MISSING_SPRITE_LIST.has(pokemonData.name)) {
+  if (
+    MISSING_SPRITE_LIST.has(pokemonData.name) &&
+    !pokemonData.sprites.other?.['official-artwork'].front_default
+  ) {
     pokemonData = {
       ...pokemonData,
       sprites: {
@@ -67,7 +70,10 @@ export async function getEvolutionDetails(
   if (!response.ok) return null;
 
   let pokemonData: PokemonData = await response.json();
-  if (MISSING_SPRITE_LIST.has(pokemonData.name)) {
+  if (
+    MISSING_SPRITE_LIST.has(pokemonData.name) &&
+    !pokemonData.sprites.other?.['official-artwork'].front_default
+  ) {
     pokemonData = {
       ...pokemonData,
       sprites: {
