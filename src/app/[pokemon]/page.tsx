@@ -20,7 +20,15 @@ export async function generateStaticParams(): Promise<
     pokemon: pokemon.slug,
   }));
 
-  return process.env.LOCAL_BUILD ? [{ pokemon: 'totodile' }] : pokemonSlugs;
+  return process.env.LOCAL_BUILD
+    ? [
+        { pokemon: 'gengar' },
+        { pokemon: 'pikachu' },
+        { pokemon: 'totodile' },
+        { pokemon: 'charizard' },
+        { pokemon: 'mewtwo' },
+      ]
+    : pokemonSlugs;
 }
 
 export const dynamicParams = false;
