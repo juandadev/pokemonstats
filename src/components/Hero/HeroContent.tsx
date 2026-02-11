@@ -1,16 +1,48 @@
+// noinspection ExceptionCaughtLocallyJS
+
 'use client';
 
 import { Button } from '@/components/ui/button';
 import { HeartIcon, StarIcon } from 'lucide-react';
 import Image from 'next/image';
 import { useTranslation } from '@/i18n';
+import { useEffect, useState } from 'react';
+import { GithubStarsResponse } from '@/types';
+import { Skeleton } from '@/components/ui/skeleton';
 
-interface HeroContentProps {
-  starCount: number;
-}
+let isMounted = false;
 
-export default function HeroContent({ starCount }: HeroContentProps) {
+export default function HeroContent() {
   const { t } = useTranslation();
+  const [starCount, setStarCount] = useState('...');
+
+  useEffect(() => {
+    if (isMounted) return;
+
+    isMounted = true;
+
+    async function loadStarCount() {
+      try {
+        const response = await fetch('/api/github/stars');
+
+        if (!response.ok) {
+          throw new Error(`Failed to fetch stars (${response.status})`);
+        }
+
+        const data = (await response.json()) as GithubStarsResponse;
+
+        setStarCount(data.stars.toLocaleString('en-US'));
+      } catch {
+        setStarCount('0');
+      }
+    }
+
+    void loadStarCount();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   return (
     <div
@@ -26,7 +58,7 @@ export default function HeroContent({ starCount }: HeroContentProps) {
         </div>
         <h1 className="text-5xl md:text-7xl font-bold text-gray-900">
           Pokémon{' '}
-          <span className="bg-gradient-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent">
+          <span className="bg-linear-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent">
             Stats
           </span>
         </h1>
@@ -45,7 +77,13 @@ export default function HeroContent({ starCount }: HeroContentProps) {
             >
               <div className="flex items-center gap-1 py-1 px-2 bg-white/20 rounded-full">
                 <StarIcon className="w-3 h-3 fill-current" />
-                <span className="text-xs font-semibold">{starCount}</span>
+                <span className="text-xs font-semibold">
+                  {starCount ? (
+                    starCount
+                  ) : (
+                    <Skeleton className="rounded-md w-[13.73px] h-4" />
+                  )}
+                </span>
               </div>
               {t('hero.buttons.github', 'Star on GitHub')}
             </a>

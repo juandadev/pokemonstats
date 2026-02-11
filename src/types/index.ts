@@ -35,3 +35,9 @@ export interface PaginatedResults {
   previous: string | null;
   results: GenericPropertyDetails[];
 }
+
+export interface GithubStarsResponse {
+  stars: number;
+  updatedAt?: string;
+  error?: string;
+}
