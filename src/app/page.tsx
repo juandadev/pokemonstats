@@ -93,7 +93,7 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   return (
-    <div className="h-dvh">
+    <div className="min-h-dvh">
       <Hero />
       <main id="main">
         <SearchBar />
