@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { track } from '@databuddy/sdk';
 import PokemonImage from '@/components/PokemonImage/PokemonImage';
 import { PokemonIndexItem } from '@/types/pokemon.types';
 import { getSearchHistory } from '@/lib/searchHistory';
@@ -24,7 +25,10 @@ export default function SearchHistoryPanel({
           {t('fab.history.title', 'Recent Pokemon')}
         </h3>
         <p className="text-sm text-gray-500">
-          {t('fab.history.empty', 'No history yet. Visit a Pokemon to get started!')}
+          {t(
+            'fab.history.empty',
+            'No history yet. Visit a Pokemon to get started!'
+          )}
         </p>
       </div>
     );
@@ -40,7 +44,13 @@ export default function SearchHistoryPanel({
           <li key={entry.slug}>
             <Link
               href={`/${entry.slug}#main`}
-              onClick={onNavigate}
+              onClick={() => {
+                void track('pokemon_navigated', {
+                  source: 'history',
+                  pokemon: entry.slug,
+                });
+                onNavigate();
+              }}
               aria-label={`Go to ${entry.label}`}
               className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-100 transition-colors duration-150"
             >

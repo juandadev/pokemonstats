@@ -25,6 +25,7 @@ import { PokemonData } from '@/types/pokemon.types';
 import { Separator } from '@/components/ui/separator';
 import PokemonImage from '@/components/PokemonImage/PokemonImage';
 import Link from 'next/link';
+import { track } from '@databuddy/sdk';
 import { TYPE_LABELS } from '@/common/constants/pokemonTypes';
 import MegaEvolutionIcon from '@/icons/MegaEvolutionIcon';
 import GMaxIcon from '@/icons/GMaxIcon';
@@ -102,6 +103,7 @@ export default function EvolutionsCard({
                         <Link
                           href={`/${evolution.slug}#main`}
                           className="underline"
+                          onClick={() => track('pokemon_navigated', { source: 'evolution', pokemon: evolution.slug })}
                         >
                           {evolution.displayName}
                         </Link>

@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Slot } from '@radix-ui/react-slot';
 import { useRouter } from 'next/navigation';
+import { track } from '@databuddy/sdk';
 import { POKEMON_LIST } from '@/common/constants';
 import { useTranslation } from '@/i18n';
 
@@ -58,9 +59,13 @@ export default function SearchBar({ initialValue = '' }: SearchBarProps) {
       case 'Enter':
         e.preventDefault();
         if (selectedSuggestionIndex >= 0) {
-          router.push(
-            `/${filteredSuggestions[selectedSuggestionIndex].slug}#main`
-          );
+          const selected = filteredSuggestions[selectedSuggestionIndex];
+          track('pokemon_navigated', {
+            source: 'search',
+            pokemon: selected.slug,
+            query: searchTerm,
+          });
+          router.push(`/${selected.slug}#main`);
         }
         break;
       case 'Escape':
@@ -141,8 +146,17 @@ export default function SearchBar({ initialValue = '' }: SearchBarProps) {
                   aria-selected={index === selectedSuggestionIndex}
                   tabIndex={-1}
                 >
-                  <Link href={`/${suggestion.slug}#main`}>
-                    <div className="w-8 h-8 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
+                  <Link
+                    href={`/${suggestion.slug}#main`}
+                    onClick={() =>
+                      track('pokemon_navigated', {
+                        source: 'search',
+                        pokemon: suggestion.slug,
+                        query: searchTerm,
+                      })
+                    }
+                  >
+                    <div className="w-8 h-8 bg-linear-to-br from-blue-100 to-purple-100 rounded-full flex items-center justify-center shrink-0">
                       {suggestion.sprite ? (
                         <PokemonImage
                           artUrl={suggestion.sprite}

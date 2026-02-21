@@ -38,7 +38,7 @@ export default function RootLayout({
     <html lang="en" data-scroll-behavior="smooth">
       <body
         className={clsx(
-          'bg-gradient-to-br from-blue-50 via-white to-purple-50',
+          'bg-linear-to-br from-blue-50 via-white to-purple-50',
           openSans.variable,
           montserrat.variable
         )}
@@ -56,10 +56,13 @@ export default function RootLayout({
               <Toaster richColors />
               <Databuddy
                 clientId="Fx9rcznt4D8a0TNC6iXQl"
+                disabled={process.env.NODE_ENV === 'development'}
                 trackOutgoingLinks={true}
                 trackInteractions={true}
                 trackEngagement={true}
                 trackBounceRate={true}
+                trackScrollDepth={true}
+                trackWebVitals={true}
                 enableBatching={true}
               />
             </div>
