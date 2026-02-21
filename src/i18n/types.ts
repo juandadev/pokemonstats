@@ -459,6 +459,18 @@ export interface Translations {
       };
     };
   };
+  fab: {
+    open: string;
+    close: string;
+    quickActions: string;
+    language: string;
+    types: string;
+    history: {
+      label: string;
+      title: string;
+      empty: string;
+    };
+  };
   footer: {
     disclaimer: {
       title: string;
