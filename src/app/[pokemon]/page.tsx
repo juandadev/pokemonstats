@@ -12,6 +12,7 @@ import { buildMoveList } from '@/lib/move-list';
 import { getPokemonDisplayName } from '@/lib/pokemonDisplayName';
 import { keywordsForPokemon, titleCase } from '@/lib/utils';
 import { POKEMON_LIST, SITE_URL } from '@/common/constants';
+import PokemonPageTracker from '@/components/PokemonPageTracker/PokemonPageTracker';
 
 export async function generateStaticParams(): Promise<
   Array<{ pokemon: string }>
@@ -170,9 +171,11 @@ export default async function PokemonStats({ params }: PageProps) {
 
   const evolutionStages = await buildEvolutionStageList(data.evolutionsData!);
   const moveList = await buildMoveList(data.pokemonData!.moves);
+  const pokemonEntry = POKEMON_LIST.find((p) => p.slug === pokemon);
 
   return (
     <>
+      {pokemonEntry && <PokemonPageTracker entry={pokemonEntry} />}
       <Header pokemonData={data.pokemonData!} speciesData={data.speciesData!} />
       <Hero />
       <main id="main" className={'mt-10'}>

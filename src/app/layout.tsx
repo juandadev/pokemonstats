@@ -9,7 +9,8 @@ import { Databuddy } from '@databuddy/sdk/react';
 import Navbar from '@/components/Navbar/Navbar';
 import { clsx } from 'clsx';
 import { LocaleProvider } from '@/i18n';
-import LanguageSwitcher from '@/components/LanguageSwitcher/LanguageSwitcher';
+import { SelectedTypesProvider } from '@/context/SelectedTypesContext';
+import FABMenu from '@/components/FABMenu/FABMenu';
 
 const openSans = Open_Sans({
   variable: '--font-open-sans',
@@ -43,25 +44,27 @@ export default function RootLayout({
         )}
       >
         <LocaleProvider>
-          <Navbar />
-          <div
-            className={
-              'min-h-screen container mx-auto md:px-8 px-4 pt-16 pb-8 max-w-7xl'
-            }
-          >
-            {children}
-            <Footer />
-            <Toaster richColors />
-            <Databuddy
-              clientId="Fx9rcznt4D8a0TNC6iXQl"
-              trackOutgoingLinks={true}
-              trackInteractions={true}
-              trackEngagement={true}
-              trackBounceRate={true}
-              enableBatching={true}
-            />
-          </div>
-          <LanguageSwitcher />
+          <SelectedTypesProvider>
+            <Navbar />
+            <div
+              className={
+                'min-h-screen container mx-auto md:px-8 px-4 pt-16 pb-8 max-w-7xl'
+              }
+            >
+              {children}
+              <Footer />
+              <Toaster richColors />
+              <Databuddy
+                clientId="Fx9rcznt4D8a0TNC6iXQl"
+                trackOutgoingLinks={true}
+                trackInteractions={true}
+                trackEngagement={true}
+                trackBounceRate={true}
+                enableBatching={true}
+              />
+            </div>
+            <FABMenu />
+          </SelectedTypesProvider>
         </LocaleProvider>
       </body>
     </html>
