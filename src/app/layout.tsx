@@ -1,5 +1,4 @@
 import React from 'react';
-import { Metadata } from 'next';
 import { Open_Sans, Montserrat } from 'next/font/google';
 import Footer from '@/components/Footer/Footer';
 import { Toaster } from '@/components/ui/sonner';
@@ -23,11 +22,6 @@ const montserrat = Montserrat({
   subsets: ['latin'],
   display: 'swap',
 });
-
-export const metadata: Metadata = {
-  title: 'Pokémon stats',
-  description: 'An useful tool for your pokémon adventures.',
-};
 
 export default function RootLayout({
   children,
