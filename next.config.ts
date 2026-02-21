@@ -14,15 +14,6 @@ const nextConfig: NextConfig = {
       { protocol: 'https', hostname: 'archives.bulbagarden.net' },
     ],
   },
-  async redirects() {
-    return [
-      {
-        source: '/',
-        destination: '/gengar',
-        permanent: false,
-      },
-    ];
-  },
 };
 
 export default nextConfig;

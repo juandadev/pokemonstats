@@ -47,9 +47,7 @@ export default function HeroContent() {
   return (
     <div
       id={'hero'}
-      className={
-        'grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-8 relative pb-16'
-      }
+      className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-8 relative pb-16"
     >
       <div className={'flex flex-col gap-8'}>
         <div className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium text-gray-600 shadow-sm border border-gray-200 w-fit">
