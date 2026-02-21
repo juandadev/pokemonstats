@@ -1,5 +1,5 @@
 import React from 'react';
-import { GameVersion, GenericPropertyDetails } from '@/types/pokemon.types';
+import { GameVersion, GenericPropertyDetails, PokemonTypes } from '@/types/pokemon.types';
 
 export interface IconProps extends React.ComponentProps<'svg'> {
   size?: number;
@@ -7,6 +7,11 @@ export interface IconProps extends React.ComponentProps<'svg'> {
 }
 
 export type EffectivenessMode = 'offensive' | 'defensive';
+
+export interface SelectedType {
+  type: PokemonTypes;
+  index: number;
+}
 
 export type PokemonCardTabs = 'overview' | 'stats' | 'moves';
 

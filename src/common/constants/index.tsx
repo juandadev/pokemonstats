@@ -28,7 +28,7 @@ export const ROADMAP: Roadmap[] = [
     title: 'Pokémon Search History',
     description:
       'Quickly go back to your last 5 Pokémon searches without searching again.',
-    status: 'planned',
+    status: 'completed',
     priority: 'high',
     category: 'Core Features',
     estimatedCompletion: 'Q1 2026',
@@ -43,7 +43,7 @@ export const ROADMAP: Roadmap[] = [
     title: 'Advanced Battle Modifiers',
     description:
       'Accurate type effectiveness that includes special moves, abilities, and new battle rules.',
-    status: 'planned',
+    status: 'in-progress',
     priority: 'high',
     category: 'Effectiveness Chart',
     estimatedCompletion: 'Q1 2026',
@@ -85,7 +85,7 @@ export const ROADMAP: Roadmap[] = [
     title: 'Multilingual Support',
     description:
       'Use Pokémon Stats in multiple languages, starting with Spanish.',
-    status: 'in-progress',
+    status: 'completed',
     priority: 'high',
     category: 'Accessibility',
     estimatedCompletion: 'Q4 2025',

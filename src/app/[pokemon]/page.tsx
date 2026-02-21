@@ -2,7 +2,6 @@ import React from 'react';
 import { getPokemonDataBySlug } from '@/lib/pokeapi';
 import { notFound } from 'next/navigation';
 import Header from '@/components/Header/Header';
-import Hero from '@/components/Hero/Hero';
 import SearchBar from '@/components/SearchBar/SearchBar';
 import PokemonCard from '@/components/PokemonCard/PokemonCard';
 import EvolutionsCard from '@/components/EvolutionsCard/EvolutionsCard';
@@ -12,6 +11,7 @@ import { buildMoveList } from '@/lib/move-list';
 import { getPokemonDisplayName } from '@/lib/pokemonDisplayName';
 import { keywordsForPokemon, titleCase } from '@/lib/utils';
 import { POKEMON_LIST, SITE_URL } from '@/common/constants';
+import PokemonPageTracker from '@/components/PokemonPageTracker/PokemonPageTracker';
 
 export async function generateStaticParams(): Promise<
   Array<{ pokemon: string }>
@@ -170,12 +170,13 @@ export default async function PokemonStats({ params }: PageProps) {
 
   const evolutionStages = await buildEvolutionStageList(data.evolutionsData!);
   const moveList = await buildMoveList(data.pokemonData!.moves);
+  const pokemonEntry = POKEMON_LIST.find((p) => p.slug === pokemon);
 
   return (
     <>
+      {pokemonEntry && <PokemonPageTracker entry={pokemonEntry} />}
       <Header pokemonData={data.pokemonData!} speciesData={data.speciesData!} />
-      <Hero />
-      <main id="main" className={'mt-10'}>
+      <main id="main">
         <SearchBar initialValue={pokemon} />
         <div className="grid grid-cols-[100%] lg:grid-cols-2 gap-8 items-start">
           <div className="space-y-6 w-full mx-auto">

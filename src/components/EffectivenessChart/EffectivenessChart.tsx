@@ -17,17 +17,12 @@ import {
 } from 'lucide-react';
 import clsx from 'clsx';
 import TypeBadge from '@/components/TypeBadge/TypeBadge';
-import SelectedTypesDisplay from '@/components/EffectivenessChart/SelectedTypesDisplay';
 import { Button } from '@/components/ui/button';
-import { EffectivenessMode } from '@/types';
+import { EffectivenessMode, SelectedType } from '@/types';
 import { getPreferences, setPreferences } from '@/lib/preferences';
 import { TYPE_LABELS, TYPES_LIST } from '@/common/constants/pokemonTypes';
 import { useTranslation } from '@/i18n';
-
-export interface SelectedType {
-  type: PokemonTypes;
-  index: number;
-}
+import { useSelectedTypes } from '@/context/SelectedTypesContext';
 
 interface EffectivenessChartProps {
   pokemonData: PokemonData;
@@ -37,7 +32,12 @@ export default function EffectivenessChart({
   pokemonData,
 }: EffectivenessChartProps) {
   const { t } = useTranslation();
-  const preferences = getPreferences();
+  const {
+    selectedTypes,
+    setSelectedTypes,
+    effectivenessMode,
+    setEffectivenessMode,
+  } = useSelectedTypes();
 
   const getTypeLabel = (type: PokemonTypes) => {
     const capitalize = (str: string) =>
@@ -45,14 +45,10 @@ export default function EffectivenessChart({
     return t(`stats.types.${type}`, capitalize(type));
   };
 
-  const [selectedTypes, setSelectedTypes] = useState<SelectedType[]>([]);
   const [lastPokemonName, setLastPokemonName] = useState<string | null>(null);
   const [userHasInteracted, setUserHasInteracted] = useState(false);
   const [isInformationMessageClosed, setIsInformationMessageClosed] =
-    useState<boolean>(preferences.msgClosed);
-  const [effectivenessMode, setEffectivenessMode] = useState<EffectivenessMode>(
-    preferences.chartMode
-  );
+    useState<boolean>(() => getPreferences().msgClosed);
 
   const typesContainerRef = useRef<HTMLDivElement>(null);
   const typeButtonsRef = useRef<Record<string, HTMLButtonElement | null>>({});
@@ -132,11 +128,6 @@ export default function EffectivenessChart({
 
   return (
     <>
-      <SelectedTypesDisplay
-        selectedTypes={selectedTypes}
-        setSelectedTypes={setSelectedTypes}
-        effectivenessMode={effectivenessMode}
-      />
       <Card className="shadow-xl border-0 bg-white/90 backdrop-blur-sm">
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-2xl heading">

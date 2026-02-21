@@ -573,6 +573,18 @@ const translations: Translations = {
       },
     },
   },
+  fab: {
+    open: 'Abrir menú',
+    close: 'Cerrar menú',
+    quickActions: 'Acciones rápidas',
+    language: 'Cambiar idioma',
+    types: 'Tipos',
+    history: {
+      label: 'Historial',
+      title: 'Pokémon Recientes',
+      empty: 'Sin historial. ¡Visita un Pokémon para comenzar!',
+    },
+  },
   footer: {
     disclaimer: {
       title: 'Aviso Legal',
