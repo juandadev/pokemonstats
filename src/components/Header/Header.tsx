@@ -8,6 +8,8 @@ import PokemonImage from '@/components/PokemonImage/PokemonImage';
 import { Species } from '@/types/species.types';
 import { getPokemonDisplayName } from '@/lib/pokemonDisplayName';
 import { TYPE_LABELS } from '@/common/constants/pokemonTypes';
+import Image from 'next/image';
+import { getPokemon30ImageUrl } from '@/lib/pokemon30';
 
 interface HeroProps {
   pokemonData: PokemonData;
@@ -61,13 +63,25 @@ export default function Header({ pokemonData, speciesData }: HeroProps) {
           </div>
           <div className="flex-1">
             <div className="grid grid-cols-[1fr_78px] grid-rows-1">
-              <div className="w-48">
-                <h2 className="text-xl font-bold text-gray-900 capitalize whitespace-nowrap overflow-hidden text-ellipsis">
-                  {getPokemonDisplayName(pokemonData.name)}
-                </h2>
-                <span className="text-sm font-medium text-gray-600">
-                  #{speciesData.id.toString().padStart(4, '0')}
-                </span>
+              <div className="flex items-center gap-4">
+                <div className="max-w-28 w-fit">
+                  <div className="flex items-center gap-2">
+                    <h2 className="text-xl font-bold text-gray-900 capitalize whitespace-nowrap overflow-hidden text-ellipsis">
+                      {getPokemonDisplayName(pokemonData.name)}
+                    </h2>
+                  </div>
+                  <span className="text-sm font-medium text-gray-600">
+                    #{speciesData.id.toString().padStart(4, '0')}
+                  </span>
+                </div>
+                <Image
+                  src={getPokemon30ImageUrl(speciesData.id)}
+                  alt="Pokémon 30th Anniversary"
+                  width={70}
+                  height={70}
+                  className="object-contain shrink-0"
+                  unoptimized
+                />
               </div>
               <div className="flex flex-col gap-1 items-end justify-center">
                 {pokemonData.types.map(({ type }) => (

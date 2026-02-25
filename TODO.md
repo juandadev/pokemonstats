@@ -1,3 +1,9 @@
+## Pokémon Manual Changes
+
+- [ ] Kubfu evolution chain
+    - [ ] Urshifu has many forms, the links in the evolution chain are broken, we need to manually include the evolution
+      chain + Gmax forms in `/src/data/custom-evolution-overrides.json`
+
 # Bugs
 
 - [ ] When navigating with the keyboard the suggestions items, it should scroll to the selected item for the items that
