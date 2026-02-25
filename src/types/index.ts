@@ -1,5 +1,9 @@
 import React from 'react';
-import { GameVersion, GenericPropertyDetails, PokemonTypes } from '@/types/pokemon.types';
+import {
+  GameVersion,
+  GenericPropertyDetails,
+  PokemonTypes,
+} from '@/types/pokemon.types';
 
 export interface IconProps extends React.ComponentProps<'svg'> {
   size?: number;

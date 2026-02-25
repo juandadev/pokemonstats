@@ -29,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" data-scroll-behavior="smooth">
+    <html lang="en">
       <body
         className={clsx(
           'bg-linear-to-br from-blue-50 via-white to-purple-50',

@@ -151,7 +151,7 @@ export default function EffectivenessChart({
               <button
                 onClick={() => handleTabChange('offensive')}
                 className={clsx(
-                  `flex-1 px-4 py-3 text-sm font-medium rounded-md transition-[background-color,color,box-shadow] duration-200 ease-[var(--ease-default)] cursor-pointer`,
+                  `flex-1 px-4 py-3 text-sm font-medium rounded-md transition-[background-color,color,box-shadow] duration-200 ease-(--ease-default) cursor-pointer`,
                   effectivenessMode === 'offensive'
                     ? 'bg-white text-gray-900 shadow-sm'
                     : 'text-gray-600 hover:text-gray-900'
@@ -173,7 +173,7 @@ export default function EffectivenessChart({
               <button
                 onClick={() => handleTabChange('defensive')}
                 className={clsx(
-                  `flex-1 px-4 py-3 text-sm font-medium rounded-md transition-[background-color,color,box-shadow] duration-200 ease-[var(--ease-default)] cursor-pointer`,
+                  `flex-1 px-4 py-3 text-sm font-medium rounded-md transition-[background-color,color,box-shadow] duration-200 ease-(--ease-default) cursor-pointer`,
                   effectivenessMode === 'defensive'
                     ? 'bg-white text-gray-900 shadow-sm'
                     : 'text-gray-600 hover:text-gray-900'
@@ -209,7 +209,7 @@ export default function EffectivenessChart({
                       typeButtonsRef.current[type.name] = el;
                     }}
                     className={clsx(
-                      'group relative flex flex-col items-center gap-2 p-3 rounded-2xl transition-[transform,box-shadow,border-color] duration-200 ease-[var(--ease-default)] hover:scale-105 hover:shadow-lg border-2 cursor-pointer',
+                      'group relative flex flex-col items-center gap-2 p-3 rounded-2xl transition-[transform,box-shadow,border-color] duration-200 ease-(--ease-default) hover:scale-105 hover:shadow-lg border-2 cursor-pointer',
                       isSelected
                         ? `${
                             TYPE_LABELS[type.name]?.border
@@ -226,7 +226,7 @@ export default function EffectivenessChart({
                     <div
                       className={clsx(
                         'absolute -top-2 -right-2 w-5 h-5 text-white text-xs font-bold rounded-full flex items-center justify-center shadow-md',
-                        'transition-[transform,opacity] duration-150 ease-[var(--ease-out-quint)]',
+                        'transition-[transform,opacity] duration-150 ease-(--ease-out-quint)',
                         TYPE_LABELS[type.name]?.background,
                         isSelected
                           ? 'scale-100 opacity-100'

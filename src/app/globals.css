@@ -1,8 +1,6 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
-@tailwind utilities;
-
 @custom-variant dark (&:is(.dark *));
 
 @layer utilities {
@@ -155,92 +153,110 @@
   /* Gradient Headings */
   .text-normal-gradient {
     background: linear-gradient(135deg, #e7e5e4, #d6d3d1);
-    @apply bg-clip-text text-transparent;
+    background-clip: text;
+    color: transparent;
   }
 
   .text-fire-gradient {
     background: linear-gradient(135deg, #fbc386, #fbbcbc);
-    @apply bg-clip-text text-transparent;
+    background-clip: text;
+    color: transparent;
   }
 
   .text-water-gradient {
     background: linear-gradient(135deg, #a5f3fc, #bfdbfe);
-    @apply bg-clip-text text-transparent;
+    background-clip: text;
+    color: transparent;
   }
 
   .text-electric-gradient {
     background: linear-gradient(135deg, #fef9c3, #fde68a);
-    @apply bg-clip-text text-transparent;
+    background-clip: text;
+    color: transparent;
   }
 
   .text-grass-gradient {
     background: linear-gradient(135deg, #bbf7d0, #86efac);
-    @apply bg-clip-text text-transparent;
+    background-clip: text;
+    color: transparent;
   }
 
   .text-ice-gradient {
     background: linear-gradient(135deg, #ccfbf1, #a5f3fc);
-    @apply bg-clip-text text-transparent;
+    background-clip: text;
+    color: transparent;
   }
 
   .text-fighting-gradient {
     background: linear-gradient(135deg, #fca5a5, #f87171);
-    @apply bg-clip-text text-transparent;
+    background-clip: text;
+    color: transparent;
   }
 
   .text-poison-gradient {
     background: linear-gradient(135deg, #e9d5ff, #c4b5fd);
-    @apply bg-clip-text text-transparent;
+    background-clip: text;
+    color: transparent;
   }
 
   .text-ground-gradient {
     background: linear-gradient(135deg, #ffdc7e, #ffedb4);
-    @apply bg-clip-text text-transparent;
+    background-clip: text;
+    color: transparent;
   }
 
   .text-flying-gradient {
     background: linear-gradient(135deg, #ddd6fe, #c4b5fd);
-    @apply bg-clip-text text-transparent;
+    background-clip: text;
+    color: transparent;
   }
 
   .text-psychic-gradient {
     background: linear-gradient(135deg, #fbcfe8, #f9a8d4);
-    @apply bg-clip-text text-transparent;
+    background-clip: text;
+    color: transparent;
   }
 
   .text-bug-gradient {
     background: linear-gradient(135deg, #d9f99d, #bef264);
-    @apply bg-clip-text text-transparent;
+    background-clip: text;
+    color: transparent;
   }
 
   .text-rock-gradient {
     background: linear-gradient(135deg, #fcd34d, #fbbf24);
-    @apply bg-clip-text text-transparent;
+    background-clip: text;
+    color: transparent;
   }
 
   .text-ghost-gradient {
     background: linear-gradient(135deg, #e9d5ff, #d8b4fe);
-    @apply bg-clip-text text-transparent;
+    background-clip: text;
+    color: transparent;
   }
 
   .text-dragon-gradient {
     background: linear-gradient(135deg, #c4b5fd, #a5b4fc);
-    @apply bg-clip-text text-transparent;
+    background-clip: text;
+    color: transparent;
   }
 
   .text-dark-gradient {
     background: linear-gradient(135deg, #d6d3d1, #a8a29e);
-    @apply bg-clip-text text-transparent;
+    background-clip: text;
+    color: transparent;
   }
 
   .text-steel-gradient {
     background: linear-gradient(135deg, #e5e7eb, #cbd5e1);
-    @apply bg-clip-text text-transparent;
+    background-clip: text;
+    color: transparent;
   }
 
   .text-fairy-gradient {
     background: linear-gradient(135deg, #ffdaf0, #fdbbe0);
-    @apply bg-clip-text text-transparent;
+    background-clip: text;
+    color: transparent;
   }
 
   .rainbow-gradient {
@@ -423,12 +439,14 @@
     }
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   /*noinspection CssUnresolvedCustomProperty*/
   * {
     @apply border-border outline-ring/50;
     font-family: var(--font-open-sans), Arial, Helvetica, sans-serif;
-    scroll-behavior: smooth;
-    box-sizing: border-box;
   }
 
   /*noinspection CssUnresolvedCustomProperty*/

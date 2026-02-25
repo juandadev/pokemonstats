@@ -99,7 +99,7 @@ export default function HeroContent() {
         </div>
       </div>
       <div className="flex flex-col items-center relative mb-8">
-        <div className="relative transform hover:scale-105 transition-transform duration-300">
+        <div className="relative hover:scale-105 transition-transform duration-300">
           <Image
             width={320}
             height={320}
@@ -122,10 +122,7 @@ export default function HeroContent() {
           </a>
         </p>
       </div>
-      <a
-        href="#main"
-        className="absolute bottom-2 left-1/2 transform -translate-x-1/2"
-      >
+      <a href="#main" className="absolute bottom-2 left-1/2 -translate-x-1/2">
         <div className="w-10 h-10 border-2 border-gray-400 rounded-full flex items-center justify-center animate-bounce">
           <svg
             className="w-4 h-4 text-gray-400"

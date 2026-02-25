@@ -50,20 +50,22 @@ Routes: `/{pokemon-slug}` (e.g., `/gengar`, `/charizard-mega-x`)
 ### Data Flow
 
 1. **Build-time Data Generation:**
-    - Scripts in `/scripts/` fetch from PokeAPI and generate JSON indexes
-    - Output: `/src/data/*-index.json` files (Pokemon, items, mega evolutions, Gigantamax forms)
-    - These indexes are committed to the repo to avoid runtime API calls
+
+   - Scripts in `/scripts/` fetch from PokeAPI and generate JSON indexes
+   - Output: `/src/data/*-index.json` files (Pokemon, items, mega evolutions, Gigantamax forms)
+   - These indexes are committed to the repo to avoid runtime API calls
 
 2. **Page Generation:**
-    - `src/app/[pokemon]/page.tsx` uses `generateStaticParams()` to create all routes
-    - Each page fetches data via `getPokemonDataBySlug()` at build time
-    - All PokeAPI requests use `cache: 'force-cache'`
-    - Data includes: Pokemon data, species data, evolution chains, moves
+
+   - `src/app/[pokemon]/page.tsx` uses `generateStaticParams()` to create all routes
+   - Each page fetches data via `getPokemonDataBySlug()` at build time
+   - All PokeAPI requests use `cache: 'force-cache'`
+   - Data includes: Pokemon data, species data, evolution chains, moves
 
 3. **Special Cases:**
-    - Missing sprites: Handled by `MISSING_SPRITE_LIST` map
-    - Custom evolution chains: Overridden via `CUSTOM_EVOLUTION_CHAINS`
-    - Regional forms, Mega evolutions, Gigantamax: Tracked in separate indexes
+   - Missing sprites: Handled by `MISSING_SPRITE_LIST` map
+   - Custom evolution chains: Overridden via `CUSTOM_EVOLUTION_CHAINS`
+   - Regional forms, Mega evolutions, Gigantamax: Tracked in separate indexes
 
 ### Key Data Types
 
@@ -137,7 +139,7 @@ Only use `useEffect` for synchronizing with external systems (browser APIs, thir
 most other cases, there are better alternatives:
 
 | Scenario                        | Do NOT use useEffect       | Use Instead             |
-|---------------------------------|----------------------------|-------------------------|
+| ------------------------------- | -------------------------- | ----------------------- |
 | Derive value from props/state   | `useEffect` + `setState`   | Calculate during render |
 | User interaction triggers logic | `useEffect` watching state | Event handler directly  |
 | Expensive calculation           | `useEffect` + `setState`   | `useMemo`               |
@@ -179,7 +181,7 @@ useEffect(() => {
 }, [userId]);
 
 // ✅ GOOD: Use key to reset component
-<CommentForm key={userId} />
+<CommentForm key={userId} />;
 ```
 
 ### IMPORTANT: TypeScript Strict Typing
@@ -190,7 +192,7 @@ avoid duplication and keep types DRY.
 **Utility Types to Use:**
 
 | Utility         | Purpose                        | Example                               |
-|-----------------|--------------------------------|---------------------------------------|
+| --------------- | ------------------------------ | ------------------------------------- |
 | `Partial<T>`    | Make all properties optional   | `Partial<Pokemon>` for updates        |
 | `Pick<T, K>`    | Select specific properties     | `Pick<Pokemon, 'name' \| 'types'>`    |
 | `Omit<T, K>`    | Exclude specific properties    | `Omit<Pokemon, 'id'>` for creation    |
@@ -271,7 +273,10 @@ noise - code should be self-documenting through clear naming and structure.
  * @param defenseTypes - Array of the defending Pokemon's types
  * @returns Multiplier (0, 0.25, 0.5, 1, 2, or 4)
  */
-function calculateEffectiveness(attackType: PokemonType, defenseTypes: PokemonType[]): number {
+function calculateEffectiveness(
+  attackType: PokemonType,
+  defenseTypes: PokemonType[]
+): number {
   // ...
 }
 ```
@@ -297,7 +302,7 @@ for (const pokemon of pokemonList) {
 
 **Principles:**
 
-- If you need a comment to explain *what* code does, refactor for clarity instead
-- Comments explaining *why* (business logic, edge cases) are acceptable but rare
+- If you need a comment to explain _what_ code does, refactor for clarity instead
+- Comments explaining _why_ (business logic, edge cases) are acceptable but rare
 - Delete commented-out code - use git history instead
 - Well-named functions, variables, and types eliminate most comment needs

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useRef, useState } from 'react';
+import { clsx } from 'clsx';
 import { SearchIcon, XCircleIcon } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -95,7 +96,7 @@ export default function SearchBar({ initialValue = '' }: SearchBarProps) {
     <Card className="mb-8 shadow-lg border-0 bg-white/80 backdrop-blur-sm relative z-10">
       <CardContent className="p-6">
         <div className="relative">
-          <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 z-10" />
+          <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-5 w-5 z-10" />
           <Input
             ref={inputRef}
             id="search-pokemon"
@@ -117,7 +118,7 @@ export default function SearchBar({ initialValue = '' }: SearchBarProps) {
             <Button
               variant="ghost"
               size="icon"
-              className=" h-9 w-9 absolute right-1 top-1/2 transform -translate-y-1/2 text-gray-400 z-10"
+              className="h-9 w-9 absolute right-1 top-1/2 -translate-y-1/2 text-gray-400 z-10"
               onClick={handleInputClear}
             >
               <XCircleIcon className="h-5 w-5" />
@@ -132,15 +133,16 @@ export default function SearchBar({ initialValue = '' }: SearchBarProps) {
               {filteredSuggestions.map((suggestion, index) => (
                 <Slot
                   key={`search-${suggestion.slug}`}
-                  className={`w-full px-4 py-3 text-left hover:bg-blue-50 focus:bg-blue-50 focus:outline-none transition-colors duration-150 flex items-center gap-3 ${
+                  className={clsx(
+                    'w-full px-4 py-3 text-left hover:bg-blue-50 focus:bg-blue-50 focus:outline-none transition-colors duration-150 flex items-center gap-3',
                     index === selectedSuggestionIndex
                       ? 'bg-blue-100 text-blue-900'
-                      : 'text-gray-700 hover:text-blue-700'
-                  } ${index === 0 ? 'rounded-t-xl' : ''} ${
+                      : 'text-gray-700 hover:text-blue-700',
+                    index === 0 && 'rounded-t-xl',
                     index === filteredSuggestions.length - 1
                       ? 'rounded-b-xl'
                       : 'border-b border-gray-100'
-                  }`}
+                  )}
                   onMouseEnter={() => setSelectedSuggestionIndex(index)}
                   role="option"
                   aria-selected={index === selectedSuggestionIndex}

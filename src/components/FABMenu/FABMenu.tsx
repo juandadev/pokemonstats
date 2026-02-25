@@ -76,7 +76,6 @@ export default function FABMenu() {
       ariaLabel: t('fab.language', 'Toggle language'),
       icon: <GlobeIcon className="w-4 h-4" />,
       onClick: toggleLocale,
-      delay: 'delay-0',
     },
     {
       key: 'types',
@@ -84,7 +83,6 @@ export default function FABMenu() {
       ariaLabel: t('fab.types', 'Types'),
       icon: <ShieldIcon className="w-4 h-4" />,
       onClick: () => togglePanel('types'),
-      delay: 'delay-75',
       active: activePanel === 'types',
     },
     {
@@ -93,7 +91,6 @@ export default function FABMenu() {
       ariaLabel: t('fab.history.label', 'History'),
       icon: <HistoryIcon className="w-4 h-4" />,
       onClick: () => togglePanel('history'),
-      delay: 'delay-150',
       active: activePanel === 'history',
     },
   ];

@@ -698,7 +698,11 @@ export const getLocalizedEvolutionDetails = (
     type: 'party_type',
     label: (
       <span>
-        {t('evolutions.details.partyType', 'Have in your party any Pokémon of type')}:{' '}
+        {t(
+          'evolutions.details.partyType',
+          'Have in your party any Pokémon of type'
+        )}
+        :{' '}
         <TypeBadge
           type={(detail as GenericPropertyDetails).name as PokemonTypes}
         />

@@ -49,7 +49,7 @@ export default function Navbar() {
             href="/"
             className="flex items-center gap-2 hover:opacity-80 transition-opacity"
           >
-            <div className="size-8 bg-gradient-to-br from-amber-50 to-amber-100 rounded-lg flex items-center justify-center">
+            <div className="size-8 bg-linear-to-br from-amber-50 to-amber-100 rounded-lg flex items-center justify-center">
               <Image
                 src="/master-ball.webp"
                 alt="Master ball"
@@ -84,7 +84,7 @@ export default function Navbar() {
               >
                 <SheetHeader>
                   <SheetTitle className="flex items-center gap-2">
-                    <div className="w-8 h-8 bg-gradient-to-br from-amber-50 to-amber-100 rounded-lg flex items-center justify-center">
+                    <div className="w-8 h-8 bg-linear-to-br from-amber-50 to-amber-100 rounded-lg flex items-center justify-center">
                       <Image
                         src="/master-ball.webp"
                         alt="Master ball"
@@ -95,7 +95,7 @@ export default function Navbar() {
                     </div>
                     <span className="font-bold text-lg">
                       Pokémon{' '}
-                      <span className="bg-gradient-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent">
+                      <span className="bg-linear-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent">
                         Stats
                       </span>
                     </span>
