@@ -52,14 +52,14 @@ export default function Stats({ stats }: StatsProps) {
               <div className="flex items-center gap-3">
                 <div className="flex-1 bg-gray-200 rounded-full h-2 overflow-hidden">
                   <div
-                    className="h-full rounded-full transition-all duration-500 ease-out"
+                    className="h-full rounded-full transition-[width] duration-500 ease-out"
                     style={{
                       width: `${Math.min(percentage, 100)}%`,
                       backgroundColor: getStatColor(statName),
                     }}
                   />
                 </div>
-                <div className="w-8 text-sm font-semibold text-gray-900 text-right">
+                <div className="w-8 text-sm font-semibold text-gray-900 text-right tabular-nums">
                   {baseStat}
                 </div>
               </div>
@@ -75,7 +75,7 @@ export default function Stats({ stats }: StatsProps) {
           <div className="flex-1">
             <div className="flex items-center gap-3">
               <div className="flex-1"></div>
-              <div className="w-8 text-sm font-bold text-gray-900 text-right">
+              <div className="w-8 text-sm font-bold text-gray-900 text-right tabular-nums">
                 {stats.reduce((total, stat) => total + stat.base_stat, 0)}
               </div>
             </div>

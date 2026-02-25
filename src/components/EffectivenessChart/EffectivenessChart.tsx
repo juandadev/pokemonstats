@@ -209,7 +209,7 @@ export default function EffectivenessChart({
                       typeButtonsRef.current[type.name] = el;
                     }}
                     className={clsx(
-                      'group relative flex flex-col items-center gap-2 p-3 rounded-2xl transition-[transform,box-shadow,border-color] duration-200 ease-(--ease-default) hover:scale-105 hover:shadow-lg border-2 cursor-pointer',
+                      'group relative flex flex-col items-center gap-2 p-3 rounded-2xl transition-[transform,box-shadow,border-color] duration-200 ease-(--ease-default) pointer-hover:scale-105 pointer-hover:shadow-lg border-2 cursor-pointer',
                       isSelected
                         ? `${
                             TYPE_LABELS[type.name]?.border
@@ -237,7 +237,7 @@ export default function EffectivenessChart({
                     </div>
                     <div
                       className={clsx(
-                        'w-12 h-12 rounded-full flex items-center justify-center text-white shadow-md transition-transform duration-300 group-hover:scale-110',
+                        'w-12 h-12 rounded-full flex items-center justify-center text-white shadow-md transition-transform duration-300 group-pointer-hover:scale-110',
                         TYPE_LABELS[type.name]?.gradientBackground
                       )}
                     >
@@ -295,7 +295,7 @@ export default function EffectivenessChart({
                     onClick={handleMessageClose}
                     variant="ghost"
                     size="icon"
-                    className="size-6 md:size-7"
+                    className="size-9"
                   >
                     <XIcon className="w-3 h-3" />
                   </Button>

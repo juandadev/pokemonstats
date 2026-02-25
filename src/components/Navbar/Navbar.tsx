@@ -64,7 +64,7 @@ export default function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200"
+                className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-[color,background-color] duration-200"
               >
                 <item.icon className="w-4 h-4" />
                 {item.name}
@@ -117,7 +117,7 @@ export default function Navbar() {
                       key={item.href}
                       href={item.href}
                       onClick={() => setIsOpen(false)}
-                      className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 w-full"
+                      className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-[color,background-color] duration-200 w-full"
                     >
                       <item.icon className="w-5 h-5" />
                       {item.name}
@@ -133,7 +133,7 @@ export default function Navbar() {
                         key={item.href}
                         href={item.href}
                         onClick={() => setIsOpen(false)}
-                        className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 w-full"
+                        className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-[color,background-color] duration-200 w-full"
                       >
                         <item.icon className="w-5 h-5" />
                         {item.name}
