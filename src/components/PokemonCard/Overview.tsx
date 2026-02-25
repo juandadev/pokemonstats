@@ -41,7 +41,7 @@ export default function Overview({ pokemonData }: OverviewProps) {
         {hasShinyImage && (
           <Button
             className={clsx(
-              'absolute top-0 right-0 transition-[transform,background-color] duration-150 ease-(--ease-out-quint)',
+              'absolute top-0 right-0 z-10 transition-[transform,background-color] duration-150 ease-(--ease-out-quint)',
               isShiny
                 ? 'bg-yellow-400 hover:bg-yellow-500 scale-110'
                 : 'bg-yellow-200 hover:bg-yellow-300 scale-100'
@@ -50,7 +50,7 @@ export default function Overview({ pokemonData }: OverviewProps) {
             aria-pressed={isShiny}
             aria-label={isShiny ? 'Show normal sprite' : 'Show shiny sprite'}
           >
-            <SparklesIcon className="text-foreground" />
+            <SparklesIcon className="text-foreground pointer-events-none" />
           </Button>
         )}
         <div className="relative w-40 h-40">
