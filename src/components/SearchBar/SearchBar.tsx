@@ -125,7 +125,7 @@ export default function SearchBar({ initialValue = '' }: SearchBarProps) {
           )}
           {showSuggestions && filteredSuggestions.length > 0 && (
             <div
-              className="absolute top-full left-0 right-0 mt-2 bg-white border-2 border-gray-200 rounded-xl shadow-xl max-h-60 overflow-y-auto"
+              className="absolute top-full left-0 right-0 mt-2 bg-white border-2 border-gray-200 rounded-xl shadow-xl max-h-60 overflow-y-auto animate-in fade-in slide-in-from-top-1 duration-150"
               role="listbox"
               aria-label="Pokemon suggestions"
             >

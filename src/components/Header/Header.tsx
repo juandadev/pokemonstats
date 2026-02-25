@@ -33,10 +33,17 @@ export default function Header({ pokemonData, speciesData }: HeroProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  if (!stickyHeaderVisible) return null;
-
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
+    <div
+      className={clsx(
+        'fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm',
+        'transition-[transform,opacity] duration-200 ease-(--ease-out-quint)',
+        stickyHeaderVisible
+          ? 'translate-y-0 opacity-100'
+          : '-translate-y-full opacity-0 pointer-events-none'
+      )}
+      aria-hidden={!stickyHeaderVisible}
+    >
       <div className="container mx-auto px-4 py-3 max-w-6xl">
         <div className="flex items-center gap-4">
           <div

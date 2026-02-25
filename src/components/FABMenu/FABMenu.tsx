@@ -108,31 +108,41 @@ export default function FABMenu() {
       )}
       {isOpen && activePanel === 'types' && <SelectedTypesPanel />}
 
-      {isOpen && (
-        <div
-          role="group"
-          aria-label={t('fab.quickActions', 'Quick actions')}
-          className="flex flex-col items-end gap-2"
-        >
-          {[...actionButtons].reverse().map((button) => (
-            <button
-              key={button.key}
-              onClick={button.onClick}
-              aria-label={button.ariaLabel}
-              className={clsx(
-                'flex items-center gap-2 px-4 py-2.5 rounded-full shadow-lg transition-all duration-200 text-sm font-medium',
-                button.delay,
-                button.active
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-white/95 backdrop-blur-md border border-gray-200 text-gray-700 hover:bg-gray-100'
-              )}
-            >
-              {button.icon}
-              <span>{button.label}</span>
-            </button>
-          ))}
-        </div>
-      )}
+      <div
+        role="group"
+        aria-label={t('fab.quickActions', 'Quick actions')}
+        aria-hidden={!isOpen}
+        className={clsx(
+          'flex flex-col items-end gap-2',
+          'transition-opacity duration-200 ease-[var(--ease-out-quint)]',
+          isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        )}
+      >
+        {[...actionButtons].reverse().map((button, index) => (
+          <button
+            key={button.key}
+            onClick={button.onClick}
+            aria-label={button.ariaLabel}
+            tabIndex={isOpen ? 0 : -1}
+            className={clsx(
+              'flex items-center gap-2 px-4 py-2.5 rounded-full shadow-lg text-sm font-medium',
+              'transition-[transform,opacity] duration-200 ease-[var(--ease-out-quint)]',
+              isOpen
+                ? 'translate-y-0 opacity-100 scale-100'
+                : 'translate-y-2 opacity-0 scale-95',
+              button.active
+                ? 'bg-blue-600 text-white'
+                : 'bg-white/95 backdrop-blur-md border border-gray-200 text-gray-700 hover:bg-gray-100'
+            )}
+            style={{
+              transitionDelay: isOpen ? `${index * 50}ms` : '0ms',
+            }}
+          >
+            {button.icon}
+            <span>{button.label}</span>
+          </button>
+        ))}
+      </div>
 
       <button
         ref={triggerRef}
@@ -142,7 +152,7 @@ export default function FABMenu() {
         aria-label={
           isOpen ? t('fab.close', 'Close menu') : t('fab.open', 'Open menu')
         }
-        className="w-14 h-14 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-xl hover:shadow-2xl transition-all duration-200 flex items-center justify-center cursor-pointer"
+        className="w-14 h-14 rounded-full bg-blue-600 hover:bg-blue-700 active:scale-95 text-white shadow-xl hover:shadow-2xl transition-[transform,box-shadow,background-color] duration-200 ease-[var(--ease-out-quint)] flex items-center justify-center cursor-pointer"
       >
         <PlusIcon
           className={clsx(
