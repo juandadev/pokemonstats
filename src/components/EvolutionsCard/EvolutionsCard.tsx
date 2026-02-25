@@ -103,7 +103,12 @@ export default function EvolutionsCard({
                         <Link
                           href={`/${evolution.slug}#main`}
                           className="underline"
-                          onClick={() => track('pokemon_navigated', { source: 'evolution', pokemon: evolution.slug })}
+                          onClick={() =>
+                            track('pokemon_navigated', {
+                              source: 'evolution',
+                              pokemon: evolution.slug,
+                            })
+                          }
                         >
                           {evolution.displayName}
                         </Link>
@@ -122,7 +127,10 @@ export default function EvolutionsCard({
                       <div className="text-sm text-gray-600">
                         {evolutionDetails[0].trigger?.name === 'level-up' &&
                         evolutionDetails[0].min_level
-                          ? `${t('evolutions.details.minLevel', 'Minimum level')}: ${evolution.evolutionDetails?.[0].min_level}`
+                          ? `${t(
+                              'evolutions.details.minLevel',
+                              'Minimum level'
+                            )}: ${evolution.evolutionDetails?.[0].min_level}`
                           : getParsedEvolutionTrigger(
                               evolutionDetails[0].trigger?.name || 'default',
                               t

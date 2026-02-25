@@ -137,7 +137,7 @@ export default function Moves({ moves }: MovesProps) {
                         height={30}
                       />
                     ) : (
-                      <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-xs font-semibold text-gray-600">
+                      <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-xs font-semibold text-gray-600 tabular-nums">
                         {getDetailsByGame.level}
                       </div>
                     )}
@@ -166,11 +166,11 @@ export default function Moves({ moves }: MovesProps) {
                       <div className="flex items-center gap-2 mt-1">
                         <TypeBadge type={move.type} />
                         {move.power && (
-                          <span className="text-xs text-gray-500 font-bold">
+                          <span className="text-xs text-gray-500 font-bold tabular-nums">
                             {t('moves.labels.power', 'Power')}: {move.power}
                           </span>
                         )}
-                        <span className="text-xs text-gray-500">
+                        <span className="text-xs text-gray-500 tabular-nums">
                           {t('moves.labels.pp', 'PP')}: {move.pp}
                         </span>
                       </div>

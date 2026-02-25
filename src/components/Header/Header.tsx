@@ -8,6 +8,7 @@ import PokemonImage from '@/components/PokemonImage/PokemonImage';
 import { Species } from '@/types/species.types';
 import { getPokemonDisplayName } from '@/lib/pokemonDisplayName';
 import { TYPE_LABELS } from '@/common/constants/pokemonTypes';
+import Pokemon30Image from '@/components/Pokemon30Image/Pokemon30Image';
 
 interface HeroProps {
   pokemonData: PokemonData;
@@ -32,15 +33,22 @@ export default function Header({ pokemonData, speciesData }: HeroProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  if (!stickyHeaderVisible) return null;
-
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
+    <div
+      className={clsx(
+        'fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm',
+        'transition-[transform,opacity] duration-200 ease-(--ease-out-quint)',
+        stickyHeaderVisible
+          ? 'translate-y-0 opacity-100'
+          : '-translate-y-full opacity-0 pointer-events-none'
+      )}
+      aria-hidden={!stickyHeaderVisible}
+    >
       <div className="container mx-auto px-4 py-3 max-w-6xl">
         <div className="flex items-center gap-4">
           <div
             className={clsx(
-              'w-12 h-12 rounded-full flex items-center justify-center overflow-hidden flex-shrink-0',
+              'w-12 h-12 rounded-full flex items-center justify-center overflow-hidden shrink-0',
               TYPE_LABELS[pokemonData.types[0]?.type.name]
                 ?.gradientBackgroundLight
             )}
@@ -61,13 +69,23 @@ export default function Header({ pokemonData, speciesData }: HeroProps) {
           </div>
           <div className="flex-1">
             <div className="grid grid-cols-[1fr_78px] grid-rows-1">
-              <div className="w-48">
-                <h2 className="text-xl font-bold text-gray-900 capitalize whitespace-nowrap overflow-hidden text-ellipsis">
-                  {getPokemonDisplayName(pokemonData.name)}
-                </h2>
-                <span className="text-sm font-medium text-gray-600">
-                  #{speciesData.id.toString().padStart(4, '0')}
-                </span>
+              <div className="flex items-center gap-4">
+                <div className="max-w-28 w-fit">
+                  <div className="flex items-center gap-2">
+                    <h2 className="text-xl font-bold text-gray-900 capitalize whitespace-nowrap overflow-hidden text-ellipsis">
+                      {getPokemonDisplayName(pokemonData.name)}
+                    </h2>
+                  </div>
+                  <span className="text-sm font-medium text-gray-600">
+                    #{speciesData.id.toString().padStart(4, '0')}
+                  </span>
+                </div>
+                <Pokemon30Image
+                  speciesId={speciesData.id}
+                  pokemonName={getPokemonDisplayName(pokemonData.name)}
+                  width={70}
+                  height={70}
+                />
               </div>
               <div className="flex flex-col gap-1 items-end justify-center">
                 {pokemonData.types.map(({ type }) => (

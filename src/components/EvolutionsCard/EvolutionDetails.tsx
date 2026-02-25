@@ -26,7 +26,11 @@ export default function EvolutionDetails({
           detail.trigger?.name || 'default',
           t
         );
-        const additionalDetailsList = buildAdditionalDetailsList(detail, t, locale);
+        const additionalDetailsList = buildAdditionalDetailsList(
+          detail,
+          t,
+          locale
+        );
 
         return (
           <Fragment key={`${pokemonName}-evolution-detail-${index}`}>

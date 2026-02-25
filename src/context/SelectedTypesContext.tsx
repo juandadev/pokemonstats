@@ -11,9 +11,9 @@ interface SelectedTypesContextValue {
   setEffectivenessMode: React.Dispatch<React.SetStateAction<EffectivenessMode>>;
 }
 
-const SelectedTypesContext = createContext<SelectedTypesContextValue | undefined>(
-  undefined
-);
+const SelectedTypesContext = createContext<
+  SelectedTypesContextValue | undefined
+>(undefined);
 
 export function SelectedTypesProvider({
   children,
@@ -22,8 +22,9 @@ export function SelectedTypesProvider({
 }) {
   const preferences = getPreferences();
   const [selectedTypes, setSelectedTypes] = useState<SelectedType[]>([]);
-  const [effectivenessMode, setEffectivenessMode] =
-    useState<EffectivenessMode>(preferences.chartMode);
+  const [effectivenessMode, setEffectivenessMode] = useState<EffectivenessMode>(
+    preferences.chartMode
+  );
 
   return (
     <SelectedTypesContext.Provider

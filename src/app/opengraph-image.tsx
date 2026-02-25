@@ -16,7 +16,8 @@ export default function Image() {
     (
       <div
         style={{
-          background: 'linear-gradient(135deg, #eff6ff 0%, #ffffff 45%, #faf5ff 100%)',
+          background:
+            'linear-gradient(135deg, #eff6ff 0%, #ffffff 45%, #faf5ff 100%)',
           width: '100%',
           height: '100%',
           display: 'flex',
@@ -102,7 +103,8 @@ export default function Image() {
               marginBottom: '28px',
             }}
           >
-            Quickly explore type weaknesses, evolution chains, and base stats for every Pokémon.
+            Quickly explore type weaknesses, evolution chains, and base stats
+            for every Pokémon.
           </div>
 
           {/* Feature tags */}

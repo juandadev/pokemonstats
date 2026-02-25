@@ -17,8 +17,8 @@ function UserList({ users }: { users: User[] }) {
   const sorted = useMemo(
     () => users.sort((a, b) => a.name.localeCompare(b.name)),
     [users]
-  )
-  return <div>{sorted.map(renderUser)}</div>
+  );
+  return <div>{sorted.map(renderUser)}</div>;
 }
 ```
 
@@ -30,8 +30,8 @@ function UserList({ users }: { users: User[] }) {
   const sorted = useMemo(
     () => users.toSorted((a, b) => a.name.localeCompare(b.name)),
     [users]
-  )
-  return <div>{sorted.map(renderUser)}</div>
+  );
+  return <div>{sorted.map(renderUser)}</div>;
 }
 ```
 
@@ -46,7 +46,7 @@ function UserList({ users }: { users: User[] }) {
 
 ```typescript
 // Fallback for older browsers
-const sorted = [...items].sort((a, b) => a.value - b.value)
+const sorted = [...items].sort((a, b) => a.value - b.value);
 ```
 
 **Other immutable array methods:**

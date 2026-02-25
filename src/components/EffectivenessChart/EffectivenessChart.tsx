@@ -151,7 +151,7 @@ export default function EffectivenessChart({
               <button
                 onClick={() => handleTabChange('offensive')}
                 className={clsx(
-                  `flex-1 px-4 py-3 text-sm font-medium rounded-md transition-all duration-200 cursor-pointer`,
+                  `flex-1 px-4 py-3 text-sm font-medium rounded-md transition-[background-color,color,box-shadow] duration-200 ease-(--ease-default) cursor-pointer`,
                   effectivenessMode === 'offensive'
                     ? 'bg-white text-gray-900 shadow-sm'
                     : 'text-gray-600 hover:text-gray-900'
@@ -173,7 +173,7 @@ export default function EffectivenessChart({
               <button
                 onClick={() => handleTabChange('defensive')}
                 className={clsx(
-                  `flex-1 px-4 py-3 text-sm font-medium rounded-md transition-all duration-200 cursor-pointer`,
+                  `flex-1 px-4 py-3 text-sm font-medium rounded-md transition-[background-color,color,box-shadow] duration-200 ease-(--ease-default) cursor-pointer`,
                   effectivenessMode === 'defensive'
                     ? 'bg-white text-gray-900 shadow-sm'
                     : 'text-gray-600 hover:text-gray-900'
@@ -209,7 +209,7 @@ export default function EffectivenessChart({
                       typeButtonsRef.current[type.name] = el;
                     }}
                     className={clsx(
-                      'group relative flex flex-col items-center gap-2 p-3 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-lg border-2 cursor-pointer',
+                      'group relative flex flex-col items-center gap-2 p-3 rounded-2xl transition-[transform,box-shadow,border-color] duration-200 ease-(--ease-default) pointer-hover:scale-105 pointer-hover:shadow-lg border-2 cursor-pointer',
                       isSelected
                         ? `${
                             TYPE_LABELS[type.name]?.border
@@ -223,19 +223,21 @@ export default function EffectivenessChart({
                       handleTypeClick({ index: type.index, type: type.name })
                     }
                   >
-                    {isSelected && (
-                      <div
-                        className={clsx(
-                          'absolute -top-2 -right-2 w-5 h-5 text-white text-xs font-bold rounded-full flex items-center justify-center shadow-md',
-                          TYPE_LABELS[type.name]?.background
-                        )}
-                      >
-                        {selectedTypesNames.indexOf(type.name) + 1}
-                      </div>
-                    )}
                     <div
                       className={clsx(
-                        'w-12 h-12 rounded-full flex items-center justify-center text-white shadow-md transition-transform duration-300 group-hover:scale-110',
+                        'absolute -top-2 -right-2 w-5 h-5 text-white text-xs font-bold rounded-full flex items-center justify-center shadow-md',
+                        'transition-[transform,opacity] duration-150 ease-(--ease-out-quint)',
+                        TYPE_LABELS[type.name]?.background,
+                        isSelected
+                          ? 'scale-100 opacity-100'
+                          : 'scale-0 opacity-0 pointer-events-none'
+                      )}
+                    >
+                      {selectedTypesNames.indexOf(type.name) + 1}
+                    </div>
+                    <div
+                      className={clsx(
+                        'w-12 h-12 rounded-full flex items-center justify-center text-white shadow-md transition-transform duration-300 group-pointer-hover:scale-110',
                         TYPE_LABELS[type.name]?.gradientBackground
                       )}
                     >
@@ -278,7 +280,7 @@ export default function EffectivenessChart({
             </div>
           </div>
           {selectedTypes[0]?.type && (
-            <div className="space-y-6">
+            <div className="space-y-6 animate-in fade-in duration-150">
               {isDualType && !isInformationMessageClosed && (
                 <div className="p-3 bg-purple-50 border border-purple-200 rounded-lg grid grid-cols-[1fr_auto] grid-rows-1">
                   <p className="text-sm text-purple-800 font-medium">
@@ -293,7 +295,7 @@ export default function EffectivenessChart({
                     onClick={handleMessageClose}
                     variant="ghost"
                     size="icon"
-                    className="size-6 md:size-7"
+                    className="size-9"
                   >
                     <XIcon className="w-3 h-3" />
                   </Button>
@@ -311,24 +313,42 @@ export default function EffectivenessChart({
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {effectivenessList['4x'].length > 0 &&
-                    effectivenessList['4x'].map((type) => (
-                      <TypeBadge
+                    effectivenessList['4x'].map((type, index) => (
+                      <span
                         key={type}
-                        type={type as PokemonTypes}
-                        effectivenessLabel={
-                          effectivenessMode === 'defensive' ? '4x' : ''
-                        }
-                      />
+                        className="animate-in fade-in zoom-in-95 duration-150"
+                        style={{
+                          animationDelay: `${index * 30}ms`,
+                          animationFillMode: 'both',
+                        }}
+                      >
+                        <TypeBadge
+                          type={type as PokemonTypes}
+                          effectivenessLabel={
+                            effectivenessMode === 'defensive' ? '4x' : ''
+                          }
+                        />
+                      </span>
                     ))}
                   {effectivenessList['2x'].length > 0 &&
-                    effectivenessList['2x'].map((type) => (
-                      <TypeBadge
+                    effectivenessList['2x'].map((type, index) => (
+                      <span
                         key={type}
-                        type={type as PokemonTypes}
-                        effectivenessLabel={
-                          effectivenessMode === 'defensive' ? '2x' : ''
-                        }
-                      />
+                        className="animate-in fade-in zoom-in-95 duration-150"
+                        style={{
+                          animationDelay: `${
+                            (effectivenessList['4x'].length + index) * 30
+                          }ms`,
+                          animationFillMode: 'both',
+                        }}
+                      >
+                        <TypeBadge
+                          type={type as PokemonTypes}
+                          effectivenessLabel={
+                            effectivenessMode === 'defensive' ? '2x' : ''
+                          }
+                        />
+                      </span>
                     ))}
                   {effectivenessList['4x'].length === 0 &&
                     effectivenessList['2x'].length === 0 && (
@@ -353,24 +373,42 @@ export default function EffectivenessChart({
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {effectivenessList['0.5'].length > 0 &&
-                    effectivenessList['0.5'].map((type) => (
-                      <TypeBadge
+                    effectivenessList['0.5'].map((type, index) => (
+                      <span
                         key={type}
-                        type={type as PokemonTypes}
-                        effectivenessLabel={
-                          effectivenessMode === 'defensive' ? '0.5x' : ''
-                        }
-                      />
+                        className="animate-in fade-in zoom-in-95 duration-150"
+                        style={{
+                          animationDelay: `${index * 30}ms`,
+                          animationFillMode: 'both',
+                        }}
+                      >
+                        <TypeBadge
+                          type={type as PokemonTypes}
+                          effectivenessLabel={
+                            effectivenessMode === 'defensive' ? '0.5x' : ''
+                          }
+                        />
+                      </span>
                     ))}
                   {effectivenessList['0.25'].length > 0 &&
-                    effectivenessList['0.25'].map((type) => (
-                      <TypeBadge
+                    effectivenessList['0.25'].map((type, index) => (
+                      <span
                         key={type}
-                        type={type as PokemonTypes}
-                        effectivenessLabel={
-                          effectivenessMode === 'defensive' ? '0.25x' : ''
-                        }
-                      />
+                        className="animate-in fade-in zoom-in-95 duration-150"
+                        style={{
+                          animationDelay: `${
+                            (effectivenessList['0.5'].length + index) * 30
+                          }ms`,
+                          animationFillMode: 'both',
+                        }}
+                      >
+                        <TypeBadge
+                          type={type as PokemonTypes}
+                          effectivenessLabel={
+                            effectivenessMode === 'defensive' ? '0.25x' : ''
+                          }
+                        />
+                      </span>
                     ))}
                   {effectivenessList['0.5'].length === 0 &&
                     effectivenessList['0.25'].length === 0 && (
@@ -389,8 +427,17 @@ export default function EffectivenessChart({
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {effectivenessList['0'].length > 0 ? (
-                    effectivenessList['0'].map((type) => (
-                      <TypeBadge key={type} type={type as PokemonTypes} />
+                    effectivenessList['0'].map((type, index) => (
+                      <span
+                        key={type}
+                        className="animate-in fade-in zoom-in-95 duration-150"
+                        style={{
+                          animationDelay: `${index * 30}ms`,
+                          animationFillMode: 'both',
+                        }}
+                      >
+                        <TypeBadge type={type as PokemonTypes} />
+                      </span>
                     ))
                   ) : (
                     <span className="text-gray-500 italic">

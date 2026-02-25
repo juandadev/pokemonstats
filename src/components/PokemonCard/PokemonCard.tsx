@@ -16,6 +16,7 @@ import { getPreferences, setPreferences } from '@/lib/preferences';
 import { PokemonCardTabs } from '@/types';
 import { TYPE_LABELS } from '@/common/constants/pokemonTypes';
 import { useTranslation } from '@/i18n';
+import Pokemon30Image from '@/components/Pokemon30Image/Pokemon30Image';
 
 interface PokemonCardProps {
   pokemonData: PokemonData;
@@ -60,14 +61,22 @@ export default function PokemonCard({
             ))}
           </div>
         </div>
-        <h2
-          className={clsx(
-            'text-3xl font-bold mb-4 capitalize',
-            TYPE_LABELS[pokemonData.types[0]?.type.name]?.text
-          )}
-        >
-          {displayName}
-        </h2>
+        <div className="flex items-center justify-between gap-3">
+          <h2
+            className={clsx(
+              'text-3xl font-bold capitalize',
+              TYPE_LABELS[pokemonData.types[0]?.type.name]?.text
+            )}
+          >
+            {displayName}
+          </h2>
+          <Pokemon30Image
+            speciesId={speciesData.id}
+            pokemonName={displayName}
+            width={100}
+            height={100}
+          />
+        </div>
       </div>
       <CardContent className="px-6">
         <div className="flex justify-center">
