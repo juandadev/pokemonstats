@@ -13,64 +13,424 @@
 
 @layer utilities {
   /* Gradient Backgrounds */
-  .bg-normal-gradient { background: linear-gradient(135deg, var(--type-normal-from), var(--type-normal-to)); }
-  .bg-fire-gradient { background: linear-gradient(135deg, var(--type-fire-from), var(--type-fire-to)); }
-  .bg-water-gradient { background: linear-gradient(135deg, var(--type-water-from), var(--type-water-to)); }
-  .bg-electric-gradient { background: linear-gradient(135deg, var(--type-electric-from), var(--type-electric-to)); }
-  .bg-grass-gradient { background: linear-gradient(135deg, var(--type-grass-from), var(--type-grass-to)); }
-  .bg-ice-gradient { background: linear-gradient(135deg, var(--type-ice-from), var(--type-ice-to)); }
-  .bg-fighting-gradient { background: linear-gradient(135deg, var(--type-fighting-from), var(--type-fighting-to)); }
-  .bg-poison-gradient { background: linear-gradient(135deg, var(--type-poison-from), var(--type-poison-to)); }
-  .bg-ground-gradient { background: linear-gradient(135deg, var(--type-ground-from), var(--type-ground-to)); }
-  .bg-flying-gradient { background: linear-gradient(135deg, var(--type-flying-from), var(--type-flying-to)); }
-  .bg-psychic-gradient { background: linear-gradient(135deg, var(--type-psychic-from), var(--type-psychic-to)); }
-  .bg-bug-gradient { background: linear-gradient(135deg, var(--type-bug-from), var(--type-bug-to)); }
-  .bg-rock-gradient { background: linear-gradient(135deg, var(--type-rock-from), var(--type-rock-to)); }
-  .bg-ghost-gradient { background: linear-gradient(135deg, var(--type-ghost-from), var(--type-ghost-to)); }
-  .bg-dragon-gradient { background: linear-gradient(135deg, var(--type-dragon-from), var(--type-dragon-to)); }
-  .bg-dark-gradient { background: linear-gradient(135deg, var(--type-dark-from), var(--type-dark-to)); }
-  .bg-steel-gradient { background: linear-gradient(135deg, var(--type-steel-from), var(--type-steel-to)); }
-  .bg-fairy-gradient { background: linear-gradient(135deg, var(--type-fairy-from), var(--type-fairy-to)); }
+  .bg-normal-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--type-normal-from),
+      var(--type-normal-to)
+    );
+  }
+  .bg-fire-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--type-fire-from),
+      var(--type-fire-to)
+    );
+  }
+  .bg-water-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--type-water-from),
+      var(--type-water-to)
+    );
+  }
+  .bg-electric-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--type-electric-from),
+      var(--type-electric-to)
+    );
+  }
+  .bg-grass-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--type-grass-from),
+      var(--type-grass-to)
+    );
+  }
+  .bg-ice-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--type-ice-from),
+      var(--type-ice-to)
+    );
+  }
+  .bg-fighting-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--type-fighting-from),
+      var(--type-fighting-to)
+    );
+  }
+  .bg-poison-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--type-poison-from),
+      var(--type-poison-to)
+    );
+  }
+  .bg-ground-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--type-ground-from),
+      var(--type-ground-to)
+    );
+  }
+  .bg-flying-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--type-flying-from),
+      var(--type-flying-to)
+    );
+  }
+  .bg-psychic-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--type-psychic-from),
+      var(--type-psychic-to)
+    );
+  }
+  .bg-bug-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--type-bug-from),
+      var(--type-bug-to)
+    );
+  }
+  .bg-rock-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--type-rock-from),
+      var(--type-rock-to)
+    );
+  }
+  .bg-ghost-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--type-ghost-from),
+      var(--type-ghost-to)
+    );
+  }
+  .bg-dragon-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--type-dragon-from),
+      var(--type-dragon-to)
+    );
+  }
+  .bg-dark-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--type-dark-from),
+      var(--type-dark-to)
+    );
+  }
+  .bg-steel-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--type-steel-from),
+      var(--type-steel-to)
+    );
+  }
+  .bg-fairy-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--type-fairy-from),
+      var(--type-fairy-to)
+    );
+  }
 
   /* Light Gradient Backgrounds */
-  .bg-normal-gradient-light { background: linear-gradient(135deg, color-mix(in srgb, var(--type-normal-from) 12%, transparent), color-mix(in srgb, var(--type-normal-from) 6%, transparent)); }
-  .bg-fire-gradient-light { background: linear-gradient(135deg, color-mix(in srgb, var(--type-fire-from) 12%, transparent), color-mix(in srgb, var(--type-fire-from) 6%, transparent)); }
-  .bg-water-gradient-light { background: linear-gradient(135deg, color-mix(in srgb, var(--type-water-from) 12%, transparent), color-mix(in srgb, var(--type-water-from) 6%, transparent)); }
-  .bg-electric-gradient-light { background: linear-gradient(135deg, color-mix(in srgb, var(--type-electric-from) 12%, transparent), color-mix(in srgb, var(--type-electric-from) 6%, transparent)); }
-  .bg-grass-gradient-light { background: linear-gradient(135deg, color-mix(in srgb, var(--type-grass-from) 12%, transparent), color-mix(in srgb, var(--type-grass-from) 6%, transparent)); }
-  .bg-ice-gradient-light { background: linear-gradient(135deg, color-mix(in srgb, var(--type-ice-from) 12%, transparent), color-mix(in srgb, var(--type-ice-from) 6%, transparent)); }
-  .bg-fighting-gradient-light { background: linear-gradient(135deg, color-mix(in srgb, var(--type-fighting-from) 12%, transparent), color-mix(in srgb, var(--type-fighting-from) 6%, transparent)); }
-  .bg-poison-gradient-light { background: linear-gradient(135deg, color-mix(in srgb, var(--type-poison-from) 12%, transparent), color-mix(in srgb, var(--type-poison-from) 6%, transparent)); }
-  .bg-ground-gradient-light { background: linear-gradient(135deg, color-mix(in srgb, var(--type-ground-from) 12%, transparent), color-mix(in srgb, var(--type-ground-from) 6%, transparent)); }
-  .bg-flying-gradient-light { background: linear-gradient(135deg, color-mix(in srgb, var(--type-flying-from) 12%, transparent), color-mix(in srgb, var(--type-flying-from) 6%, transparent)); }
-  .bg-psychic-gradient-light { background: linear-gradient(135deg, color-mix(in srgb, var(--type-psychic-from) 12%, transparent), color-mix(in srgb, var(--type-psychic-from) 6%, transparent)); }
-  .bg-bug-gradient-light { background: linear-gradient(135deg, color-mix(in srgb, var(--type-bug-from) 12%, transparent), color-mix(in srgb, var(--type-bug-from) 6%, transparent)); }
-  .bg-rock-gradient-light { background: linear-gradient(135deg, color-mix(in srgb, var(--type-rock-from) 12%, transparent), color-mix(in srgb, var(--type-rock-from) 6%, transparent)); }
-  .bg-ghost-gradient-light { background: linear-gradient(135deg, color-mix(in srgb, var(--type-ghost-from) 12%, transparent), color-mix(in srgb, var(--type-ghost-from) 6%, transparent)); }
-  .bg-dragon-gradient-light { background: linear-gradient(135deg, color-mix(in srgb, var(--type-dragon-from) 12%, transparent), color-mix(in srgb, var(--type-dragon-from) 6%, transparent)); }
-  .bg-dark-gradient-light { background: linear-gradient(135deg, color-mix(in srgb, var(--type-dark-from) 12%, transparent), color-mix(in srgb, var(--type-dark-from) 6%, transparent)); }
-  .bg-steel-gradient-light { background: linear-gradient(135deg, color-mix(in srgb, var(--type-steel-from) 12%, transparent), color-mix(in srgb, var(--type-steel-from) 6%, transparent)); }
-  .bg-fairy-gradient-light { background: linear-gradient(135deg, color-mix(in srgb, var(--type-fairy-from) 12%, transparent), color-mix(in srgb, var(--type-fairy-from) 6%, transparent)); }
+  .bg-normal-gradient-light {
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--type-normal-from) 12%, transparent),
+      color-mix(in srgb, var(--type-normal-from) 6%, transparent)
+    );
+  }
+  .bg-fire-gradient-light {
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--type-fire-from) 12%, transparent),
+      color-mix(in srgb, var(--type-fire-from) 6%, transparent)
+    );
+  }
+  .bg-water-gradient-light {
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--type-water-from) 12%, transparent),
+      color-mix(in srgb, var(--type-water-from) 6%, transparent)
+    );
+  }
+  .bg-electric-gradient-light {
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--type-electric-from) 12%, transparent),
+      color-mix(in srgb, var(--type-electric-from) 6%, transparent)
+    );
+  }
+  .bg-grass-gradient-light {
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--type-grass-from) 12%, transparent),
+      color-mix(in srgb, var(--type-grass-from) 6%, transparent)
+    );
+  }
+  .bg-ice-gradient-light {
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--type-ice-from) 12%, transparent),
+      color-mix(in srgb, var(--type-ice-from) 6%, transparent)
+    );
+  }
+  .bg-fighting-gradient-light {
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--type-fighting-from) 12%, transparent),
+      color-mix(in srgb, var(--type-fighting-from) 6%, transparent)
+    );
+  }
+  .bg-poison-gradient-light {
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--type-poison-from) 12%, transparent),
+      color-mix(in srgb, var(--type-poison-from) 6%, transparent)
+    );
+  }
+  .bg-ground-gradient-light {
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--type-ground-from) 12%, transparent),
+      color-mix(in srgb, var(--type-ground-from) 6%, transparent)
+    );
+  }
+  .bg-flying-gradient-light {
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--type-flying-from) 12%, transparent),
+      color-mix(in srgb, var(--type-flying-from) 6%, transparent)
+    );
+  }
+  .bg-psychic-gradient-light {
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--type-psychic-from) 12%, transparent),
+      color-mix(in srgb, var(--type-psychic-from) 6%, transparent)
+    );
+  }
+  .bg-bug-gradient-light {
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--type-bug-from) 12%, transparent),
+      color-mix(in srgb, var(--type-bug-from) 6%, transparent)
+    );
+  }
+  .bg-rock-gradient-light {
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--type-rock-from) 12%, transparent),
+      color-mix(in srgb, var(--type-rock-from) 6%, transparent)
+    );
+  }
+  .bg-ghost-gradient-light {
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--type-ghost-from) 12%, transparent),
+      color-mix(in srgb, var(--type-ghost-from) 6%, transparent)
+    );
+  }
+  .bg-dragon-gradient-light {
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--type-dragon-from) 12%, transparent),
+      color-mix(in srgb, var(--type-dragon-from) 6%, transparent)
+    );
+  }
+  .bg-dark-gradient-light {
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--type-dark-from) 12%, transparent),
+      color-mix(in srgb, var(--type-dark-from) 6%, transparent)
+    );
+  }
+  .bg-steel-gradient-light {
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--type-steel-from) 12%, transparent),
+      color-mix(in srgb, var(--type-steel-from) 6%, transparent)
+    );
+  }
+  .bg-fairy-gradient-light {
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--type-fairy-from) 12%, transparent),
+      color-mix(in srgb, var(--type-fairy-from) 6%, transparent)
+    );
+  }
 
   /* Gradient Headings */
-  .text-normal-gradient { background: linear-gradient(135deg, var(--type-normal-text-from), var(--type-normal-text-to)); background-clip: text; color: transparent; }
-  .text-fire-gradient { background: linear-gradient(135deg, var(--type-fire-text-from), var(--type-fire-text-to)); background-clip: text; color: transparent; }
-  .text-water-gradient { background: linear-gradient(135deg, var(--type-water-text-from), var(--type-water-text-to)); background-clip: text; color: transparent; }
-  .text-electric-gradient { background: linear-gradient(135deg, var(--type-electric-text-from), var(--type-electric-text-to)); background-clip: text; color: transparent; }
-  .text-grass-gradient { background: linear-gradient(135deg, var(--type-grass-text-from), var(--type-grass-text-to)); background-clip: text; color: transparent; }
-  .text-ice-gradient { background: linear-gradient(135deg, var(--type-ice-text-from), var(--type-ice-text-to)); background-clip: text; color: transparent; }
-  .text-fighting-gradient { background: linear-gradient(135deg, var(--type-fighting-text-from), var(--type-fighting-text-to)); background-clip: text; color: transparent; }
-  .text-poison-gradient { background: linear-gradient(135deg, var(--type-poison-text-from), var(--type-poison-text-to)); background-clip: text; color: transparent; }
-  .text-ground-gradient { background: linear-gradient(135deg, var(--type-ground-text-from), var(--type-ground-text-to)); background-clip: text; color: transparent; }
-  .text-flying-gradient { background: linear-gradient(135deg, var(--type-flying-text-from), var(--type-flying-text-to)); background-clip: text; color: transparent; }
-  .text-psychic-gradient { background: linear-gradient(135deg, var(--type-psychic-text-from), var(--type-psychic-text-to)); background-clip: text; color: transparent; }
-  .text-bug-gradient { background: linear-gradient(135deg, var(--type-bug-text-from), var(--type-bug-text-to)); background-clip: text; color: transparent; }
-  .text-rock-gradient { background: linear-gradient(135deg, var(--type-rock-text-from), var(--type-rock-text-to)); background-clip: text; color: transparent; }
-  .text-ghost-gradient { background: linear-gradient(135deg, var(--type-ghost-text-from), var(--type-ghost-text-to)); background-clip: text; color: transparent; }
-  .text-dragon-gradient { background: linear-gradient(135deg, var(--type-dragon-text-from), var(--type-dragon-text-to)); background-clip: text; color: transparent; }
-  .text-dark-gradient { background: linear-gradient(135deg, var(--type-dark-text-from), var(--type-dark-text-to)); background-clip: text; color: transparent; }
-  .text-steel-gradient { background: linear-gradient(135deg, var(--type-steel-text-from), var(--type-steel-text-to)); background-clip: text; color: transparent; }
-  .text-fairy-gradient { background: linear-gradient(135deg, var(--type-fairy-text-from), var(--type-fairy-text-to)); background-clip: text; color: transparent; }
+  .text-normal-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--type-normal-text-from),
+      var(--type-normal-text-to)
+    );
+    background-clip: text;
+    color: transparent;
+  }
+  .text-fire-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--type-fire-text-from),
+      var(--type-fire-text-to)
+    );
+    background-clip: text;
+    color: transparent;
+  }
+  .text-water-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--type-water-text-from),
+      var(--type-water-text-to)
+    );
+    background-clip: text;
+    color: transparent;
+  }
+  .text-electric-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--type-electric-text-from),
+      var(--type-electric-text-to)
+    );
+    background-clip: text;
+    color: transparent;
+  }
+  .text-grass-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--type-grass-text-from),
+      var(--type-grass-text-to)
+    );
+    background-clip: text;
+    color: transparent;
+  }
+  .text-ice-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--type-ice-text-from),
+      var(--type-ice-text-to)
+    );
+    background-clip: text;
+    color: transparent;
+  }
+  .text-fighting-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--type-fighting-text-from),
+      var(--type-fighting-text-to)
+    );
+    background-clip: text;
+    color: transparent;
+  }
+  .text-poison-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--type-poison-text-from),
+      var(--type-poison-text-to)
+    );
+    background-clip: text;
+    color: transparent;
+  }
+  .text-ground-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--type-ground-text-from),
+      var(--type-ground-text-to)
+    );
+    background-clip: text;
+    color: transparent;
+  }
+  .text-flying-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--type-flying-text-from),
+      var(--type-flying-text-to)
+    );
+    background-clip: text;
+    color: transparent;
+  }
+  .text-psychic-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--type-psychic-text-from),
+      var(--type-psychic-text-to)
+    );
+    background-clip: text;
+    color: transparent;
+  }
+  .text-bug-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--type-bug-text-from),
+      var(--type-bug-text-to)
+    );
+    background-clip: text;
+    color: transparent;
+  }
+  .text-rock-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--type-rock-text-from),
+      var(--type-rock-text-to)
+    );
+    background-clip: text;
+    color: transparent;
+  }
+  .text-ghost-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--type-ghost-text-from),
+      var(--type-ghost-text-to)
+    );
+    background-clip: text;
+    color: transparent;
+  }
+  .text-dragon-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--type-dragon-text-from),
+      var(--type-dragon-text-to)
+    );
+    background-clip: text;
+    color: transparent;
+  }
+  .text-dark-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--type-dark-text-from),
+      var(--type-dark-text-to)
+    );
+    background-clip: text;
+    color: transparent;
+  }
+  .text-steel-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--type-steel-text-from),
+      var(--type-steel-text-to)
+    );
+    background-clip: text;
+    color: transparent;
+  }
+  .text-fairy-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--type-fairy-text-from),
+      var(--type-fairy-text-to)
+    );
+    background-clip: text;
+    color: transparent;
+  }
 
   .rainbow-gradient {
     background: linear-gradient(
