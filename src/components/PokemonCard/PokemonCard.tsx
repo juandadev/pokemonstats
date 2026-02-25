@@ -16,8 +16,7 @@ import { getPreferences, setPreferences } from '@/lib/preferences';
 import { PokemonCardTabs } from '@/types';
 import { TYPE_LABELS } from '@/common/constants/pokemonTypes';
 import { useTranslation } from '@/i18n';
-import Image from 'next/image';
-import { getPokemon30ImageUrl } from '@/lib/pokemon30';
+import Pokemon30Image from '@/components/Pokemon30Image/Pokemon30Image';
 
 interface PokemonCardProps {
   pokemonData: PokemonData;
@@ -71,13 +70,11 @@ export default function PokemonCard({
           >
             {displayName}
           </h2>
-          <Image
-            src={getPokemon30ImageUrl(speciesData.id)}
-            alt="Pokémon 30th Anniversary"
+          <Pokemon30Image
+            speciesId={speciesData.id}
+            pokemonName={displayName}
             width={100}
             height={100}
-            className="object-contain"
-            unoptimized
           />
         </div>
       </div>

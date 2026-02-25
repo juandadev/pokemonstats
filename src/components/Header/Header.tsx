@@ -8,8 +8,7 @@ import PokemonImage from '@/components/PokemonImage/PokemonImage';
 import { Species } from '@/types/species.types';
 import { getPokemonDisplayName } from '@/lib/pokemonDisplayName';
 import { TYPE_LABELS } from '@/common/constants/pokemonTypes';
-import Image from 'next/image';
-import { getPokemon30ImageUrl } from '@/lib/pokemon30';
+import Pokemon30Image from '@/components/Pokemon30Image/Pokemon30Image';
 
 interface HeroProps {
   pokemonData: PokemonData;
@@ -42,7 +41,7 @@ export default function Header({ pokemonData, speciesData }: HeroProps) {
         <div className="flex items-center gap-4">
           <div
             className={clsx(
-              'w-12 h-12 rounded-full flex items-center justify-center overflow-hidden flex-shrink-0',
+              'w-12 h-12 rounded-full flex items-center justify-center overflow-hidden shrink-0',
               TYPE_LABELS[pokemonData.types[0]?.type.name]
                 ?.gradientBackgroundLight
             )}
@@ -74,13 +73,11 @@ export default function Header({ pokemonData, speciesData }: HeroProps) {
                     #{speciesData.id.toString().padStart(4, '0')}
                   </span>
                 </div>
-                <Image
-                  src={getPokemon30ImageUrl(speciesData.id)}
-                  alt="Pokémon 30th Anniversary"
+                <Pokemon30Image
+                  speciesId={speciesData.id}
+                  pokemonName={getPokemonDisplayName(pokemonData.name)}
                   width={70}
                   height={70}
-                  className="object-contain shrink-0"
-                  unoptimized
                 />
               </div>
               <div className="flex flex-col gap-1 items-end justify-center">
