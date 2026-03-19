@@ -4,9 +4,7 @@ import HeroContent from './HeroContent';
 async function getStars(): Promise<number> {
   try {
     const url = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
-    const response = await fetch(`${url}/api/github/stars`, {
-      next: { revalidate: 3600 },
-    });
+    const response = await fetch(`${url}/api/github/stars`);
 
     if (!response.ok) return 0;
 
