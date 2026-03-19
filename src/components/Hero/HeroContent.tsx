@@ -3,46 +3,15 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
+import { useTranslation } from '@/i18n';
 import { HeartIcon, StarIcon } from 'lucide-react';
 import Image from 'next/image';
-import { useTranslation } from '@/i18n';
-import { useEffect, useState } from 'react';
-import { GithubStarsResponse } from '@/types';
-import { Skeleton } from '@/components/ui/skeleton';
-
-let isMounted = false;
-
-export default function HeroContent() {
+export default function HeroContent({
+  initialStars,
+}: {
+  initialStars: number;
+}) {
   const { t } = useTranslation();
-  const [starCount, setStarCount] = useState('...');
-
-  useEffect(() => {
-    if (isMounted) return;
-
-    isMounted = true;
-
-    async function loadStarCount() {
-      try {
-        const response = await fetch('/api/github/stars');
-
-        if (!response.ok) {
-          throw new Error(`Failed to fetch stars (${response.status})`);
-        }
-
-        const data = (await response.json()) as GithubStarsResponse;
-
-        setStarCount(data.stars.toLocaleString('en-US'));
-      } catch {
-        setStarCount('0');
-      }
-    }
-
-    void loadStarCount();
-
-    return () => {
-      isMounted = false;
-    };
-  }, []);
 
   return (
     <div
@@ -76,11 +45,7 @@ export default function HeroContent() {
               <div className="flex items-center gap-1 py-1 px-2 bg-white/20 rounded-full">
                 <StarIcon className="w-3 h-3 fill-current" />
                 <span className="text-xs font-semibold">
-                  {starCount ? (
-                    starCount
-                  ) : (
-                    <Skeleton className="rounded-md w-[13.73px] h-4" />
-                  )}
+                  {initialStars ? initialStars.toLocaleString('en-US') : '0'}
                 </span>
               </div>
               {t('hero.buttons.github', 'Star on GitHub')}
