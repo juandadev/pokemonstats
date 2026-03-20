@@ -43,29 +43,43 @@ async function getSupporters(): Promise<Supporter[]> {
 
   if (!token) return [];
 
-  const response = await fetch(
-    'https://developers.buymeacoffee.com/api/v1/supporters',
-    {
-      headers: { Authorization: `Bearer ${token}` },
+  try {
+    const response = await fetch(
+      'https://developers.buymeacoffee.com/api/v1/supporters',
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+
+    if (!response.ok) return [];
+
+    const contentType = response.headers.get('content-type') ?? '';
+
+    if (!contentType.includes('application/json')) {
+      console.error(
+        `Buy Me a Coffee API returned unexpected content type: ${contentType}`
+      );
+      return [];
     }
-  );
 
-  if (!response.ok) return [];
+    const data = (await response.json()) as BmcListResponse;
 
-  const data = (await response.json()) as BmcListResponse;
+    return (data.data ?? []).slice(0, 5).map((supporter) => {
+      const totalAmount =
+        supporter.support_coffees * Number(supporter.support_coffee_price || 0);
 
-  return (data.data ?? []).slice(0, 5).map((supporter) => {
-    const totalAmount =
-      supporter.support_coffees * Number(supporter.support_coffee_price || 0);
-
-    return {
-      id: String(supporter.support_id),
-      name: supporter.payer_name ?? 'Anonymous',
-      message: supporter.support_note ?? null,
-      amount: totalAmount,
-      createdAt: new Date(`${supporter.support_created_on}Z`),
-    };
-  });
+      return {
+        id: String(supporter.support_id),
+        name: supporter.payer_name ?? 'Anonymous',
+        message: supporter.support_note ?? null,
+        amount: totalAmount,
+        createdAt: new Date(`${supporter.support_created_on}Z`),
+      };
+    });
+  } catch (error) {
+    console.error('Failed to load Buy Me a Coffee supporters', error);
+    return [];
+  }
 }
 
 export default async function CoffeeSupporters() {

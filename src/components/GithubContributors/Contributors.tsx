@@ -32,20 +32,34 @@ async function getContributors(): Promise<Contributor[]> {
 
   if (!token) return [];
 
-  const response = await fetch(
-    'https://api.github.com/repos/juandadev/pokemonstats/contributors?per_page=6',
-    {
-      headers: {
-        'User-Agent': 'pokemonstats-app',
-        Accept: 'application/vnd.github+json',
-        ...(token ? { Authorization: `Bearer ${token}` } : {}),
-      },
+  try {
+    const response = await fetch(
+      'https://api.github.com/repos/juandadev/pokemonstats/contributors?per_page=6',
+      {
+        headers: {
+          'User-Agent': 'pokemonstats-app',
+          Accept: 'application/vnd.github+json',
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
+      }
+    );
+
+    if (!response.ok) return [];
+
+    const contentType = response.headers.get('content-type') ?? '';
+
+    if (!contentType.includes('application/json')) {
+      console.error(
+        `GitHub contributors API returned unexpected content type: ${contentType}`
+      );
+      return [];
     }
-  );
 
-  if (!response.ok) return [];
-
-  return (await response.json()) as Contributor[];
+    return (await response.json()) as Contributor[];
+  } catch (error) {
+    console.error('Failed to load GitHub contributors', error);
+    return [];
+  }
 }
 
 export default async function Contributors() {
